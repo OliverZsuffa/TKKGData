@@ -341,7 +341,7 @@ def _ytm_artist_names(track: dict[str, Any]) -> list[str]:
 
 def _duration_seconds(value: Any) -> float | None:
     if isinstance(value, (int, float)):
-        # ytmusicapi song duration_seconds is seconds; Spotify duration is milliseconds.
+        # spotDL's duration field is seconds; the raw Spotify API duration_ms field is milliseconds.
         return float(value) if value < 10000 else float(value) / 1000
     if isinstance(value, str):
         parts = value.strip().split(":")
