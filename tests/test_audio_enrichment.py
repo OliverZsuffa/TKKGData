@@ -10,6 +10,7 @@ from scraper.audio_enrichment import (
     audio_release_coverage,
     enrich_catalogue,
     find_verified_youtube_music_playlist,
+    discover_episode_audio,
     find_verified_youtube_music_tracks,
     preserve_verified_audio_releases,
     resolve_spotify_album,
@@ -23,11 +24,24 @@ SPOTIFY = {
     "url": "https://open.spotify.com/album/0ZqyFeMXxCyIJvYptGlnn1",
     "title": "150/Heiße Nächte im Dezember",
     "track_count": 2,
+    "source_query": "TKKG 150 Heiße Nächte im Dezember Teil 01",
     "tracks": [
         {"name": "150 - Heiße Nächte im Dezember - Teil 01", "track_number": 1, "song_id": "0000000000000000000001", "url": "https://open.spotify.com/track/0000000000000000000001"},
         {"name": "150 - Heiße Nächte im Dezember - Teil 02", "track_number": 2, "song_id": "0000000000000000000002", "url": "https://open.spotify.com/track/0000000000000000000002"},
     ],
 }
+
+
+def ytdlp_playlist_info(playlist_id="OLAK5uy_example123", tracks=None):
+    return {
+        "id": playlist_id,
+        "title": "Album - 150/Heiße Nächte im Dezember",
+        "playlist_count": 2,
+        "entries": tracks or [
+            {"id": "videoid0001", "title": "150 - Heiße Nächte im Dezember (Teil 01)", "duration": 128},
+            {"id": "videoid0002", "title": "150 - Heiße Nächte im Dezember (Teil 02)", "duration": 127},
+        ],
+    }
 
 
 class FakeYTMusic:
@@ -111,7 +125,8 @@ class AudioEnrichmentTests(unittest.TestCase):
 
     def test_known_episode_150_playlist_id_is_discovered_and_verified(self):
         ytm = FakeYTMusic(["OLAK5uy_mQRbJNANh1H4CKbmM5ez5LSW1HJFvE3QI"])
-        result = find_verified_youtube_music_playlist(EPISODE, SPOTIFY, ytm)
+        with patch("scraper.audio_enrichment._extract_ytdlp_playlist", return_value=ytdlp_playlist_info("OLAK5uy_mQRbJNANh1H4CKbmM5ez5LSW1HJFvE3QI")):
+            result = find_verified_youtube_music_playlist(EPISODE, SPOTIFY, ytm)
         self.assertEqual(
             result["playlist_id"],
             "OLAK5uy_mQRbJNANh1H4CKbmM5ez5LSW1HJFvE3QI",
@@ -121,21 +136,79 @@ class AudioEnrichmentTests(unittest.TestCase):
 
     def test_album_search_browse_id_resolves_to_audio_playlist(self):
         ytm = FakeAlbumYTMusic(["OLAK5uy_mQRbJNANh1H4CKbmM5ez5LSW1HJFvE3QI"])
-        result = find_verified_youtube_music_playlist(EPISODE, SPOTIFY, ytm)
+        with patch("scraper.audio_enrichment._extract_ytdlp_playlist", return_value=ytdlp_playlist_info("OLAK5uy_mQRbJNANh1H4CKbmM5ez5LSW1HJFvE3QI")):
+            result = find_verified_youtube_music_playlist(EPISODE, SPOTIFY, ytm)
         self.assertEqual(ytm.asserted_browse_id, "MPREb_example")
         self.assertEqual(
             result["playlist_id"],
             "OLAK5uy_mQRbJNANh1H4CKbmM5ez5LSW1HJFvE3QI",
         )
 
+    def test_explicit_ytdlp_playlist_is_verified_and_produces_individual_links(self):
+        playlist_id = "OLAK5uy_example123"
+        info = {
+            "id": playlist_id,
+            "title": "Album - 150/Heiße Nächte im Dezember",
+            "playlist_count": 2,
+            "entries": [
+                {"id": "videoid0001", "title": "150 - Heiße Nächte im Dezember (Teil 01)", "url": "https://music.youtube.com/watch?v=videoid0001", "duration": 128},
+                {"id": "videoid0002", "title": "150 - Heiße Nächte im Dezember (Teil 02)", "url": "https://music.youtube.com/watch?v=videoid0002", "duration": 127},
+            ],
+        }
+        with patch("scraper.audio_enrichment._extract_ytdlp_playlist", return_value=info):
+            result = find_verified_youtube_music_playlist(
+                EPISODE, SPOTIFY, FakeYTMusic(), playlist_id,
+            )
+        self.assertEqual(result["playlist_id"], playlist_id)
+        self.assertEqual(result["track_count"], 2)
+        self.assertEqual(result["_matched_tracks"][0]["video_id"], "videoid0001")
+        self.assertEqual(result["_matched_tracks"][0]["spotify_track_url"], SPOTIFY["tracks"][0]["url"])
+
+    def test_explicit_ytdlp_playlist_rejects_wrong_track_order(self):
+        playlist_id = "OLAK5uy_example123"
+        info = {
+            "id": playlist_id,
+            "title": "Album - 150/Heiße Nächte im Dezember",
+            "playlist_count": 2,
+            "entries": [
+                {"id": "videoid0002", "title": "150 - Heiße Nächte im Dezember (Teil 02)", "duration": 127},
+                {"id": "videoid0001", "title": "150 - Heiße Nächte im Dezember (Teil 01)", "duration": 128},
+            ],
+        }
+        with patch("scraper.audio_enrichment._extract_ytdlp_playlist", return_value=info):
+            with self.assertRaisesRegex(ValueError, "does not match Spotify track"):
+                find_verified_youtube_music_playlist(
+                    EPISODE, SPOTIFY, FakeYTMusic(), playlist_id,
+                )
+
+    def test_discover_uses_verified_playlist_entries_without_song_search(self):
+        playlist_id = "OLAK5uy_example123"
+        info = {
+            "id": playlist_id,
+            "title": "Album - 150/Heiße Nächte im Dezember",
+            "playlist_count": 2,
+            "entries": [
+                {"id": "videoid0001", "title": "150 - Heiße Nächte im Dezember (Teil 01)", "duration": 128},
+                {"id": "videoid0002", "title": "150 - Heiße Nächte im Dezember (Teil 02)", "duration": 127},
+            ],
+        }
+        ytm = FakeYTMusic()
+        with patch("scraper.audio_enrichment.resolve_spotify_album", return_value=SPOTIFY), \
+             patch("scraper.audio_enrichment._extract_ytdlp_playlist", return_value=info):
+            result = discover_episode_audio(EPISODE, ytm, playlist_id)
+        self.assertEqual(len(result["audio_release"]["youtube_music"]["tracks"]), 2)
+        self.assertEqual(result["audio_release"]["verification"]["method"], "exact_ordered_playlist_track_titles_and_duration")
+        self.assertEqual(ytm.search_calls, [])
+
     def test_explicit_playlist_id_can_be_verified_without_search(self):
         ytm = FakeYTMusic(["OLAK5uy_mQRbJNANh1H4CKbmM5ez5LSW1HJFvE3QI"])
-        result = find_verified_youtube_music_playlist(
-            EPISODE,
-            SPOTIFY,
-            ytm,
-            "OLAK5uy_mQRbJNANh1H4CKbmM5ez5LSW1HJFvE3QI",
-        )
+        with patch("scraper.audio_enrichment._extract_ytdlp_playlist", return_value=ytdlp_playlist_info("OLAK5uy_mQRbJNANh1H4CKbmM5ez5LSW1HJFvE3QI")):
+            result = find_verified_youtube_music_playlist(
+                EPISODE,
+                SPOTIFY,
+                ytm,
+                "OLAK5uy_mQRbJNANh1H4CKbmM5ez5LSW1HJFvE3QI",
+            )
         self.assertEqual(
             result["playlist_id"],
             "OLAK5uy_mQRbJNANh1H4CKbmM5ez5LSW1HJFvE3QI",
@@ -147,13 +220,23 @@ class AudioEnrichmentTests(unittest.TestCase):
             {"title": "150 - Heiße Nächte im Dezember - Teil 01", "artists": [{"name": "TKKG"}]},
             {"title": "An unrelated recording", "artists": [{"name": "TKKG"}]},
         ])
-        with self.assertRaisesRegex(ValueError, "No verified YouTube Music playlist"):
-            find_verified_youtube_music_playlist(EPISODE, SPOTIFY, ytm)
+        wrong_entries = [
+            {"id": "videoid0001", "title": "150 - Heiße Nächte im Dezember - Teil 01"},
+            {"id": "videoid0002", "title": "An unrelated recording"},
+        ]
+        with patch("scraper.audio_enrichment._extract_ytdlp_playlist", return_value=ytdlp_playlist_info(tracks=wrong_entries)):
+            with self.assertRaisesRegex(ValueError, "No verified YouTube Music playlist"):
+                find_verified_youtube_music_playlist(EPISODE, SPOTIFY, ytm)
 
     def test_multiple_verified_playlists_are_ambiguous(self):
         ytm = FakeYTMusic(["OLAK5uy_first123", "OLAK5uy_second123"])
-        with self.assertRaisesRegex(ValueError, "Ambiguous YouTube Music match"):
-            find_verified_youtube_music_playlist(EPISODE, SPOTIFY, ytm)
+        def extract(url):
+            from urllib.parse import parse_qs, urlparse
+            playlist_id = parse_qs(urlparse(url).query)["list"][0]
+            return ytdlp_playlist_info(playlist_id)
+        with patch("scraper.audio_enrichment._extract_ytdlp_playlist", side_effect=extract):
+            with self.assertRaisesRegex(ValueError, "Ambiguous YouTube Music match"):
+                find_verified_youtube_music_playlist(EPISODE, SPOTIFY, ytm)
 
     def test_playlist_without_tkkg_artist_evidence_is_rejected(self):
         tracks = [
@@ -161,8 +244,9 @@ class AudioEnrichmentTests(unittest.TestCase):
             for item in SPOTIFY["tracks"]
         ]
         ytm = FakeYTMusic(tracks=tracks, candidate_artist="Unknown Artist")
-        with self.assertRaisesRegex(ValueError, "No verified YouTube Music playlist"):
-            find_verified_youtube_music_playlist(EPISODE, SPOTIFY, ytm)
+        with patch("scraper.audio_enrichment._extract_ytdlp_playlist", return_value=ytdlp_playlist_info()):
+            with self.assertRaisesRegex(ValueError, "No verified YouTube Music playlist"):
+                find_verified_youtube_music_playlist(EPISODE, SPOTIFY, ytm)
 
     def test_spotify_album_count_comes_from_actual_track_records(self):
         first_track = [{
