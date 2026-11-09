@@ -36,5 +36,5 @@ def write_catalogue(episodes: list[dict], output_dir: Path) -> None:
         "data_file": "episodes.json",
     }
     (output_dir / "dataset-metadata.json").write_text(
-        json.dumps(metadata, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8"
+        json.dumps(metadata, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
