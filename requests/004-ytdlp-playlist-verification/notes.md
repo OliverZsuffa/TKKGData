@@ -19,4 +19,10 @@ Audio source experiment artifact from workflow run 42700291218:
 - Made the alternate diagnostic experiment non-blocking.
 
 ## Test results
-Pending the next CI run and the episode 150 dry-run workflow after merge.
+
+- PR #5 was merged into main as commit f229e4c2d64c31b1c8549144e1dc4a01442a5256.
+- GitHub Actions validation run 42708617467 passed the complete Python unit test suite and validated all 243 published episode records against the schema.
+- The post-merge TKKGData dataset refresh completed successfully in run 42708728320.
+- The post-merge episode 150 dry-run is running in workflow run 42708728228. It uses the explicit official playlist ID and does not write to the catalogue.
+
+The 40-track live match acceptance criterion remains pending until the dry-run report is inspected.
