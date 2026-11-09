@@ -36,4 +36,4 @@ Audio source experiment artifact from workflow run 42700291218:
 
 The independent diagnostic artifact also confirms yt-dlp extracts the same 40-entry playlist from both music.youtube.com and www.youtube.com. Individual YouTube Music song search returned no exact matches, which validates the decision to use direct playlist extraction as the primary method.
 
-The verified mapping is now being published to TKKGData through the one-time tagged write workflow. The dry-run itself did not modify the catalogue.
+The verified mapping was published to TKKGData in commit 2233bfd68fc832897a5f916deb9abb24282d9b08. The write workflow used the latest main checkout, revalidated the full 40-track mapping, and committed episodes.json, episodes.csv, dataset-metadata.json, and scrape-report.json. The published dataset still contains 243 episodes, and episode 150 now has a verified Spotify album, YouTube Music playlist, and 40 individual cross-provider track pairs.
