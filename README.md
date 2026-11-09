@@ -1,33 +1,71 @@
 # TKKGData
 
-The shared, validated source of truth for structured TKKG episode and release data.
+The canonical, validated dataset for TKKG episodes and their releases. TKKGData is the only repository responsible for discovering, scraping, reconciling, validating, and publishing shared TKKG metadata.
 
-TKKGData is the central data project for [TKKGTracker](https://github.com/OliverZsuffa/TKKGtracker), [TKKGDownloader](https://github.com/OliverZsuffa/TKKGDownloader), and future TKKG tools.
+Consumers:
+- [TKKGTracker](https://github.com/OliverZsuffa/TKKGtracker) provides the listening tracker and stores personal progress locally.
+- [TKKGDownloader](https://github.com/OliverZsuffa/TKKGDownloader) downloads and merges audio locally.
 
-## Responsibilities
+## Current data
 
-TKKGData is intended to own:
-- Episode discovery and source scraping.
-- Metadata normalization and reconciliation.
-- Episode, release, and provider data schemas.
-- Spotify and YouTube Music release discovery and verification.
-- Source provenance, validation, and coverage reporting.
-- Publication of a stable, versioned JSON dataset.
+The initial migration preserves the existing tracker catalogue without changing its episode record structure. The published compatibility endpoint is:
 
-Applications consume the published dataset. They do not maintain independent episode catalogues or duplicate source scraping.
+    https://raw.githubusercontent.com/OliverZsuffa/TKKGData/main/data/episodes.json
 
-## Repository status
+Dataset metadata and schema version are published separately at:
 
-The repository foundation and proposed architecture are documented in [Request 001](requests/001-shared-tkkg-dataset/request.md). The migration is currently in planning and requires explicit approval before implementation.
+    https://raw.githubusercontent.com/OliverZsuffa/TKKGData/main/data/dataset-metadata.json
+
+The episode JSON remains an array so the current TKKGTracker can adopt it without changing its application behaviour. New optional fields, including verified audio release mappings, are additive. Consumers must tolerate unknown optional fields and missing enrichment.
+
+The initial migration contains 243 episode records, numbered 1 through 243, copied from the TKKGTracker main branch snapshot. Existing source provenance, episode details, and official listening links are retained.
+
+## Ownership
+
+TKKGData owns episode and release metadata, source provenance, source adapters, scraping, normalization, reconciliation, Spotify album metadata, provider track records, verified YouTube Music playlist and individual song URLs, validation, and publication.
+
+TKKGTracker owns its user interface, local listening progress, ratings, notes, favourites, and preferences. TKKGDownloader owns local download execution, FFmpeg merging, output files, and download preferences. Neither consumer may scrape source websites or write metadata back to TKKGData.
 
 ## Development
 
-Read the [project instructions](.github/copilot-instructions.md), [documentation index](docs/README.md), and [knowledge base](docs/knowledge/README.md) before contributing.
+Requirements: Python 3.11 or later.
 
-Substantial work follows the request workflow in [requests/README.md]. Each request includes acceptance criteria, an implementation plan, a testing plan, and implementation notes.
+Install core dependencies:
 
-## Data integrity
+    py -m pip install -r requirements.txt
 
-Only evidence-backed, validated records should be published. Candidate discoveries and unresolved conflicts must remain distinguishable from verified data. Source failures must not erase previously verified records. Respect source terms, robots.txt, and access restrictions.
+Install optional audio discovery dependencies:
 
-User-specific listening progress belongs in TKKGTracker. Download preferences and local files belong in TKKGDownloader.
+    py -m pip install -r requirements-audio.txt
+
+Run the catalogue scraper:
+
+    py -m scraper.run
+
+Discover verified audio mappings without writing them:
+
+    py -m scraper.audio_enrichment --episode 150
+
+Write only fully verified audio mappings:
+
+    py -m scraper.audio_enrichment --episode 150 --write
+
+Run diagnostics for audio source matching:
+
+    py -m scraper.audio_source_experiments --episode 150
+
+Run all offline tests:
+
+    py -m unittest discover -s tests -v
+
+Network discovery is not part of the offline test suite. It runs only through explicit scraper or enrichment commands and scheduled workflows. Respect source terms, robots.txt, rate limits, and access restrictions.
+
+## Publication and versioning
+
+The stable latest compatibility dataset is data/episodes.json. data/dataset-metadata.json describes the schema version, dataset generation time, episode count, and covered series. Git commit SHAs provide immutable snapshots. GitHub Actions validates the dataset before committing generated changes. A failed scrape or validation must not replace the last known valid dataset.
+
+## Development workflow
+
+Read the project instructions, documentation index, and knowledge base before changing the project. Substantial work requires a numbered request and an approved implementation plan. See requests/README.md.
+
+The three repository migration is tracked by Request 001. TKKGTracker and TKKGDownloader switch only after the published contract has been validated. The tracker application itself must retain its existing behaviour, progress storage, and offline capability.
