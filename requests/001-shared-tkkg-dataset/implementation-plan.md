@@ -1,6 +1,6 @@
 # Implementation plan: Establish TKKGData as the shared TKKG dataset
 
-**Status:** Proposed. Awaiting Oliver's explicit approval. Planning only.
+**Status:** Approved by Oliver on 2026-11-09. Implementation in progress.
 
 ## 1. Architecture and ownership
 
