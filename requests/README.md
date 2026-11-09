@@ -13,6 +13,7 @@ Every substantial change is tracked in its own numbered request folder.
 8. Request explicit approval before merging or deploying.
 
 ## Request index
+- [002: Exact Spotify and YouTube Music track pairing](002-exact-track-pairing/request.md) — preserve exact provider track URLs for deterministic downloader matching.
 - [001: Shared TKKG dataset and repository foundation](001-shared-tkkg-dataset/request.md) — establish TKKGData as the canonical dataset and define the consumer contract for TKKGTracker and TKKGDownloader.
 
 ## Request contents
