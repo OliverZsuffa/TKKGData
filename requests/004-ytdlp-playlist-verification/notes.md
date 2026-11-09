@@ -23,6 +23,17 @@ Audio source experiment artifact from workflow run 42700291218:
 - PR #5 was merged into main as commit f229e4c2d64c31b1c8549144e1dc4a01442a5256.
 - GitHub Actions validation run 42708617467 passed the complete Python unit test suite and validated all 243 published episode records against the schema.
 - The post-merge TKKGData dataset refresh completed successfully in run 42708728320.
-- The post-merge episode 150 dry-run is running in workflow run 42708728228. It uses the explicit official playlist ID and does not write to the catalogue.
+- The post-merge episode 150 dry-run completed successfully in workflow run 42708728228. Its artifact report confirms:
+- Dry-run mode, with no catalogue write.
+- One target episode, one verified result, and zero failures.
+- Spotify album track count: 40.
+- Official YouTube Music playlist ID: OLAK5uy_mQRbJNANh1H4CKbmM5ez5LSW1HJFvE3QI.
+- YouTube Music playlist entries: 40.
+- All 40 track numbers contiguous and ordered.
+- All 40 Spotify track IDs and YouTube video IDs valid and consistent with their URLs.
+- All 40 titles match after conservative punctuation normalization.
+- Duration evidence was present and within the eight-second tolerance for all tracks.
 
-The 40-track live match acceptance criterion remains pending until the dry-run report is inspected.
+The independent diagnostic artifact also confirms yt-dlp extracts the same 40-entry playlist from both music.youtube.com and www.youtube.com. Individual YouTube Music song search returned no exact matches, which validates the decision to use direct playlist extraction as the primary method.
+
+The verified mapping is now being published to TKKGData through the one-time tagged write workflow. The dry-run itself did not modify the catalogue.
