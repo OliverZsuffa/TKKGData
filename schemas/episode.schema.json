@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://oliverzsuffa.github.io/TKKGtracker/schemas/episode.schema.json",
+  "$id": "https://oliverzsuffa.github.io/TKKGData/schemas/episode.schema.json",
   "title": "TKKG main series episode",
   "type": "object",
   "required": [
@@ -261,6 +261,208 @@
         },
         "additionalProperties": false
       }
+    },
+    "audio_release": {
+      "type": "object",
+      "required": [
+        "spotify",
+        "youtube_music",
+        "verification"
+      ],
+      "properties": {
+        "spotify": {
+          "type": "object",
+          "required": [
+            "album_id",
+            "url",
+            "title",
+            "track_count",
+            "source_query"
+          ],
+          "properties": {
+            "album_id": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9]{22}$"
+            },
+            "url": {
+              "type": "string",
+              "format": "uri",
+              "pattern": "^https://open\\.spotify\\.com/album/[A-Za-z0-9]{22}$"
+            },
+            "title": {
+              "type": "string",
+              "minLength": 1
+            },
+            "track_count": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "source_query": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "additionalProperties": false
+        },
+        "youtube_music": {
+          "type": "object",
+          "required": [
+            "playlist",
+            "tracks",
+            "track_count"
+          ],
+          "properties": {
+            "playlist": {
+              "type": [
+                "object",
+                "null"
+              ],
+              "properties": {
+                "playlist_id": {
+                  "type": "string",
+                  "pattern": "^(OLAK5uy_[A-Za-z0-9_-]+|PL[A-Za-z0-9_-]+)$"
+                },
+                "url": {
+                  "type": "string",
+                  "format": "uri",
+                  "pattern": "^https://music\\.youtube\\.com/playlist\\?list="
+                },
+                "title": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "track_count": {
+                  "type": "integer",
+                  "minimum": 1
+                }
+              },
+              "required": [
+                "playlist_id",
+                "url",
+                "title",
+                "track_count"
+              ],
+              "additionalProperties": false
+            },
+            "tracks": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "required": [
+                  "track_number",
+                  "spotify_title",
+                  "video_id",
+                  "url",
+                  "title",
+                  "artists",
+                  "match_score",
+                  "match_evidence"
+                ],
+                "properties": {
+                  "track_number": {
+                    "type": "integer",
+                    "minimum": 1
+                  },
+                  "spotify_title": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "video_id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9_-]{11}$"
+                  },
+                  "url": {
+                    "type": "string",
+                    "format": "uri",
+                    "pattern": "^https://music\\.youtube\\.com/watch\\?v=[A-Za-z0-9_-]{11}$"
+                  },
+                  "title": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "artists": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "album": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "duration_seconds": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "minimum": 0
+                  },
+                  "match_score": {
+                    "type": "integer",
+                    "minimum": 130
+                  },
+                  "match_evidence": {
+                    "type": "array",
+                    "minItems": 2,
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "track_count": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          "additionalProperties": false
+        },
+        "verification": {
+          "type": "object",
+          "required": [
+            "status",
+            "verified_at",
+            "method",
+            "matched_track_count"
+          ],
+          "properties": {
+            "status": {
+              "const": "verified"
+            },
+            "verified_at": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "method": {
+              "type": "string",
+              "minLength": 1
+            },
+            "matched_track_count": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "playlist_status": {
+              "enum": [
+                "verified",
+                "unavailable"
+              ]
+            },
+            "playlist_error": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
     }
   },
   "additionalProperties": false
