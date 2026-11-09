@@ -9,6 +9,7 @@ on:
       - "tests/**"
       - "requirements.txt"
       - "pyproject.toml"
+      - ".github/workflows/update-catalogue.yml"
   workflow_dispatch:
   schedule:
     - cron: "23 5 * * 1"
@@ -17,7 +18,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: tkkgdata-catalogue-refresh
+  group: tkkgdata-data-writes
   cancel-in-progress: false
 
 jobs:
@@ -68,6 +69,7 @@ jobs:
           git add data/episodes.json data/episodes.csv data/dataset-metadata.json data/scrape-report.json
           if ! git diff --cached --quiet; then
             git commit -m "data: refresh TKKG dataset"
+            git pull --rebase origin main
             git push
           else
             echo "Dataset has not changed."
