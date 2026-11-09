@@ -200,41 +200,6 @@ def find_verified_youtube_music_playlist(
 ) -> dict[str, Any]:
     number = int(episode["number"])
     title = str(episode["title"])
-    if playlist_id_override:
-        if not playlist_id_override.startswith(("OLAK5uy_", "PL")):
-            raise ValueError("The supplied YouTube Music playlist ID has an unsupported format.")
-        playlist_url = f"{YTM_BASE}{urlencode({'list': playlist_id_override})}"
-        info = _extract_ytdlp_playlist(playlist_url)
-        returned_id = info.get("id")
-        if returned_id is not None and returned_id != playlist_id_override:
-            raise ValueError(
-                f"yt-dlp returned playlist ID {returned_id!r}, expected {playlist_id_override!r}."
-            )
-        playlist_title = str(info.get("title") or "")
-        if _normalise(title) not in _normalise(playlist_title):
-            raise ValueError(
-                f"YouTube Music playlist title {playlist_title!r} does not identify episode {number}."
-            )
-        entries = info.get("entries")
-        if not isinstance(entries, list) or not entries or any(entry is None for entry in entries):
-            raise ValueError("yt-dlp did not return a complete YouTube Music playlist track list.")
-        playlist_count = info.get("playlist_count") or len(entries)
-        if playlist_count != spotify["track_count"] or len(entries) != spotify["track_count"]:
-            raise ValueError(
-                f"YouTube Music playlist has {len(entries)} entries, "
-                f"expected {spotify['track_count']} Spotify tracks."
-            )
-        matched_tracks = _playlist_track_records(
-            spotify, entries, playlist_title, explicit_playlist_id=True,
-        )
-        return {
-            "playlist_id": playlist_id_override,
-            "url": playlist_url,
-            "title": playlist_title,
-            "track_count": len(entries),
-            "_matched_tracks": matched_tracks,
-        }
-
     queries = (
         f"TKKG {number:03d} {title}",
         f"TKKG Folge {number} {title}",
@@ -242,7 +207,11 @@ def find_verified_youtube_music_playlist(
     )
     candidates: dict[str, tuple[str, str, dict[str, Any]]] = {}
     search_summaries: list[dict[str, Any]] = []
-    for query in queries:
+    if playlist_id_override:
+        if not playlist_id_override.startswith(("OLAK5uy_", "PL")):
+            raise ValueError("The supplied YouTube Music playlist ID has an unsupported format.")
+        candidates[f"playlist:{playlist_id_override}"] = ("playlist", playlist_id_override, {})
+    for query in (() if playlist_id_override else queries):
         for filter_name in ("albums", "playlists"):
             try:
                 time.sleep(0.35)
@@ -283,35 +252,36 @@ def find_verified_youtube_music_playlist(
                 playlist_id = source_id
             if playlist_id in verified:
                 continue
-            playlist_url = f"{YTM_BASE}{urlencode({'list': playlist_id})}"
-            info = _extract_ytdlp_playlist(playlist_url)
+            playlist = ytm.get_playlist(playlist_id, limit=None)
         except Exception as exc:
             rejected.append(f"{source_id}: playlist or album retrieval failed: {exc}")
             continue
-        playlist_title = str(info.get("title") or candidate.get("title") or "")
+        if not isinstance(playlist, dict):
+            rejected.append(f"{playlist_id}: malformed playlist response")
+            continue
+        playlist_title = str(playlist.get("title") or candidate.get("title") or "")
         if _normalise(title) not in _normalise(playlist_title):
             rejected.append(f"{playlist_id}: title does not identify episode {number}")
             continue
-        entries = info.get("entries")
-        if not isinstance(entries, list) or not entries or any(entry is None for entry in entries):
-            rejected.append(f"{playlist_id}: no complete track list returned")
+        tracks = playlist.get("tracks")
+        if not isinstance(tracks, list) or not tracks:
+            rejected.append(f"{playlist_id}: no track list returned")
             continue
-        if info.get("playlist_count", len(entries)) != spotify["track_count"] or len(entries) != spotify["track_count"]:
-            rejected.append(f"{playlist_id}: playlist track count does not match Spotify")
+        artist_names = _candidate_artists(candidate, playlist)
+        if not any(re.search(r"\btkkg\b", unicodedata.normalize("NFKC", name).casefold()) for name in artist_names):
+            rejected.append(f"{playlist_id}: no TKKG artist evidence")
             continue
-        try:
-            matched_tracks = _playlist_track_records(
-                spotify, entries, playlist_title, explicit_playlist_id=False,
+        if not _track_titles_match(spotify["tracks"], tracks):
+            rejected.append(
+                f"{playlist_id}: track list does not exactly match the {spotify['track_count']} Spotify tracks in order"
             )
-        except ValueError as exc:
-            rejected.append(f"{playlist_id}: {exc}")
             continue
         verified[playlist_id] = {
             "playlist_id": playlist_id,
-            "url": playlist_url,
+            "url": f"{YTM_BASE}{urlencode({'list': playlist_id})}",
             "title": playlist_title,
-            "track_count": len(entries),
-            "_matched_tracks": matched_tracks,
+            "track_count": len(tracks),
+            "_matched_tracks": tracks,
         }
 
     if len(verified) == 0:
@@ -323,29 +293,165 @@ def find_verified_youtube_music_playlist(
         raise ValueError(f"Ambiguous YouTube Music match for episode {number}; verified candidates: {ids}")
     return next(iter(verified.values()))
 
+
+
+def _ytm_artist_names(track: dict[str, Any]) -> list[str]:
+    artists = track.get("artists") or []
+    if isinstance(artists, str):
+        return [artists]
+    return [
+        str(item.get("name", "")) if isinstance(item, dict) else str(item)
+        for item in artists
+    ]
+
+
+def _duration_seconds(value: Any) -> float | None:
+    if isinstance(value, (int, float)):
+        # ytmusicapi song duration_seconds is seconds; Spotify duration is milliseconds.
+        return float(value) if value < 10000 else float(value) / 1000
+    if isinstance(value, str):
+        parts = value.strip().split(":")
+        try:
+            seconds = 0.0
+            for part in parts:
+                seconds = seconds * 60 + float(part)
+            return seconds
+        except ValueError:
+            return None
+    return None
+
+
+def _ytm_track_score(
+    spotify_track: dict[str, Any], candidate: dict[str, Any], spotify_album_title: str,
+    episode_title: str,
+) -> tuple[int, list[str]]:
+    expected_title = str(spotify_track.get("name") or "")
+    candidate_title = str(candidate.get("title") or "")
+    if not expected_title or _normalise(expected_title) != _normalise(candidate_title):
+        return 0, []
+    score = 100
+    evidence = ["exact_normalised_title"]
+    artists = _ytm_artist_names(candidate)
+    if any(re.search(r"\btkkg\b", name.casefold()) for name in artists):
+        score += 30
+        evidence.append("tkkg_artist")
+    album = candidate.get("album")
+    album_name = str(album.get("name", "")) if isinstance(album, dict) else str(album or "")
+    if album_name and (
+        _normalise(album_name) == _normalise(spotify_album_title)
+        or _normalise(episode_title) in _normalise(album_name)
+    ):
+        score += 40
+        evidence.append("episode_album")
+    spotify_duration = _duration_seconds(spotify_track.get("duration"))
+    ytm_duration = _duration_seconds(candidate.get("duration_seconds") or candidate.get("duration"))
+    if spotify_duration is not None and ytm_duration is not None:
+        delta = abs(spotify_duration - ytm_duration)
+        if delta <= 3:
+            score += 20
+            evidence.append("duration_within_3_seconds")
+        elif delta <= 8:
+            score += 10
+            evidence.append("duration_within_8_seconds")
+    return score, evidence
+
+
+def find_verified_youtube_music_tracks(
+    episode: dict[str, Any], spotify: dict[str, Any], ytm: Any,
+) -> list[dict[str, Any]]:
+    """Resolve every Spotify track to one unambiguous YouTube Music song."""
+    resolved: list[dict[str, Any]] = []
+    for index, spotify_track in enumerate(spotify["tracks"], start=1):
+        title = str(spotify_track["name"])
+        try:
+            time.sleep(0.35)
+            results = ytm.search(title, filter="songs", limit=10)
+        except Exception as exc:
+            raise RuntimeError(f"YouTube Music song search failed for track {index} {title!r}: {exc}") from exc
+
+        ranked: dict[str, tuple[int, dict[str, Any], list[str]]] = {}
+        for candidate in results:
+            if not isinstance(candidate, dict):
+                continue
+            video_id = candidate.get("videoId")
+            if not isinstance(video_id, str) or not re.fullmatch(r"[A-Za-z0-9_-]{11}", video_id):
+                continue
+            score, evidence = _ytm_track_score(
+                spotify_track, candidate, str(spotify["title"]), str(episode["title"]),
+            )
+            if score < 130:
+                continue
+            previous = ranked.get(video_id)
+            if previous is None or score > previous[0]:
+                ranked[video_id] = (score, candidate, evidence)
+
+        if not ranked:
+            raise ValueError(
+                f"No sufficiently corroborated YouTube Music song match for track {index}: {title!r}"
+            )
+        ordered = sorted(ranked.values(), key=lambda item: item[0], reverse=True)
+        if len(ordered) > 1 and ordered[0][0] - ordered[1][0] < 15:
+            ids = [item[1].get("videoId") for item in ordered[:4]]
+            raise ValueError(
+                f"Ambiguous YouTube Music song match for track {index} {title!r}: {ids}"
+            )
+        score, candidate, evidence = ordered[0]
+        video_id = str(candidate["videoId"])
+        spotify_track_id = spotify_track.get("song_id")
+        spotify_track_url = spotify_track.get("url")
+        if not isinstance(spotify_track_id, str) or not re.fullmatch(r"[A-Za-z0-9]{22}", spotify_track_id):
+            if isinstance(spotify_track_url, str):
+                match = re.fullmatch(r"https://open\.spotify\.com/track/([A-Za-z0-9]{22})", spotify_track_url)
+                spotify_track_id = match.group(1) if match else None
+        if not isinstance(spotify_track_id, str) or not re.fullmatch(r"[A-Za-z0-9]{22}", spotify_track_id):
+            raise ValueError(f"Spotify track {index} has no valid track ID.")
+        expected_spotify_url = f"https://open.spotify.com/track/{spotify_track_id}"
+        if spotify_track_url is not None and spotify_track_url != expected_spotify_url:
+            raise ValueError(f"Spotify track {index} URL does not match its track ID.")
+        spotify_track_url = expected_spotify_url
+        duration = _duration_seconds(candidate.get("duration_seconds") or candidate.get("duration"))
+        album = candidate.get("album")
+        album_name = album.get("name") if isinstance(album, dict) else album
+        resolved.append({
+            "track_number": index,
+            "spotify_title": title,
+            "spotify_track_id": spotify_track_id,
+            "spotify_track_url": spotify_track_url,
+            "video_id": video_id,
+            "url": f"https://music.youtube.com/watch?v={video_id}",
+            "title": str(candidate.get("title") or title),
+            "artists": _ytm_artist_names(candidate),
+            "album": str(album_name) if album_name else None,
+            "duration_seconds": round(duration, 2) if duration is not None else None,
+            "match_score": score,
+            "match_evidence": evidence,
+        })
+    if len(resolved) != spotify["track_count"]:
+        raise ValueError("YouTube Music individual track count does not match Spotify.")
+    return resolved
+
+
 def discover_episode_audio(
     episode: dict[str, Any], ytm: Any, playlist_id_override: str | None = None,
 ) -> dict[str, Any]:
     with tempfile.TemporaryDirectory(prefix=f"tkkg_audio_{episode['number']:03d}_") as temp:
         spotify = resolve_spotify_album(episode, Path(temp))
 
-    # Prefer a complete playlist whose ordered entries exactly match Spotify.
-    # This provides both a playlist URL and a verified individual song URL for
-    # every track. If no playlist can be verified, fall back to song searches.
+    # Individual song URLs are the primary YouTube Music source. Every Spotify
+    # track must have one unique, corroborated YouTube Music match.
+    youtube_music_tracks = find_verified_youtube_music_tracks(episode, spotify, ytm)
+
+    # The album playlist is useful as a second entry point, but its absence must
+    # not invalidate individually verified song links.
     youtube_music_playlist = None
     playlist_failure = None
-    youtube_music_tracks = None
     try:
-        playlist_result = find_verified_youtube_music_playlist(
+        youtube_music_playlist = find_verified_youtube_music_playlist(
             episode, spotify, ytm, playlist_id_override,
         )
-        youtube_music_tracks = playlist_result.pop("_matched_tracks")
-        youtube_music_playlist = playlist_result
+        youtube_music_playlist.pop("_matched_tracks", None)
     except Exception as exc:
         playlist_failure = str(exc)
-
-    if youtube_music_tracks is None:
-        youtube_music_tracks = find_verified_youtube_music_tracks(episode, spotify, ytm)
 
     verified_at = datetime.now(timezone.utc).isoformat()
     audio_release = {
@@ -364,11 +470,7 @@ def discover_episode_audio(
         "verification": {
             "status": "verified",
             "verified_at": verified_at,
-            "method": (
-                "exact_ordered_playlist_track_titles_and_duration"
-                if youtube_music_playlist
-                else "exact_track_titles_with_artist_album_or_duration_corroboration"
-            ),
+            "method": "exact_track_titles_with_artist_album_or_duration_corroboration",
             "matched_track_count": len(youtube_music_tracks),
             "playlist_status": "verified" if youtube_music_playlist else "unavailable",
             "playlist_error": playlist_failure,
@@ -387,6 +489,7 @@ def discover_episode_audio(
         )
     ]
     return {"audio_release": audio_release, "matched_tracks": matched_tracks}
+
 
 def audio_release_coverage(episodes: list[dict[str, Any]]) -> dict[str, Any]:
     verified = [
