@@ -1,7 +1,7 @@
 # Request 004: Verify YouTube Music playlists through yt-dlp
 
 ## Status
-Approved as a follow-up to Requests 001 and 002 on 2026-11-09. Implementation merged to main. Episode 150 dry-run verified all 40 tracks. Publishing the verified mapping to the canonical dataset.
+Approved as a follow-up to Requests 001 and 002 on 2026-11-09. Implemented, merged, and published to the canonical dataset. Episode 150 has 40 verified Spotify and YouTube Music track pairings.
 
 ## Context
 The live audio enrichment run for episode 150 found that ytmusicapi song search did not return sufficiently corroborated candidates. A separate read-only experiment successfully extracted the official YouTube Music album playlist through yt-dlp:
