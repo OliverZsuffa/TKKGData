@@ -264,6 +264,22 @@ class AudioEnrichmentTests(unittest.TestCase):
         self.assertTrue(all(item["spotify_track_url"].startswith("https://open.spotify.com/track/") for item in result))
         self.assertTrue(all("episode_album" in item["match_evidence"] for item in result))
 
+    def test_individual_song_mapping_requires_valid_spotify_track_identity(self):
+        spotify = {**SPOTIFY, "tracks": [{**SPOTIFY["tracks"][0], "song_id": "invalid", "url": "not-a-spotify-url"}]}
+        candidates = {
+            spotify["tracks"][0]["name"]: [{
+                "videoId": "videoid0001",
+                "title": spotify["tracks"][0]["name"],
+                "artists": [{"name": "Europa"}],
+                "album": {"name": SPOTIFY["title"]},
+                "duration_seconds": 120,
+            }]
+        }
+        with self.assertRaisesRegex(ValueError, "no valid track ID"):
+            find_verified_youtube_music_tracks(
+                EPISODE, spotify, FakeSongSearchYTMusic(candidates),
+            )
+
     def test_individual_song_search_rejects_uncorroborated_exact_title(self):
         candidates = {
             SPOTIFY["tracks"][0]["name"]: [{
