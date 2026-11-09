@@ -1,4 +1,4 @@
-name: Validate
+name: Validate TKKGData
 
 on:
   push:
@@ -19,6 +19,9 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+          cache: pip
+      - name: Install dependencies
+        run: pip install -r requirements.txt
       - name: Check repository documentation
         run: |
           test -f README.md
@@ -32,3 +35,25 @@ jobs:
           test -f requests/001-shared-tkkg-dataset/implementation-plan.md
           test -f requests/001-shared-tkkg-dataset/testing.md
           test -f requests/001-shared-tkkg-dataset/notes.md
+      - name: Run unit tests
+        run: python -m unittest discover -s tests -v
+      - name: Validate published episode dataset
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from jsonschema import Draft202012Validator, FormatChecker
+          from scraper.validate import validate_catalogue
+
+          episodes = json.loads(Path("data/episodes.json").read_text(encoding="utf-8"))
+          metadata = json.loads(Path("data/dataset-metadata.json").read_text(encoding="utf-8"))
+          schema = json.loads(Path("schemas/episode.schema.json").read_text(encoding="utf-8"))
+          metadata_schema = json.loads(Path("schemas/dataset-metadata.schema.json").read_text(encoding="utf-8"))
+          Draft202012Validator(metadata_schema, format_checker=FormatChecker()).validate(metadata)
+          errors = validate_catalogue(episodes)
+          if len(episodes) != metadata["episode_count"]:
+              errors.append("dataset metadata episode_count does not match episodes.json")
+          if errors:
+              raise SystemExit("\n".join(errors))
+          print(f"Validated {len(episodes)} episodes against schema {metadata['schema_version']}")
+          PY
