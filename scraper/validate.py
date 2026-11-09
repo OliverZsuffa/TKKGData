@@ -72,6 +72,10 @@ def validate_catalogue(episodes: list[dict], schema_path: Path | None = None) ->
                     query_id = parse_qs(urlparse(str(track.get("url", ""))).query).get("v", [None])[0]
                     if video_id != query_id:
                         errors.append(f"episode {episode.get('number')} YouTube Music track {track_index + 1}: video ID does not match its URL")
+                    spotify_track_id = track.get("spotify_track_id")
+                    spotify_track_path_id = urlparse(str(track.get("spotify_track_url", ""))).path.rstrip("/").split("/")[-1]
+                    if spotify_track_id != spotify_track_path_id:
+                        errors.append(f"episode {episode.get('number')} Spotify track {track_index + 1}: track ID does not match its URL")
                     if track.get("track_number") != track_index + 1:
                         errors.append(f"episode {episode.get('number')} YouTube Music track order is not contiguous")
 

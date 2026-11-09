@@ -397,12 +397,26 @@ def find_verified_youtube_music_tracks(
             )
         score, candidate, evidence = ordered[0]
         video_id = str(candidate["videoId"])
+        spotify_track_id = spotify_track.get("song_id")
+        spotify_track_url = spotify_track.get("url")
+        if not isinstance(spotify_track_id, str) or not re.fullmatch(r"[A-Za-z0-9]{22}", spotify_track_id):
+            if isinstance(spotify_track_url, str):
+                match = re.fullmatch(r"https://open\.spotify\.com/track/([A-Za-z0-9]{22})", spotify_track_url)
+                spotify_track_id = match.group(1) if match else None
+        if not isinstance(spotify_track_id, str) or not re.fullmatch(r"[A-Za-z0-9]{22}", spotify_track_id):
+            raise ValueError(f"Spotify track {index} has no valid track ID.")
+        expected_spotify_url = f"https://open.spotify.com/track/{spotify_track_id}"
+        if spotify_track_url is not None and spotify_track_url != expected_spotify_url:
+            raise ValueError(f"Spotify track {index} URL does not match its track ID.")
+        spotify_track_url = expected_spotify_url
         duration = _duration_seconds(candidate.get("duration_seconds") or candidate.get("duration"))
         album = candidate.get("album")
         album_name = album.get("name") if isinstance(album, dict) else album
         resolved.append({
             "track_number": index,
             "spotify_title": title,
+            "spotify_track_id": spotify_track_id,
+            "spotify_track_url": spotify_track_url,
             "video_id": video_id,
             "url": f"https://music.youtube.com/watch?v={video_id}",
             "title": str(candidate.get("title") or title),
@@ -465,6 +479,7 @@ def discover_episode_audio(
     matched_tracks = [
         {
             "spotify_title": spotify_track["name"],
+            "spotify_track_url": ytm_track["spotify_track_url"],
             "youtube_music_title": ytm_track["title"],
             "youtube_music_url": ytm_track["url"],
             "match_evidence": ytm_track["match_evidence"],

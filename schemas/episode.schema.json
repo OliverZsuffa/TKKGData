@@ -352,6 +352,8 @@
                 "required": [
                   "track_number",
                   "spotify_title",
+                  "spotify_track_id",
+                  "spotify_track_url",
                   "video_id",
                   "url",
                   "title",
@@ -367,6 +369,15 @@
                   "spotify_title": {
                     "type": "string",
                     "minLength": 1
+                  },
+                  "spotify_track_id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9]{22}$"
+                  },
+                  "spotify_track_url": {
+                    "type": "string",
+                    "format": "uri",
+                    "pattern": "^https://open\\.spotify\\.com/track/[A-Za-z0-9]{22}$"
                   },
                   "video_id": {
                     "type": "string",
