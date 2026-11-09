@@ -24,8 +24,8 @@ SPOTIFY = {
     "title": "150/Heiße Nächte im Dezember",
     "track_count": 2,
     "tracks": [
-        {"name": "150 - Heiße Nächte im Dezember - Teil 01", "track_number": 1},
-        {"name": "150 - Heiße Nächte im Dezember - Teil 02", "track_number": 2},
+        {"name": "150 - Heiße Nächte im Dezember - Teil 01", "track_number": 1, "song_id": "0000000000000000000001", "url": "https://open.spotify.com/track/0000000000000000000001"},
+        {"name": "150 - Heiße Nächte im Dezember - Teil 02", "track_number": 2, "song_id": "0000000000000000000002", "url": "https://open.spotify.com/track/0000000000000000000002"},
     ],
 }
 
@@ -228,8 +228,8 @@ class AudioEnrichmentTests(unittest.TestCase):
                         "title": "150/Heiße Nächte im Dezember", "track_count": 2,
                     },
                     "tracks": [
-                        {"track_number": 1, "spotify_title": SPOTIFY["tracks"][0]["name"], "video_id": "videoid0001", "url": "https://music.youtube.com/watch?v=videoid0001", "title": SPOTIFY["tracks"][0]["name"], "artists": ["TKKG"], "album": "150/Heiße Nächte im Dezember", "duration_seconds": 120, "match_score": 140, "match_evidence": ["exact_normalised_title", "episode_album"]},
-                        {"track_number": 2, "spotify_title": SPOTIFY["tracks"][1]["name"], "video_id": "videoid0002", "url": "https://music.youtube.com/watch?v=videoid0002", "title": SPOTIFY["tracks"][1]["name"], "artists": ["TKKG"], "album": "150/Heiße Nächte im Dezember", "duration_seconds": 120, "match_score": 140, "match_evidence": ["exact_normalised_title", "episode_album"]},
+                        {"track_number": 1, "spotify_title": SPOTIFY["tracks"][0]["name"], "spotify_track_id": SPOTIFY["tracks"][0]["song_id"], "spotify_track_url": SPOTIFY["tracks"][0]["url"], "video_id": "videoid0001", "url": "https://music.youtube.com/watch?v=videoid0001", "title": SPOTIFY["tracks"][0]["name"], "artists": ["TKKG"], "album": "150/Heiße Nächte im Dezember", "duration_seconds": 120, "match_score": 140, "match_evidence": ["exact_normalised_title", "episode_album"]},
+                        {"track_number": 2, "spotify_title": SPOTIFY["tracks"][1]["name"], "spotify_track_id": SPOTIFY["tracks"][1]["song_id"], "spotify_track_url": SPOTIFY["tracks"][1]["url"], "video_id": "videoid0002", "url": "https://music.youtube.com/watch?v=videoid0002", "title": SPOTIFY["tracks"][1]["name"], "artists": ["TKKG"], "album": "150/Heiße Nächte im Dezember", "duration_seconds": 120, "match_score": 140, "match_evidence": ["exact_normalised_title", "episode_album"]},
                     ],
                     "track_count": 2,
                 },
@@ -261,6 +261,7 @@ class AudioEnrichmentTests(unittest.TestCase):
         )
         self.assertEqual(len(result), 2)
         self.assertTrue(all(item["url"].startswith("https://music.youtube.com/watch?v=") for item in result))
+        self.assertTrue(all(item["spotify_track_url"].startswith("https://open.spotify.com/track/") for item in result))
         self.assertTrue(all("episode_album" in item["match_evidence"] for item in result))
 
     def test_individual_song_search_rejects_uncorroborated_exact_title(self):
