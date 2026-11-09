@@ -377,7 +377,7 @@
                   "spotify_track_url": {
                     "type": "string",
                     "format": "uri",
-                    "pattern": "^https://open\\\\.spotify\\\\.com/track/[A-Za-z0-9]{22}$"
+                    "pattern": "^https://open\\.spotify\\.com/track/[A-Za-z0-9]{22}$"
                   },
                   "video_id": {
                     "type": "string",
