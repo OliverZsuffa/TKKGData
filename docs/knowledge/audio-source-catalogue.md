@@ -20,9 +20,15 @@ The Spotify track count, individual YouTube Music track count, and matched track
 
 Run python -m scraper.audio_enrichment --episode 150 for a dry run. For a diagnostic or manual recovery, --playlist-id OLAK... can verify one explicitly supplied playlist with exactly one --episode; normal operation discovers the playlist automatically. Use --write only when verified results should be written to data/episodes.json and data/episodes.csv. Without an episode selector, --limit N processes at most N episodes that do not already have verified audio metadata.
 
-Spotify metadata is resolved using spotDL's metadata save operation. YouTube Music candidates are searched using ytmusicapi. Album search results can expose an MPRE browse ID; resolve these with get_album() and use the returned audioPlaylistId when available. Playlist results may expose an OLAK ID directly or through a VLOLAK browse ID. Their public playlist track lists are then retrieved. Individual song searches are primary. A candidate needs an exact normalized title plus corroborating evidence from the TKKG artist, matching episode album, or close duration. A unique best candidate is required. Missing or ambiguous songs stop publication for that episode. Playlist discovery runs independently as an optional convenience link. A playlist is stored only if its title, TKKG artist evidence, track count, and ordered track titles all match. Multiple fully matching playlist candidates are treated as ambiguous.
+Spotify metadata is resolved using spotDL's metadata save operation. The preferred YouTube Music path is a complete public album playlist. ytmusicapi album and playlist searches can expose an OLAK playlist ID directly, a VLOLAK browse ID, or an MPRE album browse ID whose get_album() response may include an audioPlaylistId. When an official playlist ID is known, it can also be supplied explicitly for one episode.
+
+yt-dlp extracts the playlist entries without downloading audio. The playlist title must identify the episode, its ID must match the requested playlist when supplied, and its complete entry count must equal Spotify's actual album track count. Every entry is paired positionally with the Spotify track list. All normalized titles must match exactly, track numbering and order must be complete, and available durations must be within eight seconds. Each resulting record stores both the Spotify track ID and URL and the YouTube video ID and URL. The playlist URL is stored alongside the 40 individual track links.
+
+If no complete playlist can be verified, the enrichment can fall back to individual YouTube Music song searches. A candidate needs an exact normalized title plus corroborating evidence from the TKKG artist, matching episode album, or close duration. A unique best candidate is required. Missing or ambiguous songs stop publication for that episode.
 
 The current matching rule is intentionally conservative. It does not attempt fuzzy matching, alternate-edition selection, or automatic acceptance of bonus tracks. Such episodes remain unresolved for review.
+
+Current published coverage: 1 of 243 episodes has a verified audio_release mapping. Episode 150 has 40 ordered Spotify and YouTube Music track pairs. The other episodes remain eligible for scheduled enrichment.
 
 ## Provider limitations
 
