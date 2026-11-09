@@ -8,7 +8,7 @@ import requests
 from bs4 import BeautifulSoup
 
 
-USER_AGENT = "TKKGTrackerCatalogueBot/1.0 (+https://github.com/OliverZsuffa/TKKGtracker)"
+USER_AGENT = "TKKGDataBot/1.0 (+https://github.com/OliverZsuffa/TKKGData)"
 
 
 class SourceAccessError(RuntimeError):
