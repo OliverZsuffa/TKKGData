@@ -1,5 +1,5 @@
 {
-  "started_at": "2026-11-09T14:00:18.393784+00:00",
+  "started_at": "2026-11-09T20:58:29.138711+00:00",
   "sources": {
     "archive_index_entries": 217,
     "archive_index_max_number": 217,
@@ -161,6 +161,985 @@
   "episode_count": 243,
   "validation_errors": [],
   "success": true,
+  "audio_release_preservation_conflicts": [],
+  "audio_release_coverage": {
+    "episode_count": 243,
+    "verified_pairings": 0,
+    "missing_pairings": [
+      {
+        "number": 1,
+        "title": "Die Jagd nach den Millionendieben"
+      },
+      {
+        "number": 2,
+        "title": "Der blinde Hellseher"
+      },
+      {
+        "number": 3,
+        "title": "Das leere Grab im Moor"
+      },
+      {
+        "number": 4,
+        "title": "Das Paket mit dem Totenkopf"
+      },
+      {
+        "number": 5,
+        "title": "Das Phantom auf dem Feuerstuhl"
+      },
+      {
+        "number": 6,
+        "title": "Angst in der 9a"
+      },
+      {
+        "number": 7,
+        "title": "Rätsel um die alte Villa"
+      },
+      {
+        "number": 8,
+        "title": "Auf der Spur der Vogeljäger"
+      },
+      {
+        "number": 9,
+        "title": "Abenteuer im Ferienlager"
+      },
+      {
+        "number": 10,
+        "title": "Alarm im Zirkus Sarani"
+      },
+      {
+        "number": 11,
+        "title": "Die Falschmünzer vom Mäuseweg"
+      },
+      {
+        "number": 12,
+        "title": "Nachts, wenn der Feuerteufel kommt"
+      },
+      {
+        "number": 13,
+        "title": "Die Bettelmönche aus Atlantis"
+      },
+      {
+        "number": 14,
+        "title": "Der Schlangenmensch"
+      },
+      {
+        "number": 15,
+        "title": "Ufos in Bad Finkenstein"
+      },
+      {
+        "number": 16,
+        "title": "X7 antwortet nicht"
+      },
+      {
+        "number": 17,
+        "title": "Die Doppelgängerin"
+      },
+      {
+        "number": 18,
+        "title": "Hexenjagd in Lerchenbach"
+      },
+      {
+        "number": 19,
+        "title": "Der Schatz in der Drachenhöhle"
+      },
+      {
+        "number": 20,
+        "title": "Das Geheimnis der chinesischen Vase"
+      },
+      {
+        "number": 21,
+        "title": "Die Rache des Bombenlegers"
+      },
+      {
+        "number": 22,
+        "title": "In den Klauen des Tigers"
+      },
+      {
+        "number": 23,
+        "title": "Kampf der Spione"
+      },
+      {
+        "number": 24,
+        "title": "Gefährliche Diamanten"
+      },
+      {
+        "number": 25,
+        "title": "Die Stunde der schwarzen Maske"
+      },
+      {
+        "number": 26,
+        "title": "Das Geiseldrama"
+      },
+      {
+        "number": 27,
+        "title": "Banditen im Palasthotel"
+      },
+      {
+        "number": 28,
+        "title": "Verrat im Höllental"
+      },
+      {
+        "number": 29,
+        "title": "Hundediebe kennen keine Gnade"
+      },
+      {
+        "number": 30,
+        "title": "Die Mafia kommt zur Geisterstunde"
+      },
+      {
+        "number": 31,
+        "title": "Die Entführung in der Mondscheingasse"
+      },
+      {
+        "number": 32,
+        "title": "Wilddiebe im Teufelsmoor"
+      },
+      {
+        "number": 33,
+        "title": "Wer raubte das Millionenpferd?"
+      },
+      {
+        "number": 34,
+        "title": "Vampir der Autobahn"
+      },
+      {
+        "number": 35,
+        "title": "Die Nacht des Überfalls"
+      },
+      {
+        "number": 36,
+        "title": "Das Geschenk des Bösen"
+      },
+      {
+        "number": 37,
+        "title": "Der letzte Schuss"
+      },
+      {
+        "number": 38,
+        "title": "Die weiße Schmuggler-Yacht"
+      },
+      {
+        "number": 39,
+        "title": "Die Gift-Party"
+      },
+      {
+        "number": 40,
+        "title": "Duell im Morgengrauen"
+      },
+      {
+        "number": 41,
+        "title": "Heißes Gold im Silbersee"
+      },
+      {
+        "number": 42,
+        "title": "Anschlag auf den Silberpfeil"
+      },
+      {
+        "number": 43,
+        "title": "Gefangen in der Schreckenskammer"
+      },
+      {
+        "number": 44,
+        "title": "Um Mitternacht am schwarzen Fluss"
+      },
+      {
+        "number": 45,
+        "title": "Unternehmen Grüne Hölle"
+      },
+      {
+        "number": 46,
+        "title": "Hotel in Flammen"
+      },
+      {
+        "number": 47,
+        "title": "Todesfracht im Jaguar"
+      },
+      {
+        "number": 48,
+        "title": "Bestien in der Finsternis"
+      },
+      {
+        "number": 49,
+        "title": "Bombe an Bord"
+      },
+      {
+        "number": 50,
+        "title": "Spion auf der Flucht"
+      },
+      {
+        "number": 51,
+        "title": "Gangster auf der Gartenparty"
+      },
+      {
+        "number": 52,
+        "title": "Überfall im Hafen"
+      },
+      {
+        "number": 53,
+        "title": "Schüsse aus der Rosenhecke"
+      },
+      {
+        "number": 54,
+        "title": "Alarm! Klößchen ist verschwunden"
+      },
+      {
+        "number": 55,
+        "title": "Der Mörder aus dem Schauerwald"
+      },
+      {
+        "number": 56,
+        "title": "Todesgruß vom Gelben Drachen"
+      },
+      {
+        "number": 57,
+        "title": "Jagt das rote Geisterauto!"
+      },
+      {
+        "number": 58,
+        "title": "Der doppelte Pedro"
+      },
+      {
+        "number": 59,
+        "title": "Trickdieb auf Burg Drachenstein"
+      },
+      {
+        "number": 60,
+        "title": "Der Teufel vom Waiga-See"
+      },
+      {
+        "number": 61,
+        "title": "Im Schatten des Dämons"
+      },
+      {
+        "number": 62,
+        "title": "Terror aus dem \"Pulverfass\""
+      },
+      {
+        "number": 63,
+        "title": "Die Falle am Fuchsbach"
+      },
+      {
+        "number": 64,
+        "title": "Schwarze Pest aus Indien"
+      },
+      {
+        "number": 65,
+        "title": "Sklaven für Wutawia"
+      },
+      {
+        "number": 66,
+        "title": "Gauner mit der „Goldenen Hand“"
+      },
+      {
+        "number": 67,
+        "title": "Hinterhalt im Eulenforst"
+      },
+      {
+        "number": 68,
+        "title": "Rauschgift-Razzia im Internat"
+      },
+      {
+        "number": 69,
+        "title": "Achtung: Die „Monsters“ kommen!"
+      },
+      {
+        "number": 70,
+        "title": "Wer hat Tims Mutter entführt?"
+      },
+      {
+        "number": 71,
+        "title": "Stimme aus der Unterwelt"
+      },
+      {
+        "number": 72,
+        "title": "Taschengeld für ein Gespenst"
+      },
+      {
+        "number": 73,
+        "title": "Herr der Schlangeninsel"
+      },
+      {
+        "number": 74,
+        "title": "Im Schattenreich des Dr. Mubase"
+      },
+      {
+        "number": 75,
+        "title": "Lösegeld am Henkersberg"
+      },
+      {
+        "number": 76,
+        "title": "Die Goldgräber-Bande"
+      },
+      {
+        "number": 77,
+        "title": "Der erpresste Erpresser"
+      },
+      {
+        "number": 78,
+        "title": "Heißer Draht nach Paradiso"
+      },
+      {
+        "number": 79,
+        "title": "Ein Toter braucht Hilfe"
+      },
+      {
+        "number": 80,
+        "title": "Weißes Gift im Nachtexpress"
+      },
+      {
+        "number": 81,
+        "title": "Horror-Trip im Luxusauto"
+      },
+      {
+        "number": 82,
+        "title": "Spuk aus dem Jenseits"
+      },
+      {
+        "number": 83,
+        "title": "Hilfe! Gaby in Gefahr"
+      },
+      {
+        "number": 84,
+        "title": "Dynamit im Kofferraum"
+      },
+      {
+        "number": 85,
+        "title": "Freiheit für gequälte Tiere"
+      },
+      {
+        "number": 86,
+        "title": "Die Schatzsucher-Mafia schlägt zu"
+      },
+      {
+        "number": 87,
+        "title": "Der böse Geist vom Waisenhaus"
+      },
+      {
+        "number": 88,
+        "title": "Kampf um das Zauberschwert „Drachenauge“"
+      },
+      {
+        "number": 89,
+        "title": "Feind aus der Vergangenheit"
+      },
+      {
+        "number": 90,
+        "title": "Schmuggler reisen unerkannt"
+      },
+      {
+        "number": 91,
+        "title": "Crash-Kids riskieren ihr Leben"
+      },
+      {
+        "number": 92,
+        "title": "Der grausame Rächer"
+      },
+      {
+        "number": 93,
+        "title": "Die Opfer mit der kühlen Schnauze"
+      },
+      {
+        "number": 94,
+        "title": "In dunkler Nacht am Mamorgrab"
+      },
+      {
+        "number": 95,
+        "title": "U-Bahn des Schreckens"
+      },
+      {
+        "number": 96,
+        "title": "Die Entführung des Popstars"
+      },
+      {
+        "number": 97,
+        "title": "Die Hand an den Sternen"
+      },
+      {
+        "number": 98,
+        "title": "Die Haie vom Lotus-Garten"
+      },
+      {
+        "number": 99,
+        "title": "Hilflos in eisiger Nacht"
+      },
+      {
+        "number": 100,
+        "title": "Fieser Trick mit Nr. 100"
+      },
+      {
+        "number": 101,
+        "title": "Opfer fliegen 1. Klasse"
+      },
+      {
+        "number": 102,
+        "title": "Angst auf der Autobahn"
+      },
+      {
+        "number": 103,
+        "title": "Mörderischer Stammbaum"
+      },
+      {
+        "number": 104,
+        "title": "Im Wettbüro des Teufels"
+      },
+      {
+        "number": 105,
+        "title": "Vermisste Kids und Killerpflanzen"
+      },
+      {
+        "number": 106,
+        "title": "Mädchenraub im Ferienhaus"
+      },
+      {
+        "number": 107,
+        "title": "Lösegeld für einen Irrtum"
+      },
+      {
+        "number": 108,
+        "title": "Das Konzert bei den Ratten"
+      },
+      {
+        "number": 109,
+        "title": "Mörderspiel im Burghotel"
+      },
+      {
+        "number": 110,
+        "title": "Das Phantom im Schokoladen-Museum"
+      },
+      {
+        "number": 111,
+        "title": "Die tödliche Falle"
+      },
+      {
+        "number": 112,
+        "title": "Bombenspaß bei Kies & Knete"
+      },
+      {
+        "number": 113,
+        "title": "Mit heißer Nadel Jagd auf Kids"
+      },
+      {
+        "number": 114,
+        "title": "Die Sekte Satans"
+      },
+      {
+        "number": 115,
+        "title": "Der Diamant im Bauch der Kobra"
+      },
+      {
+        "number": 116,
+        "title": "Klassenfahrt zur Hexenburg"
+      },
+      {
+        "number": 117,
+        "title": "Im Schloss der schlafenden Vampire"
+      },
+      {
+        "number": 118,
+        "title": "Im Kaufhaus ist der Teufel los"
+      },
+      {
+        "number": 119,
+        "title": "Frische Spur nach 70 Jahren"
+      },
+      {
+        "number": 120,
+        "title": "Bei Anruf Angst"
+      },
+      {
+        "number": 121,
+        "title": "Ein cooler Typ aus der Hölle"
+      },
+      {
+        "number": 122,
+        "title": "Der Goldschatz, der vom Himmel fiel"
+      },
+      {
+        "number": 123,
+        "title": "Mordkomplott im Luxus-Klo"
+      },
+      {
+        "number": 124,
+        "title": "Vergebliche Suche nach Gaby"
+      },
+      {
+        "number": 125,
+        "title": "Der Mörder aus einer anderen Zeit"
+      },
+      {
+        "number": 126,
+        "title": "Teddy Talers Höllenfahrt"
+      },
+      {
+        "number": 127,
+        "title": "Im Schlauchboot durch die Unterwelt"
+      },
+      {
+        "number": 128,
+        "title": "Die Gehilfen des Terrors"
+      },
+      {
+        "number": 129,
+        "title": "Der Erpresser fährt bis Endstation"
+      },
+      {
+        "number": 130,
+        "title": "Die gefährliche Zeugin verschwindet"
+      },
+      {
+        "number": 131,
+        "title": "Stundenlohn für flotte Gangster"
+      },
+      {
+        "number": 132,
+        "title": "Homejacker machen Überstunden"
+      },
+      {
+        "number": 133,
+        "title": "Auf vier Pfoten zur Millionenbeute"
+      },
+      {
+        "number": 134,
+        "title": "Wer stoppt die Weihnachts-Gangster?"
+      },
+      {
+        "number": 135,
+        "title": "Der Meisterdieb und seine Feinde"
+      },
+      {
+        "number": 136,
+        "title": "Argentinische Entführung"
+      },
+      {
+        "number": 137,
+        "title": "Verschleppt ins Tal Diabolo"
+      },
+      {
+        "number": 138,
+        "title": "Raubzug mit Bumerang"
+      },
+      {
+        "number": 139,
+        "title": "Oskar jagt die Drogendealer"
+      },
+      {
+        "number": 140,
+        "title": "Draculas Erben"
+      },
+      {
+        "number": 141,
+        "title": "Todesbiss der schwarzen Mamba"
+      },
+      {
+        "number": 142,
+        "title": "Bankräuber mit Supertrick"
+      },
+      {
+        "number": 143,
+        "title": "Das unheimliche Haus"
+      },
+      {
+        "number": 144,
+        "title": "Schreckensnacht im Schlangenmaul"
+      },
+      {
+        "number": 145,
+        "title": "Hinterhalt am schwarzen Fels"
+      },
+      {
+        "number": 146,
+        "title": "Nonstop in die Raketenfalle"
+      },
+      {
+        "number": 147,
+        "title": "Hölle ohne Hintertür"
+      },
+      {
+        "number": 148,
+        "title": "Fieser Trick beim Finale"
+      },
+      {
+        "number": 149,
+        "title": "Tims gefährlichster Gegner"
+      },
+      {
+        "number": 150,
+        "title": "Heiße Nächte im Dezember"
+      },
+      {
+        "number": 151,
+        "title": "Gekauftes Spiel"
+      },
+      {
+        "number": 152,
+        "title": "Max und Anna, ein diebisches Paar"
+      },
+      {
+        "number": 153,
+        "title": "Es geschah in einer Regennacht"
+      },
+      {
+        "number": 154,
+        "title": "Das Geheimnis der Burgruine"
+      },
+      {
+        "number": 155,
+        "title": "Gefangen im Spukhaus"
+      },
+      {
+        "number": 156,
+        "title": "Erpresser fahren Achterbahn"
+      },
+      {
+        "number": 157,
+        "title": "Oskar und die sieben Zwerge"
+      },
+      {
+        "number": 158,
+        "title": "Trainer unter Verdacht"
+      },
+      {
+        "number": 159,
+        "title": "Böses Spiel im Sommercamp"
+      },
+      {
+        "number": 160,
+        "title": "Das Grauen naht um Zwölf"
+      },
+      {
+        "number": 161,
+        "title": "Ein Yeti in der Millionenstadt"
+      },
+      {
+        "number": 162,
+        "title": "Gefahr für Oskar!"
+      },
+      {
+        "number": 163,
+        "title": "Die Makler-Mafia"
+      },
+      {
+        "number": 164,
+        "title": "Operation Hexen-Graffiti"
+      },
+      {
+        "number": 165,
+        "title": "Advent mit Knall-Effekt"
+      },
+      {
+        "number": 166,
+        "title": "Das Mädchen mit der Kristallkugel"
+      },
+      {
+        "number": 167,
+        "title": "Der Unsichtbare"
+      },
+      {
+        "number": 168,
+        "title": "Millionencoup im Stadion"
+      },
+      {
+        "number": 169,
+        "title": "Tatort Dschungel"
+      },
+      {
+        "number": 170,
+        "title": "Schock im Schnee"
+      },
+      {
+        "number": 171,
+        "title": "Das lebende Gemälde"
+      },
+      {
+        "number": 172,
+        "title": "Das Geheimnis der Moorleiche"
+      },
+      {
+        "number": 173,
+        "title": "Die Skelettbande"
+      },
+      {
+        "number": 174,
+        "title": "Doppelgänger auf der Rennbahn"
+      },
+      {
+        "number": 175,
+        "title": "Nachtwanderung mit Schrecken"
+      },
+      {
+        "number": 176,
+        "title": "Verbrechen im Rampenlicht"
+      },
+      {
+        "number": 177,
+        "title": "Die Spur der Wölfin"
+      },
+      {
+        "number": 178,
+        "title": "Hai-Alarm im Aquapark"
+      },
+      {
+        "number": 179,
+        "title": "Abzocke im Online-Chat"
+      },
+      {
+        "number": 180,
+        "title": "Alarm im Raubtierhaus"
+      },
+      {
+        "number": 181,
+        "title": "Der vertauschte Koffer"
+      },
+      {
+        "number": 182,
+        "title": "Im Bann des Übersinnlichen"
+      },
+      {
+        "number": 183,
+        "title": "Blindgänger im Villenviertel"
+      },
+      {
+        "number": 184,
+        "title": "Die ewige Finsternis"
+      },
+      {
+        "number": 185,
+        "title": "Der unsichtbare Dieb"
+      },
+      {
+        "number": 186,
+        "title": "Die schlafende Chinesin"
+      },
+      {
+        "number": 187,
+        "title": "Ausspioniert!"
+      },
+      {
+        "number": 188,
+        "title": "Die blauen Schafe von Artelsbach"
+      },
+      {
+        "number": 189,
+        "title": "Iwan, der Schreckliche"
+      },
+      {
+        "number": 190,
+        "title": "Der eiskalte Clown"
+      },
+      {
+        "number": 191,
+        "title": "Nord-Nordwest zum Hexenplatz"
+      },
+      {
+        "number": 192,
+        "title": "Feuer auf Gut Ribbeck!"
+      },
+      {
+        "number": 193,
+        "title": "Das Weihnachts-Phantom"
+      },
+      {
+        "number": 194,
+        "title": "Der Friedhof der Namenlosen"
+      },
+      {
+        "number": 195,
+        "title": "Dem Sonnenkönig auf der Spur"
+      },
+      {
+        "number": 196,
+        "title": "Tatort Wagenburg"
+      },
+      {
+        "number": 197,
+        "title": "Bei Anpfiff Übergabe"
+      },
+      {
+        "number": 198,
+        "title": "Der Golem vom Dunkelsee"
+      },
+      {
+        "number": 199,
+        "title": "Verfolgungsjagd vor Mitternacht"
+      },
+      {
+        "number": 200,
+        "title": "Der große Coup"
+      },
+      {
+        "number": 201,
+        "title": "Vom Goldschatz besessen"
+      },
+      {
+        "number": 202,
+        "title": "Ein Paradies für Diebe"
+      },
+      {
+        "number": 203,
+        "title": "Der Räuber mit der Weihnachtsmaske"
+      },
+      {
+        "number": 204,
+        "title": "Verschwörung auf hoher See"
+      },
+      {
+        "number": 205,
+        "title": "Teuflische Kaffeefahrt"
+      },
+      {
+        "number": 206,
+        "title": "Achtung, UFO-Kult!"
+      },
+      {
+        "number": 207,
+        "title": "Doppelte Entführung"
+      },
+      {
+        "number": 208,
+        "title": "Geheimnis im Tresor"
+      },
+      {
+        "number": 209,
+        "title": "Drohbriefe von Unbekannt"
+      },
+      {
+        "number": 210,
+        "title": "Raubzug im Casino"
+      },
+      {
+        "number": 211,
+        "title": "Geiselnahme im Villenviertel"
+      },
+      {
+        "number": 212,
+        "title": "Tyrannei Kommando Eins"
+      },
+      {
+        "number": 213,
+        "title": "Das unheimliche Dorf"
+      },
+      {
+        "number": 214,
+        "title": "Diamantenrausch auf der A9"
+      },
+      {
+        "number": 215,
+        "title": "Verbrechen im Moorsteiner Wald"
+      },
+      {
+        "number": 216,
+        "title": "Das Geheimnis im Jagdschloss"
+      },
+      {
+        "number": 217,
+        "title": "Tödliche Klarinette"
+      },
+      {
+        "number": 218,
+        "title": "Schutzgeld für Dämonen"
+      },
+      {
+        "number": 219,
+        "title": "Terror frei Haus"
+      },
+      {
+        "number": 220,
+        "title": "Attentat am Gämsengrat"
+      },
+      {
+        "number": 221,
+        "title": "Beim Raubzug helfen Ahnungslose"
+      },
+      {
+        "number": 222,
+        "title": "Roter Drache 222"
+      },
+      {
+        "number": 223,
+        "title": "Betrüger Super Sauber"
+      },
+      {
+        "number": 224,
+        "title": "Bilderdiebe haben kein Gesicht"
+      },
+      {
+        "number": 225,
+        "title": "Tanz mit der Giftschlange"
+      },
+      {
+        "number": 226,
+        "title": "Der Täter unter uns"
+      },
+      {
+        "number": 227,
+        "title": "Zwei für Zwölf"
+      },
+      {
+        "number": 228,
+        "title": "Das Geld, das niemand wollte"
+      },
+      {
+        "number": 229,
+        "title": "Auf den Schwingen des Totenvogels"
+      },
+      {
+        "number": 230,
+        "title": "Die Tesla-Verschwörung"
+      },
+      {
+        "number": 231,
+        "title": "Knackis streicheln mit der Faust"
+      },
+      {
+        "number": 232,
+        "title": "Drohnenaugen in der Nacht"
+      },
+      {
+        "number": 233,
+        "title": "Räuberwald"
+      },
+      {
+        "number": 234,
+        "title": "Im Auftrag des Bösen"
+      },
+      {
+        "number": 235,
+        "title": "Ein Gruselfest für ein Vermögen"
+      },
+      {
+        "number": 236,
+        "title": "Schatten aus der Unterwelt"
+      },
+      {
+        "number": 237,
+        "title": "K.I. Kriminelle Illusion"
+      },
+      {
+        "number": 238,
+        "title": "Nur Tote schlafen länger"
+      },
+      {
+        "number": 239,
+        "title": "Vollgas ins Verderben"
+      },
+      {
+        "number": 240,
+        "title": "Das verschollene Zepter von Gizeh"
+      },
+      {
+        "number": 241,
+        "title": "Das Rätsel der Gruselvilla"
+      },
+      {
+        "number": 242,
+        "title": "Verbrechen live im Radio"
+      },
+      {
+        "number": 243,
+        "title": "Die Fährte des Hehlers"
+      }
+    ]
+  },
   "listening_link_coverage": {
     "episode_count": 243,
     "episodes_with_listening_links": 34,
@@ -1013,5 +1992,5 @@
     "hub_or_fallback_link_count": 34,
     "invalid_links": []
   },
-  "finished_at": "2026-11-09T14:02:38.266902+00:00"
+  "finished_at": "2026-11-09T21:00:38.817585+00:00"
 }
