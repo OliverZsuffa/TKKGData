@@ -1,7 +1,7 @@
 # Request 002: Store exact Spotify track pairing URLs
 
 ## Status
-Approved as a supporting change to Request 001 on 2026-11-09. Implementation in progress.
+Approved as a supporting change to Request 001 on 2026-11-09. Implemented and merged into main.
 
 ## Objective
 For every verified YouTube Music song match, store the exact corresponding Spotify track ID and URL as well as the YouTube Music video ID and URL. This allows TKKGDownloader to use spotDL's documented manual track pairing without searching Spotify or YouTube Music again.
@@ -17,9 +17,9 @@ For every verified YouTube Music song match, store the exact corresponding Spoti
 8. No user-specific or audio file data is stored.
 
 ## Acceptance criteria
-- [ ] Audio schema requires Spotify track ID and URL for each individually verified match.
-- [ ] Enrichment extracts the Spotify ID and URL from spotDL metadata and verifies consistency.
-- [ ] Invalid or missing Spotify track identity rejects the mapping.
-- [ ] Automated tests cover valid and invalid pairings.
-- [ ] Dataset validation checks Spotify track ID and URL consistency.
-- [ ] Documentation describes the exact pairings for TKKGDownloader.
+- [x] Audio schema requires Spotify track ID and URL for each individually verified match.
+- [x] Enrichment extracts the Spotify ID and URL from spotDL metadata and verifies consistency.
+- [x] Invalid or missing Spotify track identity rejects the mapping.
+- [x] Automated tests cover valid and invalid pairings.
+- [x] Dataset validation checks Spotify track ID and URL consistency.
+- [x] Documentation describes the exact pairings for TKKGDownloader.
