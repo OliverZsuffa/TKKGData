@@ -35,7 +35,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: tkkgdata-audio-enrichment
+  group: tkkgdata-data-writes
   cancel-in-progress: false
 
 jobs:
@@ -97,6 +97,7 @@ jobs:
           git add data/episodes.json data/episodes.csv data/dataset-metadata.json
           if ! git diff --cached --quiet; then
             git commit -m "data: add verified TKKG audio sources"
+            git pull --rebase origin main
             git push
           else
             echo "No verified audio mappings were added."
