@@ -5,6 +5,7 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
+from scraper.audio_enrichment import audio_release_coverage, preserve_verified_audio_releases
 from scraper.export import write_catalogue
 from scraper.http import SourceAccessError, SourceClient
 from scraper.merge import merge_records
@@ -21,6 +22,14 @@ HISTORICAL_INDEX_LATEST = 217
 
 def main() -> int:
     now = datetime.now(timezone.utc).isoformat()
+    previous_episodes: list[dict] = []
+    if (DATA_DIR / "episodes.json").exists():
+        try:
+            previous_payload = json.loads((DATA_DIR / "episodes.json").read_text(encoding="utf-8"))
+            if isinstance(previous_payload, list):
+                previous_episodes = previous_payload
+        except (OSError, json.JSONDecodeError) as exc:
+            print(f"Could not read previous catalogue for audio metadata preservation: {exc}", file=sys.stderr)
     client = SourceClient()
     report = {
         "started_at": now,
@@ -96,6 +105,8 @@ def main() -> int:
         combined = archive_records + official_records
         episodes, conflicts = merge_records(combined)
         report["conflicts"] = conflicts
+        report["audio_release_preservation_conflicts"] = preserve_verified_audio_releases(episodes, previous_episodes)
+        report["audio_release_coverage"] = audio_release_coverage(episodes)
         report["gaps"] = find_number_gaps(episodes)
         report["episode_count"] = len(episodes)
         report["listening_link_coverage"] = listening_link_coverage(episodes)
