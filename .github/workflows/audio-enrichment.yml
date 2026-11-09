@@ -67,6 +67,10 @@ jobs:
           if [ "$EVENT_NAME" = "push" ]; then
             INPUT_EPISODE=150
             ARGS+=(--playlist-id OLAK5uy_mQRbJNANh1H4CKbmM5ez5LSW1HJFvE3QI)
+            # A single explicitly tagged commit may publish a verified mapping.
+            if git log -1 --format=%s | grep -Fq "[publish-audio-150]"; then
+              INPUT_WRITE=true
+            fi
           fi
           if [ "$EVENT_NAME" = "schedule" ]; then INPUT_WRITE=true; fi
           if [ -n "${INPUT_EPISODE:-}" ]; then ARGS+=(--episode "$INPUT_EPISODE"); fi
@@ -94,11 +98,11 @@ jobs:
           if-no-files-found: warn
           retention-days: 30
       - name: Commit verified audio mappings
-        if: success() && (inputs.write == true || github.event_name == 'schedule')
+        if: success() && (inputs.write == true || github.event_name == 'schedule' || (github.event_name == 'push' && contains(github.event.head_commit.message, '[publish-audio-150]')))
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/episodes.json data/episodes.csv data/dataset-metadata.json
+          git add data/episodes.json data/episodes.csv data/dataset-metadata.json data/scrape-report.json
           if ! git diff --cached --quiet; then
             git commit -m "data: add verified TKKG audio sources"
             git pull --rebase origin main
