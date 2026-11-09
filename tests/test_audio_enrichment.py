@@ -24,6 +24,7 @@ SPOTIFY = {
     "url": "https://open.spotify.com/album/0ZqyFeMXxCyIJvYptGlnn1",
     "title": "150/Heiße Nächte im Dezember",
     "track_count": 2,
+    "source_query": "TKKG 150 Heiße Nächte im Dezember Teil 01",
     "tracks": [
         {"name": "150 - Heiße Nächte im Dezember - Teil 01", "track_number": 1, "song_id": "0000000000000000000001", "url": "https://open.spotify.com/track/0000000000000000000001"},
         {"name": "150 - Heiße Nächte im Dezember - Teil 02", "track_number": 2, "song_id": "0000000000000000000002", "url": "https://open.spotify.com/track/0000000000000000000002"},
