@@ -1,6 +1,6 @@
 # Implementation plan: Verify YouTube Music playlists through yt-dlp
 
-**Status:** Approved. Implementation in progress.
+**Status:** Implemented and merged to main. Unit tests and published dataset validation passed. Live episode 150 dry-run report is being inspected.
 
 1. Add a small helper around yt-dlp with extract_flat=in_playlist, skip_download, and ignoreerrors.
 2. For an explicit playlist ID, build the canonical YouTube Music playlist URL and extract metadata.
