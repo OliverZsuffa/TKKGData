@@ -1,7 +1,7 @@
 # Request 001: Establish TKKGData as the shared TKKG dataset
 
 ## Status
-Approved by Oliver on 2026-11-09. Implementation is in progress. The initial data and scraper migration is underway; consumer cutovers remain gated on verification.
+Approved by Oliver on 2026-11-09. The canonical dataset, scraper migration, TKKGTracker cutover, and TKKGDownloader cutover are implemented and merged. Live audio enrichment and real downloader end to end verification remain separate follow-up checks.
 
 ## Desired outcome
 Make TKKGData the single source of truth for structured TKKG episode information and all verified release/source mappings. TKKGData discovers, scrapes, reconciles, validates, and publishes the dataset. TKKGTracker and TKKGDownloader consume that published data and do not maintain independent episode catalogues or scrape source websites.
