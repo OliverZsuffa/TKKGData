@@ -9,12 +9,12 @@ The episode array in `data/episodes.json` remains the canonical shared TKKG data
 An audio object is published only after every Spotify track has one unambiguous YouTube Music song match. Titles must match exactly after conservative Unicode, case, and punctuation normalization, with additional corroboration from the TKKG artist, episode album identity, or matching duration. A full YouTube Music playlist is stored as a second entry point when it can also be verified, but playlist discovery is optional.
 
 - `spotify.album_id`, `spotify.url`, `spotify.title`, `spotify.track_count`, and `spotify.source_query`
-- `youtube_music.tracks[]` stores the individual YouTube Music song URL, video ID, title, artists, album, duration, and match evidence for each Spotify track
+- `youtube_music.tracks[]` stores the Spotify track ID and URL paired with the individual YouTube Music song URL, video ID, title, artists, album, duration, and match evidence for each track
 - `youtube_music.playlist` stores the verified album playlist ID, URL, title, and track count when available; it is `null` when playlist discovery fails
 - `youtube_music.track_count` is the count of individually verified song links
 - `verification.status`, `verification.verified_at`, `verification.method`, and `verification.matched_track_count`
 
-The Spotify track count, individual YouTube Music track count, and matched track count must agree. Playlist track count must also agree when a playlist is available. Song video IDs and playlist IDs must agree with their corresponding URLs. The schema rejects unverified status values and unknown fields.
+The Spotify track count, individual YouTube Music track count, and matched track count must agree. Playlist track count must also agree when a playlist is available. Spotify track IDs, YouTube Music video IDs, and playlist IDs must agree with their corresponding URLs. The schema rejects unverified status values and unknown fields.
 
 ## Discovery
 
@@ -28,7 +28,7 @@ The current matching rule is intentionally conservative. It does not attempt fuz
 
 `ytmusicapi` is an unofficial client that emulates public YouTube Music web requests. It is not supported or endorsed by Google and can break when the service changes. The discovery workflow uses unauthenticated public access and does not store browser cookies or account credentials. No authentication, access controls, or rate limits are bypassed.
 
-spotDL reads Spotify metadata and uses the paired YouTube Music URL as the audio source. Its documented manual pairing format is `YouTubeMusicURL|SpotifyAlbumURL`. The downloader integration must confirm this against its installed spotDL version before relying on the dataset in production.
+spotDL reads Spotify metadata and uses the paired YouTube Music URL as the audio source. Its documented manual pairing format is `YouTubeMusicURL|SpotifyAlbumURL`. For individual track pairing, spotDL accepts a YouTube URL paired with its corresponding Spotify track URL. The dataset therefore stores both exact track URLs for each verified match. The downloader integration must confirm this against its installed spotDL version before relying on the dataset in production.
 
 ## Backfill and scheduled discovery
 
