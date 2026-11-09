@@ -26,7 +26,7 @@ Initial migration implemented on this request branch:
 - Configured independent scheduled workflows for catalogue scraping and audio enrichment.
 
 ## Test results
-GitHub Actions run 42697395857 completed successfully:
+GitHub Actions runs 42697395857 and 42697675752 completed successfully. The latter is the final validation after fixing the metadata export test:
 - Python dependency installation succeeded.
 - All unit tests passed, including migrated audio enrichment tests.
 - Dataset metadata validation passed.
