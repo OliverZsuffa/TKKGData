@@ -39,7 +39,7 @@ class CatalogueExportTests(unittest.TestCase):
                 rows = list(reader)
                 fieldnames = reader.fieldnames
             payload = json.loads((output_dir / "episodes.json").read_text(encoding="utf-8"))
-
+    
         self.assertIn("series", CSV_FIELDS)
         self.assertIn("series", fieldnames)
         self.assertEqual(rows[0]["series"], "TKKG")
