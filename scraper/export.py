@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import csv
 import json
+from datetime import datetime, timezone
 from pathlib import Path
 
 
@@ -25,3 +26,15 @@ def write_catalogue(episodes: list[dict], output_dir: Path) -> None:
                 if isinstance(row.get(field), (list, dict)):
                     row[field] = json.dumps(row[field], ensure_ascii=False)
             writer.writerow(row)
+
+    metadata = {
+        "schema_version": "1.0.0",
+        "dataset_version": datetime.now(timezone.utc).isoformat(),
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "episode_count": len(episodes),
+        "series": sorted({str(item.get("series", "TKKG")) for item in episodes}),
+        "data_file": "episodes.json",
+    }
+    (output_dir / "dataset-metadata.json").write_text(
+        json.dumps(metadata, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8"
+    )
