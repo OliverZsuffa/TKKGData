@@ -18437,7 +18437,835 @@
       }
     ],
     "listening_links": [],
-    "last_checked": "2026-11-09T22:13:37.548050+00:00"
+    "last_checked": "2026-11-09T22:13:37.548050+00:00",
+    "audio_release": {
+      "spotify": {
+        "album_id": "0ZqyFeMXxCyIJvYptGlnn1",
+        "url": "https://open.spotify.com/album/0ZqyFeMXxCyIJvYptGlnn1",
+        "title": "150/Heiße Nächte im Dezember",
+        "track_count": 40,
+        "source_query": "TKKG 150 Heiße Nächte im Dezember Teil 01"
+      },
+      "youtube_music": {
+        "playlist": {
+          "playlist_id": "OLAK5uy_mQRbJNANh1H4CKbmM5ez5LSW1HJFvE3QI",
+          "url": "https://music.youtube.com/playlist?list=OLAK5uy_mQRbJNANh1H4CKbmM5ez5LSW1HJFvE3QI",
+          "title": "Album - 150/Heiße Nächte im Dezember",
+          "track_count": 40
+        },
+        "tracks": [
+          {
+            "track_number": 1,
+            "spotify_title": "150 - Heiße Nächte im Dezember - Teil 01",
+            "spotify_track_id": "6OkVJ12dWiOBTZ0bl6JacJ",
+            "spotify_track_url": "https://open.spotify.com/track/6OkVJ12dWiOBTZ0bl6JacJ",
+            "video_id": "H0I0pHGLO9g",
+            "url": "https://music.youtube.com/watch?v=H0I0pHGLO9g",
+            "title": "150 - Heiße Nächte im Dezember (Teil 01)",
+            "artists": [],
+            "album": "Album - 150/Heiße Nächte im Dezember",
+            "duration_seconds": 128.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_playlist_match",
+              "playlist_title_matches_episode",
+              "explicit_playlist_id",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 2,
+            "spotify_title": "150 - Heiße Nächte im Dezember - Teil 02",
+            "spotify_track_id": "0VrDsbr8lU6hfoZj2wBp0H",
+            "spotify_track_url": "https://open.spotify.com/track/0VrDsbr8lU6hfoZj2wBp0H",
+            "video_id": "L1OZ4kR4xJ8",
+            "url": "https://music.youtube.com/watch?v=L1OZ4kR4xJ8",
+            "title": "150 - Heiße Nächte im Dezember (Teil 02)",
+            "artists": [],
+            "album": "Album - 150/Heiße Nächte im Dezember",
+            "duration_seconds": 88.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_playlist_match",
+              "playlist_title_matches_episode",
+              "explicit_playlist_id",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 3,
+            "spotify_title": "150 - Heiße Nächte im Dezember - Teil 03",
+            "spotify_track_id": "3lqxFGE3ND0EqivO6HTRh4",
+            "spotify_track_url": "https://open.spotify.com/track/3lqxFGE3ND0EqivO6HTRh4",
+            "video_id": "g4ga6jSlRNE",
+            "url": "https://music.youtube.com/watch?v=g4ga6jSlRNE",
+            "title": "150 - Heiße Nächte im Dezember (Teil 03)",
+            "artists": [],
+            "album": "Album - 150/Heiße Nächte im Dezember",
+            "duration_seconds": 86.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_playlist_match",
+              "playlist_title_matches_episode",
+              "explicit_playlist_id",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 4,
+            "spotify_title": "150 - Heiße Nächte im Dezember - Teil 04",
+            "spotify_track_id": "1qC4r4BznaoaNQx82eEi2p",
+            "spotify_track_url": "https://open.spotify.com/track/1qC4r4BznaoaNQx82eEi2p",
+            "video_id": "ChSD3GkZ5lI",
+            "url": "https://music.youtube.com/watch?v=ChSD3GkZ5lI",
+            "title": "150 - Heiße Nächte im Dezember (Teil 04)",
+            "artists": [],
+            "album": "Album - 150/Heiße Nächte im Dezember",
+            "duration_seconds": 89.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_playlist_match",
+              "playlist_title_matches_episode",
+              "explicit_playlist_id",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 5,
+            "spotify_title": "150 - Heiße Nächte im Dezember - Teil 05",
+            "spotify_track_id": "24UzJrQSMETeFBGkETFClX",
+            "spotify_track_url": "https://open.spotify.com/track/24UzJrQSMETeFBGkETFClX",
+            "video_id": "tUOLJ37W-I0",
+            "url": "https://music.youtube.com/watch?v=tUOLJ37W-I0",
+            "title": "150 - Heiße Nächte im Dezember (Teil 05)",
+            "artists": [],
+            "album": "Album - 150/Heiße Nächte im Dezember",
+            "duration_seconds": 90.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_playlist_match",
+              "playlist_title_matches_episode",
+              "explicit_playlist_id",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 6,
+            "spotify_title": "150 - Heiße Nächte im Dezember - Teil 06",
+            "spotify_track_id": "7duk22THlHT66AM0EHICSe",
+            "spotify_track_url": "https://open.spotify.com/track/7duk22THlHT66AM0EHICSe",
+            "video_id": "vM8DrN__PzA",
+            "url": "https://music.youtube.com/watch?v=vM8DrN__PzA",
+            "title": "150 - Heiße Nächte im Dezember (Teil 06)",
+            "artists": [],
+            "album": "Album - 150/Heiße Nächte im Dezember",
+            "duration_seconds": 87.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_playlist_match",
+              "playlist_title_matches_episode",
+              "explicit_playlist_id",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 7,
+            "spotify_title": "150 - Heiße Nächte im Dezember - Teil 07",
+            "spotify_track_id": "549oYb1Cmp0vozQhPAE7Y0",
+            "spotify_track_url": "https://open.spotify.com/track/549oYb1Cmp0vozQhPAE7Y0",
+            "video_id": "IVOGmLgBLCc",
+            "url": "https://music.youtube.com/watch?v=IVOGmLgBLCc",
+            "title": "150 - Heiße Nächte im Dezember (Teil 07)",
+            "artists": [],
+            "album": "Album - 150/Heiße Nächte im Dezember",
+            "duration_seconds": 88.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_playlist_match",
+              "playlist_title_matches_episode",
+              "explicit_playlist_id",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 8,
+            "spotify_title": "150 - Heiße Nächte im Dezember - Teil 08",
+            "spotify_track_id": "22VD12DeL9GSE4eVczVnR8",
+            "spotify_track_url": "https://open.spotify.com/track/22VD12DeL9GSE4eVczVnR8",
+            "video_id": "o8EuhTB8NeQ",
+            "url": "https://music.youtube.com/watch?v=o8EuhTB8NeQ",
+            "title": "150 - Heiße Nächte im Dezember (Teil 08)",
+            "artists": [],
+            "album": "Album - 150/Heiße Nächte im Dezember",
+            "duration_seconds": 86.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_playlist_match",
+              "playlist_title_matches_episode",
+              "explicit_playlist_id",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 9,
+            "spotify_title": "150 - Heiße Nächte im Dezember - Teil 09",
+            "spotify_track_id": "78NmNY2VExKyHRvqxEkUsd",
+            "spotify_track_url": "https://open.spotify.com/track/78NmNY2VExKyHRvqxEkUsd",
+            "video_id": "ac0hZsalgUM",
+            "url": "https://music.youtube.com/watch?v=ac0hZsalgUM",
+            "title": "150 - Heiße Nächte im Dezember (Teil 09)",
+            "artists": [],
+            "album": "Album - 150/Heiße Nächte im Dezember",
+            "duration_seconds": 89.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_playlist_match",
+              "playlist_title_matches_episode",
+              "explicit_playlist_id",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 10,
+            "spotify_title": "150 - Heiße Nächte im Dezember - Teil 10",
+            "spotify_track_id": "73PQHCOx6o3RJdoA8CVg5k",
+            "spotify_track_url": "https://open.spotify.com/track/73PQHCOx6o3RJdoA8CVg5k",
+            "video_id": "OGcsDZupXOg",
+            "url": "https://music.youtube.com/watch?v=OGcsDZupXOg",
+            "title": "150 - Heiße Nächte im Dezember (Teil 10)",
+            "artists": [],
+            "album": "Album - 150/Heiße Nächte im Dezember",
+            "duration_seconds": 89.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_playlist_match",
+              "playlist_title_matches_episode",
+              "explicit_playlist_id",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 11,
+            "spotify_title": "150 - Heiße Nächte im Dezember - Teil 11",
+            "spotify_track_id": "3cprQ7rXOVsL9yAOKBDB96",
+            "spotify_track_url": "https://open.spotify.com/track/3cprQ7rXOVsL9yAOKBDB96",
+            "video_id": "NmlQPqLdVmg",
+            "url": "https://music.youtube.com/watch?v=NmlQPqLdVmg",
+            "title": "150 - Heiße Nächte im Dezember (Teil 11)",
+            "artists": [],
+            "album": "Album - 150/Heiße Nächte im Dezember",
+            "duration_seconds": 89.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_playlist_match",
+              "playlist_title_matches_episode",
+              "explicit_playlist_id",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 12,
+            "spotify_title": "150 - Heiße Nächte im Dezember - Teil 12",
+            "spotify_track_id": "1dMizskZTfQe7jOYOSKU5D",
+            "spotify_track_url": "https://open.spotify.com/track/1dMizskZTfQe7jOYOSKU5D",
+            "video_id": "aOsafbwTIr0",
+            "url": "https://music.youtube.com/watch?v=aOsafbwTIr0",
+            "title": "150 - Heiße Nächte im Dezember (Teil 12)",
+            "artists": [],
+            "album": "Album - 150/Heiße Nächte im Dezember",
+            "duration_seconds": 88.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_playlist_match",
+              "playlist_title_matches_episode",
+              "explicit_playlist_id",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 13,
+            "spotify_title": "150 - Heiße Nächte im Dezember - Teil 13",
+            "spotify_track_id": "21JvSMs3tehcjCxfHfNzxO",
+            "spotify_track_url": "https://open.spotify.com/track/21JvSMs3tehcjCxfHfNzxO",
+            "video_id": "nz86sHrQFA4",
+            "url": "https://music.youtube.com/watch?v=nz86sHrQFA4",
+            "title": "150 - Heiße Nächte im Dezember (Teil 13)",
+            "artists": [],
+            "album": "Album - 150/Heiße Nächte im Dezember",
+            "duration_seconds": 86.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_playlist_match",
+              "playlist_title_matches_episode",
+              "explicit_playlist_id",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 14,
+            "spotify_title": "150 - Heiße Nächte im Dezember - Teil 14",
+            "spotify_track_id": "6b0Azi4FQLWV8DDdrQZpOE",
+            "spotify_track_url": "https://open.spotify.com/track/6b0Azi4FQLWV8DDdrQZpOE",
+            "video_id": "3YxNm_2dJAc",
+            "url": "https://music.youtube.com/watch?v=3YxNm_2dJAc",
+            "title": "150 - Heiße Nächte im Dezember (Teil 14)",
+            "artists": [],
+            "album": "Album - 150/Heiße Nächte im Dezember",
+            "duration_seconds": 89.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_playlist_match",
+              "playlist_title_matches_episode",
+              "explicit_playlist_id",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 15,
+            "spotify_title": "150 - Heiße Nächte im Dezember - Teil 15",
+            "spotify_track_id": "6gnB3gUfLmir37vb90FQr3",
+            "spotify_track_url": "https://open.spotify.com/track/6gnB3gUfLmir37vb90FQr3",
+            "video_id": "HE8ZAz8P2s4",
+            "url": "https://music.youtube.com/watch?v=HE8ZAz8P2s4",
+            "title": "150 - Heiße Nächte im Dezember (Teil 15)",
+            "artists": [],
+            "album": "Album - 150/Heiße Nächte im Dezember",
+            "duration_seconds": 84.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_playlist_match",
+              "playlist_title_matches_episode",
+              "explicit_playlist_id",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 16,
+            "spotify_title": "150 - Heiße Nächte im Dezember - Teil 16",
+            "spotify_track_id": "1BC8PAXT2YGAX0ik5IPKsn",
+            "spotify_track_url": "https://open.spotify.com/track/1BC8PAXT2YGAX0ik5IPKsn",
+            "video_id": "UI1RALC5WTA",
+            "url": "https://music.youtube.com/watch?v=UI1RALC5WTA",
+            "title": "150 - Heiße Nächte im Dezember (Teil 16)",
+            "artists": [],
+            "album": "Album - 150/Heiße Nächte im Dezember",
+            "duration_seconds": 91.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_playlist_match",
+              "playlist_title_matches_episode",
+              "explicit_playlist_id",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 17,
+            "spotify_title": "150 - Heiße Nächte im Dezember - Teil 17",
+            "spotify_track_id": "66o0LXNQfsFvILXSP3KDMh",
+            "spotify_track_url": "https://open.spotify.com/track/66o0LXNQfsFvILXSP3KDMh",
+            "video_id": "qiiGC4syFzU",
+            "url": "https://music.youtube.com/watch?v=qiiGC4syFzU",
+            "title": "150 - Heiße Nächte im Dezember (Teil 17)",
+            "artists": [],
+            "album": "Album - 150/Heiße Nächte im Dezember",
+            "duration_seconds": 87.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_playlist_match",
+              "playlist_title_matches_episode",
+              "explicit_playlist_id",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 18,
+            "spotify_title": "150 - Heiße Nächte im Dezember - Teil 18",
+            "spotify_track_id": "6vSlsv0qMloFzM2OhQh9yS",
+            "spotify_track_url": "https://open.spotify.com/track/6vSlsv0qMloFzM2OhQh9yS",
+            "video_id": "skIlNwQLC6o",
+            "url": "https://music.youtube.com/watch?v=skIlNwQLC6o",
+            "title": "150 - Heiße Nächte im Dezember (Teil 18)",
+            "artists": [],
+            "album": "Album - 150/Heiße Nächte im Dezember",
+            "duration_seconds": 90.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_playlist_match",
+              "playlist_title_matches_episode",
+              "explicit_playlist_id",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 19,
+            "spotify_title": "150 - Heiße Nächte im Dezember - Teil 19",
+            "spotify_track_id": "4JMYPWHKubTryq5Ee6miH8",
+            "spotify_track_url": "https://open.spotify.com/track/4JMYPWHKubTryq5Ee6miH8",
+            "video_id": "HgJFLwMDjzY",
+            "url": "https://music.youtube.com/watch?v=HgJFLwMDjzY",
+            "title": "150 - Heiße Nächte im Dezember (Teil 19)",
+            "artists": [],
+            "album": "Album - 150/Heiße Nächte im Dezember",
+            "duration_seconds": 85.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_playlist_match",
+              "playlist_title_matches_episode",
+              "explicit_playlist_id",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 20,
+            "spotify_title": "150 - Heiße Nächte im Dezember - Teil 20",
+            "spotify_track_id": "4dh8v0uvpoZcn6eboraPpK",
+            "spotify_track_url": "https://open.spotify.com/track/4dh8v0uvpoZcn6eboraPpK",
+            "video_id": "TUWMvCyagGo",
+            "url": "https://music.youtube.com/watch?v=TUWMvCyagGo",
+            "title": "150 - Heiße Nächte im Dezember (Teil 20)",
+            "artists": [],
+            "album": "Album - 150/Heiße Nächte im Dezember",
+            "duration_seconds": 89.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_playlist_match",
+              "playlist_title_matches_episode",
+              "explicit_playlist_id",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 21,
+            "spotify_title": "150 - Heiße Nächte im Dezember - Teil 21",
+            "spotify_track_id": "65MMK6OR4jlWuQfHZnXv0G",
+            "spotify_track_url": "https://open.spotify.com/track/65MMK6OR4jlWuQfHZnXv0G",
+            "video_id": "OOuGNG-QUxQ",
+            "url": "https://music.youtube.com/watch?v=OOuGNG-QUxQ",
+            "title": "150 - Heiße Nächte im Dezember (Teil 21)",
+            "artists": [],
+            "album": "Album - 150/Heiße Nächte im Dezember",
+            "duration_seconds": 89.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_playlist_match",
+              "playlist_title_matches_episode",
+              "explicit_playlist_id",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 22,
+            "spotify_title": "150 - Heiße Nächte im Dezember - Teil 22",
+            "spotify_track_id": "0YQMSAMyUZ5AZGSkBU64dM",
+            "spotify_track_url": "https://open.spotify.com/track/0YQMSAMyUZ5AZGSkBU64dM",
+            "video_id": "fZGE7ItLIaE",
+            "url": "https://music.youtube.com/watch?v=fZGE7ItLIaE",
+            "title": "150 - Heiße Nächte im Dezember (Teil 22)",
+            "artists": [],
+            "album": "Album - 150/Heiße Nächte im Dezember",
+            "duration_seconds": 85.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_playlist_match",
+              "playlist_title_matches_episode",
+              "explicit_playlist_id",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 23,
+            "spotify_title": "150 - Heiße Nächte im Dezember - Teil 23",
+            "spotify_track_id": "6HqcpLdJ1WBFGEKjhTaQZa",
+            "spotify_track_url": "https://open.spotify.com/track/6HqcpLdJ1WBFGEKjhTaQZa",
+            "video_id": "nqwhYc7sNYc",
+            "url": "https://music.youtube.com/watch?v=nqwhYc7sNYc",
+            "title": "150 - Heiße Nächte im Dezember (Teil 23)",
+            "artists": [],
+            "album": "Album - 150/Heiße Nächte im Dezember",
+            "duration_seconds": 89.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_playlist_match",
+              "playlist_title_matches_episode",
+              "explicit_playlist_id",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 24,
+            "spotify_title": "150 - Heiße Nächte im Dezember - Teil 24",
+            "spotify_track_id": "7uPuuMfPGHdtbw3tESXMvY",
+            "spotify_track_url": "https://open.spotify.com/track/7uPuuMfPGHdtbw3tESXMvY",
+            "video_id": "xtyAbs9IdXw",
+            "url": "https://music.youtube.com/watch?v=xtyAbs9IdXw",
+            "title": "150 - Heiße Nächte im Dezember (Teil 24)",
+            "artists": [],
+            "album": "Album - 150/Heiße Nächte im Dezember",
+            "duration_seconds": 87.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_playlist_match",
+              "playlist_title_matches_episode",
+              "explicit_playlist_id",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 25,
+            "spotify_title": "150 - Heiße Nächte im Dezember - Teil 25",
+            "spotify_track_id": "2gHjusdfcG1ioBgmbS3HED",
+            "spotify_track_url": "https://open.spotify.com/track/2gHjusdfcG1ioBgmbS3HED",
+            "video_id": "tZ7Q2XXTWWo",
+            "url": "https://music.youtube.com/watch?v=tZ7Q2XXTWWo",
+            "title": "150 - Heiße Nächte im Dezember (Teil 25)",
+            "artists": [],
+            "album": "Album - 150/Heiße Nächte im Dezember",
+            "duration_seconds": 89.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_playlist_match",
+              "playlist_title_matches_episode",
+              "explicit_playlist_id",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 26,
+            "spotify_title": "150 - Heiße Nächte im Dezember - Teil 26",
+            "spotify_track_id": "0KzxPsloEFe5Qaj246hVH3",
+            "spotify_track_url": "https://open.spotify.com/track/0KzxPsloEFe5Qaj246hVH3",
+            "video_id": "EQK7H9ZyFO0",
+            "url": "https://music.youtube.com/watch?v=EQK7H9ZyFO0",
+            "title": "150 - Heiße Nächte im Dezember (Teil 26)",
+            "artists": [],
+            "album": "Album - 150/Heiße Nächte im Dezember",
+            "duration_seconds": 87.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_playlist_match",
+              "playlist_title_matches_episode",
+              "explicit_playlist_id",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 27,
+            "spotify_title": "150 - Heiße Nächte im Dezember - Teil 27",
+            "spotify_track_id": "6FeWqxHPcMKYcZsNddArj6",
+            "spotify_track_url": "https://open.spotify.com/track/6FeWqxHPcMKYcZsNddArj6",
+            "video_id": "7_tbQAGnrcc",
+            "url": "https://music.youtube.com/watch?v=7_tbQAGnrcc",
+            "title": "150 - Heiße Nächte im Dezember (Teil 27)",
+            "artists": [],
+            "album": "Album - 150/Heiße Nächte im Dezember",
+            "duration_seconds": 89.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_playlist_match",
+              "playlist_title_matches_episode",
+              "explicit_playlist_id",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 28,
+            "spotify_title": "150 - Heiße Nächte im Dezember - Teil 28",
+            "spotify_track_id": "7BwtnughrNrsEuiRLX9tS3",
+            "spotify_track_url": "https://open.spotify.com/track/7BwtnughrNrsEuiRLX9tS3",
+            "video_id": "TAUGjhCLkWY",
+            "url": "https://music.youtube.com/watch?v=TAUGjhCLkWY",
+            "title": "150 - Heiße Nächte im Dezember (Teil 28)",
+            "artists": [],
+            "album": "Album - 150/Heiße Nächte im Dezember",
+            "duration_seconds": 86.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_playlist_match",
+              "playlist_title_matches_episode",
+              "explicit_playlist_id",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 29,
+            "spotify_title": "150 - Heiße Nächte im Dezember - Teil 29",
+            "spotify_track_id": "3CKV1Lz6sjVmcWivvc2H0o",
+            "spotify_track_url": "https://open.spotify.com/track/3CKV1Lz6sjVmcWivvc2H0o",
+            "video_id": "TDAuoywi6WM",
+            "url": "https://music.youtube.com/watch?v=TDAuoywi6WM",
+            "title": "150 - Heiße Nächte im Dezember (Teil 29)",
+            "artists": [],
+            "album": "Album - 150/Heiße Nächte im Dezember",
+            "duration_seconds": 88.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_playlist_match",
+              "playlist_title_matches_episode",
+              "explicit_playlist_id",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 30,
+            "spotify_title": "150 - Heiße Nächte im Dezember - Teil 30",
+            "spotify_track_id": "0HfZxgIgysEKZZ3YdGksKN",
+            "spotify_track_url": "https://open.spotify.com/track/0HfZxgIgysEKZZ3YdGksKN",
+            "video_id": "VppXleXVuC4",
+            "url": "https://music.youtube.com/watch?v=VppXleXVuC4",
+            "title": "150 - Heiße Nächte im Dezember (Teil 30)",
+            "artists": [],
+            "album": "Album - 150/Heiße Nächte im Dezember",
+            "duration_seconds": 83.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_playlist_match",
+              "playlist_title_matches_episode",
+              "explicit_playlist_id",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 31,
+            "spotify_title": "150 - Heiße Nächte im Dezember - Teil 31",
+            "spotify_track_id": "4h8MuRxuAMWbO1Hf1d6b7J",
+            "spotify_track_url": "https://open.spotify.com/track/4h8MuRxuAMWbO1Hf1d6b7J",
+            "video_id": "zT7rVkbB0M0",
+            "url": "https://music.youtube.com/watch?v=zT7rVkbB0M0",
+            "title": "150 - Heiße Nächte im Dezember (Teil 31)",
+            "artists": [],
+            "album": "Album - 150/Heiße Nächte im Dezember",
+            "duration_seconds": 93.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_playlist_match",
+              "playlist_title_matches_episode",
+              "explicit_playlist_id",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 32,
+            "spotify_title": "150 - Heiße Nächte im Dezember - Teil 32",
+            "spotify_track_id": "7IXKNPQl4jdwu5PewtseQk",
+            "spotify_track_url": "https://open.spotify.com/track/7IXKNPQl4jdwu5PewtseQk",
+            "video_id": "TLDgjn1FgoI",
+            "url": "https://music.youtube.com/watch?v=TLDgjn1FgoI",
+            "title": "150 - Heiße Nächte im Dezember (Teil 32)",
+            "artists": [],
+            "album": "Album - 150/Heiße Nächte im Dezember",
+            "duration_seconds": 88.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_playlist_match",
+              "playlist_title_matches_episode",
+              "explicit_playlist_id",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 33,
+            "spotify_title": "150 - Heiße Nächte im Dezember - Teil 33",
+            "spotify_track_id": "5qemvZRmhlKyU1l2zPanGH",
+            "spotify_track_url": "https://open.spotify.com/track/5qemvZRmhlKyU1l2zPanGH",
+            "video_id": "hmAfukqTS-Q",
+            "url": "https://music.youtube.com/watch?v=hmAfukqTS-Q",
+            "title": "150 - Heiße Nächte im Dezember (Teil 33)",
+            "artists": [],
+            "album": "Album - 150/Heiße Nächte im Dezember",
+            "duration_seconds": 86.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_playlist_match",
+              "playlist_title_matches_episode",
+              "explicit_playlist_id",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 34,
+            "spotify_title": "150 - Heiße Nächte im Dezember - Teil 34",
+            "spotify_track_id": "6HOI41UAh6BZPzpYvSBC6f",
+            "spotify_track_url": "https://open.spotify.com/track/6HOI41UAh6BZPzpYvSBC6f",
+            "video_id": "jx4sDd5uWT8",
+            "url": "https://music.youtube.com/watch?v=jx4sDd5uWT8",
+            "title": "150 - Heiße Nächte im Dezember (Teil 34)",
+            "artists": [],
+            "album": "Album - 150/Heiße Nächte im Dezember",
+            "duration_seconds": 91.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_playlist_match",
+              "playlist_title_matches_episode",
+              "explicit_playlist_id",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 35,
+            "spotify_title": "150 - Heiße Nächte im Dezember - Teil 35",
+            "spotify_track_id": "72F5CJhdLUQrrFvLjp338a",
+            "spotify_track_url": "https://open.spotify.com/track/72F5CJhdLUQrrFvLjp338a",
+            "video_id": "UOiQ6XJfSjE",
+            "url": "https://music.youtube.com/watch?v=UOiQ6XJfSjE",
+            "title": "150 - Heiße Nächte im Dezember (Teil 35)",
+            "artists": [],
+            "album": "Album - 150/Heiße Nächte im Dezember",
+            "duration_seconds": 86.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_playlist_match",
+              "playlist_title_matches_episode",
+              "explicit_playlist_id",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 36,
+            "spotify_title": "150 - Heiße Nächte im Dezember - Teil 36",
+            "spotify_track_id": "0SNcEWYhohJlCxW2lniMes",
+            "spotify_track_url": "https://open.spotify.com/track/0SNcEWYhohJlCxW2lniMes",
+            "video_id": "BZyQrz4mUkY",
+            "url": "https://music.youtube.com/watch?v=BZyQrz4mUkY",
+            "title": "150 - Heiße Nächte im Dezember (Teil 36)",
+            "artists": [],
+            "album": "Album - 150/Heiße Nächte im Dezember",
+            "duration_seconds": 89.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_playlist_match",
+              "playlist_title_matches_episode",
+              "explicit_playlist_id",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 37,
+            "spotify_title": "150 - Heiße Nächte im Dezember - Teil 37",
+            "spotify_track_id": "3w6WJJT24rX0W2Tv8YKTl1",
+            "spotify_track_url": "https://open.spotify.com/track/3w6WJJT24rX0W2Tv8YKTl1",
+            "video_id": "oQ_cO1Z3YAE",
+            "url": "https://music.youtube.com/watch?v=oQ_cO1Z3YAE",
+            "title": "150 - Heiße Nächte im Dezember (Teil 37)",
+            "artists": [],
+            "album": "Album - 150/Heiße Nächte im Dezember",
+            "duration_seconds": 87.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_playlist_match",
+              "playlist_title_matches_episode",
+              "explicit_playlist_id",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 38,
+            "spotify_title": "150 - Heiße Nächte im Dezember - Teil 38",
+            "spotify_track_id": "0HtcnAMWIR43Hh4TQNSIwX",
+            "spotify_track_url": "https://open.spotify.com/track/0HtcnAMWIR43Hh4TQNSIwX",
+            "video_id": "LcZtUrXPL88",
+            "url": "https://music.youtube.com/watch?v=LcZtUrXPL88",
+            "title": "150 - Heiße Nächte im Dezember (Teil 38)",
+            "artists": [],
+            "album": "Album - 150/Heiße Nächte im Dezember",
+            "duration_seconds": 87.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_playlist_match",
+              "playlist_title_matches_episode",
+              "explicit_playlist_id",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 39,
+            "spotify_title": "150 - Heiße Nächte im Dezember - Teil 39",
+            "spotify_track_id": "6kEcY3QnE9VrtoqSM0I9Y9",
+            "spotify_track_url": "https://open.spotify.com/track/6kEcY3QnE9VrtoqSM0I9Y9",
+            "video_id": "1neD_gnY-mU",
+            "url": "https://music.youtube.com/watch?v=1neD_gnY-mU",
+            "title": "150 - Heiße Nächte im Dezember (Teil 39)",
+            "artists": [],
+            "album": "Album - 150/Heiße Nächte im Dezember",
+            "duration_seconds": 87.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_playlist_match",
+              "playlist_title_matches_episode",
+              "explicit_playlist_id",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 40,
+            "spotify_title": "150 - Heiße Nächte im Dezember - Teil 40",
+            "spotify_track_id": "7zyy1OwUcf5hGus8ZwgFrA",
+            "spotify_track_url": "https://open.spotify.com/track/7zyy1OwUcf5hGus8ZwgFrA",
+            "video_id": "GPVdG9EgTH8",
+            "url": "https://music.youtube.com/watch?v=GPVdG9EgTH8",
+            "title": "150 - Heiße Nächte im Dezember (Teil 40)",
+            "artists": [],
+            "album": "Album - 150/Heiße Nächte im Dezember",
+            "duration_seconds": 87.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_playlist_match",
+              "playlist_title_matches_episode",
+              "explicit_playlist_id",
+              "duration_within_8_seconds"
+            ]
+          }
+        ],
+        "track_count": 40
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-11-09T22:25:27.201790+00:00",
+        "method": "exact_ordered_playlist_track_titles_and_duration",
+        "matched_track_count": 40,
+        "playlist_status": "verified",
+        "playlist_error": null
+      }
+    }
   },
   {
     "number": 151,

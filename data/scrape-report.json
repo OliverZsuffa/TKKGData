@@ -164,7 +164,7 @@
   "audio_release_preservation_conflicts": [],
   "audio_release_coverage": {
     "episode_count": 243,
-    "verified_pairings": 0,
+    "verified_pairings": 1,
     "missing_pairings": [
       {
         "number": 1,
@@ -761,10 +761,6 @@
       {
         "number": 149,
         "title": "Tims gefährlichster Gegner"
-      },
-      {
-        "number": 150,
-        "title": "Heiße Nächte im Dezember"
       },
       {
         "number": 151,
@@ -1992,5 +1988,10 @@
     "hub_or_fallback_link_count": 34,
     "invalid_links": []
   },
-  "finished_at": "2026-11-09T22:15:42.823500+00:00"
+  "finished_at": "2026-11-09T22:15:42.823500+00:00",
+  "audio_enrichment": {
+    "updated_at": "2026-11-09T22:25:27.201964+00:00",
+    "verified_count": 1,
+    "failure_count": 0
+  }
 }
