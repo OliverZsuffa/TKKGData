@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://oliverzsuffa.github.io/TKKGData/schemas/dataset-metadata.schema.json",
+  "title": "TKKGData dataset metadata",
+  "type": "object",
+  "required": ["schema_version", "dataset_version", "generated_at", "episode_count", "series", "data_file"],
+  "properties": {
+    "schema_version": {"type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$"},
+    "dataset_version": {"type": "string", "minLength": 1},
+    "generated_at": {"type": "string", "format": "date-time"},
+    "episode_count": {"type": "integer", "minimum": 0},
+    "series": {"type": "array", "items": {"type": "string"}},
+    "data_file": {"const": "episodes.json"}
+  },
+  "additionalProperties": false
+}

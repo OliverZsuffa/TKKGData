@@ -1,0 +1,98 @@
+name: Discover TKKG audio sources
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scraper/audio_enrichment.py"
+      - "tests/test_audio_enrichment.py"
+      - "schemas/episode.schema.json"
+      - "scraper/validate.py"
+      - "scraper/audio_source_experiments.py"
+      - "requirements-audio.txt"
+      - ".github/workflows/audio-enrichment.yml"
+  schedule:
+    - cron: "0 6 * * 2"
+  workflow_dispatch:
+    inputs:
+      episode:
+        description: "Specific episode number (leave empty to process missing mappings)"
+        required: false
+        type: string
+        default: "150"
+      limit:
+        description: "Maximum number of episodes to process"
+        required: true
+        type: number
+        default: 5
+      write:
+        description: "Write verified mappings to the central catalogue"
+        required: true
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tkkgdata-audio-enrichment
+  cancel-in-progress: false
+
+jobs:
+  discover:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install scraper and audio discovery dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install -r requirements-audio.txt
+      - name: Discover and verify audio sources
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          INPUT_EPISODE: ${{ inputs.episode }}
+          INPUT_LIMIT: ${{ inputs.limit }}
+          INPUT_WRITE: ${{ inputs.write }}
+        run: |
+          ARGS=(--limit "${INPUT_LIMIT:-5}")
+          if [ "$EVENT_NAME" = "push" ]; then INPUT_EPISODE=150; fi
+          if [ "$EVENT_NAME" = "schedule" ]; then INPUT_WRITE=true; fi
+          if [ -n "${INPUT_EPISODE:-}" ]; then ARGS+=(--episode "$INPUT_EPISODE"); fi
+          if [ "$EVENT_NAME" = "schedule" ]; then ARGS+=(--latest-first); fi
+          if [ "$INPUT_WRITE" = "true" ]; then ARGS+=(--write); fi
+          python -m scraper.audio_enrichment "${ARGS[@]}"
+      - name: Run alternate audio source experiments
+        if: github.event_name == 'push'
+        run: python -m scraper.audio_source_experiments --episode 150 --playlist-id OLAK5uy_mQRbJNANh1H4CKbmM5ez5LSW1HJFvE3QI
+      - name: Upload experiment report
+        if: always() && github.event_name == 'push'
+        uses: actions/upload-artifact@v4
+        with:
+          name: tkkgdata-audio-source-experiments
+          path: data/audio-source-experiment-report.json
+          if-no-files-found: warn
+          retention-days: 30
+      - name: Upload discovery report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tkkgdata-audio-enrichment-report
+          path: data/audio-enrichment-report.json
+          if-no-files-found: warn
+          retention-days: 30
+      - name: Commit verified audio mappings
+        if: success() && (inputs.write == true || github.event_name == 'schedule')
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/episodes.json data/episodes.csv data/dataset-metadata.json
+          if ! git diff --cached --quiet; then
+            git commit -m "data: add verified TKKG audio sources"
+            git push
+          else
+            echo "No verified audio mappings were added."
+          fi
