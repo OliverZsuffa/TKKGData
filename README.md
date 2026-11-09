@@ -20,6 +20,8 @@ The episode JSON remains an array so the current TKKGTracker can adopt it withou
 
 The initial migration contains 243 episode records, numbered 1 through 243, copied from the TKKGTracker main branch snapshot. Existing source provenance, episode details, and official listening links are retained.
 
+Audio enrichment is an independent, optional layer. As of 2026-11-09, episode 150 is the first verified release mapping, with its 40 Spotify and YouTube Music tracks paired individually. The other 242 episodes remain in the enrichment queue. The weekly workflow attempts up to five of the highest-numbered episodes without verified audio mappings.
+
 ## Ownership
 
 TKKGData owns episode and release metadata, source provenance, source adapters, scraping, normalization, reconciliation, Spotify album metadata, provider track records, verified YouTube Music playlist and individual song URLs, validation, and publication.
