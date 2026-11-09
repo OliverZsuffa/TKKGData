@@ -1,7 +1,7 @@
 # Request 003: Make live data workflows reliable
 
 ## Status
-Approved as operational work under Request 001 on 2026-11-09.
+Approved as operational work under Request 001 on 2026-11-09. Implemented and merged into main.
 
 ## Objective
 Ensure the scheduled catalogue and audio enrichment workflows can execute and publish validated data safely.
@@ -15,8 +15,8 @@ Ensure the scheduled catalogue and audio enrichment workflows can execute and pu
 6. Upload reports even when a workflow fails.
 
 ## Acceptance criteria
-- [ ] Audio enrichment workflow has FFmpeg available.
-- [ ] Catalogue and audio write workflows share one concurrency group.
-- [ ] Both generated data commits pull/rebase main before pushing.
-- [ ] Updating the catalogue workflow itself triggers the workflow.
-- [ ] CI validates workflow code and dataset contract.
+- [x] Audio enrichment workflow has FFmpeg available.
+- [x] Catalogue and audio write workflows share one concurrency group.
+- [x] Both generated data commits pull/rebase main before pushing.
+- [x] Updating the catalogue workflow itself triggers the workflow.
+- [x] CI validates workflow code and dataset contract.
