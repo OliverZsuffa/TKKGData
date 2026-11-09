@@ -2,21 +2,35 @@
 
 ## Initial repository setup
 - TKKGData was created as an empty GitHub repository.
-- A minimal README was committed to initialize the repository.
-- The standard repository scaffold and architecture request are now on a dedicated documentation branch and draft PR #1.
+- The standard repository scaffold and architecture request were added on a dedicated branch and draft PR #1.
 
-## Planning findings
-- TKKGtracker already has a request and knowledge-base system, a scraper, a JSON schema, generated JSON/CSV, source adapters, and detailed source findings.
-- TKKGDownloader already has a request and knowledge-base system and a Python download pipeline. It currently consumes the TKKGtracker dataset and resolves Spotify metadata itself.
-- TKKGtracker request 009 contains substantial Spotify and YouTube Music research and implementation work. It should be audited and migrated rather than duplicated.
-- The shared dataset must model provider releases and tracks separately from archive chapter segmentation.
-- Episode 150's track count must be derived from validated returned track records, not the inconsistent Spotify summary field.
-- The intended YouTube Music data includes both playlist-level and individual song URLs when verified.
+## Migration findings
+- TKKGTracker main contained 243 episode records, numbered 1 through 243, with 34 episodes having official listening links.
+- TKKGTracker's existing data/episodes.json was copied byte-for-byte into TKKGData.
+- TKKGTracker's scraper, source adapters, schema, validation, export code, and Python tests were migrated.
+- The audio enrichment and source experiment implementation from TKKGTracker draft PR #14 was migrated into TKKGData, including tests, optional requirements, and its knowledge note.
+- The current audio schema supports one optional verified audio_release object per episode, with Spotify album metadata, actual track records, a YouTube Music playlist when verified, and individual song URLs. Multiple release editions remain a future additive schema improvement.
+- Dataset metadata is separate from the episode array to preserve the existing TKKGTracker consumer contract.
+- The legacy episode dataset contained no audio_release objects at the point of transfer. No live audio discovery has yet been run from TKKGData.
 
 ## Implementation status
-Planning only. No scraper code, data schema, generated dataset, consumer code, or migration has been implemented by this request.
+Initial migration implemented on this request branch:
+- Migrated the scraper and source adapters.
+- Migrated the schema and all existing Python catalogue tests.
+- Migrated the current 243 episode JSON records, CSV export, and scrape report.
+- Migrated the audio enrichment implementation and diagnostic experiment.
+- Updated schema identifiers and CSV export to include optional audio_release.
+- Added dataset-metadata.json and its JSON Schema.
+- Updated the catalogue export to regenerate metadata.
+- Updated CI to run unit tests and validate the published dataset.
+- Configured independent scheduled workflows for catalogue scraping and audio enrichment.
 
 ## Test results
-- GitHub Actions run 42695876623 completed successfully.
-- The workflow verified that the repository scaffold and all required planning documents exist.
-- This is a documentation scaffold check only. No scraper, schema, dataset, or application tests exist or have been run yet.
+GitHub Actions run 42697395857 completed successfully:
+- Python dependency installation succeeded.
+- All unit tests passed, including migrated audio enrichment tests.
+- Dataset metadata validation passed.
+- All 243 episode records passed catalogue schema and consistency validation.
+- The source and target episodes.json files were compared directly and were byte-for-byte identical.
+
+This verifies the migrated code and snapshot. It does not yet prove live source scraping or episode 150 audio discovery. TKKGTracker and TKKGDownloader consumer migrations remain pending.
