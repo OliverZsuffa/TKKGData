@@ -76,7 +76,7 @@ Modelling constraints:
 - Keep source-specific raw evidence available for audit without exposing unverified candidates as verified consumer data.
 - Define stable IDs and canonical URL rules before migrating records.
 
-The exact JSON shape and schema version must be proposed with examples and reviewed before implementation. Do not prematurely freeze a sample structure in this planning document.
+Initial implementation uses schema version 1.0.0 and preserves the legacy episode-array shape. The episode schema includes optional verified audio release data. Further multi-edition modelling must be introduced additively or through a versioned compatibility projection, never by silently breaking the tracker contract.
 
 ## 5. Source adapters and scraping
 
