@@ -47,6 +47,11 @@ jobs:
         with:
           python-version: "3.12"
           cache: pip
+      - name: Install FFmpeg required by spotDL metadata operations
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes ffmpeg
+          ffmpeg -version
       - name: Install scraper and audio discovery dependencies
         run: |
           pip install -r requirements.txt
