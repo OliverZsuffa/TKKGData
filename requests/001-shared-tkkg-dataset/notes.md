@@ -11,7 +11,7 @@
 - The audio enrichment and source experiment implementation from TKKGTracker draft PR #14 was migrated into TKKGData, including tests, optional requirements, and its knowledge note.
 - The current audio schema supports one optional verified audio_release object per episode, with Spotify album metadata, actual track records, a YouTube Music playlist when verified, and individual song URLs. Multiple release editions remain a future additive schema improvement.
 - Dataset metadata is separate from the episode array to preserve the existing TKKGTracker consumer contract.
-- The legacy episode dataset contained no audio_release objects at the point of transfer. Request 004 has since verified all 40 Spotify and YouTube Music tracks for episode 150 in a live dry run; the canonical write is in progress.
+- The legacy episode dataset contained no audio_release objects at the point of transfer. Request 004 verified and published all 40 Spotify and YouTube Music tracks for episode 150 in commit 2233bfd68fc832897a5f916deb9abb24282d9b08.
 
 ## Implementation status
 Initial migration implemented on this request branch:
