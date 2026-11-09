@@ -634,6 +634,61 @@ def discover_episode_audio(
 
 
 
+def audio_release_coverage(episodes: list[dict[str, Any]]) -> dict[str, Any]:
+    verified = [
+        item for item in episodes
+        if isinstance(item.get("audio_release"), dict)
+        and item["audio_release"].get("verification", {}).get("status") == "verified"
+    ]
+    return {
+        "episode_count": len(episodes),
+        "verified_pairings": len(verified),
+        "missing_pairings": [
+            {"number": item.get("number"), "title": item.get("title")}
+            for item in episodes if item not in verified
+        ],
+    }
+
+
+def preserve_verified_audio_releases(
+    episodes: list[dict[str, Any]], previous: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    previous_by_number = {
+        item.get("number"): item.get("audio_release")
+        for item in previous
+        if isinstance(item.get("audio_release"), dict)
+        and item["audio_release"].get("verification", {}).get("status") == "verified"
+    }
+    conflicts: list[dict[str, Any]] = []
+    for episode in episodes:
+        old = previous_by_number.get(episode.get("number"))
+        if old is None:
+            continue
+        current = episode.get("audio_release")
+        if current is None:
+            episode["audio_release"] = deepcopy(old)
+        elif current != old:
+            episode["audio_release"] = deepcopy(old)
+            conflicts.append({
+                "number": episode.get("number"),
+                "reason": "new audio metadata differed from the previously verified mapping; previous mapping retained",
+            })
+    return conflicts
+
+
+def _load_ytmusic() -> Any:
+    try:
+        import requests
+        from ytmusicapi import YTMusic
+    except ImportError as exc:
+        raise RuntimeError(
+            "ytmusicapi is not installed. Install requirements-audio.txt first."
+        ) from exc
+    session = requests.Session()
+    session.request = partial(session.request, timeout=20)
+    return YTMusic(requests_session=session)
+
+
 def enrich_catalogue(
     episodes: list[dict[str, Any]], *, selected_numbers: set[int] | None = None,
     limit: int = 5, write: bool = False, ytm: Any = None,
