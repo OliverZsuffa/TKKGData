@@ -1,0 +1,57 @@
+name: Update episode catalogue
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scraper/**"
+      - "schemas/**"
+      - "tests/**"
+      - "requirements.txt"
+      - "pyproject.toml"
+  workflow_dispatch:
+  schedule:
+    - cron: "23 5 * * 1"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: catalogue-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Run scraper
+        run: python -m scraper.run
+      - name: Validate output
+        run: python -m unittest discover -s tests -v
+      - name: Preserve scrape report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: tkkg-scrape-report
+          path: data/scrape-report.json
+          if-no-files-found: warn
+          retention-days: 30
+      - name: Commit updated catalogue
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/episodes.json data/episodes.csv data/scrape-report.json
+          if ! git diff --cached --quiet; then
+            git commit -m "data: refresh TKKG episode catalogue"
+            git push
+          else
+            echo "Catalogue has not changed."
+          fi
