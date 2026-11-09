@@ -105,7 +105,7 @@ def main() -> int:
                 {
                     "track_number": item.get("track_number"),
                     "title": item.get("name"),
-                    "duration_ms": item.get("duration"),
+                    "duration_seconds": item.get("duration"),
                     "artists": item.get("artists"),
                 }
                 for item in spotify["tracks"]
