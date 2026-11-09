@@ -360,7 +360,7 @@ def _spotify_track_identity(spotify_track: dict[str, Any], index: int) -> tuple[
     spotify_track_url = spotify_track.get("url")
     if not isinstance(spotify_track_id, str) or not re.fullmatch(r"[A-Za-z0-9]{22}", spotify_track_id):
         if isinstance(spotify_track_url, str):
-            match = re.fullmatch(r"https://open\\.spotify\\.com/track/([A-Za-z0-9]{22})", spotify_track_url)
+            match = re.fullmatch(r"https://open\.spotify\.com/track/([A-Za-z0-9]{22})", spotify_track_url)
             spotify_track_id = match.group(1) if match else None
     if not isinstance(spotify_track_id, str) or not re.fullmatch(r"[A-Za-z0-9]{22}", spotify_track_id):
         raise ValueError(f"Spotify track {index} has no valid track ID.")
