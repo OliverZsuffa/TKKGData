@@ -39,12 +39,12 @@ class CatalogueExportTests(unittest.TestCase):
                 rows = list(reader)
                 fieldnames = reader.fieldnames
             payload = json.loads((output_dir / "episodes.json").read_text(encoding="utf-8"))
-    
+            metadata = json.loads((output_dir / "dataset-metadata.json").read_text(encoding="utf-8"))
+
         self.assertIn("series", CSV_FIELDS)
         self.assertIn("series", fieldnames)
         self.assertEqual(rows[0]["series"], "TKKG")
         self.assertEqual(payload[0]["series"], "TKKG")
-        metadata = json.loads((output_dir / "dataset-metadata.json").read_text(encoding="utf-8"))
         self.assertEqual(metadata["schema_version"], "1.0.0")
         self.assertEqual(metadata["episode_count"], 1)
         self.assertIn("audio_release", CSV_FIELDS)
