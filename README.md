@@ -68,4 +68,4 @@ The stable latest compatibility dataset is data/episodes.json. data/dataset-meta
 
 Read the project instructions, documentation index, and knowledge base before changing the project. Substantial work requires a numbered request and an approved implementation plan. See requests/README.md.
 
-The three repository migration is tracked by Request 001. TKKGTracker and TKKGDownloader switch only after the published contract has been validated. The tracker application itself must retain its existing behaviour, progress storage, and offline capability.
+The three repository migration is tracked by Request 001. TKKGTracker and TKKGDownloader now consume the published TKKGData contract. The tracker application retains its existing behaviour, progress storage, and offline capability.
