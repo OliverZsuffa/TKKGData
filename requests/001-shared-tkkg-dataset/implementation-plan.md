@@ -54,7 +54,7 @@ The migration audit is a deliverable and must be reviewed before deleting or dis
 
 ## 4. Canonical dataset model
 
-Design the schema around stable identities and relationships rather than copying the current flat tracker JSON unchanged.
+The initial consumer compatibility contract deliberately preserves the existing flat TKKGTracker episode array and its field names. This avoids changing tracker runtime behaviour. Dataset metadata and schema version are published in a sidecar file. New enrichment fields are additive. The long-term model still needs explicit release and provider relationships, but those additions must retain the compatibility view consumed by existing apps.
 
 Proposed logical entities:
 - Dataset metadata: schema version, dataset version, generated timestamp, source coverage summary.
