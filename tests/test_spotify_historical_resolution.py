@@ -8,6 +8,7 @@ from unittest.mock import patch
 
 from scraper.audio_enrichment import (
     _spotify_artist_album_records,
+    _spotify_artist_ids,
     _spotify_artist_matches,
     discover_episode_audio,
     resolve_spotify_album,
@@ -53,6 +54,15 @@ class SpotifyHistoricalResolutionTests(unittest.TestCase):
         self.assertEqual(records[0]["song_id"], track_id)
         self.assertIn("episode:20", records[0]["search_query"])
         self.assertEqual(client.call, (artist_id, "album,compilation", 50, 0))
+
+    def test_artist_id_alignment_preserves_the_exact_credited_artist(self):
+        self.assertEqual(
+            _spotify_artist_ids({
+                "artists": ["Guest Artist", "TKKG"],
+                "artist_ids": ["", "B" * 22],
+            }),
+            {"B" * 22},
+        )
 
     def test_exact_historical_artist_alias_is_allowed(self):
         self.assertTrue(_spotify_artist_matches({"artists": ["TKKG Retro-Archiv"]}))
