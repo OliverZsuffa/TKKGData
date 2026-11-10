@@ -96,19 +96,29 @@ def _spotify_search_records(query: str) -> list[dict[str, Any]]:
 
 
 def _save_spotify_metadata(query: str, output_path: Path | None = None) -> list[dict[str, Any]]:
-    """Load full album metadata or return every matching track from Spotify search."""
+    """Load album metadata or track search results, retrying transient Spotify responses once."""
     Song, Album = _spotify_metadata_library()
-    try:
-        if query.startswith(SPOTIFY_ALBUM_BASE):
-            album = Album.from_url(query, fetch_songs=False)
-            records = [track.json for track in album.songs]
-        else:
-            records = _spotify_search_records(query)
-    except Exception as exc:
-        raise RuntimeError(f"Spotify metadata lookup failed for {query!r}: {exc}") from exc
-    if not all(isinstance(item, dict) for item in records):
-        raise RuntimeError(f"Spotify returned unusable metadata records for {query!r}.")
-    return records
+    for attempt in range(2):
+        try:
+            if query.startswith(SPOTIFY_ALBUM_BASE):
+                album = Album.from_url(query, fetch_songs=False)
+                records = [track.json for track in album.songs]
+            else:
+                records = _spotify_search_records(query)
+            if not all(isinstance(item, dict) for item in records):
+                raise RuntimeError(f"Spotify returned unusable metadata records for {query!r}.")
+            return records
+        except Exception as exc:
+            message = str(exc).casefold()
+            retryable = any(token in message for token in (
+                "noneType", "timed out", "timeout", "temporarily unavailable",
+                "connection reset", "429", "rate limit", "502", "503", "504",
+            ))
+            if attempt == 0 and retryable:
+                time.sleep(0.5)
+                continue
+            raise RuntimeError(f"Spotify metadata lookup failed for {query!r}: {exc}") from exc
+    raise RuntimeError(f"Spotify metadata lookup failed for {query!r}.")
 
 
 def _artist_names(record: dict[str, Any]) -> list[str]:
@@ -123,7 +133,10 @@ SPOTIFY_ARTIST_ALIASES = {
     "tkkg",
     "tkkg retro archiv",
 }
-SPOTIFY_ARTIST_ID_ALIASES = {"tkkg": "61qDotnjM0jnY5lkfOP7ve"}
+SPOTIFY_ARTIST_ID_ALIASES = {
+    "tkkg": "61qDotnjM0jnY5lkfOP7ve",
+    "tkkg retro archiv": "0i38tQX5j4gZ0KS3eCMoIl",
+}
 
 
 def _spotify_artist_key(value: str) -> str:
