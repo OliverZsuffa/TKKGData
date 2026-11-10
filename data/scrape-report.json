@@ -164,7 +164,7 @@
   "audio_release_preservation_conflicts": [],
   "audio_release_coverage": {
     "episode_count": 243,
-    "verified_pairings": 191,
+    "verified_pairings": 207,
     "missing_pairings": [
       {
         "number": 19,
@@ -203,72 +203,8 @@
         "title": "Der große Coup"
       },
       {
-        "number": 201,
-        "title": "Vom Goldschatz besessen"
-      },
-      {
-        "number": 202,
-        "title": "Ein Paradies für Diebe"
-      },
-      {
-        "number": 203,
-        "title": "Der Räuber mit der Weihnachtsmaske"
-      },
-      {
-        "number": 204,
-        "title": "Verschwörung auf hoher See"
-      },
-      {
-        "number": 205,
-        "title": "Teuflische Kaffeefahrt"
-      },
-      {
-        "number": 206,
-        "title": "Achtung, UFO-Kult!"
-      },
-      {
-        "number": 207,
-        "title": "Doppelte Entführung"
-      },
-      {
-        "number": 208,
-        "title": "Geheimnis im Tresor"
-      },
-      {
-        "number": 209,
-        "title": "Drohbriefe von Unbekannt"
-      },
-      {
-        "number": 210,
-        "title": "Raubzug im Casino"
-      },
-      {
-        "number": 211,
-        "title": "Geiselnahme im Villenviertel"
-      },
-      {
-        "number": 212,
-        "title": "Tyrannei Kommando Eins"
-      },
-      {
-        "number": 213,
-        "title": "Das unheimliche Dorf"
-      },
-      {
-        "number": 214,
-        "title": "Diamantenrausch auf der A9"
-      },
-      {
-        "number": 215,
-        "title": "Verbrechen im Moorsteiner Wald"
-      },
-      {
         "number": 216,
         "title": "Das Geheimnis im Jagdschloss"
-      },
-      {
-        "number": 217,
-        "title": "Tödliche Klarinette"
       },
       {
         "number": 218,
@@ -1230,9 +1166,9 @@
   },
   "finished_at": "2026-11-10T15:40:47.284379+00:00",
   "audio_enrichment": {
-    "updated_at": "2026-11-10T16:57:28.918219+00:00",
-    "verified_count": 96,
-    "failure_count": 4,
-    "batch_count": 25
+    "updated_at": "2026-11-10T19:46:02.852449+00:00",
+    "verified_count": 16,
+    "failure_count": 27,
+    "batch_count": 9
   }
 }
