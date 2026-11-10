@@ -46,7 +46,7 @@ Artifacts from the integration run contain the full JSON link lists and verifica
 
 ## Automated validation status
 
-The live integration workflow passed for all three episodes on commit 750a4e405f7a38e80e56cf7d1c2bb65f23a0bdfd. The full offline unit suite and published catalogue validation also passed on that commit. A final import-only correction was applied afterward to retain CLI stderr reporting; its validation is running separately.
+The live integration workflow passed for all three episodes on commit 750a4e405f7a38e80e56cf7d1c2bb65f23a0bdfd. The full offline unit suite and published catalogue validation also passed on commit 750a4e405f7a38e80e56cf7d1c2bb65f23a0bdfd. A final import-only correction was applied afterward to retain CLI stderr reporting. The validation workflow on commit 9e1b1f3ff60b6f0984568236a2b37d0d28c1771d also passed unit tests and catalogue validation.
 
 ## Analysis of the earlier episode 149 run
 
