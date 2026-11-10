@@ -61,7 +61,7 @@ class SpotifyHistoricalResolutionTests(unittest.TestCase):
                 "artists": ["Guest Artist", "TKKG"],
                 "artist_ids": ["", "B" * 22],
             }),
-            {"B" * 22},
+            {"B" * 22, "61qDotnjM0jnY5lkfOP7ve"},
         )
 
     def test_exact_historical_artist_alias_is_allowed(self):
