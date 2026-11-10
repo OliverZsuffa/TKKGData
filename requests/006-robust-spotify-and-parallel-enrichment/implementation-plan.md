@@ -26,6 +26,7 @@
 - For a dedicated episode album, retain the full ordered album tracklist after checking every track belongs to the requested episode.
 - For a compilation, select only the exact episode track or contiguous episode-specific tracks. Do not include tracks belonging to neighbouring episodes. Retain the parent album ID and URL as provenance, while the selected individual track URLs remain the precise episode entry points.
 - If a compilation contains several plausible tracks for the same episode, or the episode boundaries cannot be established, reject it as ambiguous.
+- Search the exact numbered box title as well as the episode title and calculated range. Search up to 50 album results per query before concluding that no compilation candidate was returned.
 - Validate stable track IDs, album identity, track numbers, titles, and available durations. Do not assume a fixed track count such as 40.
 - Review the current JSON schema and downstream consumers. Prefer the existing album plus selected track representation if it is unambiguous. If it is not, propose a minimal additive field that distinguishes a compilation source from a dedicated episode album before implementation.
 
@@ -69,7 +70,7 @@
 ## 8. Reporting and operational visibility
 - Produce one combined run report with requested range, selected episode numbers, batch count, concurrency, per-batch status, per-episode stage timings, verified mappings, unresolved reasons, and preserved conflicts.
 - Keep each batch report available as a separate artifact for diagnosis.
-- Add a GitHub Actions summary showing the total selected, verified, unresolved, failed batches, elapsed time, and publication status.
+- Add a GitHub Actions summary showing the total selected, verified, unresolved, failed batches, wall-clock elapsed time from batch preparation, summed per-episode processing time, concurrency, and publication status.
 - Emit warnings for unresolved episodes. Fail the workflow for infrastructure or aggregation failures, not merely because one source lookup is unresolved.
 - Record actual timings for preparation, dependency installation, Spotify search, album metadata, YouTube Music discovery, verification, aggregation, and total run.
 
@@ -82,7 +83,7 @@
 ## 10. Verification and rollout
 - Run offline unit tests and catalogue/schema validation first.
 - Validate workflow YAML and the generated matrix size for a full 243-episode catalogue.
-- Test range boundaries, empty ranges, partial range input, duplicate episode numbers, empty target sets, missing artifacts, failed shards, and conflicting verified mappings.
+- Test range boundaries, empty ranges, partial range input, duplicate range assignments, empty target sets, missing artifacts, failed shards, dry-run behaviour, and conflicting verified mappings.
 - Run live Spotify discovery for the historical regression episodes with writes disabled.
 - Run a controlled parallel range test with a small number of episodes and compare it with sequential timings.
 - Only after the controlled test succeeds, run the full missing or requested catalogue range.
