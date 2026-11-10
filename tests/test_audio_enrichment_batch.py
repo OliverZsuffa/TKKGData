@@ -149,6 +149,19 @@ class AudioEnrichmentBatchTests(unittest.TestCase):
             self.assertFalse(report["catalogue_updated"])
             self.assertIn("publication_blocked", report)
 
+    def test_aggregate_rejects_duplicate_episode_assignments(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            matrix = {"include": [
+                {"batch": 0, "episodes": [1, 2]},
+                {"batch": 1, "episodes": [2, 3]},
+            ]}
+            with self.assertRaisesRegex(ValueError, "more than once"):
+                aggregate(
+                    root / "episodes.json", root / "reports", json.dumps(matrix),
+                    write=False, discovery_result="success",
+                )
+
     def test_partition_bounds(self):
         with self.assertRaisesRegex(ValueError, "between 1 and 10"):
             partition([1, 2], 0)
