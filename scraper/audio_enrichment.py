@@ -165,9 +165,12 @@ def _spotify_candidate_score(episode: dict[str, Any], record: dict[str, Any]) ->
         or re.search(number_pattern, album_name)
         or re.search(number_pattern, query)
     )
-    if title not in name or not number_evidence:
+    exact_title = name == title
+    if title not in name or (not number_evidence and not exact_title):
         return -100
     score = 100
+    if exact_title:
+        score += 15
     if re.search(r"\bteil\s*0*1\b|\bpart\s*0*1\b", name):
         score += 20
     if title in album_name:
@@ -186,6 +189,10 @@ def resolve_spotify_album(episode: dict[str, Any], work_dir: Path) -> dict[str, 
     number = int(episode["number"])
     title = str(episode["title"])
     queries = [
+        f'track:"{title}" artist:TKKG',
+        f'artist:TKKG track:"{title}"',
+        f'track:"{title}" artist:"TKKG Retro-Archiv"',
+        f'track:"{title}"',
         f"TKKG {number:03d} {title} Teil 01",
         f"TKKG {number} {title}",
         f"TKKG Folge {number} {title}",
@@ -222,7 +229,7 @@ def resolve_spotify_album(episode: dict[str, Any], work_dir: Path) -> dict[str, 
     ranked = [item for item in ranked if item[0] >= 100]
     if not ranked:
         detail = "; ".join(search_errors[:3]) or "no title and artist candidate passed validation"
-        diagnostics = json.dumps(search_diagnostics[:20], ensure_ascii=False)
+        diagnostics = json.dumps(search_diagnostics[:50], ensure_ascii=False)
         raise ValueError(f"No credible Spotify track candidate for episode {number}: {detail}. Candidates: {diagnostics}")
 
     album_cache: dict[str, list[dict[str, Any]]] = {}
