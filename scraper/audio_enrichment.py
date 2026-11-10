@@ -213,7 +213,8 @@ def _spotify_album_search_records(
                 continue
             album_data = wrapper.get("data")
             if not isinstance(album_data, dict):
-                album_data = wrapper.get("item", {}).get("data", {})
+                nested_item = wrapper.get("item")
+                album_data = nested_item.get("data") if isinstance(nested_item, dict) else None
             if not isinstance(album_data, dict):
                 continue
             album_name = str(album_data.get("name") or "")
