@@ -329,15 +329,17 @@ class AudioEnrichmentTests(unittest.TestCase):
             "artists": ["TKKG"],
             "album_id": SPOTIFY["album_id"],
             "album_name": SPOTIFY["title"],
+            "track_number": 1,
+            "song_id": SPOTIFY["tracks"][0]["song_id"],
+            "url": SPOTIFY["tracks"][0]["url"],
         }]
         album_tracks = [
-            {**track, "album_id": SPOTIFY["album_id"]}
+            {**track, "album_id": SPOTIFY["album_id"], "artists": ["TKKG"]}
             for track in SPOTIFY["tracks"]
         ]
-        with patch(
-            "scraper.audio_enrichment._save_spotify_metadata",
-            side_effect=[first_track, album_tracks],
-        ):
+        def lookup(query):
+            return album_tracks if query.startswith("https://open.spotify.com/album/") else first_track
+        with patch("scraper.audio_enrichment._save_spotify_metadata", side_effect=lookup):
             result = resolve_spotify_album(EPISODE, Path("."))
         self.assertEqual(result["track_count"], 2)
 
@@ -539,14 +541,23 @@ class AudioEnrichmentTests(unittest.TestCase):
 
     def test_spotify_metadata_library_works_without_ffmpeg_in_path(self):
         class FakeSong:
-            @classmethod
-            def from_search_term(cls, query):
-                cls.query = query
-                return type("SongRecord", (), {"json": {"name": "First track"}})()
+            @staticmethod
+            def search(query):
+                FakeSong.query = query
+                return {"tracks": {"items": [{
+                    "id": "0" * 22,
+                    "name": "First track",
+                    "artists": [{"name": "TKKG", "id": "1" * 22}],
+                    "album": {"id": "2" * 22, "name": "Test album"},
+                    "track_number": 1,
+                    "disc_number": 1,
+                    "duration_ms": 120000,
+                    "external_urls": {"spotify": "https://open.spotify.com/track/" + "0" * 22},
+                }]}}
 
         class FakeAlbum:
             @classmethod
-            def from_url(cls, url, fetch_songs=False):
+            def from_url(cls, url, fetch_songs=True):
                 cls.call = (url, fetch_songs)
                 return type("AlbumRecord", (), {
                     "songs": [type("TrackRecord", (), {"json": {"name": "Track 1"}})()]
@@ -557,10 +568,11 @@ class AudioEnrichmentTests(unittest.TestCase):
                 with patch.dict(os.environ, {"PATH": empty_path}):
                     first = _save_spotify_metadata("TKKG 150 Heiße Nächte im Dezember Teil 01")
                     album = _save_spotify_metadata(SPOTIFY["url"])
-        self.assertEqual(first, [{"name": "First track"}])
+        self.assertEqual(first[0]["name"], "First track")
+        self.assertEqual(first[0]["artists"], ["TKKG"])
         self.assertEqual(album, [{"name": "Track 1"}])
         self.assertEqual(FakeSong.query, "TKKG 150 Heiße Nächte im Dezember Teil 01")
-        self.assertEqual(FakeAlbum.call, (SPOTIFY["url"], False))
+        self.assertEqual(FakeAlbum.call, (SPOTIFY["url"], True))
 
     def test_playlist_discovery_searches_spotify_album_and_track_metadata(self):
         ytm = FakeYTMusic(["OLAK5uy_mQRbJNANh1H4CKbmM5ez5LSW1HJFvE3QI"])
