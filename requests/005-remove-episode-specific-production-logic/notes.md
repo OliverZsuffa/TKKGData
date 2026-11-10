@@ -1,6 +1,26 @@
 # Implementation notes
 
-Planning only. No production code or workflow changes have been made.
+Approved on 2026-11-10. Implementation is in progress on branch `implement/005-episode-number-to-verified-links`.
+
+## Implemented changes
+
+- Replaced the spotDL command-line `save` operation with direct use of spotDL 4.5.2 metadata classes. The adapter calls the Spotify search and album metadata methods without creating a downloader or checking for FFmpeg.
+- Retained spotDL in `requirements-audio.txt` because its Spotify metadata classes and configured SpotipyFree client are still used. No new repository secrets or credentials were introduced.
+- Expanded YouTube Music album and playlist search variants to include the Spotify album title and the first three Spotify track titles, in addition to episode title variants.
+- Preserved strict ordered playlist validation, exact normalized title matching, track counts, duration checks, video ID checks, TKKG artist evidence, and ambiguity rejection.
+- Added bounded candidate diagnostics to individual song fallback failures. The score threshold remains 130.
+- Preserved the playlist discovery failure when individual song fallback also fails.
+- Added stage-specific failure reporting. If Spotify metadata resolves but YouTube Music matching fails, the report still includes the Spotify album and all ordered Spotify track links.
+- Added direct link output to the JSON report, terminal output, and GitHub Actions step summary.
+- Added per-stage and total timing fields to discovery reports.
+- Removed the push trigger, episode-specific playlist injection, marker handling, FFmpeg installation, and experiment workflow steps.
+- Made manual episode input empty by default and added a generic optional playlist ID input.
+- Added a read-only live integration workflow with separate jobs for episodes 148, 149, and 150. It never supplies the known playlist ID and never publishes test results.
+- Deleted `scraper/audio_source_experiments.py` and removed its current documentation references.
+
+## Validation status
+
+Automated tests, compilation, workflow validation, catalogue validation, and the live 148/149/150 integration matrix are pending GitHub Actions results. No live episode discovery result is claimed yet.
 
 ## Analysis of the latest episode 149 run
 
@@ -14,30 +34,18 @@ Run: https://github.com/OliverZsuffa/TKKGData/actions/runs/42815546600
 - Discovery result: 0 verified, 1 unresolved. No catalogue mapping was committed.
 - First reported failure: no sufficiently corroborated YouTube Music song match for track 1, `149 - Tims gefährlichster Gegner - Teil 01`.
 
-The job's green status only means the workflow steps completed. It does not mean discovery succeeded. The current report collapses the result to one error string and does not include the candidate evidence needed to explain the mismatch.
+The old job's green status only meant the workflow steps completed. It did not mean discovery succeeded. The old report did not include candidate evidence or the playlist failure.
 
-The current algorithm first tries to locate a matching YouTube Music album or playlist. If that fails, it falls back to individual song searches. The fallback requires an exact normalized title and a score of at least 130. An exact title alone scores 100. TKKG artist evidence adds 30 points, and matching album evidence adds 40. The reported failure therefore means no candidate in the track 1 search passed the corroboration threshold. The report does not tell us whether the candidates lacked artist/album evidence, whether their titles differed, or whether no usable candidate was returned.
-
-The playlist failure is also discarded from the final error when the individual track fallback fails. This is a diagnostics gap. The revised implementation should preserve both the playlist failure and the rejected song candidates. The matching threshold must not be weakened without examining that evidence.
-
-## Runtime analysis
+## Runtime analysis of the old run
 
 The run started at 12:24:55 UTC and completed at 12:35:21 UTC, for approximately 10m26s.
 
-- FFmpeg installation began at approximately 12:25:03 UTC and FFmpeg was available at approximately 12:32:53 UTC: about 7m50s.
-- Python audio dependency installation ran from approximately 12:32:56 UTC to 12:33:07 UTC: about 11s.
-- Episode discovery ran from approximately 12:33:07 UTC to 12:35:16 UTC: about 2m08s.
+- FFmpeg installation: about 7m50s.
+- Python audio dependency installation: about 11s.
+- Episode discovery: about 2m08s.
 
-This confirms that FFmpeg installation, not the matching algorithm, dominated the run's wall-clock time. The metadata job does not process audio, so this installation should be eliminated by replacing the spotDL CLI metadata call with a tested metadata-only adapter.
+This confirms that FFmpeg installation, not the matching algorithm, dominated the old run's wall-clock time. The revised workflow removes this installation. New stage timings will be recorded by the updated discovery report.
 
-## Episode-number-to-links target
-The intended normal operation is one episode number in, verified links out. The output should contain the Spotify album and ordered Spotify track URLs, the verified YouTube Music playlist URL, and ordered YouTube Music song/video URLs. The pipeline must expose stage-level outcomes so a failure to find a playlist is not confused with failure to resolve Spotify metadata.
+## Live integration matrix
 
-The known episode 150 workflow is the positive control, but its playlist ID must not be supplied in the automatic discovery test. The previous episode 149 failure remains a diagnostic case, not an assumed permanent failure. Episode 148 provides an additional independent sample. Test all three separately with writes disabled, and report exact results rather than promising that every episode will resolve.
-
-## Open implementation questions
-
-- Verify which metadata-only Spotify client or supported library interface provides the required album and track fields without FFmpeg and without adding unnecessary credentials.
-- Inspect actual YouTube Music search candidates for the failed episode after diagnostics are implemented. Do not infer the exact mismatch from the current incomplete report.
-- Benchmark the replacement workflow and record actual timings.
-
+The PR integration workflow runs episodes 148, 149, and 150 independently, with writes disabled and no explicit playlist override. Episode 150 is the positive control, episode 149 is the previous failure case, and episode 148 is independent coverage. Each job uploads a separate JSON report. An unresolved result remains diagnostic coverage, not an end-to-end pass.
