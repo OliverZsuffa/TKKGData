@@ -419,6 +419,26 @@ class AudioEnrichmentTests(unittest.TestCase):
         self.assertTrue(all(item["spotify_track_url"].startswith("https://open.spotify.com/track/") for item in result))
         self.assertTrue(all("episode_album" in item["match_evidence"] for item in result))
 
+
+    def test_individual_song_search_tries_tkkg_specific_query_variants(self):
+        title = SPOTIFY["tracks"][0]["name"]
+        candidate = {
+            "videoId": "videoid0001",
+            "title": title,
+            "artists": [{"name": "TKKG"}],
+            "album": {"name": SPOTIFY["title"]},
+            "duration_seconds": 120,
+        }
+        ytm = FakeSongSearchYTMusic({f"TKKG {title}": [candidate]})
+        result = find_verified_youtube_music_tracks(EPISODE, SPOTIFY, ytm)
+        self.assertEqual(result[0]["video_id"], "videoid0001")
+        self.assertIn(f"TKKG {title}", [query for query, _, _ in ytm.calls])
+        self.assertIn(
+            "TKKG Folge 150 Heiße Nächte im Dezember Teil 01",
+            [query for query, _, _ in ytm.calls],
+        )
+
+
     def test_individual_song_mapping_requires_valid_spotify_track_identity(self):
         spotify = {**SPOTIFY, "tracks": [{**SPOTIFY["tracks"][0], "song_id": "invalid", "url": "not-a-spotify-url"}]}
         candidates = {
