@@ -68,6 +68,8 @@ def prepare(args: argparse.Namespace) -> int:
         episodes, episode=args.episode, start_episode=args.start_episode,
         end_episode=args.end_episode, limit=args.limit,
     )
+    if args.playlist_id and len(selected) != 1:
+        raise ValueError("--playlist-id requires exactly one selected episode.")
     batches = partition(selected, args.batch_size)
     matrix = {"include": [
         {"batch": index, "episodes": numbers}
@@ -216,6 +218,7 @@ def main() -> int:
     prepare_parser.add_argument("--limit", type=int, default=5)
     prepare_parser.add_argument("--batch-size", type=int, default=5)
     prepare_parser.add_argument("--max-parallel", type=int, default=4)
+    prepare_parser.add_argument("--playlist-id")
     aggregate_parser = subparsers.add_parser("aggregate")
     aggregate_parser.add_argument("--catalogue", type=Path, default=DEFAULT_CATALOGUE)
     aggregate_parser.add_argument("--reports-dir", type=Path, required=True)
@@ -225,8 +228,8 @@ def main() -> int:
     args = parser.parse_args()
     try:
         if args.command == "prepare":
-            if args.limit < 1:
-                raise ValueError("--limit must be positive.")
+            if args.limit < 1 or args.limit > 20:
+                raise ValueError("--limit must be between 1 and 20.")
             return prepare(args)
         report = aggregate(
             args.catalogue, args.reports_dir, args.matrix_json,
