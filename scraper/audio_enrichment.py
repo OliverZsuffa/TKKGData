@@ -118,8 +118,12 @@ SPOTIFY_ARTIST_ALIASES = {
 
 
 def _spotify_artist_matches(record: dict[str, Any]) -> bool:
-    aliases = {_normalise(value) for value in SPOTIFY_ARTIST_ALIASES}
-    return any(_normalise(name) in aliases for name in _artist_names(record))
+    def artist_key(value: str) -> str:
+        value = unicodedata.normalize("NFKC", value).casefold()
+        value = re.sub(r"[^\\w]+", " ", value, flags=re.UNICODE)
+        return " ".join(value.split())
+    aliases = {artist_key(value) for value in SPOTIFY_ARTIST_ALIASES}
+    return any(artist_key(name) in aliases for name in _artist_names(record) if name.strip())
 
 
 def _episode_title_matches_track(episode: dict[str, Any], track: dict[str, Any]) -> bool:
@@ -1049,6 +1053,7 @@ def enrich_catalogue(
         "started_at": datetime.now(timezone.utc).isoformat(),
         "mode": "write" if write else "dry_run",
         "target_count": len(targets),
+        "selected_numbers": [int(item["number"]) for item in targets],
         "verified": [],
         "failures": [],
         "coverage_before": audio_release_coverage(episodes),
