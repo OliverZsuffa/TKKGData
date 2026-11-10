@@ -1,11 +1,15 @@
 from __future__ import annotations
 
+import os
+import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import patch
 
 from scraper.audio_enrichment import (
+    AudioDiscoveryError,
     _candidate_source,
+    _save_spotify_metadata,
     _track_titles_match,
     audio_release_coverage,
     enrich_catalogue,
@@ -418,6 +422,85 @@ class AudioEnrichmentTests(unittest.TestCase):
         coverage = audio_release_coverage(episodes)
         self.assertEqual(coverage["verified_pairings"], 1)
         self.assertEqual(coverage["missing_pairings"], [{"number": 2, "title": "B"}])
+
+
+    def test_spotify_metadata_library_works_without_ffmpeg_in_path(self):
+        class FakeSong:
+            @classmethod
+            def from_search_term(cls, query):
+                cls.query = query
+                return type("SongRecord", (), {"json": {"name": "First track"}})()
+
+        class FakeAlbum:
+            @classmethod
+            def from_url(cls, url, fetch_songs=False):
+                cls.call = (url, fetch_songs)
+                return type("AlbumRecord", (), {
+                    "songs": [type("TrackRecord", (), {"json": {"name": "Track 1"}})()]
+                })()
+
+        with tempfile.TemporaryDirectory() as empty_path:
+            with patch("scraper.audio_enrichment._spotify_metadata_library", return_value=(FakeSong, FakeAlbum)):
+                with patch.dict(os.environ, {"PATH": empty_path}):
+                    first = _save_spotify_metadata("TKKG 150 Heiße Nächte im Dezember Teil 01")
+                    album = _save_spotify_metadata(SPOTIFY["url"])
+        self.assertEqual(first, [{"name": "First track"}])
+        self.assertEqual(album, [{"name": "Track 1"}])
+        self.assertEqual(FakeSong.query, "TKKG 150 Heiße Nächte im Dezember Teil 01")
+        self.assertEqual(FakeAlbum.call, (SPOTIFY["url"], False))
+
+    def test_playlist_discovery_searches_spotify_album_and_track_metadata(self):
+        ytm = FakeYTMusic(["OLAK5uy_mQRbJNANh1H4CKbmM5ez5LSW1HJFvE3QI"])
+        with patch("scraper.audio_enrichment._extract_ytdlp_playlist", return_value=ytdlp_playlist_info("OLAK5uy_mQRbJNANh1H4CKbmM5ez5LSW1HJFvE3QI")):
+            find_verified_youtube_music_playlist(EPISODE, SPOTIFY, ytm)
+        queries = [query for query, _, _ in ytm.search_calls]
+        self.assertIn(SPOTIFY["title"], queries)
+        self.assertIn(f"TKKG {SPOTIFY['title']}", queries)
+        self.assertIn(f"TKKG {SPOTIFY['tracks'][0]['name']}", queries)
+
+    def test_discovery_failure_preserves_spotify_links_and_playlist_error(self):
+        class NoResultsYTMusic:
+            def search(self, query, filter, limit):
+                return []
+
+        with patch("scraper.audio_enrichment.resolve_spotify_album", return_value=SPOTIFY):
+            with self.assertRaises(AudioDiscoveryError) as caught:
+                discover_episode_audio(EPISODE, NoResultsYTMusic())
+        error = caught.exception
+        self.assertEqual(error.stage, "youtube_music")
+        self.assertEqual(error.spotify["url"], SPOTIFY["url"])
+        self.assertIn("No verified YouTube Music playlist", error.playlist_error)
+        self.assertIn("Complete playlist discovery also failed", str(error))
+
+    def test_unresolved_report_keeps_verified_spotify_links(self):
+        with patch(
+            "scraper.audio_enrichment.discover_episode_audio",
+            side_effect=AudioDiscoveryError(
+                "YouTube Music unresolved", stage="youtube_music",
+                spotify=SPOTIFY, playlist_error="No playlist candidate",
+            ),
+        ):
+            report = enrich_catalogue([dict(EPISODE)], ytm=object())
+        failure = report["failures"][0]
+        self.assertEqual(failure["stage"], "youtube_music")
+        self.assertEqual(failure["links"]["spotify_album"], SPOTIFY["url"])
+        self.assertEqual(len(failure["links"]["spotify_tracks"]), 2)
+        self.assertIsNone(failure["links"]["youtube_music_playlist"])
+
+    def test_audio_workflow_has_no_episode_specific_or_ffmpeg_setup(self):
+        workflow = Path(".github/workflows/audio-enrichment.yml").read_text(encoding="utf-8")
+        self.assertNotIn("150", workflow)
+        self.assertNotIn("ffmpeg", workflow.casefold())
+        self.assertNotIn("push:", workflow)
+        self.assertIn('default: ""', workflow)
+        self.assertIn("playlist_id:", workflow)
+
+    def test_live_integration_workflow_covers_148_149_150(self):
+        workflow = Path(".github/workflows/audio-enrichment-integration.yml").read_text(encoding="utf-8")
+        self.assertIn("episode: [148, 149, 150]", workflow)
+        self.assertIn("--episode", workflow)
+        self.assertNotIn("--playlist-id", workflow)
+
 
 
 if __name__ == "__main__":
