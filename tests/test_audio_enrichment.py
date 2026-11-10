@@ -434,9 +434,18 @@ class AudioEnrichmentTests(unittest.TestCase):
             "album": {"name": SPOTIFY["title"]},
             "duration_seconds": 120,
         }
-        ytm = FakeSongSearchYTMusic({f"TKKG {title}": [candidate]})
+        second_title = SPOTIFY["tracks"][1]["name"]
+        second_candidate = {
+            **candidate,
+            "videoId": "videoid0002",
+            "title": second_title,
+        }
+        ytm = FakeSongSearchYTMusic({
+            f"TKKG {title}": [candidate],
+            f"TKKG {second_title}": [second_candidate],
+        })
         result = find_verified_youtube_music_tracks(EPISODE, SPOTIFY, ytm)
-        self.assertEqual(result[0]["video_id"], "videoid0001")
+        self.assertEqual([item["video_id"] for item in result], ["videoid0001", "videoid0002"])
         self.assertIn(f"TKKG {title}", [query for query, _, _ in ytm.calls])
         self.assertIn(
             "TKKG Folge 150 Heiße Nächte im Dezember Teil 01",
