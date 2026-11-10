@@ -18,20 +18,18 @@ from scraper.audio_enrichment import (
 class SpotifyHistoricalResolutionTests(unittest.TestCase):
     def test_artist_discography_finds_episode_in_compilation_box(self):
         artist_id, album_id, track_id = "A" * 22, "B" * 22, "C" * 22
-        class FakeClient:
-            def artist_albums(self, artist_id_arg, include_groups=None, limit=50, offset=0):
-                self.call = (artist_id_arg, include_groups, limit, offset)
-                return {
-                    "items": [{"id": album_id, "name": "07/3er Box - Folge 19-21"}],
-                    "total": 1,
-                }
-        client = FakeClient()
-        fake_spotdl = types.ModuleType("spotdl")
-        fake_spotdl.__path__ = []
-        fake_utils = types.ModuleType("spotdl.utils")
-        fake_utils.__path__ = []
-        fake_spotify = types.ModuleType("spotdl.utils.spotify")
-        fake_spotify.SpotifyClient = lambda: client
+        class FakeArtist:
+            def paginate_artist_discography(self, artist_id_arg, section="all"):
+                self.call = (artist_id_arg, section)
+                yield [{
+                    "releases": {"items": [{
+                        "id": album_id,
+                        "name": "07/3er Box - Folge 19-21",
+                    }]}
+                ]}
+        client = FakeArtist()
+        fake_spotapi = types.ModuleType("spotapi")
+        fake_spotapi.Artist = lambda: client
         album_tracks = [{
             "name": "TKKG (20) - Das Geheimnis der chinesischen Vase",
             "album_id": album_id,
@@ -42,18 +40,14 @@ class SpotifyHistoricalResolutionTests(unittest.TestCase):
         }]
         with patch("scraper.audio_enrichment._spotify_metadata_library", return_value=(None, None)), \
              patch("scraper.audio_enrichment._save_spotify_metadata", return_value=album_tracks), \
-             patch.dict(sys.modules, {
-                 "spotdl": fake_spotdl,
-                 "spotdl.utils": fake_utils,
-                 "spotdl.utils.spotify": fake_spotify,
-             }):
+             patch.dict(sys.modules, {"spotapi": fake_spotapi}):
             records = _spotify_artist_album_records(
                 {artist_id}, {"number": 20, "title": "Das Geheimnis der chinesischen Vase"}
             )
         self.assertEqual(len(records), 1)
         self.assertEqual(records[0]["song_id"], track_id)
         self.assertIn("episode:20", records[0]["search_query"])
-        self.assertEqual(client.call, (artist_id, "album,compilation", 50, 0))
+        self.assertEqual(client.call, (artist_id, "all"))
 
     def test_verified_artist_id_fallback_for_tkkg(self):
         self.assertEqual(
