@@ -16,7 +16,7 @@
 - Implement the smallest reliable approach that can resolve the first track and complete album metadata, including track IDs, album ID, track numbers, titles, artists, and durations.
 - Add adapter tests using representative metadata fixtures and mocked HTTP/API responses.
 - Run an integration smoke test with FFmpeg absent from PATH. It must resolve the same verified episode 150 Spotify album and track metadata currently used as regression evidence.
-- Remove spotDL from `requirements-audio.txt` if no longer used. Retain `ytmusicapi` and `yt-dlp` only if their imports remain required. Check all repository references before removing any package.
+- Retain pinned spotDL as a metadata library dependency because the production adapter uses its `Song`, `Album`, and `SpotifyClient` classes directly. Do not invoke the spotDL CLI or initialize its downloader. Retain `ytmusicapi` and `yt-dlp` because their imports remain required.
 - Do not add audio download, decode, transcode, or merge functionality to TKKGData.
 
 ## 3. Discover complete YouTube Music playlists from an episode number
@@ -59,7 +59,7 @@
 - Validate the canonical catalogue and generated exports.
 - Parse or lint the workflow YAML.
 - Search production Python, workflow files, README, and current knowledge documentation for episode-specific identifiers and experiment references. Test fixtures and historical request records are expected exceptions.
-- Run the metadata discovery smoke test with FFmpeg unavailable.
+- Run the metadata discovery smoke test with FFmpeg unavailable on PATH. The live integration workflow must also statically reject downloader CLI and FFmpeg references in the metadata adapter.
 - Run live episode-number-to-links integration tests for episodes 148, 149, and 150, one episode per controlled run. Episode 150 must prove automatic playlist discovery without supplying its known playlist ID. Episode 149 must retain useful diagnostics if it remains unresolved. Episode 148 checks that discovery is not tuned only to the other two episodes.
 - For each episode, record Spotify album resolution, Spotify track count and ordered links, YouTube Music playlist candidate discovery, playlist verification, ordered song links, total runtime, and final verified/unresolved status. Preserve reports as test artifacts.
 - Do not publish test mappings during discovery validation. Test write/publish behaviour separately with explicit opt-in after link verification is established.
