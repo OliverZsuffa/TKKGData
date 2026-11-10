@@ -6,22 +6,32 @@ on:
   workflow_dispatch:
     inputs:
       episode:
-        description: "Episode number to resolve (leave empty to process missing mappings)"
+        description: "One episode number to resolve"
         required: false
         type: string
         default: ""
-      playlist_id:
-        description: "Optional YouTube Music playlist ID for one selected episode"
+      start_episode:
+        description: "Inclusive first episode in a range"
         required: false
         type: string
         default: ""
-      limit:
-        description: "Maximum number of episodes to process"
+      end_episode:
+        description: "Inclusive last episode in a range"
+        required: false
+        type: string
+        default: ""
+      batch_size:
+        description: "Episodes per batch, maximum 10"
         required: true
         type: number
         default: 5
+      max_parallel:
+        description: "Maximum concurrent batches, maximum 8"
+        required: true
+        type: number
+        default: 4
       write:
-        description: "Write verified mappings to the central catalogue"
+        description: "Publish verified mappings to the central catalogue"
         required: true
         type: boolean
         default: false
@@ -34,9 +44,73 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  discover:
+  prepare:
     runs-on: ubuntu-24.04
-    timeout-minutes: 15
+    outputs:
+      matrix: \${{ steps.prepare.outputs.matrix }}
+      batch_count: \${{ steps.prepare.outputs.batch_count }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Prepare inclusive episode selection and bounded batches
+        id: prepare
+        env:
+          INPUT_EPISODE: \${{ inputs.episode }}
+          INPUT_START: \${{ inputs.start_episode }}
+          INPUT_END: \${{ inputs.end_episode }}
+          EVENT_NAME: \${{ github.event_name }}
+        run: |
+          ARGS=(--batch-size "\${{ inputs.batch_size || 5 }}")
+          if [ "$EVENT_NAME" = "workflow_dispatch" ]; then
+            if [ -n "$INPUT_EPISODE" ]; then ARGS+=(--episode "$INPUT_EPISODE"); fi
+            if [ -n "$INPUT_START" ]; then ARGS+=(--start-episode "$INPUT_START"); fi
+            if [ -n "$INPUT_END" ]; then ARGS+=(--end-episode "$INPUT_END"); fi
+          fi
+          python -m scraper.audio_enrichment_batch prepare "\${ARGS[@]}"
+
+  discover:
+    needs: prepare
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      max-parallel: \${{ fromJSON(inputs.max_parallel || '4') }}
+      matrix: \${{ fromJSON(needs.prepare.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install scraper and metadata discovery dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install -r requirements-audio.txt
+      - name: Discover and verify assigned episodes
+        run: |
+          ARGS=()
+          for episode in \${{ join(matrix.episodes, ' ') }}; do
+            ARGS+=(--episode "$episode")
+          done
+          python -m scraper.audio_enrichment "\${ARGS[@]}" \
+            --limit 10 \
+            --report "data/batch-\$(printf '%03d' "\${{ matrix.batch }}").json"
+      - name: Upload batch report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tkkg-audio-batch-\${{ matrix.batch }}
+          path: data/batch-\${{ matrix.batch }}.json
+          if-no-files-found: warn
+          retention-days: 30
+
+  aggregate:
+    if: always()
+    needs: [prepare, discover]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - name: Refresh checkout to the latest main after entering the data-write queue
@@ -47,36 +121,35 @@ jobs:
         with:
           python-version: "3.12"
           cache: pip
-      - name: Install scraper and metadata discovery dependencies
-        run: |
-          pip install -r requirements.txt
-          pip install -r requirements-audio.txt
-      - name: Discover and verify audio sources
+      - name: Install scraper dependencies
+        run: pip install -r requirements.txt
+      - name: Download all available batch reports
+        if: always()
+        uses: actions/download-artifact@v4
+        with:
+          pattern: tkkg-audio-batch-*
+          path: data/batch-reports
+          merge-multiple: true
+      - name: Validate all batch reports and publish once
+        id: aggregate
         env:
-          EVENT_NAME: ${{ github.event_name }}
-          INPUT_EPISODE: ${{ inputs.episode }}
-          INPUT_PLAYLIST_ID: ${{ inputs.playlist_id }}
-          INPUT_LIMIT: ${{ inputs.limit }}
-          INPUT_WRITE: ${{ inputs.write }}
+          MATRIX_JSON: \${{ needs.prepare.outputs.matrix }}
+          DISCOVERY_RESULT: \${{ needs.discover.result }}
+          EVENT_NAME: \${{ github.event_name }}
+          INPUT_WRITE: \${{ inputs.write }}
         run: |
-          ARGS=(--limit "${INPUT_LIMIT:-5}")
-          if [ -n "${INPUT_EPISODE:-}" ]; then ARGS+=(--episode "$INPUT_EPISODE"); fi
-          if [ -n "${INPUT_PLAYLIST_ID:-}" ]; then ARGS+=(--playlist-id "$INPUT_PLAYLIST_ID"); fi
-          if [ "$EVENT_NAME" = "schedule" ]; then
-            INPUT_WRITE=true
-            ARGS+=(--latest-first)
-          fi
-          if [ "$INPUT_WRITE" = "true" ]; then ARGS+=(--write); fi
-          python -m scraper.audio_enrichment "${ARGS[@]}"
-      - name: Upload discovery report
+          ARGS=(--reports-dir data/batch-reports --matrix-json "$MATRIX_JSON" --discovery-result "$DISCOVERY_RESULT")
+          if [ "$EVENT_NAME" = "schedule" ] || [ "$INPUT_WRITE" = "true" ]; then ARGS+=(--write); fi
+          python -m scraper.audio_enrichment_batch aggregate "\${ARGS[@]}"
+      - name: Upload combined report
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: tkkgdata-audio-enrichment-report
-          path: data/audio-enrichment-report.json
+          name: tkkg-audio-enrichment-combined-report
+          path: data/batch-reports/combined-report.json
           if-no-files-found: warn
           retention-days: 30
-      - name: Commit verified audio mappings
+      - name: Commit verified audio mappings once
         if: success() && (inputs.write == true || github.event_name == 'schedule')
         run: |
           git config user.name "github-actions[bot]"
@@ -87,5 +160,5 @@ jobs:
             git pull --rebase origin main
             git push
           else
-            echo "No verified audio mappings were added."
+            echo "No new verified audio mappings were added."
           fi
