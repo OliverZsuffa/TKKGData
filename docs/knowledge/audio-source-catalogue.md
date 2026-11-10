@@ -16,19 +16,33 @@ An audio object is published only after every Spotify track has one unambiguous 
 
 The Spotify track count, individual YouTube Music track count, and matched track count must agree. Playlist track count must also agree when a playlist is available. Spotify track IDs, YouTube Music video IDs, and playlist IDs must agree with their corresponding URLs. The schema rejects unverified status values and unknown fields.
 
-## Discovery
+## Episode number to provider links
 
-Run python -m scraper.audio_enrichment --episode 150 for a dry run. For a diagnostic or manual recovery, --playlist-id OLAK... can verify one explicitly supplied playlist with exactly one --episode; normal operation discovers the playlist automatically. Use --write only when verified results should be written to data/episodes.json and data/episodes.csv. Without an episode selector, --limit N processes at most N episodes that do not already have verified audio metadata.
+Run:
 
-Spotify metadata is resolved using spotDL's metadata save operation. The preferred YouTube Music path is a complete public album playlist. ytmusicapi album and playlist searches can expose an OLAK playlist ID directly, a VLOLAK browse ID, or an MPRE album browse ID whose get_album() response may include an audioPlaylistId. When an official playlist ID is known, it can also be supplied explicitly for one episode.
+    python -m scraper.audio_enrichment --episode EPISODE_NUMBER
 
-yt-dlp extracts the playlist entries without downloading audio. The playlist title must identify the episode, its ID must match the requested playlist when supplied, and its complete entry count must equal Spotify's actual album track count. Every entry is paired positionally with the Spotify track list. All normalized titles must match exactly, track numbering and order must be complete, and available durations must be within eight seconds. Each resulting record stores both the Spotify track ID and URL and the YouTube video ID and URL. The playlist URL is stored alongside the 40 individual track links.
+The episode number is the only required input. The JSON report and GitHub Actions step summary expose the Spotify album URL, all ordered Spotify track URLs, the verified YouTube Music playlist URL when available, and the ordered YouTube Music song URLs. The command also prints the resolved links. If YouTube Music discovery fails, the report retains the Spotify album and track links and identifies the failed stage.
 
-If no complete playlist can be verified, the enrichment can fall back to individual YouTube Music song searches. A candidate needs an exact normalized title plus corroborating evidence from the TKKG artist, matching episode album, or close duration. A unique best candidate is required. Missing or ambiguous songs stop publication for that episode.
+Use --write only when verified results should be written to data/episodes.json and data/episodes.csv. Without an episode selector, --limit N processes at most N episodes that do not already have verified audio metadata. For a controlled recovery, --playlist-id PLAYLIST_ID may be supplied only with exactly one --episode.
 
-The current matching rule is intentionally conservative. It does not attempt fuzzy matching, alternate-edition selection, or automatic acceptance of bonus tracks. Such episodes remain unresolved for review.
+## Spotify metadata
 
-Current published coverage: 1 of 243 episodes has a verified audio_release mapping. Episode 150 has 40 ordered Spotify and YouTube Music track pairs. The other episodes remain eligible for scheduled enrichment.
+Spotify metadata is resolved through the pinned spotDL 4.5.2 Python metadata classes directly. The workflow does not invoke the spotDL command line, instantiate its downloader, download audio, or check for FFmpeg. The spotDL dependency remains because its Spotify client and typed metadata classes provide the existing unauthenticated metadata lookup implementation. The client uses the package's configured SpotipyFree backend and does not require repository-specific Spotify secrets.
+
+The adapter resolves the first track from the episode number and title, validates its TKKG artist evidence and episode identity, then retrieves the full album track list. It validates album identity, unique contiguous track numbering, titles, and Spotify track IDs before generating stable album and track URLs.
+
+## YouTube Music playlist discovery
+
+The preferred YouTube Music path is a complete public album playlist. Search queries are derived from the episode identity and resolved Spotify metadata, including the Spotify album title and initial track titles. ytmusicapi album and playlist searches can expose an OLAK playlist ID directly, a VLOLAK browse ID, or an MPRE album browse ID whose get_album() response may include an audioPlaylistId.
+
+yt-dlp extracts playlist entries without downloading audio. The playlist title must identify the episode, its ID must match the requested playlist when supplied, and its complete entry count must equal Spotify's actual album track count. Every entry is paired positionally with the Spotify track list. All normalized titles must match exactly, track numbering and order must be complete, and available durations must be within eight seconds. Each resulting record stores both the Spotify track ID and URL and the YouTube video ID and URL.
+
+If no complete playlist can be verified, enrichment can fall back to individual YouTube Music song searches. A candidate needs an exact normalized title and a score of at least 130, based on corroborating TKKG artist, matching episode album, or close duration evidence. A unique best candidate is required. The threshold and ambiguity safeguards remain unchanged. Candidate diagnostics include bounded title, artist, album, duration, video ID, score, evidence, and rejection reason details. The final failure also retains the complete playlist discovery failure.
+
+The matching rule is intentionally conservative. It does not attempt fuzzy matching, alternate-edition selection, or automatic acceptance of bonus tracks. Such episodes remain unresolved for review.
+
+Current published coverage is one verified audio release mapping among 243 episodes, containing 40 ordered Spotify and YouTube Music track pairs.
 
 ## Provider limitations
 
@@ -42,7 +56,7 @@ A generic PL YouTube playlist is not the same type as a Spotify album. The downl
 
 ## Scheduled discovery
 
-The weekly GitHub Actions run processes at most five highest-numbered episodes that do not yet have verified mappings. It writes only fully verified pairings. Manual workflow dispatch supports a specific episode or a bounded batch for historical backfill. The default manual mode is dry-run.
+The weekly GitHub Actions run processes at most five highest-numbered episodes that do not yet have verified mappings. It writes only fully verified pairings. Manual workflow dispatch supports one selected episode or a bounded batch. The episode field is empty by default, and the default manual mode is dry-run. A separate read-only integration workflow tests selected historical episodes individually and uploads a report for each one.
 
 ## Preservation
 
