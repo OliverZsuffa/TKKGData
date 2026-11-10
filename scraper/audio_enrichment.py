@@ -296,7 +296,22 @@ def find_verified_youtube_music_playlist(
                             explicit_playlist_id=False, source_type="album",
                         )
                     except ValueError as exc:
-                        rejected.append(f"{source_id}: album track verification failed: {exc}")
+                        track_preview = [
+                            {
+                                key: track.get(key)
+                                for key in (
+                                    "title", "videoId", "video_id", "id", "duration",
+                                    "duration_seconds", "artists", "album",
+                                )
+                                if track.get(key) is not None
+                            }
+                            for track in album_tracks[:3]
+                            if isinstance(track, dict)
+                        ]
+                        rejected.append(
+                            f"{source_id}: album track verification failed: {exc}; "
+                            f"track preview: {json.dumps(track_preview, ensure_ascii=False)}"
+                        )
                         continue
                     verified[f"album:{source_id}"] = {
                         "playlist_id": None,
