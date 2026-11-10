@@ -199,6 +199,8 @@ def resolve_spotify_album(episode: dict[str, Any], work_dir: Path) -> dict[str, 
     queries = [
         f'track:"{title}" artist:TKKG',
         f'artist:TKKG track:"{title}"',
+        f'album:"{title}" artist:TKKG',
+        f'artist:TKKG album:"{title}"',
         f'track:"{title}" artist:"TKKG Retro-Archiv"',
         f'track:"{title}"',
         f"TKKG {number:03d} {title} Teil 01",
