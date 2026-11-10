@@ -285,7 +285,6 @@ def _episode_title_matches_track(
     title_in_album = bool(expected_title and expected_title in album_title)
     if not title_in_track and not (title_in_album and part_marker):
         return False
-    number_pattern = rf"(?<!\d)0*{number}(?!\d)"
     return bool(
         _spotify_number_matches_text(actual_title, number)
         or _spotify_number_matches_text(album_title, number)
