@@ -505,11 +505,12 @@ def resolve_spotify_album(episode: dict[str, Any], work_dir: Path) -> dict[str, 
         )
         ranked = [item for item in ranked if item[0] >= 100]
     if not ranked:
-        artist_ids = {
+        artist_ids = set(SPOTIFY_ARTIST_ID_ALIASES.values())
+        artist_ids.update({
             artist_id
             for record in candidates.values()
             for artist_id in _spotify_artist_ids(record)
-        }
+        })
         try:
             for record in _spotify_artist_album_records(artist_ids, episode, search_diagnostics):
                 track_id = record.get("song_id")
