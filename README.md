@@ -18,7 +18,7 @@ Dataset metadata and schema version are published separately at:
 
 The episode JSON remains an array so consumers can adopt it without changing their application behaviour. New optional fields, including verified audio release mappings, are additive. Consumers must tolerate missing enrichment.
 
-The catalogue contains 243 episode records. Audio enrichment is an independent, optional layer. Current published coverage is one verified audio release mapping, with 40 Spotify and YouTube Music track pairs. The weekly workflow attempts up to five of the highest-numbered episodes without verified audio mappings.
+The catalogue contains 243 episode records. Audio enrichment is an independent, optional layer. Current published coverage is three verified audio release mappings for episodes 148, 149 and 150, each with 40 Spotify and YouTube Music track pairs. The weekly workflow attempts up to five of the highest-numbered episodes without verified audio mappings.
 
 ## Ownership
 
