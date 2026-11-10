@@ -4,6 +4,7 @@
 - Inspect the pinned spotDL 4.5.2 API and use its raw song-search result interface rather than `Song.from_search_term()` as the sole candidate source.
 - Preserve a bounded set of candidate records containing Spotify track ID and URL, track title, artist names and IDs where exposed, album ID and title, track number, duration, and query provenance.
 - Generate a small set of query variants from the canonical episode number and title. Include split-track and whole-episode naming forms without introducing individual episode branches.
+- When track search is insufficient, use the exact credited artist IDs from search results to enumerate that artist's album and compilation discography. Do not rely on album-name search through the free Spotify client, which does not implement it.
 - Deduplicate candidates by stable Spotify track ID.
 - Add deterministic normalization for Unicode, punctuation, whitespace, leading episode numbers, and common part-number notation. Keep the original provider strings for diagnostics.
 - Do not make network calls for every possible spelling. Use bounded queries and candidate counts, cache repeated metadata within a run where the library supports it, and apply bounded retry/backoff only to transient provider failures.
