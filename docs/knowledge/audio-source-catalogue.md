@@ -60,7 +60,7 @@ A generic PL YouTube playlist is not the same type as a Spotify album. The downl
 
 ## Scheduled discovery
 
-The weekly GitHub Actions run processes at most five highest-numbered episodes that do not yet have verified mappings. It writes only fully verified pairings. Manual workflow dispatch supports one selected episode or a bounded batch. The episode field is empty by default, and the default manual mode is dry-run. A separate read-only integration workflow tests selected historical episodes individually and uploads a report for each one.
+The weekly GitHub Actions run processes at most five highest-numbered episodes that do not yet have verified mappings. Manual dispatch supports one episode or an inclusive start/end range. The default batch size is five and maximum parallelism is four, both bounded by validation. A preparation job partitions the selected catalogue episodes into a dynamic matrix. Each matrix job performs dry-run discovery and uploads a unique JSON report. A single aggregation job checks report completeness, merges only verified mappings, preserves existing verified mappings, validates the full catalogue, and publishes once when write mode is enabled. A failed batch or missing report blocks publication. Individual unresolved episodes remain visible in the combined report and do not by themselves block other verified mappings from being published. Manual dispatch remains dry-run by default. The separate read-only integration workflow continues to test selected episodes individually.
 
 ## Preservation
 
