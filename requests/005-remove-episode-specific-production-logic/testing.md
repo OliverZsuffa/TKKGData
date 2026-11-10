@@ -26,7 +26,7 @@ Run each episode separately through the normal path with only its episode number
 
 | Episode | Purpose | Required result |
 |---|---|---|
-| 148 | Independent coverage episode | Resolve Spotify album and ordered track links, then discover and verify the matching YouTube Music playlist and song links. Record any unresolved stage precisely. |
+| 148 | Independent coverage episode | Resolve Spotify album and ordered track links, then discover and verify the matching YouTube Music album or playlist page and all ordered song links. Record any unresolved stage precisely. |
 | 149 | Previous failure case, `Tims gefährlichster Gegner` | Re-run the exact discovery path. Either verify the complete playlist and ordered links, or produce actionable playlist and song candidate diagnostics. No silent fallback failure. |
 | 150 | Known positive control, `Heiße Nächte im Dezember` | Automatically rediscover the known playlist without a hardcoded or manually supplied playlist ID, then verify all 40 ordered mappings and link targets. |
 
