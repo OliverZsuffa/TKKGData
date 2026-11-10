@@ -26,7 +26,7 @@ class SpotifyHistoricalResolutionTests(unittest.TestCase):
                         "id": album_id,
                         "name": "07/3er Box - Folge 19-21",
                     }]}
-                ]}
+                }]
         client = FakeArtist()
         fake_spotapi = types.ModuleType("spotapi")
         fake_spotapi.Artist = lambda: client
