@@ -89,7 +89,10 @@ class SpotifyHistoricalResolutionTests(unittest.TestCase):
         with patch("scraper.audio_enrichment._save_spotify_metadata", return_value=[track]), \
              patch.dict(sys.modules, {"spotapi": fake_spotapi}):
             records = _spotify_album_search_records(
-                ["Das Geheimnis der chinesischen Vase"],
+                [
+                    "Das Geheimnis der chinesischen Vase",
+                    "07/3er Box - Folge 19-21",
+                ],
                 {"number": 20, "title": "Das Geheimnis der chinesischen Vase"},
                 diagnostics,
             )
