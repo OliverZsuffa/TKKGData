@@ -35,7 +35,7 @@ class SpotifyHistoricalResolutionTests(unittest.TestCase):
                 self.search_type = type
                 return {"albums": {"items": [{"id": album_id}]}}
         client = FakeClient()
-        with patch("scraper.audio_enrichment._spotify_metadata_library", return_value=(FakeSong, FakeAlbum)), \\
+        with patch("scraper.audio_enrichment._spotify_metadata_library", return_value=(FakeSong, FakeAlbum)), \
              patch("spotdl.utils.spotify.SpotifyClient", return_value=client):
             records = _save_spotify_metadata(
                 SPOTIFY_ALBUM_SEARCH_PREFIX + 'album:"Folge 19-21" artist:TKKG'
