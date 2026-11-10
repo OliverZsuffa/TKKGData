@@ -142,13 +142,23 @@ def _spotify_artist_ids(record: dict[str, Any]) -> set[str]:
     ids = record.get("artist_ids")
     if not isinstance(ids, list):
         return set()
-    return {
+    matched_names = {
+        _spotify_artist_key(artist_name)
+        for artist_name in artists
+        if _spotify_artist_key(artist_name) in aliases
+    }
+    result = {
         artist_id
         for artist_name, artist_id in zip(artists, ids)
         if _spotify_artist_key(artist_name) in aliases
         and isinstance(artist_id, str)
         and re.fullmatch(r"[A-Za-z0-9]{22}", artist_id)
     }
+    for artist_name in matched_names:
+        known_id = SPOTIFY_ARTIST_ID_ALIASES.get(artist_name)
+        if known_id:
+            result.add(known_id)
+    return result
 
 
 def _spotify_number_matches_text(value: str, number: int) -> bool:
