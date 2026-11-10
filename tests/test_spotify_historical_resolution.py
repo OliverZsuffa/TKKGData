@@ -4,10 +4,47 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from scraper.audio_enrichment import _spotify_artist_matches, discover_episode_audio, resolve_spotify_album
+from scraper.audio_enrichment import (
+    SPOTIFY_ALBUM_SEARCH_PREFIX,
+    _save_spotify_metadata,
+    _spotify_artist_matches,
+    discover_episode_audio,
+    resolve_spotify_album,
+)
 
 
 class SpotifyHistoricalResolutionTests(unittest.TestCase):
+    def test_album_search_returns_tracks_from_multiple_album_candidates(self):
+        album_id = "A" * 22
+        class FakeSong:
+            pass
+        class FakeAlbum:
+            @classmethod
+            def from_url(cls, url, fetch_songs=False):
+                return type("AlbumRecord", (), {
+                    "songs": [type("TrackRecord", (), {"json": {
+                        "name": "TKKG (20) - Das Geheimnis der chinesischen Vase",
+                        "album_id": album_id,
+                        "album_name": "07/3er Box - Folge 19-21",
+                        "song_id": "B" * 22,
+                    }})()]
+                })()
+        class FakeClient:
+            def search(self, query, type="track"):
+                self.query = query
+                self.search_type = type
+                return {"albums": {"items": [{"id": album_id}]}}
+        client = FakeClient()
+        with patch("scraper.audio_enrichment._spotify_metadata_library", return_value=(FakeSong, FakeAlbum)), \\
+             patch("spotdl.utils.spotify.SpotifyClient", return_value=client):
+            records = _save_spotify_metadata(
+                SPOTIFY_ALBUM_SEARCH_PREFIX + 'album:"Folge 19-21" artist:TKKG'
+            )
+        self.assertEqual(len(records), 1)
+        self.assertEqual(records[0]["song_id"], "B" * 22)
+        self.assertEqual(records[0]["search_query"], 'album:"Folge 19-21" artist:TKKG')
+        self.assertEqual(client.search_type, "album")
+
     def test_exact_historical_artist_alias_is_allowed(self):
         self.assertTrue(_spotify_artist_matches({"artists": ["TKKG Retro-Archiv"]}))
 
