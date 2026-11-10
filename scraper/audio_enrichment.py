@@ -125,13 +125,30 @@ SPOTIFY_ARTIST_ALIASES = {
 }
 
 
+def _spotify_artist_key(value: str) -> str:
+    value = unicodedata.normalize("NFKC", value).casefold()
+    value = re.sub(r"[^\w]+", " ", value, flags=re.UNICODE)
+    return " ".join(value.split())
+
+
 def _spotify_artist_matches(record: dict[str, Any]) -> bool:
-    def artist_key(value: str) -> str:
-        value = unicodedata.normalize("NFKC", value).casefold()
-        value = re.sub(r"[^\w]+", " ", value, flags=re.UNICODE)
-        return " ".join(value.split())
-    aliases = {artist_key(value) for value in SPOTIFY_ARTIST_ALIASES}
-    return any(artist_key(name) in aliases for name in _artist_names(record) if name.strip())
+    aliases = {_spotify_artist_key(value) for value in SPOTIFY_ARTIST_ALIASES}
+    return any(_spotify_artist_key(name) in aliases for name in _artist_names(record) if name.strip())
+
+
+def _spotify_artist_ids(record: dict[str, Any]) -> set[str]:
+    aliases = {_spotify_artist_key(value) for value in SPOTIFY_ARTIST_ALIASES}
+    artists = _artist_names(record)
+    ids = record.get("artist_ids")
+    if not isinstance(ids, list):
+        return set()
+    return {
+        artist_id
+        for artist_name, artist_id in zip(artists, ids)
+        if _spotify_artist_key(artist_name) in aliases
+        and isinstance(artist_id, str)
+        and re.fullmatch(r"[A-Za-z0-9]{22}", artist_id)
+    }
 
 
 def _spotify_number_matches_text(value: str, number: int) -> bool:
@@ -322,9 +339,7 @@ def resolve_spotify_album(episode: dict[str, Any], work_dir: Path) -> dict[str, 
         artist_ids = {
             artist_id
             for record in candidates.values()
-            if _spotify_artist_matches(record)
-            for artist_id in record.get("artist_ids", [])
-            if isinstance(artist_id, str) and re.fullmatch(r"[A-Za-z0-9]{22}", artist_id)
+            for artist_id in _spotify_artist_ids(record)
         }
         try:
             for record in _spotify_artist_album_records(artist_ids, episode):
