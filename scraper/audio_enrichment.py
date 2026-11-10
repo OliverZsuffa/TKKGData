@@ -120,7 +120,7 @@ SPOTIFY_ARTIST_ALIASES = {
 def _spotify_artist_matches(record: dict[str, Any]) -> bool:
     def artist_key(value: str) -> str:
         value = unicodedata.normalize("NFKC", value).casefold()
-        value = re.sub(r"[^\\w]+", " ", value, flags=re.UNICODE)
+        value = re.sub(r"[^\w]+", " ", value, flags=re.UNICODE)
         return " ".join(value.split())
     aliases = {artist_key(value) for value in SPOTIFY_ARTIST_ALIASES}
     return any(artist_key(name) in aliases for name in _artist_names(record) if name.strip())
