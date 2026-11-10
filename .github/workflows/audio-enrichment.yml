@@ -15,6 +15,16 @@ on:
         required: false
         type: string
         default: ""
+      playlist_id:
+        description: "Optional YouTube Music playlist ID for one selected episode"
+        required: false
+        type: string
+        default: ""
+      limit:
+        description: "Maximum missing episodes when no episode or range is selected"
+        required: false
+        type: number
+        default: 5
       end_episode:
         description: "Inclusive last episode in a range"
         required: false
@@ -62,13 +72,15 @@ jobs:
           INPUT_EPISODE: ${{ inputs.episode }}
           INPUT_START: ${{ inputs.start_episode }}
           INPUT_END: ${{ inputs.end_episode }}
+          INPUT_PLAYLIST_ID: ${{ inputs.playlist_id }}
           EVENT_NAME: ${{ github.event_name }}
         run: |
-          ARGS=(--batch-size "${{ inputs.batch_size || 5 }}" --max-parallel "${{ inputs.max_parallel || 4 }}")
+          ARGS=(--batch-size "${{ inputs.batch_size || 5 }}" --max-parallel "${{ inputs.max_parallel || 4 }}" --limit "${{ inputs.limit || 5 }}")
           if [ "$EVENT_NAME" = "workflow_dispatch" ]; then
             if [ -n "$INPUT_EPISODE" ]; then ARGS+=(--episode "$INPUT_EPISODE"); fi
             if [ -n "$INPUT_START" ]; then ARGS+=(--start-episode "$INPUT_START"); fi
             if [ -n "$INPUT_END" ]; then ARGS+=(--end-episode "$INPUT_END"); fi
+            if [ -n "$INPUT_PLAYLIST_ID" ]; then ARGS+=(--playlist-id "$INPUT_PLAYLIST_ID"); fi
           fi
           python -m scraper.audio_enrichment_batch prepare "${ARGS[@]}"
 
@@ -91,11 +103,14 @@ jobs:
           pip install -r requirements.txt
           pip install -r requirements-audio.txt
       - name: Discover and verify assigned episodes
+        env:
+          INPUT_PLAYLIST_ID: ${{ inputs.playlist_id }}
         run: |
           ARGS=()
           for episode in ${{ join(matrix.episodes, ' ') }}; do
             ARGS+=(--episode "$episode")
           done
+          if [ -n "$INPUT_PLAYLIST_ID" ]; then ARGS+=(--playlist-id "$INPUT_PLAYLIST_ID"); fi
           python -m scraper.audio_enrichment "${ARGS[@]}" \
             --limit 10 \
             --report "data/batch-${{ matrix.batch }}.json"
