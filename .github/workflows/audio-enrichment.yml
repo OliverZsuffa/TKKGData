@@ -70,7 +70,7 @@ jobs:
             if [ -n "$INPUT_START" ]; then ARGS+=(--start-episode "$INPUT_START"); fi
             if [ -n "$INPUT_END" ]; then ARGS+=(--end-episode "$INPUT_END"); fi
           fi
-          python -m scraper.audio_enrichment_batch prepare "\${ARGS[@]}"
+          python -m scraper.audio_enrichment_batch prepare "${ARGS[@]}"
 
   discover:
     needs: prepare
@@ -96,9 +96,9 @@ jobs:
           for episode in ${{ join(matrix.episodes, ' ') }}; do
             ARGS+=(--episode "$episode")
           done
-          python -m scraper.audio_enrichment "\${ARGS[@]}" \
+          python -m scraper.audio_enrichment "${ARGS[@]}" \
             --limit 10 \
-            --report "data/batch-\$(printf '%03d' "${{ matrix.batch }}").json"
+            --report "data/batch-${{ matrix.batch }}.json"
       - name: Upload batch report
         if: always()
         uses: actions/upload-artifact@v4
@@ -142,7 +142,7 @@ jobs:
         run: |
           ARGS=(--reports-dir data/batch-reports --matrix-json "$MATRIX_JSON" --discovery-result "$DISCOVERY_RESULT")
           if [ "$EVENT_NAME" = "schedule" ] || [ "$INPUT_WRITE" = "true" ]; then ARGS+=(--write); fi
-          python -m scraper.audio_enrichment_batch aggregate "\${ARGS[@]}"
+          python -m scraper.audio_enrichment_batch aggregate "${ARGS[@]}"
       - name: Upload combined report
         if: always()
         uses: actions/upload-artifact@v4
