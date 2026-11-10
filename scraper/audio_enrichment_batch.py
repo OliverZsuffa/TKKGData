@@ -106,14 +106,17 @@ def aggregate(
         "verified": [],
         "failures": [],
         "preserved_existing": [],
+        "missing_reports": [],
         "catalogue_updated": False,
+        "expected_episode_count": sum(len(item.get("episodes", [])) for item in batches),
     }
     reports: dict[int, dict[str, Any]] = {}
     for batch in batches:
         index = int(batch["batch"])
         path = reports_dir / f"batch-{index}.json"
         if not path.is_file():
-            raise RuntimeError(f"Required batch report is missing: {path.name}")
+            combined["missing_reports"].append(path.name)
+            continue
         report = json.loads(path.read_text(encoding="utf-8"))
         expected_numbers = sorted(int(value) for value in batch["episodes"])
         actual_numbers = sorted(int(value) for value in report.get("selected_numbers", []))
@@ -138,10 +141,13 @@ def aggregate(
         combined["verified"].extend(report.get("verified", []))
         combined["failures"].extend(report.get("failures", []))
 
-    if discovery_result != "success":
-        combined["publication_blocked"] = (
-            f"Discovery matrix job result was {discovery_result}; no catalogue changes were published."
-        )
+    if discovery_result != "success" or combined["missing_reports"]:
+        reasons = []
+        if discovery_result != "success":
+            reasons.append(f"Discovery matrix job result was {discovery_result}")
+        if combined["missing_reports"]:
+            reasons.append("Missing required reports: " + ", ".join(combined["missing_reports"]))
+        combined["publication_blocked"] = "; ".join(reasons) + ". No catalogue changes were published."
     else:
         episodes = json.loads(catalogue_path.read_text(encoding="utf-8"))
         by_number = {int(item["number"]): item for item in episodes}
@@ -193,7 +199,7 @@ def aggregate(
         float(item.get("timings", {}).get("total_seconds", 0))
         for item in combined["verified"] + combined["failures"]
     )
-    combined["selected_count"] = sum(len(item["episodes"]) for item in combined["batches"])
+    combined["selected_count"] = combined["expected_episode_count"]
     combined["unresolved_count"] = len(combined["failures"])
     combined["verified_count"] = len(combined["verified"])
     return combined
