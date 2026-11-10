@@ -11,12 +11,33 @@ from scraper.audio_enrichment import (
     _spotify_album_search_records,
     _spotify_artist_ids,
     _spotify_artist_matches,
+    _save_spotify_metadata,
     discover_episode_audio,
     resolve_spotify_album,
 )
 
 
 class SpotifyHistoricalResolutionTests(unittest.TestCase):
+    def test_transient_spotify_search_response_is_retried_once(self):
+        expected = [{"song_id": "A" * 22}]
+        with patch("scraper.audio_enrichment._spotify_metadata_library", return_value=(None, None)), \
+             patch(
+                 "scraper.audio_enrichment._spotify_search_records",
+                 side_effect=[TypeError("'NoneType' object is not subscriptable"), expected],
+             ) as search, \
+             patch("scraper.audio_enrichment.time.sleep") as sleep:
+            records = _save_spotify_metadata("TKKG test search")
+        self.assertEqual(records, expected)
+        self.assertEqual(search.call_count, 2)
+        sleep.assert_called_once_with(0.5)
+
+    def test_legacy_artist_name_resolves_to_verified_artist_id(self):
+        ids = _spotify_artist_ids({
+            "artists": ["TKKG Retro-Archiv"],
+            "artist_ids": [],
+        })
+        self.assertEqual(ids, {"0i38tQX5j4gZ0KS3eCMoIl"})
+
     def test_artist_discography_finds_episode_in_compilation_box(self):
         artist_id, album_id, track_id = "A" * 22, "B" * 22, "C" * 22
         class FakeArtist:
