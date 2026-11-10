@@ -69,6 +69,8 @@ class AudioEnrichmentBatchTests(unittest.TestCase):
             )
         self.assertFalse(report["catalogue_updated"])
         self.assertEqual(report["missing_reports"], ["batch-0.json"])
+        self.assertEqual(report["failed_batch_count"], 1)
+        self.assertEqual(report["failed_batches"], ["batch-0.json"])
         self.assertIn("publication_blocked", report)
 
     def _write_single_batch_report(self, root, result):
