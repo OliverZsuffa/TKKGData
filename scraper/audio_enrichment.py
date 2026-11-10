@@ -221,7 +221,10 @@ def _spotify_artist_album_records(
                 ):
                     continue
                 normalized_album = _normalise(album_name)
-                if title not in normalized_album and not _spotify_number_matches_text(album_name, number):
+                album_matches = title in normalized_album or _spotify_number_matches_text(album_name, number)
+                if diagnostics is not None and album_matches:
+                    diagnostics.append({"discography_candidate_album": album_name, "album_id": album_id})
+                if not album_matches:
                     continue
                 seen_albums.add(album_id)
                 try:
@@ -329,6 +332,7 @@ def resolve_spotify_album(episode: dict[str, Any], work_dir: Path) -> dict[str, 
                     "query": query,
                     "name": record.get("name"),
                     "artists": _artist_names(record),
+                    "artist_ids": record.get("artist_ids"),
                     "album_name": record.get("album_name"),
                     "score": _spotify_candidate_score(episode, record),
                 })
@@ -354,7 +358,7 @@ def resolve_spotify_album(episode: dict[str, Any], work_dir: Path) -> dict[str, 
             for artist_id in _spotify_artist_ids(record)
         }
         try:
-            for record in _spotify_artist_album_records(artist_ids, episode):
+            for record in _spotify_artist_album_records(artist_ids, episode, search_diagnostics):
                 track_id = record.get("song_id")
                 if isinstance(track_id, str):
                     existing = candidates.get(track_id)
