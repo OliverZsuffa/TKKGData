@@ -16,11 +16,12 @@ jobs:
   discover:
     name: Episode ${{ matrix.episode }} live discovery
     runs-on: ubuntu-24.04
-    timeout-minutes: 15
+    timeout-minutes: 20
     strategy:
       fail-fast: false
+      max-parallel: 3
       matrix:
-        episode: [148, 149, 150]
+        episode: [1, 2, 20, 37, 53, 100, 148, 149, 150]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
