@@ -8,6 +8,7 @@ from unittest.mock import patch
 
 from scraper.audio_enrichment import (
     _spotify_artist_album_records,
+    _spotify_album_search_records,
     _spotify_artist_ids,
     _spotify_artist_matches,
     discover_episode_audio,
@@ -48,6 +49,53 @@ class SpotifyHistoricalResolutionTests(unittest.TestCase):
         self.assertEqual(records[0]["song_id"], track_id)
         self.assertIn("episode:20", records[0]["search_query"])
         self.assertEqual(client.call, (artist_id, "all"))
+
+    def test_album_search_finds_episode_inside_three_episode_box(self):
+        album_id, track_id = "A" * 22, "B" * 22
+
+        class FakeSong:
+            def query_songs(self, query, limit=20):
+                self.query = query
+                return {
+                    "data": {
+                        "searchV2": {
+                            "albumsV2": {
+                                "items": [{
+                                    "data": {
+                                        "name": "07/3er Box - Folge 19-21",
+                                        "uri": "spotify:album:" + album_id,
+                                    }
+                                }]
+                            }
+                        }
+                    }
+                }
+
+        fake_spotapi = types.ModuleType("spotapi")
+        fake_spotapi.Song = FakeSong
+        track = {
+            "name": "TKKG (20) - Das Geheimnis der chinesischen Vase",
+            "artists": ["TKKG"],
+            "album_id": album_id,
+            "album_name": "07/3er Box - Folge 19-21",
+            "track_number": 1,
+            "disc_number": 2,
+            "song_id": track_id,
+            "url": "https://open.spotify.com/track/" + track_id,
+        }
+        diagnostics = []
+        with patch("scraper.audio_enrichment._save_spotify_metadata", return_value=[track]), \
+             patch.dict(sys.modules, {"spotapi": fake_spotapi}):
+            records = _spotify_album_search_records(
+                ["Das Geheimnis der chinesischen Vase"],
+                {"number": 20, "title": "Das Geheimnis der chinesischen Vase"},
+                diagnostics,
+            )
+
+        self.assertEqual(len(records), 1)
+        self.assertEqual(records[0]["song_id"], track_id)
+        self.assertIn("album_search:", records[0]["search_query"])
+        self.assertTrue(any(item.get("album_search_candidate") == "07/3er Box - Folge 19-21" for item in diagnostics))
 
     def test_verified_artist_id_fallback_for_tkkg(self):
         self.assertEqual(
