@@ -223,8 +223,8 @@ def _episode_title_matches_track(
         return False
     number_pattern = rf"(?<!\d)0*{number}(?!\d)"
     return bool(
-        re.search(number_pattern, actual_title)
-        or re.search(number_pattern, album_title)
+        _spotify_number_matches_text(actual_title, number)
+        or _spotify_number_matches_text(album_title, number)
         or (candidate_track_id and track.get("song_id") == candidate_track_id)
     )
 
