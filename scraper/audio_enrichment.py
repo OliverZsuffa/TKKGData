@@ -590,12 +590,13 @@ def find_verified_youtube_music_tracks(
 class AudioDiscoveryError(ValueError):
     def __init__(
         self, message: str, *, stage: str, spotify: dict[str, Any] | None = None,
-        playlist_error: str | None = None,
+        playlist_error: str | None = None, timings: dict[str, float] | None = None,
     ):
         super().__init__(message)
         self.stage = stage
         self.spotify = spotify
         self.playlist_error = playlist_error
+        self.timings = timings or {}
 
 
 def _spotify_links(spotify: dict[str, Any]) -> dict[str, Any]:
@@ -635,19 +636,28 @@ def _release_links(
 def discover_episode_audio(
     episode: dict[str, Any], ytm: Any, playlist_id_override: str | None = None,
 ) -> dict[str, Any]:
+    total_started = time.perf_counter()
+    spotify_started = time.perf_counter()
     try:
         with tempfile.TemporaryDirectory(prefix=f"tkkg_audio_{episode['number']:03d}_") as temp:
             spotify = resolve_spotify_album(episode, Path(temp))
     except Exception as exc:
+        timings = {
+            "spotify_seconds": round(time.perf_counter() - spotify_started, 2),
+            "total_seconds": round(time.perf_counter() - total_started, 2),
+        }
         raise AudioDiscoveryError(
             f"Spotify metadata resolution failed: {exc}", stage="spotify",
+            timings=timings,
         ) from exc
+    spotify_seconds = round(time.perf_counter() - spotify_started, 2)
 
     # Search complete playlists first, then use individual song matching only
     # as a fallback. Never lower the existing matching threshold.
     youtube_music_playlist = None
     playlist_failure = None
     youtube_music_tracks = None
+    playlist_started = time.perf_counter()
     try:
         playlist_result = find_verified_youtube_music_playlist(
             episode, spotify, ytm, playlist_id_override,
@@ -656,17 +666,35 @@ def discover_episode_audio(
         youtube_music_playlist = playlist_result
     except Exception as exc:
         playlist_failure = str(exc)
+    playlist_seconds = round(time.perf_counter() - playlist_started, 2)
 
+    song_search_seconds = 0.0
     if youtube_music_tracks is None:
+        song_started = time.perf_counter()
         try:
             youtube_music_tracks = find_verified_youtube_music_tracks(episode, spotify, ytm)
         except Exception as exc:
+            song_search_seconds = round(time.perf_counter() - song_started, 2)
+            timings = {
+                "spotify_seconds": spotify_seconds,
+                "playlist_seconds": playlist_seconds,
+                "individual_song_search_seconds": song_search_seconds,
+                "total_seconds": round(time.perf_counter() - total_started, 2),
+            }
             raise AudioDiscoveryError(
                 f"YouTube Music track resolution failed: {exc}. "
                 f"Complete playlist discovery also failed: {playlist_failure}",
                 stage="youtube_music", spotify=spotify, playlist_error=playlist_failure,
+                timings=timings,
             ) from exc
+        song_search_seconds = round(time.perf_counter() - song_started, 2)
 
+    timings = {
+        "spotify_seconds": spotify_seconds,
+        "playlist_seconds": playlist_seconds,
+        "individual_song_search_seconds": song_search_seconds,
+        "total_seconds": round(time.perf_counter() - total_started, 2),
+    }
     verified_at = datetime.now(timezone.utc).isoformat()
     audio_release = {
         "spotify": {
@@ -710,6 +738,7 @@ def discover_episode_audio(
         "audio_release": audio_release,
         "matched_tracks": matched_tracks,
         "links": _release_links(spotify, youtube_music_playlist, youtube_music_tracks),
+        "timings": timings,
     }
 
 
@@ -788,6 +817,7 @@ def enrich_catalogue(
     if latest_first:
         targets.sort(key=lambda item: int(item.get("number", 0)), reverse=True)
     targets = targets[:limit]
+    run_started = time.perf_counter()
     report: dict[str, Any] = {
         "started_at": datetime.now(timezone.utc).isoformat(),
         "mode": "write" if write else "dry_run",
@@ -811,6 +841,7 @@ def enrich_catalogue(
                 "title": episode.get("title"),
                 "stage": getattr(exc, "stage", "unknown"),
                 "error": str(exc),
+                "timings": getattr(exc, "timings", {}),
             }
             partial_spotify = getattr(exc, "spotify", None)
             if isinstance(partial_spotify, dict):
@@ -835,6 +866,7 @@ def enrich_catalogue(
             "audio_release": audio_release,
             "matched_tracks": discovery["matched_tracks"],
             "links": discovery["links"],
+            "timings": discovery["timings"],
         })
         playlist = audio_release["youtube_music"].get("playlist")
         playlist_note = (
@@ -851,6 +883,7 @@ def enrich_catalogue(
             episode["audio_release"] = audio_release
     report["coverage_after"] = audio_release_coverage(episodes)
     report["finished_at"] = datetime.now(timezone.utc).isoformat()
+    report["duration_seconds"] = round(time.perf_counter() - run_started, 2)
     if write and report["verified"]:
         if catalogue_path.resolve() == CATALOGUE_PATH.resolve():
             write_catalogue(episodes, DATA_DIR)
