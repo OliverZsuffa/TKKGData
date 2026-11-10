@@ -622,7 +622,7 @@ class AudioEnrichmentTests(unittest.TestCase):
 
     def test_live_integration_workflow_covers_148_149_150(self):
         workflow = Path(".github/workflows/audio-enrichment-integration.yml").read_text(encoding="utf-8")
-        self.assertIn("episode: [148, 149, 150]", workflow)
+        self.assertIn("episode: [1, 2, 20, 37, 53, 100, 148, 149, 150]", workflow)
         self.assertIn("--episode", workflow)
         self.assertNotIn("--playlist-id", workflow)
 
