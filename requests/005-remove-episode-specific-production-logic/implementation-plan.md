@@ -19,7 +19,17 @@
 - Remove spotDL from `requirements-audio.txt` if no longer used. Retain `ytmusicapi` and `yt-dlp` only if their imports remain required. Check all repository references before removing any package.
 - Do not add audio download, decode, transcode, or merge functionality to TKKGData.
 
-## 3. Improve failure diagnostics for YouTube Music matching
+## 3. Discover complete YouTube Music playlists from an episode number
+- Make the episode number the only required user input for the normal lookup path.
+- Resolve Spotify album metadata first, then use its album title, normalized episode title, track titles, and available artist evidence to search for YouTube Music playlist or album candidates.
+- Try multiple focused query variants, prioritizing complete episode playlists rather than individual song results.
+- Inspect candidate playlist metadata with yt-dlp. Compare episode and album identity, expected track count, ordered normalized titles, durations, and video IDs against the Spotify tracklist.
+- Accept only a uniquely verified full playlist. Reject ambiguous or incomplete candidates. Do not weaken existing matching thresholds to force a result.
+- Generate stable, directly usable Spotify album and track URLs, plus YouTube Music playlist and song URLs, from verified IDs. Clearly distinguish verified links from unverified search candidates.
+- Keep individual song lookup as a secondary fallback when no complete playlist can be verified. Preserve the generic manual playlist ID override for controlled diagnostics and recovery.
+- Record the exact discovery path and result for each stage so the user can see where episode-number-to-links resolution succeeded or failed.
+
+## 4. Improve failure diagnostics for YouTube Music matching
 - Preserve the playlist verification exception instead of losing it when individual song search is attempted.
 - When song matching fails, include the original playlist failure in the episode failure report.
 - Record bounded candidate diagnostics for each searched song: candidate title, artist names, album, duration, video ID, score, evidence, and rejection reason.
@@ -27,14 +37,14 @@
 - Add a concise GitHub Actions step summary with target count, verified count, unresolved count, and per-episode failure reason.
 - Emit a GitHub Actions warning when one or more episodes remain unresolved. Keep expected discovery misses nonfatal unless the scraper itself crashes, but make the outcome unmistakable.
 
-## 4. Current documentation
+## 5. Current documentation
 - Update README examples to use a generic episode placeholder and explain generic selection.
 - Update the audio-source knowledge page to describe metadata-only dependencies and generic discovery.
 - Remove references to the deleted experiment and any episode-specific production example.
 - Describe current coverage numerically without identifying one episode as a special case.
 - Leave historical request records intact.
 
-## 5. Regression protection
+## 6. Regression protection
 - Keep episode-specific test fixtures in `tests/test_audio_enrichment.py`.
 - Remove tests that exclusively exercise the deleted experimental script.
 - Add tests for metadata lookup without FFmpeg, exact metadata field preservation, missing or malformed Spotify records, and dependency boundaries.
@@ -43,12 +53,15 @@
 - Add workflow-level checks for no fixed episode IDs, no FFmpeg installation, no experiment step, no push-only path, and an empty manual episode default.
 - Test that the workflow summary and warning accurately represent a run with zero verified mappings.
 
-## 6. Verification and performance measurement
+## 7. Verification and performance measurement
 - Run the complete unittest suite.
 - Run Python compilation for all remaining scraper modules.
 - Validate the canonical catalogue and generated exports.
 - Parse or lint the workflow YAML.
 - Search production Python, workflow files, README, and current knowledge documentation for episode-specific identifiers and experiment references. Test fixtures and historical request records are expected exceptions.
 - Run the metadata discovery smoke test with FFmpeg unavailable.
+- Run live episode-number-to-links integration tests for episodes 148, 149, and 150, one episode per controlled run. Episode 150 must prove automatic playlist discovery without supplying its known playlist ID. Episode 149 must retain useful diagnostics if it remains unresolved. Episode 148 checks that discovery is not tuned only to the other two episodes.
+- For each episode, record Spotify album resolution, Spotify track count and ordered links, YouTube Music playlist candidate discovery, playlist verification, ordered song links, total runtime, and final verified/unresolved status. Preserve reports as test artifacts.
+- Do not publish test mappings during discovery validation. Test write/publish behaviour separately with explicit opt-in after link verification is established.
 - Compare the previous run's measured stages against the new run. The previous episode 149 run spent about 7m50s installing FFmpeg, about 11s installing audio dependencies, and about 2m08s in discovery. Record actual post-change timings rather than promising a specific total runtime.
 - Confirm scheduled writes and manual opt-in writes behave as intended.
