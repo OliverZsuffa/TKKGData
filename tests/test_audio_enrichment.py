@@ -183,9 +183,10 @@ class AudioEnrichmentTests(unittest.TestCase):
         ytm = FakeAlbumWithoutPlaylistYTMusic()
         with patch(
             "scraper.audio_enrichment._extract_ytdlp_playlist",
-            side_effect=AssertionError("No playlist extraction should be attempted"),
-        ):
+            return_value=ytdlp_playlist_info("MPREb_example"),
+        ) as extract:
             result = find_verified_youtube_music_playlist(EPISODE, SPOTIFY, ytm)
+        extract.assert_called_once_with("https://music.youtube.com/browse/MPREb_example")
         self.assertIsNone(result["playlist_id"])
         self.assertEqual(result["album_id"], "MPREb_example")
         self.assertEqual(result["album_url"], "https://music.youtube.com/browse/MPREb_example")
@@ -195,7 +196,11 @@ class AudioEnrichmentTests(unittest.TestCase):
     def test_discovery_returns_album_page_and_ordered_song_links_without_playlist_id(self):
         ytm = FakeAlbumWithoutPlaylistYTMusic()
         with patch("scraper.audio_enrichment.resolve_spotify_album", return_value=SPOTIFY):
-            result = discover_episode_audio(EPISODE, ytm)
+            with patch(
+                "scraper.audio_enrichment._extract_ytdlp_playlist",
+                return_value=ytdlp_playlist_info("MPREb_example"),
+            ):
+                result = discover_episode_audio(EPISODE, ytm)
         self.assertIsNone(result["audio_release"]["youtube_music"]["playlist"])
         self.assertEqual(
             result["links"]["youtube_music_album"],
