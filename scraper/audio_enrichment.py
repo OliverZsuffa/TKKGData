@@ -185,68 +185,75 @@ def _spotify_album_search_records(
     records: list[dict[str, Any]] = []
     seen: set[str] = set()
     for query in queries:
-        try:
-            payload = client.query_songs(query, limit=50)
-        except Exception as exc:
-            if diagnostics is not None:
-                diagnostics.append({"album_search_query": query, "error": str(exc)})
-            continue
-        search = payload.get("data", {}).get("searchV2", {}) if isinstance(payload, dict) else {}
-        album_section = search.get("albumsV2", {}) if isinstance(search, dict) else {}
-        items = album_section.get("items", []) if isinstance(album_section, dict) else []
-        if diagnostics is not None:
-            diagnostics.append({
-                "album_search_query": query,
-                "album_search_count": len(items) if isinstance(items, list) else 0,
-                "album_search_sample": [
-                    (
-                        (item.get("data") or item.get("item", {}).get("data") or {}).get("name")
-                        if isinstance(item, dict) else None
-                    )
-                    for item in items[:10]
-                ] if isinstance(items, list) else [],
-            })
-        if not isinstance(items, list):
-            continue
-        for wrapper in items:
-            if not isinstance(wrapper, dict):
-                continue
-            album_data = wrapper.get("data")
-            if not isinstance(album_data, dict):
-                nested_item = wrapper.get("item")
-                album_data = nested_item.get("data") if isinstance(nested_item, dict) else None
-            if not isinstance(album_data, dict):
-                continue
-            album_name = str(album_data.get("name") or "")
-            normalized_name = _normalise(album_name)
-            album_uri = str(album_data.get("uri") or "")
-            album_id = album_uri.rsplit(":", 1)[-1] if album_uri.startswith("spotify:album:") else ""
-            if (
-                not album_id
-                or not re.fullmatch(r"[A-Za-z0-9]{22}", album_id)
-                or album_id in seen
-            ):
-                continue
-            seen.add(album_id)
-            album_matches = (
-                title in normalized_name
-                or _spotify_number_matches_text(album_name, number)
-            )
-            if diagnostics is not None and album_matches:
-                diagnostics.append({"album_search_candidate": album_name, "album_id": album_id})
-            if not album_matches:
-                continue
+        offset = 0
+        for page_index in range(3):
             try:
-                album_records = _save_spotify_metadata(f"{SPOTIFY_ALBUM_BASE}{album_id}")
+                payload = client.query_songs(query, limit=100, offset=offset)
             except Exception as exc:
                 if diagnostics is not None:
-                    diagnostics.append({"album_search_metadata_error": album_name, "error": str(exc)})
-                continue
-            for record in album_records:
-                if not _spotify_artist_matches(record):
+                    diagnostics.append({"album_search_query": query, "offset": offset, "error": str(exc)})
+                break
+            search = payload.get("data", {}).get("searchV2", {}) if isinstance(payload, dict) else {}
+            album_section = search.get("albumsV2", {}) if isinstance(search, dict) else {}
+            items = album_section.get("items", []) if isinstance(album_section, dict) else []
+            if diagnostics is not None:
+                diagnostics.append({
+                    "album_search_query": query,
+                    "album_search_offset": offset,
+                    "album_search_count": len(items) if isinstance(items, list) else 0,
+                    "album_search_sample": [
+                        (
+                            (item.get("data") or item.get("item", {}).get("data") or {}).get("name")
+                            if isinstance(item, dict) else None
+                        )
+                        for item in items[:10]
+                    ] if isinstance(items, list) else [],
+                })
+            if not isinstance(items, list) or not items:
+                break
+            for wrapper in items:
+                if not isinstance(wrapper, dict):
                     continue
-                record["search_query"] = f"album_search:{query}"
-                records.append(record)
+                album_data = wrapper.get("data")
+                if not isinstance(album_data, dict):
+                    nested_item = wrapper.get("item")
+                    album_data = nested_item.get("data") if isinstance(nested_item, dict) else None
+                if not isinstance(album_data, dict):
+                    continue
+                album_name = str(album_data.get("name") or "")
+                normalized_name = _normalise(album_name)
+                album_uri = str(album_data.get("uri") or "")
+                album_id = album_uri.rsplit(":", 1)[-1] if album_uri.startswith("spotify:album:") else ""
+                if (
+                    not album_id
+                    or not re.fullmatch(r"[A-Za-z0-9]{22}", album_id)
+                    or album_id in seen
+                ):
+                    continue
+                seen.add(album_id)
+                album_matches = (
+                    title in normalized_name
+                    or _spotify_number_matches_text(album_name, number)
+                )
+                if diagnostics is not None and album_matches:
+                    diagnostics.append({"album_search_candidate": album_name, "album_id": album_id})
+                if not album_matches:
+                    continue
+                try:
+                    album_records = _save_spotify_metadata(f"{SPOTIFY_ALBUM_BASE}{album_id}")
+                except Exception as exc:
+                    if diagnostics is not None:
+                        diagnostics.append({"album_search_metadata_error": album_name, "error": str(exc)})
+                    continue
+                for record in album_records:
+                    if not _spotify_artist_matches(record):
+                        continue
+                    record["search_query"] = f"album_search:{query}"
+                    records.append(record)
+            total = album_section.get("totalCount") if isinstance(album_section, dict) else None
+            offset += len(items)
+            if len(items) < 100 or (isinstance(total, int) and offset >= total):
+                break
     return records
 
 
