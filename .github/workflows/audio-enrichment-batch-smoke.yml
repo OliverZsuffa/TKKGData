@@ -17,9 +17,9 @@ jobs:
     name: Prepare controlled 6 episode range
     runs-on: ubuntu-24.04
     outputs:
-      matrix: \${{ steps.prepare.outputs.matrix }}
-      max_parallel: \${{ steps.prepare.outputs.max_parallel }}
-      run_started_at: \${{ steps.prepare.outputs.run_started_at }}
+      matrix: ${{ steps.prepare.outputs.matrix }}
+      max_parallel: ${{ steps.prepare.outputs.max_parallel }}
+      run_started_at: ${{ steps.prepare.outputs.run_started_at }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -40,14 +40,14 @@ jobs:
             --max-parallel 2
 
   discover:
-    name: Batch \${{ matrix.batch }} live discovery
+    name: Batch ${{ matrix.batch }} live discovery
     needs: prepare
     runs-on: ubuntu-24.04
     timeout-minutes: 35
     strategy:
       fail-fast: false
       max-parallel: 2
-      matrix: \${{ fromJSON(needs.prepare.outputs.matrix) }}
+      matrix: ${{ fromJSON(needs.prepare.outputs.matrix) }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -60,8 +60,8 @@ jobs:
           pip install -r requirements-audio.txt
       - name: Resolve assigned episodes without publishing
         env:
-          EPISODES: \${{ join(matrix.episodes, ' ') }}
-          BATCH_ID: \${{ matrix.batch }}
+          EPISODES: ${{ join(matrix.episodes, ' ') }}
+          BATCH_ID: ${{ matrix.batch }}
         run: |
           mkdir -p data/batch-reports
           ARGS=()
@@ -74,8 +74,8 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: tkkgdata-batch-smoke-\${{ matrix.batch }}
-          path: data/batch-reports/batch-\${{ matrix.batch }}.json
+          name: tkkgdata-batch-smoke-${{ matrix.batch }}
+          path: data/batch-reports/batch-${{ matrix.batch }}.json
           if-no-files-found: warn
           retention-days: 30
 
@@ -101,10 +101,10 @@ jobs:
           merge-multiple: true
       - name: Aggregate in dry-run mode
         env:
-          MATRIX_JSON: \${{ needs.prepare.outputs.matrix }}
-          DISCOVERY_RESULT: \${{ needs.discover.result }}
-          MAX_PARALLEL: \${{ needs.prepare.outputs.max_parallel }}
-          RUN_STARTED_AT: \${{ needs.prepare.outputs.run_started_at }}
+          MATRIX_JSON: ${{ needs.prepare.outputs.matrix }}
+          DISCOVERY_RESULT: ${{ needs.discover.result }}
+          MAX_PARALLEL: ${{ needs.prepare.outputs.max_parallel }}
+          RUN_STARTED_AT: ${{ needs.prepare.outputs.run_started_at }}
         run: |
           python -m scraper.audio_enrichment_batch aggregate \
             --reports-dir data/batch-reports \
