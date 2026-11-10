@@ -1,7 +1,7 @@
 # Implementation notes
 
 ## Status
-Planning only. No implementation or live catalogue run has been performed for Request 006.
+Implementation committed to the approved Request 006 branch. Offline and live CI verification is pending. No canonical catalogue data has been changed, and no full catalogue discovery run has been started.
 
 ## Investigation findings
 - The current Spotify resolver calls `Song.from_search_term()` and receives one selected result.
