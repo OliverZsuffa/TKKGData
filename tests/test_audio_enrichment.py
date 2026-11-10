@@ -614,6 +614,26 @@ class AudioEnrichmentTests(unittest.TestCase):
         self.assertIn("--episode", workflow)
         self.assertNotIn("--playlist-id", workflow)
 
+    def test_data_write_workflows_refresh_latest_main_after_entering_queue(self):
+        workflow_paths = [
+            Path(".github/workflows/audio-enrichment.yml"),
+            Path(".github/workflows/update-catalogue.yml"),
+        ]
+        for path in workflow_paths:
+            with self.subTest(workflow=path.name):
+                workflow = path.read_text(encoding="utf-8")
+                self.assertIn("group: tkkgdata-data-writes", workflow)
+                self.assertIn("cancel-in-progress: false", workflow)
+                self.assertIn("git fetch origin main", workflow)
+                self.assertIn("git checkout -B main origin/main", workflow)
+                refresh = workflow.index("git fetch origin main")
+                checkout = workflow.index("actions/checkout@v4")
+                self.assertGreater(refresh, checkout)
+                self.assertNotIn(
+                    "if: github.event_name == 'schedule'\n        run: |\n          git fetch origin main",
+                    workflow,
+                )
+
 
 
     def test_explicit_episode_lookup_rechecks_existing_verified_mapping(self):
