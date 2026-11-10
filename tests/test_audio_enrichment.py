@@ -554,5 +554,39 @@ class AudioEnrichmentTests(unittest.TestCase):
 
 
 
+    def test_explicit_episode_lookup_rechecks_existing_verified_mapping(self):
+        existing = {
+            "spotify": {"album_id": "a" * 22},
+            "youtube_music": {"tracks": []},
+            "verification": {"status": "verified"},
+        }
+        episode = {**EPISODE, "audio_release": existing}
+        fake_release = {
+            "spotify": {"track_count": 2},
+            "youtube_music": {"playlist": None, "tracks": [], "track_count": 2},
+            "verification": {"status": "verified"},
+        }
+        fake_discovery = {
+            "audio_release": fake_release,
+            "matched_tracks": [],
+            "links": {
+                "spotify_album": SPOTIFY["url"],
+                "spotify_tracks": [],
+                "youtube_music_playlist": None,
+                "youtube_music_tracks": [],
+            },
+            "timings": {"total_seconds": 0.01},
+        }
+        with patch("scraper.audio_enrichment.discover_episode_audio", return_value=fake_discovery) as discover:
+            report = enrich_catalogue(
+                [episode], selected_numbers={150}, limit=1, ytm=object(),
+            )
+        discover.assert_called_once()
+        self.assertEqual(report["target_count"], 1)
+        self.assertEqual(len(report["verified"]), 1)
+        self.assertEqual(episode["audio_release"], existing)
+
+
+
 if __name__ == "__main__":
     unittest.main()
