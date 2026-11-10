@@ -572,7 +572,7 @@ class AudioEnrichmentTests(unittest.TestCase):
         self.assertEqual(first[0]["artists"], ["TKKG"])
         self.assertEqual(album, [{"name": "Track 1"}])
         self.assertEqual(FakeSong.query, "TKKG 150 Heiße Nächte im Dezember Teil 01")
-        self.assertEqual(FakeAlbum.call, (SPOTIFY["url"], True))
+        self.assertEqual(FakeAlbum.call, (SPOTIFY["url"], False))
 
     def test_playlist_discovery_searches_spotify_album_and_track_metadata(self):
         ytm = FakeYTMusic(["OLAK5uy_mQRbJNANh1H4CKbmM5ez5LSW1HJFvE3QI"])
