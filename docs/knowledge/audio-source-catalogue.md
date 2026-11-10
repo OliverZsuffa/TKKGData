@@ -22,7 +22,7 @@ Run:
 
     python -m scraper.audio_enrichment --episode EPISODE_NUMBER
 
-The episode number is the only required input. The JSON report and GitHub Actions step summary expose the Spotify album URL, all ordered Spotify track URLs, the verified YouTube Music playlist URL when available, and the ordered YouTube Music song URLs. The command also prints the resolved links. If YouTube Music discovery fails, the report retains the Spotify album and track links and identifies the failed stage.
+The episode number is the only required input. The JSON report and GitHub Actions step summary expose the Spotify album URL, all ordered Spotify track URLs, the verified YouTube Music playlist or album page URL, and the ordered YouTube Music song URLs. The command also prints the resolved links. If YouTube Music discovery fails, the report retains the Spotify album and track links and identifies the failed stage.
 
 Use --write only when verified results should be written to data/episodes.json and data/episodes.csv. Without an episode selector, --limit N processes at most N episodes that do not already have verified audio metadata. For a controlled recovery, --playlist-id PLAYLIST_ID may be supplied only with exactly one --episode.
 
@@ -38,11 +38,13 @@ The preferred YouTube Music path is a complete public album playlist. Search que
 
 yt-dlp extracts playlist entries without downloading audio. The playlist title must identify the episode, its ID must match the requested playlist when supplied, and its complete entry count must equal Spotify's actual album track count. Every entry is paired positionally with the Spotify track list. All normalized titles must match exactly, track numbering and order must be complete, and available durations must be within eight seconds. Each resulting record stores both the Spotify track ID and URL and the YouTube video ID and URL.
 
+Some YouTube Music album search results expose an MPRE album browse ID and a complete album tracklist but no OLAK audio playlist ID or playable video IDs in the album metadata response. In that case, the workflow opens the verified album page with yt-dlp, extracts the ordered video entries without downloading audio, and applies the same exact title, count, order, duration, and ID checks. The report exposes the verified album page URL. The canonical audio_release schema continues to store playlist as null when no playlist ID exists, while retaining every individually verified song link.
+
 If no complete playlist can be verified, enrichment can fall back to individual YouTube Music song searches. A candidate needs an exact normalized title and a score of at least 130, based on corroborating TKKG artist, matching episode album, or close duration evidence. A unique best candidate is required. The threshold and ambiguity safeguards remain unchanged. Candidate diagnostics include bounded title, artist, album, duration, video ID, score, evidence, and rejection reason details. The final failure also retains the complete playlist discovery failure.
 
 The matching rule is intentionally conservative. It does not attempt fuzzy matching, alternate-edition selection, or automatic acceptance of bonus tracks. Such episodes remain unresolved for review.
 
-Current published coverage is one verified audio release mapping among 243 episodes, containing 40 ordered Spotify and YouTube Music track pairs.
+Current published coverage is one verified audio release mapping among 243 episodes, containing 40 ordered Spotify and YouTube Music track pairs. The Request 005 live regression matrix has additionally verified 40 ordered links each for three dry-run episodes. These test results are not published into the canonical catalogue.
 
 ## Provider limitations
 
