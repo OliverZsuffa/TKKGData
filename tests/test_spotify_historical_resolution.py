@@ -7,8 +7,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 from scraper.audio_enrichment import (
-    SPOTIFY_ALBUM_SEARCH_PREFIX,
-    _save_spotify_metadata,
+    _spotify_artist_album_records,
     _spotify_artist_matches,
     discover_episode_audio,
     resolve_spotify_album,
@@ -16,26 +15,15 @@ from scraper.audio_enrichment import (
 
 
 class SpotifyHistoricalResolutionTests(unittest.TestCase):
-    def test_album_search_returns_tracks_from_multiple_album_candidates(self):
-        album_id = "A" * 22
-        class FakeSong:
-            pass
-        class FakeAlbum:
-            @classmethod
-            def from_url(cls, url, fetch_songs=False):
-                return type("AlbumRecord", (), {
-                    "songs": [type("TrackRecord", (), {"json": {
-                        "name": "TKKG (20) - Das Geheimnis der chinesischen Vase",
-                        "album_id": album_id,
-                        "album_name": "07/3er Box - Folge 19-21",
-                        "song_id": "B" * 22,
-                    }})()]
-                })()
+    def test_artist_discography_finds_episode_in_compilation_box(self):
+        artist_id, album_id, track_id = "A" * 22, "B" * 22, "C" * 22
         class FakeClient:
-            def search(self, query, type="track"):
-                self.query = query
-                self.search_type = type
-                return {"albums": {"items": [{"id": album_id}]}}
+            def artist_albums(self, artist_id_arg, include_groups=None, limit=50, offset=0):
+                self.call = (artist_id_arg, include_groups, limit, offset)
+                return {
+                    "items": [{"id": album_id, "name": "07/3er Box - Folge 19-21"}],
+                    "total": 1,
+                }
         client = FakeClient()
         fake_spotdl = types.ModuleType("spotdl")
         fake_spotdl.__path__ = []
@@ -43,19 +31,28 @@ class SpotifyHistoricalResolutionTests(unittest.TestCase):
         fake_utils.__path__ = []
         fake_spotify = types.ModuleType("spotdl.utils.spotify")
         fake_spotify.SpotifyClient = lambda: client
-        with patch("scraper.audio_enrichment._spotify_metadata_library", return_value=(FakeSong, FakeAlbum)), \
+        album_tracks = [{
+            "name": "TKKG (20) - Das Geheimnis der chinesischen Vase",
+            "album_id": album_id,
+            "album_name": "07/3er Box - Folge 19-21",
+            "artists": ["TKKG"],
+            "song_id": track_id,
+            "url": "https://open.spotify.com/track/" + track_id,
+        }]
+        with patch("scraper.audio_enrichment._spotify_metadata_library", return_value=(None, None)), \
+             patch("scraper.audio_enrichment._save_spotify_metadata", return_value=album_tracks), \
              patch.dict(sys.modules, {
                  "spotdl": fake_spotdl,
                  "spotdl.utils": fake_utils,
                  "spotdl.utils.spotify": fake_spotify,
              }):
-            records = _save_spotify_metadata(
-                SPOTIFY_ALBUM_SEARCH_PREFIX + 'album:"Folge 19-21" artist:TKKG'
+            records = _spotify_artist_album_records(
+                {artist_id}, {"number": 20, "title": "Das Geheimnis der chinesischen Vase"}
             )
         self.assertEqual(len(records), 1)
-        self.assertEqual(records[0]["song_id"], "B" * 22)
-        self.assertEqual(records[0]["search_query"], 'album:"Folge 19-21" artist:TKKG')
-        self.assertEqual(client.search_type, "album")
+        self.assertEqual(records[0]["song_id"], track_id)
+        self.assertIn("episode:20", records[0]["search_query"])
+        self.assertEqual(client.call, (artist_id, "album,compilation", 50, 0))
 
     def test_exact_historical_artist_alias_is_allowed(self):
         self.assertTrue(_spotify_artist_matches({"artists": ["TKKG Retro-Archiv"]}))
