@@ -240,7 +240,7 @@ def resolve_spotify_album(episode: dict[str, Any], work_dir: Path) -> dict[str, 
             query_records = _save_spotify_metadata(query)[:20]
             if not query_records:
                 search_diagnostics.append({"query": query, "result_count": 0})
-            for record in query_records:
+            for record in query_records[:5]:
                 search_diagnostics.append({
                     "query": query,
                     "name": record.get("name"),
@@ -265,7 +265,7 @@ def resolve_spotify_album(episode: dict[str, Any], work_dir: Path) -> dict[str, 
     ranked = [item for item in ranked if item[0] >= 100]
     if not ranked:
         detail = "; ".join(search_errors[:3]) or "no title and artist candidate passed validation"
-        diagnostics = json.dumps(search_diagnostics[:50], ensure_ascii=False)
+        diagnostics = json.dumps(search_diagnostics[:100], ensure_ascii=False)
         raise ValueError(f"No credible Spotify track candidate for episode {number}: {detail}. Candidates: {diagnostics}")
 
     album_cache: dict[str, list[dict[str, Any]]] = {}
