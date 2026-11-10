@@ -14,7 +14,7 @@ permissions:
 
 jobs:
   prepare:
-    name: Prepare controlled 10 episode range
+    name: Prepare controlled 6 episode range
     runs-on: ubuntu-24.04
     outputs:
       matrix: \${{ steps.prepare.outputs.matrix }}
@@ -30,13 +30,13 @@ jobs:
         run: |
           pip install -r requirements.txt
           pip install -r requirements-audio.txt
-      - name: Prepare two batches of five episodes
+      - name: Prepare two batches of three episodes
         id: prepare
         run: |
           python -m scraper.audio_enrichment_batch prepare \
             --start-episode 1 \
-            --end-episode 10 \
-            --batch-size 5 \
+            --end-episode 6 \
+            --batch-size 3 \
             --max-parallel 2
 
   discover:
