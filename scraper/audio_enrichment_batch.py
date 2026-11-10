@@ -95,15 +95,29 @@ def prepare(args: argparse.Namespace) -> int:
 
 def aggregate(
     catalogue_path: Path, reports_dir: Path, matrix_json: str, *, write: bool,
-    discovery_result: str,
+    discovery_result: str, max_parallel: int = 4,
+    run_started_at: str | None = None,
 ) -> dict[str, Any]:
+    aggregate_started = datetime.now(timezone.utc)
+    if max_parallel < 1 or max_parallel > 8:
+        raise ValueError("Maximum parallel batches must be between 1 and 8.")
+    workflow_started = aggregate_started
+    if run_started_at:
+        try:
+            workflow_started = datetime.fromisoformat(run_started_at.replace("Z", "+00:00"))
+            if workflow_started.tzinfo is None:
+                workflow_started = workflow_started.replace(tzinfo=timezone.utc)
+        except ValueError as exc:
+            raise ValueError(f"Invalid workflow start timestamp: {run_started_at}") from exc
     matrix = json.loads(matrix_json)
     batches = matrix.get("include") if isinstance(matrix, dict) else None
     if not isinstance(batches, list) or not batches:
         raise ValueError("The expected batch matrix is empty or malformed.")
     combined: dict[str, Any] = {
-        "started_at": datetime.now(timezone.utc).isoformat(),
+        "started_at": workflow_started.isoformat(),
+        "aggregate_started_at": aggregate_started.isoformat(),
         "mode": "write" if write else "dry_run",
+        "max_parallel": max_parallel,
         "expected_batches": len(batches),
         "batches": [],
         "verified": [],
@@ -197,11 +211,13 @@ def aggregate(
                 json.dumps(scrape_report, ensure_ascii=False, indent=2) + "\n",
                 encoding="utf-8",
             )
-    combined["finished_at"] = datetime.now(timezone.utc).isoformat()
-    combined["duration_seconds"] = sum(
+    finished = datetime.now(timezone.utc)
+    combined["finished_at"] = finished.isoformat()
+    combined["duration_seconds"] = round((finished - workflow_started).total_seconds(), 2)
+    combined["episode_processing_seconds"] = round(sum(
         float(item.get("timings", {}).get("total_seconds", 0))
         for item in combined["verified"] + combined["failures"]
-    )
+    ), 2)
     combined["selected_count"] = combined["expected_episode_count"]
     combined["unresolved_count"] = len(combined["failures"])
     combined["verified_count"] = len(combined["verified"])
@@ -226,6 +242,8 @@ def main() -> int:
     aggregate_parser.add_argument("--matrix-json", required=True)
     aggregate_parser.add_argument("--write", action="store_true")
     aggregate_parser.add_argument("--discovery-result", default="success")
+    aggregate_parser.add_argument("--max-parallel", type=int, default=4)
+    aggregate_parser.add_argument("--run-started-at")
     args = parser.parse_args()
     try:
         if args.command == "prepare":
@@ -235,18 +253,53 @@ def main() -> int:
         report = aggregate(
             args.catalogue, args.reports_dir, args.matrix_json,
             write=args.write, discovery_result=args.discovery_result,
+            max_parallel=args.max_parallel, run_started_at=args.run_started_at,
         )
         report_path = args.reports_dir / "combined-report.json"
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-        print(json.dumps({
+        summary = {
             "selected": report["selected_count"],
             "verified": report["verified_count"],
             "unresolved": report["unresolved_count"],
+            "batches": report["expected_batches"],
+            "max_parallel": report["max_parallel"],
+            "duration_seconds": report["duration_seconds"],
+            "episode_processing_seconds": report["episode_processing_seconds"],
             "preserved_existing": len(report["preserved_existing"]),
             "catalogue_updated": report["catalogue_updated"],
             "publication_blocked": report.get("publication_blocked"),
-        }, indent=2))
+        }
+        print(json.dumps(summary, indent=2))
+        summary_path = Path(os.environ["GITHUB_STEP_SUMMARY"]) if os.environ.get("GITHUB_STEP_SUMMARY") else None
+        if summary_path:
+            publication = report.get("publication_blocked") or (
+                "Published verified mappings." if report["catalogue_updated"]
+                else "Dry run only. No catalogue changes were published."
+            )
+            summary_path.write_text(
+                "\n".join([
+                    "## TKKG audio batch discovery",
+                    "",
+                    f"- Selected: **{report['selected_count']}**",
+                    f"- Verified: **{report['verified_count']}**",
+                    f"- Unresolved: **{report['unresolved_count']}**",
+                    f"- Batches: **{report['expected_batches']}**",
+                    f"- Maximum parallel batches: **{report['max_parallel']}**",
+                    f"- Wall clock runtime: **{report['duration_seconds']} s**",
+                    f"- Sum of episode processing time: **{report['episode_processing_seconds']} s**",
+                    f"- Existing verified mappings preserved: **{len(report['preserved_existing'])}**",
+                    f"- Publication: {publication}",
+                    "",
+                    "| Batch | Episodes | Verified | Unresolved |",
+                    "|---:|---:|---:|---:|",
+                    *[
+                        f"| {item['batch']} | {len(item['episodes'])} | {item['verified_count']} | {item['unresolved_count']} |"
+                        for item in report["batches"]
+                    ],
+                ]) + "\n",
+                encoding="utf-8",
+            )
         if report.get("publication_blocked"):
             return 1
         return 0
