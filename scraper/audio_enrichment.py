@@ -111,7 +111,7 @@ def _save_spotify_metadata(query: str, output_path: Path | None = None) -> list[
         except Exception as exc:
             message = str(exc).casefold()
             retryable = any(token in message for token in (
-                "noneType", "timed out", "timeout", "temporarily unavailable",
+                "nonetype", "timed out", "timeout", "temporarily unavailable",
                 "connection reset", "429", "rate limit", "502", "503", "504",
             ))
             if attempt == 0 and retryable:
