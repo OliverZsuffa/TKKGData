@@ -116,6 +116,20 @@ def aggregate(
     batches = matrix.get("include") if isinstance(matrix, dict) else None
     if not isinstance(batches, list) or not batches:
         raise ValueError("The expected batch matrix is empty or malformed.")
+    if any(not isinstance(item, dict) for item in batches):
+        raise ValueError("Every batch matrix entry must be an object.")
+    batch_ids = [int(item["batch"]) for item in batches]
+    if len(batch_ids) != len(set(batch_ids)):
+        raise ValueError("The batch matrix contains duplicate batch IDs.")
+    selected_numbers = [
+        int(number)
+        for item in batches
+        for number in item.get("episodes", [])
+    ]
+    if not selected_numbers or any(number < 1 for number in selected_numbers):
+        raise ValueError("The batch matrix must contain positive episode numbers.")
+    if len(selected_numbers) != len(set(selected_numbers)):
+        raise ValueError("The batch matrix assigns an episode more than once.")
     combined: dict[str, Any] = {
         "started_at": workflow_started.isoformat(),
         "aggregate_started_at": aggregate_started.isoformat(),
@@ -128,7 +142,7 @@ def aggregate(
         "preserved_existing": [],
         "missing_reports": [],
         "catalogue_updated": False,
-        "expected_episode_count": sum(len(item.get("episodes", [])) for item in batches),
+        "expected_episode_count": len(selected_numbers),
     }
     reports: dict[int, dict[str, Any]] = {}
     for batch in batches:
