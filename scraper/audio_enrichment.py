@@ -221,6 +221,13 @@ def _spotify_album_search_records(
             diagnostics.append({
                 "album_search_query": query,
                 "album_search_count": len(items) if isinstance(items, list) else 0,
+                "album_search_sample": [
+                    (
+                        (item.get("data") or item.get("item", {}).get("data") or {}).get("name")
+                        if isinstance(item, dict) else None
+                    )
+                    for item in items[:10]
+                ] if isinstance(items, list) else [],
             })
         if not isinstance(items, list):
             continue
