@@ -97,7 +97,8 @@ class SpotifyHistoricalResolutionTests(unittest.TestCase):
                 return {
                     "data": {
                         "searchV2": {
-                            "albumsV2": {
+                            "albumsV2": {"items": []},
+                            "topResults": {
                                 "items": [{
                                     "data": {
                                         "name": "07/3er Box - Folge 19-21",
