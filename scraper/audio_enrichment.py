@@ -809,9 +809,12 @@ def enrich_catalogue(
     targets = [
         item for item in episodes
         if (selected_numbers is None or item.get("number") in selected_numbers)
-        and not (
-            isinstance(item.get("audio_release"), dict)
-            and item["audio_release"].get("verification", {}).get("status") == "verified"
+        and (
+            selected_numbers is not None
+            or not (
+                isinstance(item.get("audio_release"), dict)
+                and item["audio_release"].get("verification", {}).get("status") == "verified"
+            )
         )
     ]
     if latest_first:
@@ -880,7 +883,18 @@ def enrich_catalogue(
             flush=True,
         )
         if write:
-            episode["audio_release"] = audio_release
+            existing_release = episode.get("audio_release")
+            if (
+                isinstance(existing_release, dict)
+                and existing_release.get("verification", {}).get("status") == "verified"
+                and existing_release != audio_release
+            ):
+                report.setdefault("preserved_existing", []).append({
+                    "number": number,
+                    "reason": "new discovery differed from the previously verified mapping; existing mapping retained",
+                })
+            else:
+                episode["audio_release"] = audio_release
     report["coverage_after"] = audio_release_coverage(episodes)
     report["finished_at"] = datetime.now(timezone.utc).isoformat()
     report["duration_seconds"] = round(time.perf_counter() - run_started, 2)
@@ -938,6 +952,7 @@ def _write_github_step_summary(report: dict[str, Any]) -> None:
             f"### Episode {item['number']}: {item['title']}",
             f"- Spotify album: [open]({links['spotify_album']})",
             f"- YouTube Music playlist: " + (f"[open]({links['youtube_music_playlist']})" if links["youtube_music_playlist"] else "not verified"),
+            f"- Stage timings: {item.get('timings', {})}",
             "",
             "| # | Track | Spotify | YouTube Music |",
             "|---:|---|---|---|",
@@ -955,6 +970,7 @@ def _write_github_step_summary(report: dict[str, Any]) -> None:
             f"### Episode {item['number']}: {item['title']} unresolved",
             f"- Failed stage: {item['stage']}",
             f"- Reason: {item['error']}",
+            f"- Stage timings: {item.get('timings', {})}",
         ])
         links = item.get("links")
         if links:
