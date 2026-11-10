@@ -23,8 +23,8 @@
 ## Historical regression fixtures
 Use observed provider metadata, not fabricated IDs or inferred track counts, for:
 - Episode 1 and 2: historical artist-credit coverage.
-- Episode 20: unrelated first search result and compilation-format coverage.
-- Episode 37: unrelated first search result and compilation-format coverage.
+- Episode 20: exact numbered three-episode box search and selection of only the requested disc track.
+- Episode 37: negative discovery case. Verify that no unrelated recording is accepted when the historic episode is absent from the current Spotify catalogue.
 - Episode 53: additional historical catalogue coverage.
 - Episode 100: known successful split-track path.
 
@@ -38,6 +38,7 @@ After fixture coverage passes, run live dry-run checks for representative histor
 - Episodes absent from the catalogue are reported clearly.
 - Empty target selection is rejected clearly instead of creating an invalid empty matrix.
 - Batch partitioning covers every selected episode exactly once, with no duplicates or omissions.
+- Aggregation rejects duplicate episode assignments across matrix batches.
 - Full catalogue selection of 243 episodes at batch size five creates 49 batches, below GitHub's 256-job matrix limit.
 - Batch size and max parallel values are bounded and validated.
 - Scheduled latest-first selection remains limited to five missing mappings.
@@ -53,6 +54,7 @@ After fixture coverage passes, run live dry-run checks for representative histor
 - Existing verified mappings survive empty, failed, and conflicting new results.
 - The aggregation job refreshes main before merging and validates the complete catalogue before writing.
 - Dry-run mode leaves the canonical catalogue unchanged.
+- Existing verified mappings are preserved even when new results conflict.
 - Write mode creates at most one catalogue commit for the complete run.
 
 ## Integration and performance checks
@@ -61,6 +63,6 @@ After fixture coverage passes, run live dry-run checks for representative histor
 - Validate both workflow syntax and workflow expressions.
 - Run a controlled parallel test on a small range, then compare measured duration with the same range processed sequentially.
 - Run the full requested range after the controlled test confirms provider stability.
-- Report total runtime, batch count, per-batch runtime, peak parallelism, dependency setup time, verified count, unresolved count, and any failed batches.
+- Report wall-clock runtime from preparation, summed per-episode processing time, batch count, peak configured parallelism, verified count, unresolved count, and any failed batches.
 - Confirm the full run completes without a single sequential 15-minute job carrying the entire catalogue.
 - Do not claim a speedup or full-catalogue success until measured.
