@@ -68,7 +68,7 @@ jobs:
           for episode in $EPISODES; do
             ARGS+=(--episode "$episode")
           done
-          python -m scraper.audio_enrichment "\${ARGS[@]}" \
+          python -m scraper.audio_enrichment "${ARGS[@]}" \
             --report "data/batch-reports/batch-$BATCH_ID.json"
       - name: Upload batch report
         if: always()
