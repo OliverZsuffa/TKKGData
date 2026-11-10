@@ -76,8 +76,8 @@ class SpotifyHistoricalResolutionTests(unittest.TestCase):
             "spotify_track_url": "https://open.spotify.com/track/" + track_id,
             "match_evidence": ["exact_normalised_title"],
         }]
-        with patch("scraper.audio_enrichment.resolve_spotify_album", return_value=spotify), \\
-             patch("scraper.audio_enrichment.find_verified_youtube_music_playlist", side_effect=AssertionError("must not pair a compilation album with a playlist")), \\
+        with patch("scraper.audio_enrichment.resolve_spotify_album", return_value=spotify), \
+             patch("scraper.audio_enrichment.find_verified_youtube_music_playlist", side_effect=AssertionError("must not pair a compilation album with a playlist")), \
              patch("scraper.audio_enrichment.find_verified_youtube_music_tracks", return_value=matched):
             result = discover_episode_audio(episode, object())
 
