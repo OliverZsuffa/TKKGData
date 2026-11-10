@@ -1,25 +1,20 @@
 name: Discover TKKG audio sources
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - "scraper/audio_enrichment.py"
-      - "tests/test_audio_enrichment.py"
-      - "schemas/episode.schema.json"
-      - "scraper/validate.py"
-      - "scraper/audio_source_experiments.py"
-      - "requirements-audio.txt"
-      - ".github/workflows/audio-enrichment.yml"
   schedule:
     - cron: "0 6 * * 2"
   workflow_dispatch:
     inputs:
       episode:
-        description: "Specific episode number (leave empty to process missing mappings)"
+        description: "Episode number to resolve (leave empty to process missing mappings)"
         required: false
         type: string
-        default: "150"
+        default: ""
+      playlist_id:
+        description: "Optional YouTube Music playlist ID for one selected episode"
+        required: false
+        type: string
+        default: ""
       limit:
         description: "Maximum number of episodes to process"
         required: true
@@ -44,8 +39,8 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
-      - name: Refresh checkout to the latest main before data writes
-        if: github.event_name == 'push' || github.event_name == 'schedule'
+      - name: Refresh checkout to the latest main before scheduled data writes
+        if: github.event_name == 'schedule'
         run: |
           git fetch origin main
           git checkout -B main origin/main
@@ -53,12 +48,7 @@ jobs:
         with:
           python-version: "3.12"
           cache: pip
-      - name: Install FFmpeg required by spotDL metadata operations
-        run: |
-          sudo apt-get update
-          sudo apt-get install --yes ffmpeg
-          ffmpeg -version
-      - name: Install scraper and audio discovery dependencies
+      - name: Install scraper and metadata discovery dependencies
         run: |
           pip install -r requirements.txt
           pip install -r requirements-audio.txt
@@ -66,36 +56,19 @@ jobs:
         env:
           EVENT_NAME: ${{ github.event_name }}
           INPUT_EPISODE: ${{ inputs.episode }}
+          INPUT_PLAYLIST_ID: ${{ inputs.playlist_id }}
           INPUT_LIMIT: ${{ inputs.limit }}
           INPUT_WRITE: ${{ inputs.write }}
-          HEAD_COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
         run: |
           ARGS=(--limit "${INPUT_LIMIT:-5}")
-          if [ "$EVENT_NAME" = "push" ]; then
-            INPUT_EPISODE=150
-            ARGS+=(--playlist-id OLAK5uy_mQRbJNANh1H4CKbmM5ez5LSW1HJFvE3QI)
-            # A single explicitly tagged commit may publish a verified mapping.
-            if [[ "$HEAD_COMMIT_MESSAGE" == *"[publish-audio-150]"* ]]; then
-              INPUT_WRITE=true
-            fi
-          fi
-          if [ "$EVENT_NAME" = "schedule" ]; then INPUT_WRITE=true; fi
           if [ -n "${INPUT_EPISODE:-}" ]; then ARGS+=(--episode "$INPUT_EPISODE"); fi
-          if [ "$EVENT_NAME" = "schedule" ]; then ARGS+=(--latest-first); fi
+          if [ -n "${INPUT_PLAYLIST_ID:-}" ]; then ARGS+=(--playlist-id "$INPUT_PLAYLIST_ID"); fi
+          if [ "$EVENT_NAME" = "schedule" ]; then
+            INPUT_WRITE=true
+            ARGS+=(--latest-first)
+          fi
           if [ "$INPUT_WRITE" = "true" ]; then ARGS+=(--write); fi
           python -m scraper.audio_enrichment "${ARGS[@]}"
-      - name: Run alternate audio source experiments
-        if: github.event_name == 'workflow_dispatch' && inputs.episode == '150'
-        continue-on-error: true
-        run: timeout 180s python -m scraper.audio_source_experiments --episode 150 --playlist-id OLAK5uy_mQRbJNANh1H4CKbmM5ez5LSW1HJFvE3QI
-      - name: Upload experiment report
-        if: always() && github.event_name == 'workflow_dispatch' && inputs.episode == '150'
-        uses: actions/upload-artifact@v4
-        with:
-          name: tkkgdata-audio-source-experiments
-          path: data/audio-source-experiment-report.json
-          if-no-files-found: warn
-          retention-days: 30
       - name: Upload discovery report
         if: always()
         uses: actions/upload-artifact@v4
@@ -105,7 +78,7 @@ jobs:
           if-no-files-found: warn
           retention-days: 30
       - name: Commit verified audio mappings
-        if: success() && (inputs.write == true || github.event_name == 'schedule' || (github.event_name == 'push' && contains(github.event.head_commit.message, '[publish-audio-150]')))
+        if: success() && (inputs.write == true || github.event_name == 'schedule')
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
