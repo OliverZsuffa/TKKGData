@@ -164,7 +164,7 @@
   "audio_release_preservation_conflicts": [],
   "audio_release_coverage": {
     "episode_count": 243,
-    "verified_pairings": 1,
+    "verified_pairings": 2,
     "missing_pairings": [
       {
         "number": 1,
@@ -757,10 +757,6 @@
       {
         "number": 148,
         "title": "Fieser Trick beim Finale"
-      },
-      {
-        "number": 149,
-        "title": "Tims gefährlichster Gegner"
       },
       {
         "number": 151,
@@ -1988,5 +1984,10 @@
     "hub_or_fallback_link_count": 34,
     "invalid_links": []
   },
-  "finished_at": "2026-11-10T13:28:57.058471+00:00"
+  "finished_at": "2026-11-10T13:28:57.058471+00:00",
+  "audio_enrichment": {
+    "updated_at": "2026-11-10T13:31:21.090923+00:00",
+    "verified_count": 1,
+    "failure_count": 0
+  }
 }

@@ -18294,7 +18294,790 @@
         "source_url": "https://www.tkkg.de/produkte/hoerspiele?page=5"
       }
     ],
-    "last_checked": "2026-11-10T13:26:54.175858+00:00"
+    "last_checked": "2026-11-10T13:26:54.175858+00:00",
+    "audio_release": {
+      "spotify": {
+        "album_id": "1OWuX6xSnnC3oebl45X28K",
+        "url": "https://open.spotify.com/album/1OWuX6xSnnC3oebl45X28K",
+        "title": "149/Tims gefährlichster Gegner",
+        "track_count": 40,
+        "source_query": "TKKG 149 Tims gefährlichster Gegner Teil 01"
+      },
+      "youtube_music": {
+        "playlist": null,
+        "tracks": [
+          {
+            "track_number": 1,
+            "spotify_title": "149 - Tims gefährlichster Gegner - Teil 01",
+            "spotify_track_id": "0yQAWX6ls10buY10uKQbkv",
+            "spotify_track_url": "https://open.spotify.com/track/0yQAWX6ls10buY10uKQbkv",
+            "video_id": "YEeuxmNZGVo",
+            "url": "https://music.youtube.com/watch?v=YEeuxmNZGVo",
+            "title": "149 - Tims gefährlichster Gegner (Teil 01)",
+            "artists": [],
+            "album": "Album - 149/Tims gefährlichster Gegner",
+            "duration_seconds": 80.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 2,
+            "spotify_title": "149 - Tims gefährlichster Gegner - Teil 02",
+            "spotify_track_id": "27dKwlclJMQTscP1Wg9H9Y",
+            "spotify_track_url": "https://open.spotify.com/track/27dKwlclJMQTscP1Wg9H9Y",
+            "video_id": "mun6kbPLN4I",
+            "url": "https://music.youtube.com/watch?v=mun6kbPLN4I",
+            "title": "149 - Tims gefährlichster Gegner (Teil 02)",
+            "artists": [],
+            "album": "Album - 149/Tims gefährlichster Gegner",
+            "duration_seconds": 77.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 3,
+            "spotify_title": "149 - Tims gefährlichster Gegner - Teil 03",
+            "spotify_track_id": "08bYXae7OYW8yGFtTDhRqY",
+            "spotify_track_url": "https://open.spotify.com/track/08bYXae7OYW8yGFtTDhRqY",
+            "video_id": "cV0hPFbXOJQ",
+            "url": "https://music.youtube.com/watch?v=cV0hPFbXOJQ",
+            "title": "149 - Tims gefährlichster Gegner (Teil 03)",
+            "artists": [],
+            "album": "Album - 149/Tims gefährlichster Gegner",
+            "duration_seconds": 81.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 4,
+            "spotify_title": "149 - Tims gefährlichster Gegner - Teil 04",
+            "spotify_track_id": "1AHU3THnixGkGfv2zWDIaR",
+            "spotify_track_url": "https://open.spotify.com/track/1AHU3THnixGkGfv2zWDIaR",
+            "video_id": "S7hLrbhEBkg",
+            "url": "https://music.youtube.com/watch?v=S7hLrbhEBkg",
+            "title": "149 - Tims gefährlichster Gegner (Teil 04)",
+            "artists": [],
+            "album": "Album - 149/Tims gefährlichster Gegner",
+            "duration_seconds": 77.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 5,
+            "spotify_title": "149 - Tims gefährlichster Gegner - Teil 05",
+            "spotify_track_id": "0JJ0dmWY6ypjSZ5tZzYDjT",
+            "spotify_track_url": "https://open.spotify.com/track/0JJ0dmWY6ypjSZ5tZzYDjT",
+            "video_id": "9yAsqme_JMA",
+            "url": "https://music.youtube.com/watch?v=9yAsqme_JMA",
+            "title": "149 - Tims gefährlichster Gegner (Teil 05)",
+            "artists": [],
+            "album": "Album - 149/Tims gefährlichster Gegner",
+            "duration_seconds": 85.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 6,
+            "spotify_title": "149 - Tims gefährlichster Gegner - Teil 06",
+            "spotify_track_id": "7eSKaOHrcMH4rfQ2nZ7k2I",
+            "spotify_track_url": "https://open.spotify.com/track/7eSKaOHrcMH4rfQ2nZ7k2I",
+            "video_id": "VWsh361CnUs",
+            "url": "https://music.youtube.com/watch?v=VWsh361CnUs",
+            "title": "149 - Tims gefährlichster Gegner (Teil 06)",
+            "artists": [],
+            "album": "Album - 149/Tims gefährlichster Gegner",
+            "duration_seconds": 73.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 7,
+            "spotify_title": "149 - Tims gefährlichster Gegner - Teil 07",
+            "spotify_track_id": "0gzKWi401KiHskWpO2BjKz",
+            "spotify_track_url": "https://open.spotify.com/track/0gzKWi401KiHskWpO2BjKz",
+            "video_id": "LSY62OwjR9o",
+            "url": "https://music.youtube.com/watch?v=LSY62OwjR9o",
+            "title": "149 - Tims gefährlichster Gegner (Teil 07)",
+            "artists": [],
+            "album": "Album - 149/Tims gefährlichster Gegner",
+            "duration_seconds": 80.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 8,
+            "spotify_title": "149 - Tims gefährlichster Gegner - Teil 08",
+            "spotify_track_id": "3S7h7GW4AMW4x4Mzhu02HG",
+            "spotify_track_url": "https://open.spotify.com/track/3S7h7GW4AMW4x4Mzhu02HG",
+            "video_id": "6z3YZ6dF3gw",
+            "url": "https://music.youtube.com/watch?v=6z3YZ6dF3gw",
+            "title": "149 - Tims gefährlichster Gegner (Teil 08)",
+            "artists": [],
+            "album": "Album - 149/Tims gefährlichster Gegner",
+            "duration_seconds": 77.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 9,
+            "spotify_title": "149 - Tims gefährlichster Gegner - Teil 09",
+            "spotify_track_id": "0EXI2d1wlBdrDWWFTaCsOP",
+            "spotify_track_url": "https://open.spotify.com/track/0EXI2d1wlBdrDWWFTaCsOP",
+            "video_id": "wYrK6JJXiVw",
+            "url": "https://music.youtube.com/watch?v=wYrK6JJXiVw",
+            "title": "149 - Tims gefährlichster Gegner (Teil 09)",
+            "artists": [],
+            "album": "Album - 149/Tims gefährlichster Gegner",
+            "duration_seconds": 84.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 10,
+            "spotify_title": "149 - Tims gefährlichster Gegner - Teil 10",
+            "spotify_track_id": "1PICXPLQiRMQM7NJhc9om7",
+            "spotify_track_url": "https://open.spotify.com/track/1PICXPLQiRMQM7NJhc9om7",
+            "video_id": "mXc7xbmmKGU",
+            "url": "https://music.youtube.com/watch?v=mXc7xbmmKGU",
+            "title": "149 - Tims gefährlichster Gegner (Teil 10)",
+            "artists": [],
+            "album": "Album - 149/Tims gefährlichster Gegner",
+            "duration_seconds": 78.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 11,
+            "spotify_title": "149 - Tims gefährlichster Gegner - Teil 11",
+            "spotify_track_id": "1sfXNDVX31RtrTaMseBj4N",
+            "spotify_track_url": "https://open.spotify.com/track/1sfXNDVX31RtrTaMseBj4N",
+            "video_id": "fqxYGlN9JFY",
+            "url": "https://music.youtube.com/watch?v=fqxYGlN9JFY",
+            "title": "149 - Tims gefährlichster Gegner (Teil 11)",
+            "artists": [],
+            "album": "Album - 149/Tims gefährlichster Gegner",
+            "duration_seconds": 81.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 12,
+            "spotify_title": "149 - Tims gefährlichster Gegner - Teil 12",
+            "spotify_track_id": "7kCgyWNRGlmWABvyjq50Ds",
+            "spotify_track_url": "https://open.spotify.com/track/7kCgyWNRGlmWABvyjq50Ds",
+            "video_id": "1KV2sA6k0T4",
+            "url": "https://music.youtube.com/watch?v=1KV2sA6k0T4",
+            "title": "149 - Tims gefährlichster Gegner (Teil 12)",
+            "artists": [],
+            "album": "Album - 149/Tims gefährlichster Gegner",
+            "duration_seconds": 77.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 13,
+            "spotify_title": "149 - Tims gefährlichster Gegner - Teil 13",
+            "spotify_track_id": "3hFDrdugtgbHVkM26pNIk3",
+            "spotify_track_url": "https://open.spotify.com/track/3hFDrdugtgbHVkM26pNIk3",
+            "video_id": "IBSkmYFNBI4",
+            "url": "https://music.youtube.com/watch?v=IBSkmYFNBI4",
+            "title": "149 - Tims gefährlichster Gegner (Teil 13)",
+            "artists": [],
+            "album": "Album - 149/Tims gefährlichster Gegner",
+            "duration_seconds": 78.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 14,
+            "spotify_title": "149 - Tims gefährlichster Gegner - Teil 14",
+            "spotify_track_id": "5PnV6erfqyYUCM6LehMI7F",
+            "spotify_track_url": "https://open.spotify.com/track/5PnV6erfqyYUCM6LehMI7F",
+            "video_id": "uHTJfNb1ous",
+            "url": "https://music.youtube.com/watch?v=uHTJfNb1ous",
+            "title": "149 - Tims gefährlichster Gegner (Teil 14)",
+            "artists": [],
+            "album": "Album - 149/Tims gefährlichster Gegner",
+            "duration_seconds": 79.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 15,
+            "spotify_title": "149 - Tims gefährlichster Gegner - Teil 15",
+            "spotify_track_id": "4EnyP6yKO8mlSdmBVIIQDN",
+            "spotify_track_url": "https://open.spotify.com/track/4EnyP6yKO8mlSdmBVIIQDN",
+            "video_id": "8vM9i_c5JPs",
+            "url": "https://music.youtube.com/watch?v=8vM9i_c5JPs",
+            "title": "149 - Tims gefährlichster Gegner (Teil 15)",
+            "artists": [],
+            "album": "Album - 149/Tims gefährlichster Gegner",
+            "duration_seconds": 79.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 16,
+            "spotify_title": "149 - Tims gefährlichster Gegner - Teil 16",
+            "spotify_track_id": "2462hSq3hCXd5k7r9QTrmb",
+            "spotify_track_url": "https://open.spotify.com/track/2462hSq3hCXd5k7r9QTrmb",
+            "video_id": "CaicK2Ekp4Y",
+            "url": "https://music.youtube.com/watch?v=CaicK2Ekp4Y",
+            "title": "149 - Tims gefährlichster Gegner (Teil 16)",
+            "artists": [],
+            "album": "Album - 149/Tims gefährlichster Gegner",
+            "duration_seconds": 77.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 17,
+            "spotify_title": "149 - Tims gefährlichster Gegner - Teil 17",
+            "spotify_track_id": "5uzimzLWQSeabhS15lja7o",
+            "spotify_track_url": "https://open.spotify.com/track/5uzimzLWQSeabhS15lja7o",
+            "video_id": "su4F_z-RRwM",
+            "url": "https://music.youtube.com/watch?v=su4F_z-RRwM",
+            "title": "149 - Tims gefährlichster Gegner (Teil 17)",
+            "artists": [],
+            "album": "Album - 149/Tims gefährlichster Gegner",
+            "duration_seconds": 80.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 18,
+            "spotify_title": "149 - Tims gefährlichster Gegner - Teil 18",
+            "spotify_track_id": "3jowl0ZOc8eXuE8Y7Tcsof",
+            "spotify_track_url": "https://open.spotify.com/track/3jowl0ZOc8eXuE8Y7Tcsof",
+            "video_id": "F7M000ML1GY",
+            "url": "https://music.youtube.com/watch?v=F7M000ML1GY",
+            "title": "149 - Tims gefährlichster Gegner (Teil 18)",
+            "artists": [],
+            "album": "Album - 149/Tims gefährlichster Gegner",
+            "duration_seconds": 79.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 19,
+            "spotify_title": "149 - Tims gefährlichster Gegner - Teil 19",
+            "spotify_track_id": "2VVULl0YfO0dcsD3VCAkDV",
+            "spotify_track_url": "https://open.spotify.com/track/2VVULl0YfO0dcsD3VCAkDV",
+            "video_id": "srLfldRRRac",
+            "url": "https://music.youtube.com/watch?v=srLfldRRRac",
+            "title": "149 - Tims gefährlichster Gegner (Teil 19)",
+            "artists": [],
+            "album": "Album - 149/Tims gefährlichster Gegner",
+            "duration_seconds": 80.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 20,
+            "spotify_title": "149 - Tims gefährlichster Gegner - Teil 20",
+            "spotify_track_id": "5Vr3x15dohUfmNen5eUj9G",
+            "spotify_track_url": "https://open.spotify.com/track/5Vr3x15dohUfmNen5eUj9G",
+            "video_id": "McZPXR30r7A",
+            "url": "https://music.youtube.com/watch?v=McZPXR30r7A",
+            "title": "149 - Tims gefährlichster Gegner (Teil 20)",
+            "artists": [],
+            "album": "Album - 149/Tims gefährlichster Gegner",
+            "duration_seconds": 78.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 21,
+            "spotify_title": "149 - Tims gefährlichster Gegner - Teil 21",
+            "spotify_track_id": "4mzRgwo0AW6vcWzOsITB00",
+            "spotify_track_url": "https://open.spotify.com/track/4mzRgwo0AW6vcWzOsITB00",
+            "video_id": "j8ksM_flhmY",
+            "url": "https://music.youtube.com/watch?v=j8ksM_flhmY",
+            "title": "149 - Tims gefährlichster Gegner (Teil 21)",
+            "artists": [],
+            "album": "Album - 149/Tims gefährlichster Gegner",
+            "duration_seconds": 81.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 22,
+            "spotify_title": "149 - Tims gefährlichster Gegner - Teil 22",
+            "spotify_track_id": "5tLTH3iX9cHSlsmf0MEGM0",
+            "spotify_track_url": "https://open.spotify.com/track/5tLTH3iX9cHSlsmf0MEGM0",
+            "video_id": "jPapW58dcJU",
+            "url": "https://music.youtube.com/watch?v=jPapW58dcJU",
+            "title": "149 - Tims gefährlichster Gegner (Teil 22)",
+            "artists": [],
+            "album": "Album - 149/Tims gefährlichster Gegner",
+            "duration_seconds": 76.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 23,
+            "spotify_title": "149 - Tims gefährlichster Gegner - Teil 23",
+            "spotify_track_id": "6dSRWrHas7uLZtdpU5EvDG",
+            "spotify_track_url": "https://open.spotify.com/track/6dSRWrHas7uLZtdpU5EvDG",
+            "video_id": "7cMnuE94cEA",
+            "url": "https://music.youtube.com/watch?v=7cMnuE94cEA",
+            "title": "149 - Tims gefährlichster Gegner (Teil 23)",
+            "artists": [],
+            "album": "Album - 149/Tims gefährlichster Gegner",
+            "duration_seconds": 84.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 24,
+            "spotify_title": "149 - Tims gefährlichster Gegner - Teil 24",
+            "spotify_track_id": "0z7xKqV8ovijmRtXwqzvN1",
+            "spotify_track_url": "https://open.spotify.com/track/0z7xKqV8ovijmRtXwqzvN1",
+            "video_id": "zrCrQVFcya0",
+            "url": "https://music.youtube.com/watch?v=zrCrQVFcya0",
+            "title": "149 - Tims gefährlichster Gegner (Teil 24)",
+            "artists": [],
+            "album": "Album - 149/Tims gefährlichster Gegner",
+            "duration_seconds": 78.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 25,
+            "spotify_title": "149 - Tims gefährlichster Gegner - Teil 25",
+            "spotify_track_id": "4nMPwgsJABRhlntbc2Gw0z",
+            "spotify_track_url": "https://open.spotify.com/track/4nMPwgsJABRhlntbc2Gw0z",
+            "video_id": "cJzQYI9Yz7E",
+            "url": "https://music.youtube.com/watch?v=cJzQYI9Yz7E",
+            "title": "149 - Tims gefährlichster Gegner (Teil 25)",
+            "artists": [],
+            "album": "Album - 149/Tims gefährlichster Gegner",
+            "duration_seconds": 80.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 26,
+            "spotify_title": "149 - Tims gefährlichster Gegner - Teil 26",
+            "spotify_track_id": "0OZBmJU7Z5Wy354ZcXuR51",
+            "spotify_track_url": "https://open.spotify.com/track/0OZBmJU7Z5Wy354ZcXuR51",
+            "video_id": "wYy3F9fs9ew",
+            "url": "https://music.youtube.com/watch?v=wYy3F9fs9ew",
+            "title": "149 - Tims gefährlichster Gegner (Teil 26)",
+            "artists": [],
+            "album": "Album - 149/Tims gefährlichster Gegner",
+            "duration_seconds": 79.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 27,
+            "spotify_title": "149 - Tims gefährlichster Gegner - Teil 27",
+            "spotify_track_id": "2tMWhUwQolR4t1zVDw8he5",
+            "spotify_track_url": "https://open.spotify.com/track/2tMWhUwQolR4t1zVDw8he5",
+            "video_id": "_6qIN8HLIn8",
+            "url": "https://music.youtube.com/watch?v=_6qIN8HLIn8",
+            "title": "149 - Tims gefährlichster Gegner (Teil 27)",
+            "artists": [],
+            "album": "Album - 149/Tims gefährlichster Gegner",
+            "duration_seconds": 82.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 28,
+            "spotify_title": "149 - Tims gefährlichster Gegner - Teil 28",
+            "spotify_track_id": "1mnL8laU7PQQ32iYSbFxze",
+            "spotify_track_url": "https://open.spotify.com/track/1mnL8laU7PQQ32iYSbFxze",
+            "video_id": "qzhwjdyU_Uo",
+            "url": "https://music.youtube.com/watch?v=qzhwjdyU_Uo",
+            "title": "149 - Tims gefährlichster Gegner (Teil 28)",
+            "artists": [],
+            "album": "Album - 149/Tims gefährlichster Gegner",
+            "duration_seconds": 78.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 29,
+            "spotify_title": "149 - Tims gefährlichster Gegner - Teil 29",
+            "spotify_track_id": "5VMlizUfKgSIyP7h3A9quc",
+            "spotify_track_url": "https://open.spotify.com/track/5VMlizUfKgSIyP7h3A9quc",
+            "video_id": "8Qp_W_FoyG0",
+            "url": "https://music.youtube.com/watch?v=8Qp_W_FoyG0",
+            "title": "149 - Tims gefährlichster Gegner (Teil 29)",
+            "artists": [],
+            "album": "Album - 149/Tims gefährlichster Gegner",
+            "duration_seconds": 75.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 30,
+            "spotify_title": "149 - Tims gefährlichster Gegner - Teil 30",
+            "spotify_track_id": "5pE2DjCqijWnso1pt5gh4H",
+            "spotify_track_url": "https://open.spotify.com/track/5pE2DjCqijWnso1pt5gh4H",
+            "video_id": "QZku30bF-PQ",
+            "url": "https://music.youtube.com/watch?v=QZku30bF-PQ",
+            "title": "149 - Tims gefährlichster Gegner (Teil 30)",
+            "artists": [],
+            "album": "Album - 149/Tims gefährlichster Gegner",
+            "duration_seconds": 76.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 31,
+            "spotify_title": "149 - Tims gefährlichster Gegner - Teil 31",
+            "spotify_track_id": "25SlRi9Jt6hozlN4bK8UW6",
+            "spotify_track_url": "https://open.spotify.com/track/25SlRi9Jt6hozlN4bK8UW6",
+            "video_id": "MKRFqGZII10",
+            "url": "https://music.youtube.com/watch?v=MKRFqGZII10",
+            "title": "149 - Tims gefährlichster Gegner (Teil 31)",
+            "artists": [],
+            "album": "Album - 149/Tims gefährlichster Gegner",
+            "duration_seconds": 85.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 32,
+            "spotify_title": "149 - Tims gefährlichster Gegner - Teil 32",
+            "spotify_track_id": "3petUYZvDSKEWYH4coNkKk",
+            "spotify_track_url": "https://open.spotify.com/track/3petUYZvDSKEWYH4coNkKk",
+            "video_id": "pJeF_iuUOj0",
+            "url": "https://music.youtube.com/watch?v=pJeF_iuUOj0",
+            "title": "149 - Tims gefährlichster Gegner (Teil 32)",
+            "artists": [],
+            "album": "Album - 149/Tims gefährlichster Gegner",
+            "duration_seconds": 79.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 33,
+            "spotify_title": "149 - Tims gefährlichster Gegner - Teil 33",
+            "spotify_track_id": "6VXXFryVPhxqVhvPyMXFan",
+            "spotify_track_url": "https://open.spotify.com/track/6VXXFryVPhxqVhvPyMXFan",
+            "video_id": "ZQHs4GqA81c",
+            "url": "https://music.youtube.com/watch?v=ZQHs4GqA81c",
+            "title": "149 - Tims gefährlichster Gegner (Teil 33)",
+            "artists": [],
+            "album": "Album - 149/Tims gefährlichster Gegner",
+            "duration_seconds": 84.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 34,
+            "spotify_title": "149 - Tims gefährlichster Gegner - Teil 34",
+            "spotify_track_id": "7rDNnum8bhgGoHY0Y8O7Kg",
+            "spotify_track_url": "https://open.spotify.com/track/7rDNnum8bhgGoHY0Y8O7Kg",
+            "video_id": "oRxUHq-RJBI",
+            "url": "https://music.youtube.com/watch?v=oRxUHq-RJBI",
+            "title": "149 - Tims gefährlichster Gegner (Teil 34)",
+            "artists": [],
+            "album": "Album - 149/Tims gefährlichster Gegner",
+            "duration_seconds": 72.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 35,
+            "spotify_title": "149 - Tims gefährlichster Gegner - Teil 35",
+            "spotify_track_id": "43w0ox1h3uur9ry17Gq7UY",
+            "spotify_track_url": "https://open.spotify.com/track/43w0ox1h3uur9ry17Gq7UY",
+            "video_id": "_dfF1r_wJoI",
+            "url": "https://music.youtube.com/watch?v=_dfF1r_wJoI",
+            "title": "149 - Tims gefährlichster Gegner (Teil 35)",
+            "artists": [],
+            "album": "Album - 149/Tims gefährlichster Gegner",
+            "duration_seconds": 79.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 36,
+            "spotify_title": "149 - Tims gefährlichster Gegner - Teil 36",
+            "spotify_track_id": "5mVlKOTntL4NezSiYm0TIN",
+            "spotify_track_url": "https://open.spotify.com/track/5mVlKOTntL4NezSiYm0TIN",
+            "video_id": "o4i5VQ1Vimo",
+            "url": "https://music.youtube.com/watch?v=o4i5VQ1Vimo",
+            "title": "149 - Tims gefährlichster Gegner (Teil 36)",
+            "artists": [],
+            "album": "Album - 149/Tims gefährlichster Gegner",
+            "duration_seconds": 82.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 37,
+            "spotify_title": "149 - Tims gefährlichster Gegner - Teil 37",
+            "spotify_track_id": "4CnmeTOEdhjk8ois2dygF6",
+            "spotify_track_url": "https://open.spotify.com/track/4CnmeTOEdhjk8ois2dygF6",
+            "video_id": "HqJP4pP3QvM",
+            "url": "https://music.youtube.com/watch?v=HqJP4pP3QvM",
+            "title": "149 - Tims gefährlichster Gegner (Teil 37)",
+            "artists": [],
+            "album": "Album - 149/Tims gefährlichster Gegner",
+            "duration_seconds": 80.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 38,
+            "spotify_title": "149 - Tims gefährlichster Gegner - Teil 38",
+            "spotify_track_id": "2eUux3mj5mRRGR8csxrTiu",
+            "spotify_track_url": "https://open.spotify.com/track/2eUux3mj5mRRGR8csxrTiu",
+            "video_id": "WTjWrLwPO7Q",
+            "url": "https://music.youtube.com/watch?v=WTjWrLwPO7Q",
+            "title": "149 - Tims gefährlichster Gegner (Teil 38)",
+            "artists": [],
+            "album": "Album - 149/Tims gefährlichster Gegner",
+            "duration_seconds": 78.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 39,
+            "spotify_title": "149 - Tims gefährlichster Gegner - Teil 39",
+            "spotify_track_id": "3vuMoHaApz8rYlyDSFChyW",
+            "spotify_track_url": "https://open.spotify.com/track/3vuMoHaApz8rYlyDSFChyW",
+            "video_id": "fHM3MT_Zfxs",
+            "url": "https://music.youtube.com/watch?v=fHM3MT_Zfxs",
+            "title": "149 - Tims gefährlichster Gegner (Teil 39)",
+            "artists": [],
+            "album": "Album - 149/Tims gefährlichster Gegner",
+            "duration_seconds": 80.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 40,
+            "spotify_title": "149 - Tims gefährlichster Gegner - Teil 40",
+            "spotify_track_id": "49hKFOukpRUjMb2C5I8ScV",
+            "spotify_track_url": "https://open.spotify.com/track/49hKFOukpRUjMb2C5I8ScV",
+            "video_id": "bxiFrDWHKFo",
+            "url": "https://music.youtube.com/watch?v=bxiFrDWHKFo",
+            "title": "149 - Tims gefährlichster Gegner (Teil 40)",
+            "artists": [],
+            "album": "Album - 149/Tims gefährlichster Gegner",
+            "duration_seconds": 79.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          }
+        ],
+        "track_count": 40
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-11-10T13:31:21.090550+00:00",
+        "method": "exact_ordered_album_track_titles_and_duration",
+        "matched_track_count": 40,
+        "playlist_status": "unavailable",
+        "playlist_error": null
+      }
+    }
   },
   {
     "number": 150,
