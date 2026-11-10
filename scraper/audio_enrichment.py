@@ -53,21 +53,72 @@ def _spotify_metadata_library() -> tuple[Any, Any]:
     return Song, Album
 
 
-def _save_spotify_metadata(query: str, output_path: Path | None = None) -> list[dict[str, Any]]:
-    """Resolve Spotify metadata through spotDL's library API, not its FFmpeg-dependent CLI."""
-    Song, Album = _spotify_metadata_library()
+def _spotify_search_records(query: str) -> list[dict[str, Any]]:
+    """Return multiple raw Spotify search candidates without downloading audio."""
+    Song, _ = _spotify_metadata_library()
     try:
-        if query.startswith(SPOTIFY_ALBUM_BASE):
-            album = Album.from_url(query, fetch_songs=False)
-            records = [track.json for track in album.songs]
-        else:
-            records = [Song.from_search_term(query).json]
+        payload = Song.search(query)
     except Exception as exc:
         raise RuntimeError(f"Spotify metadata lookup failed for {query!r}: {exc}") from exc
-
-    if not records or not all(isinstance(item, dict) for item in records):
-        raise RuntimeError(f"Spotify returned no usable metadata records for {query!r}.")
+    if not isinstance(payload, dict):
+        raise RuntimeError(f"Spotify returned an unexpected search response for {query!r}.")
+    tracks = payload.get("tracks")
+    items = tracks.get("items") if isinstance(tracks, dict) else None
+    if not isinstance(items, list):
+        return []
+    records: list[dict[str, Any]] = []
+    for item in items:
+        if not isinstance(item, dict):
+            continue
+        album = item.get("album") if isinstance(item.get("album"), dict) else {}
+        artists = item.get("artists") if isinstance(item.get("artists"), list) else []
+        artist_names = [str(a.get("name") or "") if isinstance(a, dict) else "" for a in artists]
+        artist_ids = [str(a.get("id") or "") if isinstance(a, dict) else "" for a in artists]
+        track_id = item.get("id")
+        if not isinstance(track_id, str) or not re.fullmatch(r"[A-Za-z0-9]{22}", track_id):
+            continue
+        records.append({
+            "name": item.get("name"),
+            "artists": artist_names,
+            "artist_ids": artist_ids,
+            "artist": artist_names[0] if artist_names else None,
+            "artist_id": artist_ids[0] if artist_ids else None,
+            "album_id": album.get("id"),
+            "album_name": album.get("name"),
+            "track_number": item.get("track_number"),
+            "disc_number": item.get("disc_number"),
+            "duration": item.get("duration_ms"),
+            "song_id": track_id,
+            "url": (item.get("external_urls") or {}).get("spotify"),
+            "search_query": query,
+        })
     return records
+
+
+def _save_spotify_metadata(query: str, output_path: Path | None = None) -> list[dict[str, Any]]:
+    """Load album metadata or track search results, retrying transient Spotify responses once."""
+    Song, Album = _spotify_metadata_library()
+    for attempt in range(2):
+        try:
+            if query.startswith(SPOTIFY_ALBUM_BASE):
+                album = Album.from_url(query, fetch_songs=False)
+                records = [track.json for track in album.songs]
+            else:
+                records = _spotify_search_records(query)
+            if not all(isinstance(item, dict) for item in records):
+                raise RuntimeError(f"Spotify returned unusable metadata records for {query!r}.")
+            return records
+        except Exception as exc:
+            message = str(exc).casefold()
+            retryable = any(token in message for token in (
+                "nonetype", "timed out", "timeout", "temporarily unavailable",
+                "connection reset", "429", "rate limit", "502", "503", "504",
+            ))
+            if attempt == 0 and retryable:
+                time.sleep(0.5)
+                continue
+            raise RuntimeError(f"Spotify metadata lookup failed for {query!r}: {exc}") from exc
+    raise RuntimeError(f"Spotify metadata lookup failed for {query!r}.")
 
 
 def _artist_names(record: dict[str, Any]) -> list[str]:
@@ -78,57 +129,496 @@ def _artist_names(record: dict[str, Any]) -> list[str]:
     return [str(artist)] if isinstance(artist, str) else []
 
 
+SPOTIFY_ARTIST_ALIASES = {
+    "tkkg",
+    "tkkg retro archiv",
+}
+SPOTIFY_ARTIST_ID_ALIASES = {
+    "tkkg": "61qDotnjM0jnY5lkfOP7ve",
+    "tkkg retro archiv": "0i38tQX5j4gZ0KS3eCMoIl",
+}
+
+
+def _spotify_artist_key(value: str) -> str:
+    value = unicodedata.normalize("NFKC", value).casefold()
+    value = re.sub(r"[^\w]+", " ", value, flags=re.UNICODE)
+    return " ".join(value.split())
+
+
+def _spotify_artist_matches(record: dict[str, Any]) -> bool:
+    aliases = {_spotify_artist_key(value) for value in SPOTIFY_ARTIST_ALIASES}
+    return any(_spotify_artist_key(name) in aliases for name in _artist_names(record) if name.strip())
+
+
+def _spotify_artist_ids(record: dict[str, Any]) -> set[str]:
+    aliases = {_spotify_artist_key(value) for value in SPOTIFY_ARTIST_ALIASES}
+    artists = _artist_names(record)
+    ids = record.get("artist_ids")
+    if not isinstance(ids, list):
+        return set()
+    matched_names = {
+        _spotify_artist_key(artist_name)
+        for artist_name in artists
+        if _spotify_artist_key(artist_name) in aliases
+    }
+    result = {
+        artist_id
+        for artist_name, artist_id in zip(artists, ids)
+        if _spotify_artist_key(artist_name) in aliases
+        and isinstance(artist_id, str)
+        and re.fullmatch(r"[A-Za-z0-9]{22}", artist_id)
+    }
+    for artist_name in matched_names:
+        known_id = SPOTIFY_ARTIST_ID_ALIASES.get(artist_name)
+        if known_id:
+            result.add(known_id)
+    return result
+
+
+def _spotify_number_matches_text(value: str, number: int) -> bool:
+    number_pattern = rf"(?<!\d)0*{number}(?!\d)"
+    if re.search(number_pattern, value):
+        return True
+    for match in re.finditer(r"(?<!\d)(\d+)\s*[-–]\s*(\d+)(?!\d)", value):
+        if int(match.group(1)) <= number <= int(match.group(2)):
+            return True
+    return False
+
+
+def _spotify_album_search_items(payload: Any) -> list[dict[str, Any]]:
+    """Extract album objects from all Spotify search sections, including top results."""
+    found: dict[str, dict[str, Any]] = {}
+
+    def visit(value: Any) -> None:
+        if isinstance(value, dict):
+            uri = value.get("uri")
+            name = value.get("name")
+            if (
+                isinstance(uri, str)
+                and uri.startswith("spotify:album:")
+                and isinstance(name, str)
+                and name.strip()
+            ):
+                found[uri] = value
+            for nested in value.values():
+                visit(nested)
+        elif isinstance(value, list):
+            for nested in value:
+                visit(nested)
+
+    visit(payload)
+    return list(found.values())
+
+
+def _spotify_album_search_records(
+    queries: list[str], episode: dict[str, Any],
+    diagnostics: list[dict[str, Any]] | None = None,
+) -> list[dict[str, Any]]:
+    """Search Spotify's public album catalogue, including compilation releases."""
+    from spotapi import Song as SpotAPISong
+
+    number = int(episode["number"])
+    title = _normalise(str(episode["title"]))
+    client = SpotAPISong()
+    records: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    for query in queries:
+        offset = 0
+        for page_index in range(3):
+            try:
+                payload = client.query_songs(query, limit=100, offset=offset)
+            except Exception as exc:
+                if diagnostics is not None:
+                    diagnostics.append({"album_search_query": query, "offset": offset, "error": str(exc)})
+                break
+            search = payload.get("data", {}).get("searchV2", {}) if isinstance(payload, dict) else {}
+            album_section = search.get("albumsV2", {}) if isinstance(search, dict) else {}
+            section_items = album_section.get("items", []) if isinstance(album_section, dict) else []
+            items = _spotify_album_search_items(payload)
+            if diagnostics is not None:
+                diagnostics.append({
+                    "album_search_query": query,
+                    "album_search_offset": offset,
+                    "album_search_count": len(section_items) if isinstance(section_items, list) else 0,
+                    "album_search_sample": [item.get("name") for item in items[:10]],
+                })
+            if not items:
+                break
+            for album_data in items:
+                album_name = str(album_data.get("name") or "")
+                normalized_name = _normalise(album_name)
+                album_uri = str(album_data.get("uri") or "")
+                album_id = album_uri.rsplit(":", 1)[-1] if album_uri.startswith("spotify:album:") else ""
+                if (
+                    not album_id
+                    or not re.fullmatch(r"[A-Za-z0-9]{22}", album_id)
+                    or album_id in seen
+                ):
+                    continue
+                seen.add(album_id)
+                album_matches = (
+                    title in normalized_name
+                    or _spotify_number_matches_text(album_name, number)
+                )
+                if diagnostics is not None and album_matches:
+                    diagnostics.append({"album_search_candidate": album_name, "album_id": album_id})
+                if not album_matches:
+                    continue
+                try:
+                    album_records = _save_spotify_metadata(f"{SPOTIFY_ALBUM_BASE}{album_id}")
+                except Exception as exc:
+                    if diagnostics is not None:
+                        diagnostics.append({"album_search_metadata_error": album_name, "error": str(exc)})
+                    continue
+                for record in album_records:
+                    if not _spotify_artist_matches(record):
+                        continue
+                    record["search_query"] = f"album_search:{query}"
+                    records.append(record)
+            total = album_section.get("totalCount") if isinstance(album_section, dict) else None
+            offset += len(items)
+            if len(items) < 100 or (isinstance(total, int) and offset >= total):
+                break
+    return records
+
+
+def _spotify_artist_album_records(
+    artist_ids: set[str], episode: dict[str, Any],
+    diagnostics: list[dict[str, Any]] | None = None,
+) -> list[dict[str, Any]]:
+    """Find episode or box albums through the exact credited artist's paginated discography."""
+    if not artist_ids:
+        if diagnostics is not None:
+            diagnostics.append({"discography": "no exact artist IDs were found"})
+        return []
+    _spotify_metadata_library()
+    from spotapi import Artist as SpotAPIArtist
+
+    client = SpotAPIArtist()
+    number = int(episode["number"])
+    title = _normalise(str(episode["title"]))
+    records: list[dict[str, Any]] = []
+    seen_albums: set[str] = set()
+    for artist_id in sorted(artist_ids):
+        if diagnostics is not None:
+            diagnostics.append({"discography_artist_id": artist_id})
+        if hasattr(client, "paginate_artist_discography"):
+            pages = client.paginate_artist_discography(artist_id, section="all")
+        elif hasattr(client, "get_artist_discography"):
+            def page_generator():
+                offset = 0
+                while offset < 500:
+                    response = client.get_artist_discography(
+                        artist_id, section="all", offset=offset, limit=50,
+                    )
+                    section = (
+                        response.get("data", {})
+                        .get("artistUnion", {})
+                        .get("discography", {})
+                        .get("all", {})
+                    )
+                    page_items = section.get("items") or []
+                    if not page_items:
+                        break
+                    yield page_items
+                    offset += len(page_items)
+                    total = section.get("totalCount")
+                    if len(page_items) < 50 or (isinstance(total, int) and offset >= total):
+                        break
+            pages = page_generator()
+        else:
+            raise RuntimeError("Installed SpotAPI does not expose paginated artist discography")
+        for page_items in pages:
+            if not isinstance(page_items, list):
+                continue
+            if diagnostics is not None:
+                diagnostics.append({
+                    "discography_artist_id": artist_id,
+                    "discography_count": len(page_items),
+                    "discography_sample": [
+                        (entry.get("releases", {}).get("items", [{}])[0].get("name"))
+                        for entry in page_items[:8]
+                        if isinstance(entry, dict)
+                        and isinstance(entry.get("releases"), dict)
+                        and isinstance(entry["releases"].get("items"), list)
+                        and entry["releases"].get("items")
+                    ],
+                })
+            for entry in page_items:
+                if not isinstance(entry, dict):
+                    continue
+                releases = entry.get("releases", {}).get("items", [])
+                if not isinstance(releases, list) or not releases or not isinstance(releases[0], dict):
+                    continue
+                album_item = releases[0]
+                album_name = str(album_item.get("name") or "")
+                album_id = album_item.get("id")
+                if not isinstance(album_id, str):
+                    uri = str(album_item.get("uri") or "")
+                    album_id = uri.rsplit(":", 1)[-1] if uri.startswith("spotify:album:") else None
+                if (
+                    not isinstance(album_id, str)
+                    or not re.fullmatch(r"[A-Za-z0-9]{22}", album_id)
+                    or album_id in seen_albums
+                ):
+                    continue
+                seen_albums.add(album_id)
+                album_matches = (
+                    title in _normalise(album_name)
+                    or _spotify_number_matches_text(album_name, number)
+                )
+                if diagnostics is not None and album_matches:
+                    diagnostics.append({"discography_candidate_album": album_name, "album_id": album_id})
+                if not album_matches:
+                    continue
+                try:
+                    album_records = _save_spotify_metadata(f"{SPOTIFY_ALBUM_BASE}{album_id}")
+                except Exception as exc:
+                    if diagnostics is not None:
+                        diagnostics.append({"discography_album_error": album_name, "error": str(exc)})
+                    continue
+                for record in album_records:
+                    record["search_query"] = f"artist_albums:{artist_id} episode:{number}"
+                    records.append(record)
+    return records
+
+
+def _episode_title_matches_track(
+    episode: dict[str, Any], track: dict[str, Any], candidate_track_id: str | None = None,
+) -> bool:
+    number = int(episode["number"])
+    expected_title = _normalise(str(episode["title"]))
+    actual_title = _normalise(str(track.get("name") or ""))
+    album_title = _normalise(str(track.get("album_name") or ""))
+    part_marker = bool(re.search(r"\bteil\s*0*\d+\b|\bpart\s*0*\d+\b", actual_title))
+    title_in_track = bool(expected_title and expected_title in actual_title)
+    title_in_album = bool(expected_title and expected_title in album_title)
+    if not title_in_track and not (title_in_album and part_marker):
+        return False
+    return bool(
+        _spotify_number_matches_text(actual_title, number)
+        or _spotify_number_matches_text(album_title, number)
+        or (candidate_track_id and track.get("song_id") == candidate_track_id)
+    )
+
+
+def _spotify_candidate_score(episode: dict[str, Any], record: dict[str, Any]) -> int:
+    if not _spotify_artist_matches(record):
+        return -100
+    name = _normalise(str(record.get("name") or ""))
+    title = _normalise(str(episode["title"]))
+    number = int(episode["number"])
+    album_name = _normalise(str(record.get("album_name") or ""))
+    query = _normalise(str(record.get("search_query") or ""))
+    number_evidence = (
+        _spotify_number_matches_text(name, number)
+        or _spotify_number_matches_text(album_name, number)
+        or _spotify_number_matches_text(query, number)
+    )
+    part_marker = bool(re.search(r"\bteil\s*0*\d+\b|\bpart\s*0*\d+\b", name))
+    title_in_track = title in name
+    title_in_album = title in album_name
+    exact_title = name == title
+    if not title_in_track and not (title_in_album and part_marker):
+        return -100
+    if not number_evidence and not exact_title:
+        return -100
+    score = 100
+    if exact_title:
+        score += 15
+    if part_marker:
+        score += 20
+    if title_in_album:
+        score += 10
+    if record.get("track_number") == 1:
+        score += 2
+    if _spotify_number_matches_text(name, number):
+        score += 5
+    elif _spotify_number_matches_text(album_name, number):
+        score += 3
+    return score
+
+
 def resolve_spotify_album(episode: dict[str, Any], work_dir: Path) -> dict[str, Any]:
+    """Resolve either a dedicated split-track release or the episode track in a compilation."""
     number = int(episode["number"])
     title = str(episode["title"])
-    first_track_query = f"TKKG {number:03d} {title} Teil 01"
-    first_tracks = _save_spotify_metadata(first_track_query)
-    if len(first_tracks) != 1:
-        raise ValueError(
-            f"Expected one Spotify first-track result, received {len(first_tracks)}."
-        )
-    first = first_tracks[0]
-    if not any(name.strip().casefold() == "tkkg" for name in _artist_names(first)):
-        raise ValueError("Spotify first-track result is not credited to TKKG.")
-    expected_first_title = _normalise(f"{number} {title} Teil 01")
-    if _normalise(str(first.get("name", ""))) != expected_first_title:
-        raise ValueError(
-            f"Spotify first-track title mismatch: expected '{number} - {title} - Teil 01', "
-            f"received {first.get('name')!r}."
-        )
-    album_id = first.get("album_id")
-    if not isinstance(album_id, str) or not re.fullmatch(r"[A-Za-z0-9]{22}", album_id):
-        raise ValueError("Spotify first-track result has no valid album ID.")
-    album_name = first.get("album_name")
-    if not isinstance(album_name, str) or not album_name.strip():
-        raise ValueError("Spotify first-track result has no album name.")
-
-    album_url = f"{SPOTIFY_ALBUM_BASE}{album_id}"
-    records = _save_spotify_metadata(album_url)
-    if any(item.get("album_id") != album_id for item in records):
-        raise ValueError("Spotify album response contains records from another album.")
-    numbers = []
-    for item in records:
+    queries = [
+        f'track:"{title}" artist:TKKG',
+        f'artist:TKKG track:"{title}"',
+        f'album:"{title}" artist:TKKG',
+        f'artist:TKKG album:"{title}"',
+        f'track:"{title}" artist:"TKKG Retro-Archiv"',
+        f'track:"{title}"',
+        f'track:"TKKG ({number}) - {title}" artist:TKKG',
+        f"TKKG ({number}) - {title}",
+        f"TKKG {number:03d} {title} Teil 01",
+        f"TKKG {number} {title}",
+        f"TKKG Folge {number} {title}",
+        f"{number} {title}",
+        f"{title} TKKG",
+        "TKKG",
+        "TKKG Retro-Archiv",
+    ]
+    candidates: dict[str, dict[str, Any]] = {}
+    search_errors: list[str] = []
+    search_diagnostics: list[dict[str, Any]] = []
+    for query in dict.fromkeys(queries):
         try:
-            track_number = int(item.get("track_number"))
-        except (TypeError, ValueError) as exc:
-            raise ValueError("Spotify album contains a track without a valid track number.") from exc
-        if track_number < 1:
-            raise ValueError("Spotify album contains a non-positive track number.")
-        numbers.append(track_number)
-    if len(set(numbers)) != len(numbers) or sorted(numbers) != list(range(1, len(records) + 1)):
-        disc_numbers = [item.get("disc_number") for item in records]
-        raise ValueError("Spotify album " + album_id + " (" + album_name + ") track sequence is incomplete. Track numbers: " + str(numbers) + "; disc numbers: " + str(disc_numbers))
-    records.sort(key=lambda item: int(item["track_number"]))
-    if not all(isinstance(item.get("name"), str) and item["name"].strip() for item in records):
-        raise ValueError("Spotify album contains a track without a title.")
+            query_records = _save_spotify_metadata(query)[:20]
+            if not query_records:
+                search_diagnostics.append({"query": query, "result_count": 0})
+            for record in query_records[:5]:
+                search_diagnostics.append({
+                    "query": query,
+                    "name": record.get("name"),
+                    "artists": _artist_names(record),
+                    "artist_ids": record.get("artist_ids"),
+                    "album_name": record.get("album_name"),
+                    "score": _spotify_candidate_score(episode, record),
+                })
+                track_id = record.get("song_id")
+                if isinstance(track_id, str):
+                    existing = candidates.get(track_id)
+                    if existing is None or _spotify_candidate_score(episode, record) > _spotify_candidate_score(episode, existing):
+                        candidates[track_id] = record
+        except Exception as exc:
+            search_errors.append(f"{query}: {exc}")
+
+    ranked = sorted(
+        (( _spotify_candidate_score(episode, record), track_id, record)
+         for track_id, record in candidates.items()),
+        key=lambda item: (item[0], item[1]),
+        reverse=True,
+    )
+    ranked = [item for item in ranked if item[0] >= 100]
+    if not ranked:
+        box_start = ((number - 1) // 3) * 3 + 1
+        box_end = box_start + 2
+        box_index = ((number - 1) // 3) + 1
+        box_title = f"{box_index:02d}/3er Box - Folge {box_start}-{box_end}"
+        album_queries = list(dict.fromkeys([
+            f"TKKG {number} {title}",
+            box_title,
+            f"TKKG 3er Box Folge {box_start}-{box_end}",
+        ]))
+        try:
+            for record in _spotify_album_search_records(album_queries, episode, search_diagnostics):
+                track_id = record.get("song_id")
+                if isinstance(track_id, str):
+                    candidates[track_id] = record
+        except Exception as exc:
+            search_errors.append(f"Spotify album search: {exc}")
+        ranked = sorted(
+            ((_spotify_candidate_score(episode, record), track_id, record)
+             for track_id, record in candidates.items()),
+            key=lambda item: (item[0], item[1]),
+            reverse=True,
+        )
+        ranked = [item for item in ranked if item[0] >= 100]
+    if not ranked:
+        artist_ids = set(SPOTIFY_ARTIST_ID_ALIASES.values())
+        artist_ids.update({
+            artist_id
+            for record in candidates.values()
+            for artist_id in _spotify_artist_ids(record)
+        })
+        try:
+            for record in _spotify_artist_album_records(artist_ids, episode, search_diagnostics):
+                track_id = record.get("song_id")
+                if isinstance(track_id, str):
+                    existing = candidates.get(track_id)
+                    if existing is None or _spotify_candidate_score(episode, record) > _spotify_candidate_score(episode, existing):
+                        candidates[track_id] = record
+        except Exception as exc:
+            search_errors.append(f"artist discography: {exc}")
+        ranked = sorted(
+            ((_spotify_candidate_score(episode, record), track_id, record)
+             for track_id, record in candidates.items()),
+            key=lambda item: (item[0], item[1]),
+            reverse=True,
+        )
+        ranked = [item for item in ranked if item[0] >= 100]
+    if not ranked:
+        detail = "; ".join(search_errors[:3]) or "no title and artist candidate passed validation"
+        diagnostics = json.dumps(search_diagnostics[:100], ensure_ascii=False)
+        raise ValueError(f"No credible Spotify track candidate for episode {number}: {detail}. Candidates: {diagnostics}")
+
+    album_cache: dict[str, list[dict[str, Any]]] = {}
+    verified: list[tuple[int, str, str, list[dict[str, Any]], str]] = []
+    rejected: list[str] = []
+    for score, track_id, candidate in ranked[:12]:
+        album_id = candidate.get("album_id")
+        album_name = candidate.get("album_name")
+        if not isinstance(album_id, str) or not re.fullmatch(r"[A-Za-z0-9]{22}", album_id):
+            rejected.append(f"{track_id}: missing valid album ID")
+            continue
+        if not isinstance(album_name, str) or not album_name.strip():
+            rejected.append(f"{track_id}: missing album title")
+            continue
+        if album_id not in album_cache:
+            try:
+                album_cache[album_id] = _save_spotify_metadata(f"{SPOTIFY_ALBUM_BASE}{album_id}")
+            except Exception as exc:
+                rejected.append(f"{album_id}: album metadata failed: {exc}")
+                continue
+        album_tracks = album_cache[album_id]
+        if not album_tracks or any(item.get("album_id") != album_id for item in album_tracks):
+            rejected.append(f"{album_id}: inconsistent album metadata")
+            continue
+        selected = [item for item in album_tracks if _episode_title_matches_track(episode, item, track_id)]
+        if not selected:
+            # A track-level search hit can be trusted only if its identity also appears
+            # in the fetched parent album tracklist.
+            selected = [item for item in album_tracks if item.get("song_id") == track_id]
+            if not selected or not _episode_title_matches_track(episode, selected[0], track_id):
+                rejected.append(f"{album_id}: requested episode could not be isolated from album")
+                continue
+        selected.sort(key=lambda item: (
+            int(item.get("disc_number") or 1),
+            int(item.get("track_number") or 0),
+        ))
+        numbers = [int(item.get("track_number") or 0) for item in selected]
+        if any(value < 1 for value in numbers) or len(set((item.get("disc_number") or 1, item.get("track_number")) for item in selected)) != len(selected):
+            rejected.append(f"{album_id}: selected episode tracks have invalid or duplicate positions")
+            continue
+        if len(selected) > 1 and numbers != list(range(numbers[0], numbers[0] + len(numbers))):
+            rejected.append(f"{album_id}: selected episode tracks are not contiguous")
+            continue
+        if not all(isinstance(item.get("name"), str) and item["name"].strip() for item in selected):
+            rejected.append(f"{album_id}: selected track has no title")
+            continue
+        verified.append((score, album_id, album_name, selected, track_id))
+
+    if not verified:
+        detail = "; ".join(rejected[:8]) or "no candidate album could be validated"
+        raise ValueError(f"Spotify candidates for episode {number} were rejected: {detail}")
+    verified.sort(key=lambda item: (item[0], len(item[3])), reverse=True)
+    best = verified[0]
+    if len(verified) > 1 and verified[1][0] == best[0] and verified[1][1] != best[1]:
+        raise ValueError(
+            f"Ambiguous Spotify match for episode {number}: "
+            f"{best[1]} and {verified[1][1]} have equal evidence scores."
+        )
+    _, album_id, album_name, records, selected_track_id = best
+    album_url = f"{SPOTIFY_ALBUM_BASE}{album_id}"
     return {
         "album_id": album_id,
         "url": album_url,
         "title": album_name,
         "track_count": len(records),
         "tracks": records,
-        "source_query": first_track_query,
+        "source_query": next(
+            (str(item.get("search_query")) for item in candidates.values()
+             if item.get("song_id") == selected_track_id),
+            queries[0],
+        ),
+        "release_type": (
+            "compilation_track_selection"
+            if len(records) < len(album_cache[album_id])
+            else "episode_release"
+        ),
+        "selected_track_id": selected_track_id,
     }
 
 
@@ -749,17 +1239,23 @@ def discover_episode_audio(
     playlist_failure = None
     youtube_music_tracks = None
     playlist_started = time.perf_counter()
-    try:
-        playlist_result = find_verified_youtube_music_playlist(
-            episode, spotify, ytm, playlist_id_override,
+    if spotify.get("release_type") == "compilation_track_selection":
+        playlist_failure = (
+            "Album-level playlist pairing skipped because the Spotify source is a compilation; "
+            "only individual episode track pairs are safe."
         )
-        youtube_music_tracks = playlist_result.pop("_matched_tracks")
-        if playlist_result.get("playlist_id"):
-            youtube_music_playlist = playlist_result
-        else:
-            youtube_music_album = playlist_result.get("album_url")
-    except Exception as exc:
-        playlist_failure = str(exc)
+    else:
+        try:
+            playlist_result = find_verified_youtube_music_playlist(
+                episode, spotify, ytm, playlist_id_override,
+            )
+            youtube_music_tracks = playlist_result.pop("_matched_tracks")
+            if playlist_result.get("playlist_id"):
+                youtube_music_playlist = playlist_result
+            else:
+                youtube_music_album = playlist_result.get("album_url")
+        except Exception as exc:
+            playlist_failure = str(exc)
     playlist_seconds = round(time.perf_counter() - playlist_started, 2)
 
     song_search_seconds = 0.0
@@ -923,6 +1419,7 @@ def enrich_catalogue(
         "started_at": datetime.now(timezone.utc).isoformat(),
         "mode": "write" if write else "dry_run",
         "target_count": len(targets),
+        "selected_numbers": [int(item["number"]) for item in targets],
         "verified": [],
         "failures": [],
         "coverage_before": audio_release_coverage(episodes),

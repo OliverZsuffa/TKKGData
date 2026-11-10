@@ -1,0 +1,122 @@
+name: Audio enrichment batch smoke test
+
+on:
+  pull_request:
+    paths:
+      - "scraper/audio_enrichment.py"
+      - "scraper/audio_enrichment_batch.py"
+      - "requirements-audio.txt"
+      - ".github/workflows/audio-enrichment-batch-smoke.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  prepare:
+    name: Prepare controlled 6 episode range
+    runs-on: ubuntu-24.04
+    outputs:
+      matrix: ${{ steps.prepare.outputs.matrix }}
+      max_parallel: ${{ steps.prepare.outputs.max_parallel }}
+      run_started_at: ${{ steps.prepare.outputs.run_started_at }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install -r requirements-audio.txt
+      - name: Prepare two batches of three episodes
+        id: prepare
+        run: |
+          python -m scraper.audio_enrichment_batch prepare \
+            --start-episode 1 \
+            --end-episode 6 \
+            --batch-size 3 \
+            --max-parallel 2
+
+  discover:
+    name: Batch ${{ matrix.batch }} live discovery
+    needs: prepare
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix: ${{ fromJSON(needs.prepare.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install metadata discovery dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install -r requirements-audio.txt
+      - name: Resolve assigned episodes without publishing
+        env:
+          EPISODES: ${{ join(matrix.episodes, ' ') }}
+          BATCH_ID: ${{ matrix.batch }}
+        run: |
+          mkdir -p data/batch-reports
+          ARGS=()
+          for episode in $EPISODES; do
+            ARGS+=(--episode "$episode")
+          done
+          python -m scraper.audio_enrichment "${ARGS[@]}" \
+            --report "data/batch-reports/batch-$BATCH_ID.json"
+      - name: Upload batch report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tkkgdata-batch-smoke-${{ matrix.batch }}
+          path: data/batch-reports/batch-${{ matrix.batch }}.json
+          if-no-files-found: warn
+          retention-days: 30
+
+  aggregate:
+    name: Validate combined batch reports
+    needs: [prepare, discover]
+    if: always()
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install catalogue validation dependencies
+        run: pip install -r requirements.txt
+      - name: Download batch reports
+        if: always()
+        uses: actions/download-artifact@v4
+        with:
+          pattern: tkkgdata-batch-smoke-*
+          path: data/batch-reports
+          merge-multiple: true
+      - name: Aggregate in dry-run mode
+        env:
+          MATRIX_JSON: ${{ needs.prepare.outputs.matrix }}
+          DISCOVERY_RESULT: ${{ needs.discover.result }}
+          MAX_PARALLEL: ${{ needs.prepare.outputs.max_parallel }}
+          RUN_STARTED_AT: ${{ needs.prepare.outputs.run_started_at }}
+        run: |
+          python -m scraper.audio_enrichment_batch aggregate \
+            --reports-dir data/batch-reports \
+            --matrix-json "$MATRIX_JSON" \
+            --discovery-result "$DISCOVERY_RESULT" \
+            --max-parallel "$MAX_PARALLEL" \
+            --run-started-at "$RUN_STARTED_AT"
+      - name: Upload combined dry-run report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tkkgdata-batch-smoke-combined-report
+          path: data/batch-reports/combined-report.json
+          if-no-files-found: warn
+          retention-days: 30
