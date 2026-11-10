@@ -111,6 +111,36 @@ class FakeSongSearchYTMusic:
 
 
 
+
+class FakeAlbumWithoutPlaylistYTMusic(FakeYTMusic):
+    def search(self, query, filter, limit):
+        self.search_calls.append((query, filter, limit))
+        if filter == "albums":
+            return [{
+                "resultType": "album",
+                "browseId": "MPREb_example",
+                "title": "150/Heiße Nächte im Dezember",
+                "artists": [{"name": "TKKG"}],
+            }]
+        return []
+
+    def get_album(self, browse_id):
+        self.asserted_browse_id = browse_id
+        return {
+            "title": "150/Heiße Nächte im Dezember",
+            "artists": [{"name": "TKKG"}],
+            "tracks": [
+                {
+                    "videoId": f"videoid{index:04d}",
+                    "title": track["name"],
+                    "duration_seconds": 128 - index,
+                    "artists": [{"name": "TKKG"}],
+                }
+                for index, track in enumerate(SPOTIFY["tracks"], start=1)
+            ],
+        }
+
+
 class AudioEnrichmentTests(unittest.TestCase):
     def test_official_audio_playlist_browse_id_is_recognized(self):
         source = _candidate_source(
@@ -147,6 +177,36 @@ class AudioEnrichmentTests(unittest.TestCase):
             result["playlist_id"],
             "OLAK5uy_mQRbJNANh1H4CKbmM5ez5LSW1HJFvE3QI",
         )
+
+
+    def test_album_tracklist_is_verified_when_no_public_playlist_id_exists(self):
+        ytm = FakeAlbumWithoutPlaylistYTMusic()
+        with patch(
+            "scraper.audio_enrichment._extract_ytdlp_playlist",
+            side_effect=AssertionError("No playlist extraction should be attempted"),
+        ):
+            result = find_verified_youtube_music_playlist(EPISODE, SPOTIFY, ytm)
+        self.assertIsNone(result["playlist_id"])
+        self.assertEqual(result["album_id"], "MPREb_example")
+        self.assertEqual(result["album_url"], "https://music.youtube.com/browse/MPREb_example")
+        self.assertEqual(len(result["_matched_tracks"]), 2)
+        self.assertIn("ordered_album_match", result["_matched_tracks"][0]["match_evidence"])
+
+    def test_discovery_returns_album_page_and_ordered_song_links_without_playlist_id(self):
+        ytm = FakeAlbumWithoutPlaylistYTMusic()
+        with patch("scraper.audio_enrichment.resolve_spotify_album", return_value=SPOTIFY):
+            result = discover_episode_audio(EPISODE, ytm)
+        self.assertIsNone(result["audio_release"]["youtube_music"]["playlist"])
+        self.assertEqual(
+            result["links"]["youtube_music_album"],
+            "https://music.youtube.com/browse/MPREb_example",
+        )
+        self.assertEqual(len(result["links"]["youtube_music_tracks"]), 2)
+        self.assertEqual(
+            result["audio_release"]["verification"]["method"],
+            "exact_ordered_album_track_titles_and_duration",
+        )
+
 
     def test_explicit_ytdlp_playlist_is_verified_and_produces_individual_links(self):
         playlist_id = "OLAK5uy_example123"
