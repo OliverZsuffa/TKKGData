@@ -111,6 +111,14 @@ def _save_spotify_metadata(query: str, output_path: Path | None = None) -> list[
     return records
 
 
+def _artist_names(record: dict[str, Any]) -> list[str]:
+    artists = record.get("artists")
+    if isinstance(artists, list):
+        return [str(item) for item in artists if isinstance(item, (str, int, float))]
+    artist = record.get("artist")
+    return [str(artist)] if isinstance(artist, str) else []
+
+
 SPOTIFY_ARTIST_ALIASES = {
     "tkkg",
     "tkkg retro archiv",
