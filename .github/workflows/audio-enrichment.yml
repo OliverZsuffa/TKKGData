@@ -59,6 +59,7 @@ jobs:
     outputs:
       matrix: ${{ steps.prepare.outputs.matrix }}
       batch_count: ${{ steps.prepare.outputs.batch_count }}
+      max_parallel: ${{ steps.prepare.outputs.max_parallel }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -90,7 +91,7 @@ jobs:
     timeout-minutes: 35
     strategy:
       fail-fast: false
-      max-parallel: ${{ inputs.max_parallel || 4 }}
+      max-parallel: ${{ fromJSON(needs.prepare.outputs.max_parallel) }}
       matrix: ${{ fromJSON(needs.prepare.outputs.matrix) }}
     steps:
       - uses: actions/checkout@v4
