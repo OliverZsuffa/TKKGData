@@ -61,6 +61,7 @@ def partition(items: list[int], batch_size: int) -> list[list[int]]:
 
 
 def prepare(args: argparse.Namespace) -> int:
+    run_started_at = datetime.now(timezone.utc).isoformat()
     if args.max_parallel < 1 or args.max_parallel > 8:
         raise ValueError("Maximum parallel batches must be between 1 and 8.")
     episodes = json.loads(args.catalogue.read_text(encoding="utf-8"))
@@ -83,11 +84,13 @@ def prepare(args: argparse.Namespace) -> int:
             handle.write(f"batch_count={len(batches)}\n")
             handle.write(f"selected_count={len(selected)}\n")
             handle.write(f"max_parallel={args.max_parallel}\n")
+            handle.write(f"run_started_at={run_started_at}\n")
     print(json.dumps({
         "selected_count": len(selected),
         "batch_count": len(batches),
         "batch_size": args.batch_size,
         "max_parallel": args.max_parallel,
+        "run_started_at": run_started_at,
         "matrix": matrix,
     }, indent=2))
     return 0
