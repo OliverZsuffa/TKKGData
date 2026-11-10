@@ -172,29 +172,6 @@ def _spotify_number_matches_text(value: str, number: int) -> bool:
     return False
 
 
-def _spotify_extended_search_records(query: str, max_pages: int = 2) -> list[dict[str, Any]]:
-    """Search beyond SpotipyFree's first ten results using SpotAPI's paginated song search."""
-    from spotapi import Song as SpotAPISong
-    from SpotipyFree.Formatter import SpotifyFormatter
-
-    records: list[dict[str, Any]] = []
-    for page_index, page in enumerate(SpotAPISong().paginate_songs(query)):
-        if page_index >= max_pages:
-            break
-        for result in page:
-            track_data = result.get("item", {}).get("data", {}) if isinstance(result, dict) else {}
-            if not isinstance(track_data, dict) or track_data.get("__typename") != "Track":
-                continue
-            artist_items = track_data.get("artists", {}).get("items", [])
-            formatted_artists = SpotifyFormatter.formatArtists(artist_items)
-            formatted_track = SpotifyFormatter.formatTrack(track_data, formatted_artists)
-            records.extend(_spotify_search_records(
-                {"tracks": {"items": [formatted_track]}},
-                query,
-            ))
-    return records
-
-
 def _spotify_album_search_records(
     queries: list[str], episode: dict[str, Any],
     diagnostics: list[dict[str, Any]] | None = None,
