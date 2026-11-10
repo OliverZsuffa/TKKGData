@@ -21,15 +21,15 @@ Approved on 2026-11-10. Implementation is in progress on branch `implement/005-e
 
 ## Live integration results
 
-Workflow run: https://github.com/OliverZsuffa/TKKGData/actions/runs/42820767263
+Workflow run: https://github.com/OliverZsuffa/TKKGData/actions/runs/42821205441
 
 All three independent dry-run jobs completed with **1 verified episode, 0 unresolved episodes**. Each episode produced 40 ordered Spotify track links and 40 ordered YouTube Music track links. Spotify track IDs and YouTube Music video IDs were unique, track numbers were contiguous from 1 through 40, and the minimum match score was 160. The matching threshold was not lowered.
 
 | Episode | Spotify album | Verified YouTube Music album page | Spotify tracks | YouTube Music tracks | Discovery time |
 |---|---|---|---:|---:|---:|
-| 148 | [Spotify](https://open.spotify.com/album/0nFRzugvW1NVT1DUDxpQdb) | [YouTube Music](https://music.youtube.com/browse/MPREb_unzpFfndzd7) | 40 | 40 | 26.61 s |
-| 149 | [Spotify](https://open.spotify.com/album/1OWuX6xSnnC3oebl45X28K) | [YouTube Music](https://music.youtube.com/browse/MPREb_9M8A5hcgSyo) | 40 | 40 | 31.52 s |
-| 150 | [Spotify](https://open.spotify.com/album/0ZqyFeMXxCyIJvYptGlnn1) | [YouTube Music](https://music.youtube.com/browse/MPREb_ukgkcubWGzw) | 40 | 40 | 28.05 s |
+| 148 | [Spotify](https://open.spotify.com/album/0nFRzugvW1NVT1DUDxpQdb) | [YouTube Music](https://music.youtube.com/browse/MPREb_unzpFfndzd7) | 40 | 40 | 23.25 s |
+| 149 | [Spotify](https://open.spotify.com/album/1OWuX6xSnnC3oebl45X28K) | [YouTube Music](https://music.youtube.com/browse/MPREb_9M8A5hcgSyo) | 40 | 40 | 24.13 s |
+| 150 | [Spotify](https://open.spotify.com/album/0ZqyFeMXxCyIJvYptGlnn1) | [YouTube Music](https://music.youtube.com/browse/MPREb_ukgkcubWGzw) | 40 | 40 | 29.48 s |
 
 The YouTube Music search results expose the correct official MPRE album pages for all three episodes, but those album records do not expose an OLAK playlist ID or video IDs through the album metadata API. yt-dlp successfully extracted the album page entries and their video IDs. The pipeline then verified all 40 ordered tracks against Spotify by normalized title, album identity, duration, and video ID.
 
@@ -38,15 +38,15 @@ Consequently, the report exposes the verified YouTube Music album page and all i
 The live integration workflow ran with PATH restricted to the configured Python directory, so FFmpeg was unavailable to the discovery process. All three episodes still resolved successfully. The metadata-only Spotify lookup therefore works without installing or invoking FFmpeg.
 
 Per-episode stage timings:
-- Episode 148: Spotify 13.22 s, YouTube Music album discovery and extraction 13.39 s, total 26.61 s.
-- Episode 149: Spotify 18.50 s, YouTube Music album discovery and extraction 13.02 s, total 31.52 s.
-- Episode 150: Spotify 15.61 s, YouTube Music album discovery and extraction 12.43 s, total 28.05 s.
+- Episode 148: Spotify 10.97 s, YouTube Music album discovery and extraction 12.28 s, total 23.25 s.
+- Episode 149: Spotify 11.39 s, YouTube Music album discovery and extraction 12.74 s, total 24.13 s.
+- Episode 150: Spotify 16.65 s, YouTube Music album discovery and extraction 12.83 s, total 29.48 s.
 
 Artifacts from the integration run contain the full JSON link lists and verification evidence for each episode.
 
 ## Automated validation status
 
-The live integration workflow passed for all three episodes. Offline validation has passed on earlier commits, but a later unit test exposed an incomplete fake album fixture. The fixture has been corrected to exercise the yt-dlp album-page fallback. The validation workflow for the latest commit is still pending and must pass before this request is considered complete.
+The live integration workflow passed for all three episodes on commit 750a4e405f7a38e80e56cf7d1c2bb65f23a0bdfd. The full offline unit suite and published catalogue validation also passed on that commit. A final import-only correction was applied afterward to retain CLI stderr reporting; its validation is running separately.
 
 ## Analysis of the earlier episode 149 run
 
