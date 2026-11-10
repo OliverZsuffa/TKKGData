@@ -39,8 +39,7 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
-      - name: Refresh checkout to the latest main before scheduled data writes
-        if: github.event_name == 'schedule'
+      - name: Refresh checkout to the latest main after entering the data-write queue
         run: |
           git fetch origin main
           git checkout -B main origin/main
