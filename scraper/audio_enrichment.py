@@ -265,7 +265,11 @@ def resolve_spotify_album(episode: dict[str, Any], work_dir: Path) -> dict[str, 
              if item.get("song_id") == selected_track_id),
             queries[0],
         ),
-        "release_type": "compilation_track_selection" if len(records) == 1 else "episode_split_track_release",
+        "release_type": (
+            "compilation_track_selection"
+            if len(records) < len(album_cache[album_id])
+            else "episode_release"
+        ),
         "selected_track_id": selected_track_id,
     }
 
@@ -887,17 +891,23 @@ def discover_episode_audio(
     playlist_failure = None
     youtube_music_tracks = None
     playlist_started = time.perf_counter()
-    try:
-        playlist_result = find_verified_youtube_music_playlist(
-            episode, spotify, ytm, playlist_id_override,
+    if spotify.get("release_type") == "compilation_track_selection":
+        playlist_failure = (
+            "Album-level playlist pairing skipped because the Spotify source is a compilation; "
+            "only individual episode track pairs are safe."
         )
-        youtube_music_tracks = playlist_result.pop("_matched_tracks")
-        if playlist_result.get("playlist_id"):
-            youtube_music_playlist = playlist_result
-        else:
-            youtube_music_album = playlist_result.get("album_url")
-    except Exception as exc:
-        playlist_failure = str(exc)
+    else:
+        try:
+            playlist_result = find_verified_youtube_music_playlist(
+                episode, spotify, ytm, playlist_id_override,
+            )
+            youtube_music_tracks = playlist_result.pop("_matched_tracks")
+            if playlist_result.get("playlist_id"):
+                youtube_music_playlist = playlist_result
+            else:
+                youtube_music_album = playlist_result.get("album_url")
+        except Exception as exc:
+            playlist_failure = str(exc)
     playlist_seconds = round(time.perf_counter() - playlist_started, 2)
 
     song_search_seconds = 0.0
