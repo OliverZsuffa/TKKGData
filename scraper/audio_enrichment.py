@@ -290,34 +290,54 @@ def find_verified_youtube_music_playlist(
                             f"({len(album_tracks) if isinstance(album_tracks, list) else 0} entries)"
                         )
                         continue
+                    album_url = f"https://music.youtube.com/browse/{source_id}"
                     try:
                         matched_tracks = _playlist_track_records(
                             spotify, album_tracks, album_title,
                             explicit_playlist_id=False, source_type="album",
                         )
-                    except ValueError as exc:
-                        track_preview = [
-                            {
-                                key: track.get(key)
-                                for key in (
-                                    "title", "videoId", "video_id", "id", "duration",
-                                    "duration_seconds", "artists", "album",
+                    except ValueError as metadata_error:
+                        try:
+                            album_info = _extract_ytdlp_playlist(album_url)
+                            extracted_entries = album_info.get("entries")
+                            if (
+                                not isinstance(extracted_entries, list)
+                                or len(extracted_entries) != spotify["track_count"]
+                                or any(entry is None for entry in extracted_entries)
+                            ):
+                                raise ValueError(
+                                    "yt-dlp did not extract the complete album tracklist"
                                 )
-                                if track.get(key) is not None
-                            }
-                            for track in album_tracks[:3]
-                            if isinstance(track, dict)
-                        ]
-                        rejected.append(
-                            f"{source_id}: album track verification failed: {exc}; "
-                            f"track preview: {json.dumps(track_preview, ensure_ascii=False)}"
-                        )
-                        continue
+                            matched_tracks = _playlist_track_records(
+                                spotify, extracted_entries,
+                                str(album_info.get("title") or album_title),
+                                explicit_playlist_id=False, source_type="album",
+                            )
+                        except Exception as extraction_error:
+                            track_preview = [
+                                {
+                                    key: track.get(key)
+                                    for key in (
+                                        "title", "videoId", "video_id", "id", "duration",
+                                        "duration_seconds", "artists", "album",
+                                    )
+                                    if track.get(key) is not None
+                                }
+                                for track in album_tracks[:3]
+                                if isinstance(track, dict)
+                            ]
+                            rejected.append(
+                                f"{source_id}: album metadata could not provide verified video IDs "
+                                f"({metadata_error}); yt-dlp album page extraction failed "
+                                f"({extraction_error}); track preview: "
+                                f"{json.dumps(track_preview, ensure_ascii=False)}"
+                            )
+                            continue
                     verified[f"album:{source_id}"] = {
                         "playlist_id": None,
                         "url": None,
                         "album_id": source_id,
-                        "album_url": f"https://music.youtube.com/browse/{source_id}",
+                        "album_url": album_url,
                         "title": album_title,
                         "track_count": len(album_tracks),
                         "_matched_tracks": matched_tracks,
