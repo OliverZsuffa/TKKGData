@@ -202,6 +202,10 @@ class AudioEnrichmentTests(unittest.TestCase):
             result = discover_episode_audio(EPISODE, ytm, playlist_id)
         self.assertEqual(len(result["audio_release"]["youtube_music"]["tracks"]), 2)
         self.assertEqual(result["audio_release"]["verification"]["method"], "exact_ordered_playlist_track_titles_and_duration")
+        self.assertEqual(result["links"]["spotify_album"], SPOTIFY["url"])
+        self.assertEqual(len(result["links"]["spotify_tracks"]), 2)
+        self.assertEqual(result["links"]["youtube_music_playlist"], f"https://music.youtube.com/playlist?list={playlist_id}")
+        self.assertEqual(len(result["links"]["youtube_music_tracks"]), 2)
         self.assertEqual(ytm.search_calls, [])
 
     def test_explicit_playlist_id_can_be_verified_without_search(self):
@@ -377,10 +381,13 @@ class AudioEnrichmentTests(unittest.TestCase):
                 "album": {"name": "Unrelated album"},
             }]
         }
-        with self.assertRaisesRegex(ValueError, "No sufficiently corroborated"):
+        with self.assertRaisesRegex(ValueError, "No sufficiently corroborated") as caught:
             find_verified_youtube_music_tracks(
                 EPISODE, SPOTIFY, FakeSongSearchYTMusic(candidates),
             )
+        self.assertIn("Candidate diagnostics", str(caught.exception))
+        self.assertIn('"score": 100', str(caught.exception))
+        self.assertIn("score below unchanged threshold of 130", str(caught.exception))
 
     def test_individual_song_search_rejects_ambiguous_matches(self):
         title = SPOTIFY["tracks"][0]["name"]
