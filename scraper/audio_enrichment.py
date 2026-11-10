@@ -100,7 +100,7 @@ def _save_spotify_metadata(query: str, output_path: Path | None = None) -> list[
     Song, Album = _spotify_metadata_library()
     try:
         if query.startswith(SPOTIFY_ALBUM_BASE):
-            album = Album.from_url(query, fetch_songs=True)
+            album = Album.from_url(query, fetch_songs=False)
             records = [track.json for track in album.songs]
         else:
             records = _spotify_search_records(query)
