@@ -72,7 +72,7 @@ def _spotify_search_records(query: str) -> list[dict[str, Any]]:
             continue
         album = item.get("album") if isinstance(item.get("album"), dict) else {}
         artists = item.get("artists") if isinstance(item.get("artists"), list) else []
-        artist_names = [str(a.get("name")) for a in artists if isinstance(a, dict) and a.get("name")]
+        artist_names = [str(a.get("name") or "") if isinstance(a, dict) else "" for a in artists]
         artist_ids = [str(a.get("id") or "") if isinstance(a, dict) else "" for a in artists]
         track_id = item.get("id")
         if not isinstance(track_id, str) or not re.fullmatch(r"[A-Za-z0-9]{22}", track_id):
