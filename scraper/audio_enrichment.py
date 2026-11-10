@@ -269,11 +269,44 @@ def find_verified_youtube_music_playlist(
                 if not isinstance(album, dict):
                     rejected.append(f"{source_id}: malformed album response")
                     continue
+                candidate = {**candidate, **album}
                 playlist_id = album.get("audioPlaylistId")
                 if not isinstance(playlist_id, str) or not playlist_id.startswith("OLAK5uy_"):
-                    rejected.append(f"{source_id}: album {album.get('title')!r} by {album.get('artists')!r} has no public audio playlist ID")
+                    album_title = str(album.get("title") or candidate.get("title") or "")
+                    album_tracks = album.get("tracks")
+                    artist_names = _candidate_artists(candidate, {})
+                    if not any(
+                        re.search(r"\btkkg\b", unicodedata.normalize("NFKC", name).casefold())
+                        for name in artist_names
+                    ):
+                        rejected.append(f"{source_id}: no TKKG artist evidence")
+                        continue
+                    if _normalise(title) not in _normalise(album_title):
+                        rejected.append(f"{source_id}: album title does not identify episode {number}")
+                        continue
+                    if not isinstance(album_tracks, list) or len(album_tracks) != spotify["track_count"]:
+                        rejected.append(
+                            f"{source_id}: no public playlist ID and album track list is incomplete "
+                            f"({len(album_tracks) if isinstance(album_tracks, list) else 0} entries)"
+                        )
+                        continue
+                    try:
+                        matched_tracks = _playlist_track_records(
+                            spotify, album_tracks, album_title, explicit_playlist_id=False,
+                        )
+                    except ValueError as exc:
+                        rejected.append(f"{source_id}: album track verification failed: {exc}")
+                        continue
+                    verified[f"album:{source_id}"] = {
+                        "playlist_id": None,
+                        "url": None,
+                        "album_id": source_id,
+                        "album_url": f"https://music.youtube.com/browse/{source_id}",
+                        "title": album_title,
+                        "track_count": len(album_tracks),
+                        "_matched_tracks": matched_tracks,
+                    }
                     continue
-                candidate = {**candidate, **album}
             else:
                 playlist_id = source_id
             if playlist_id in verified:
@@ -615,12 +648,13 @@ def _spotify_links(spotify: dict[str, Any]) -> dict[str, Any]:
 
 def _release_links(
     spotify: dict[str, Any], playlist: dict[str, Any] | None,
-    youtube_music_tracks: list[dict[str, Any]],
+    youtube_music_tracks: list[dict[str, Any]], album_url: str | None = None,
 ) -> dict[str, Any]:
     return {
         "spotify_album": spotify["url"],
         "spotify_tracks": _spotify_links(spotify)["tracks"],
         "youtube_music_playlist": playlist["url"] if playlist else None,
+        "youtube_music_album": album_url,
         "youtube_music_tracks": [
             {
                 "track_number": track["track_number"],
@@ -655,6 +689,7 @@ def discover_episode_audio(
     # Search complete playlists first, then use individual song matching only
     # as a fallback. Never lower the existing matching threshold.
     youtube_music_playlist = None
+    youtube_music_album = None
     playlist_failure = None
     youtube_music_tracks = None
     playlist_started = time.perf_counter()
@@ -663,7 +698,10 @@ def discover_episode_audio(
             episode, spotify, ytm, playlist_id_override,
         )
         youtube_music_tracks = playlist_result.pop("_matched_tracks")
-        youtube_music_playlist = playlist_result
+        if playlist_result.get("playlist_id"):
+            youtube_music_playlist = playlist_result
+        else:
+            youtube_music_album = playlist_result.get("album_url")
     except Exception as exc:
         playlist_failure = str(exc)
     playlist_seconds = round(time.perf_counter() - playlist_started, 2)
@@ -715,6 +753,8 @@ def discover_episode_audio(
             "method": (
                 "exact_ordered_playlist_track_titles_and_duration"
                 if youtube_music_playlist
+                else "exact_ordered_album_track_titles_and_duration"
+                if youtube_music_album
                 else "exact_track_titles_with_artist_album_or_duration_corroboration"
             ),
             "matched_track_count": len(youtube_music_tracks),
@@ -737,7 +777,9 @@ def discover_episode_audio(
     return {
         "audio_release": audio_release,
         "matched_tracks": matched_tracks,
-        "links": _release_links(spotify, youtube_music_playlist, youtube_music_tracks),
+        "links": _release_links(
+            spotify, youtube_music_playlist, youtube_music_tracks, youtube_music_album,
+        ),
         "timings": timings,
     }
 
