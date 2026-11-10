@@ -473,13 +473,9 @@ def resolve_spotify_album(episode: dict[str, Any], work_dir: Path) -> dict[str, 
         box_index = ((number - 1) // 3) + 1
         box_title = f"{box_index:02d}/3er Box - Folge {box_start}-{box_end}"
         album_queries = list(dict.fromkeys([
-            title,
             f"TKKG {number} {title}",
             box_title,
-            f"TKKG {box_title}",
-            f"TKKG {box_start}-{box_end}",
-            f"3er Box Folge {box_start}-{box_end}",
-            f"Folge {box_start}-{box_end} TKKG",
+            f"TKKG 3er Box Folge {box_start}-{box_end}",
         ]))
         try:
             for record in _spotify_album_search_records(album_queries, episode, search_diagnostics):
