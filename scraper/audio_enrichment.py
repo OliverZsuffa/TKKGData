@@ -186,7 +186,7 @@ def _spotify_album_search_records(
     seen: set[str] = set()
     for query in queries:
         try:
-            payload = client.query_songs(query, limit=20)
+            payload = client.query_songs(query, limit=50)
         except Exception as exc:
             if diagnostics is not None:
                 diagnostics.append({"album_search_query": query, "error": str(exc)})
@@ -462,9 +462,13 @@ def resolve_spotify_album(episode: dict[str, Any], work_dir: Path) -> dict[str, 
     if not ranked:
         box_start = ((number - 1) // 3) * 3 + 1
         box_end = box_start + 2
+        box_index = ((number - 1) // 3) + 1
+        box_title = f"{box_index:02d}/3er Box - Folge {box_start}-{box_end}"
         album_queries = list(dict.fromkeys([
             title,
             f"TKKG {number} {title}",
+            box_title,
+            f"TKKG {box_title}",
             f"TKKG {box_start}-{box_end}",
             f"3er Box Folge {box_start}-{box_end}",
             f"Folge {box_start}-{box_end} TKKG",
