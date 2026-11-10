@@ -47,8 +47,8 @@ jobs:
   prepare:
     runs-on: ubuntu-24.04
     outputs:
-      matrix: \${{ steps.prepare.outputs.matrix }}
-      batch_count: \${{ steps.prepare.outputs.batch_count }}
+      matrix: ${{ steps.prepare.outputs.matrix }}
+      batch_count: ${{ steps.prepare.outputs.batch_count }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -59,12 +59,12 @@ jobs:
       - name: Prepare inclusive episode selection and bounded batches
         id: prepare
         env:
-          INPUT_EPISODE: \${{ inputs.episode }}
-          INPUT_START: \${{ inputs.start_episode }}
-          INPUT_END: \${{ inputs.end_episode }}
-          EVENT_NAME: \${{ github.event_name }}
+          INPUT_EPISODE: ${{ inputs.episode }}
+          INPUT_START: ${{ inputs.start_episode }}
+          INPUT_END: ${{ inputs.end_episode }}
+          EVENT_NAME: ${{ github.event_name }}
         run: |
-          ARGS=(--batch-size "\${{ inputs.batch_size || 5 }}")
+          ARGS=(--batch-size "${{ inputs.batch_size || 5 }}" --max-parallel "${{ inputs.max_parallel || 4 }}")
           if [ "$EVENT_NAME" = "workflow_dispatch" ]; then
             if [ -n "$INPUT_EPISODE" ]; then ARGS+=(--episode "$INPUT_EPISODE"); fi
             if [ -n "$INPUT_START" ]; then ARGS+=(--start-episode "$INPUT_START"); fi
@@ -78,8 +78,8 @@ jobs:
     timeout-minutes: 35
     strategy:
       fail-fast: false
-      max-parallel: \${{ fromJSON(inputs.max_parallel || '4') }}
-      matrix: \${{ fromJSON(needs.prepare.outputs.matrix) }}
+      max-parallel: ${{ inputs.max_parallel || 4 }}
+      matrix: ${{ fromJSON(needs.prepare.outputs.matrix) }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -93,18 +93,18 @@ jobs:
       - name: Discover and verify assigned episodes
         run: |
           ARGS=()
-          for episode in \${{ join(matrix.episodes, ' ') }}; do
+          for episode in ${{ join(matrix.episodes, ' ') }}; do
             ARGS+=(--episode "$episode")
           done
           python -m scraper.audio_enrichment "\${ARGS[@]}" \
             --limit 10 \
-            --report "data/batch-\$(printf '%03d' "\${{ matrix.batch }}").json"
+            --report "data/batch-\$(printf '%03d' "${{ matrix.batch }}").json"
       - name: Upload batch report
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: tkkg-audio-batch-\${{ matrix.batch }}
-          path: data/batch-\${{ matrix.batch }}.json
+          name: tkkg-audio-batch-${{ matrix.batch }}
+          path: data/batch-${{ matrix.batch }}.json
           if-no-files-found: warn
           retention-days: 30
 
@@ -135,10 +135,10 @@ jobs:
       - name: Validate all batch reports and publish once
         id: aggregate
         env:
-          MATRIX_JSON: \${{ needs.prepare.outputs.matrix }}
-          DISCOVERY_RESULT: \${{ needs.discover.result }}
-          EVENT_NAME: \${{ github.event_name }}
-          INPUT_WRITE: \${{ inputs.write }}
+          MATRIX_JSON: ${{ needs.prepare.outputs.matrix }}
+          DISCOVERY_RESULT: ${{ needs.discover.result }}
+          EVENT_NAME: ${{ github.event_name }}
+          INPUT_WRITE: ${{ inputs.write }}
         run: |
           ARGS=(--reports-dir data/batch-reports --matrix-json "$MATRIX_JSON" --discovery-result "$DISCOVERY_RESULT")
           if [ "$EVENT_NAME" = "schedule" ] || [ "$INPUT_WRITE" = "true" ]; then ARGS+=(--write); fi
