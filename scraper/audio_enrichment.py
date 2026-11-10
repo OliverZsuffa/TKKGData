@@ -163,9 +163,12 @@ def _spotify_number_matches_text(value: str, number: int) -> bool:
 
 def _spotify_artist_album_records(
     artist_ids: set[str], episode: dict[str, Any],
+    diagnostics: list[dict[str, Any]] | None = None,
 ) -> list[dict[str, Any]]:
     """Find likely episode or box albums through an exact credited artist's discography."""
     if not artist_ids:
+        if diagnostics is not None:
+            diagnostics.append({"discography": "no exact artist IDs were found"})
         return []
     _spotify_metadata_library()
     from spotdl.utils.spotify import SpotifyClient
@@ -176,6 +179,8 @@ def _spotify_artist_album_records(
     records: list[dict[str, Any]] = []
     seen_albums: set[str] = set()
     for artist_id in sorted(artist_ids):
+        if diagnostics is not None:
+            diagnostics.append({"discography_artist_id": artist_id})
         offset = 0
         while offset < 500:
             page = None
@@ -195,6 +200,13 @@ def _spotify_artist_album_records(
                     raise RuntimeError(f"Spotify artist album lookup failed: {errors[-1]}")
                 break
             items = page.get("items")
+            if diagnostics is not None:
+                diagnostics.append({
+                    "discography_artist_id": artist_id,
+                    "discography_count": len(items) if isinstance(items, list) else 0,
+                    "discography_total": page.get("total"),
+                    "discography_sample": [item.get("name") for item in items[:8] if isinstance(item, dict)] if isinstance(items, list) else [],
+                })
             if not isinstance(items, list) or not items:
                 break
             for album_item in items:
