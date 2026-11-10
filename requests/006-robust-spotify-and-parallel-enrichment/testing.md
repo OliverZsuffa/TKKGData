@@ -36,7 +36,7 @@ After fixture coverage passes, run live dry-run checks for representative histor
 - Start greater than end is rejected.
 - A partially supplied range is rejected by workflow preparation.
 - Episodes absent from the catalogue are reported clearly.
-- Empty target selection creates a valid empty matrix and does not attempt a matrix job with invalid JSON.
+- Empty target selection is rejected clearly instead of creating an invalid empty matrix.
 - Batch partitioning covers every selected episode exactly once, with no duplicates or omissions.
 - Full catalogue selection of 243 episodes at batch size five creates 49 batches, below GitHub's 256-job matrix limit.
 - Batch size and max parallel values are bounded and validated.
