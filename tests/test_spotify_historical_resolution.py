@@ -38,6 +38,21 @@ class SpotifyHistoricalResolutionTests(unittest.TestCase):
         })
         self.assertEqual(ids, {"0i38tQX5j4gZ0KS3eCMoIl"})
 
+    def test_resolver_uses_known_exact_artist_ids_without_track_hits(self):
+        expected_ids = {
+            "61qDotnjM0jnY5lkfOP7ve",
+            "0i38tQX5j4gZ0KS3eCMoIl",
+        }
+        with patch("scraper.audio_enrichment._save_spotify_metadata", return_value=[]), \
+             patch("scraper.audio_enrichment._spotify_album_search_records", return_value=[]), \
+             patch("scraper.audio_enrichment._spotify_artist_album_records", return_value=[]) as discography:
+            with self.assertRaisesRegex(ValueError, "No credible Spotify track candidate"):
+                resolve_spotify_album(
+                    {"number": 20, "title": "Das Geheimnis der chinesischen Vase"},
+                    Path("."),
+                )
+        self.assertEqual(discography.call_args.args[0], expected_ids)
+
     def test_artist_discography_finds_episode_in_compilation_box(self):
         artist_id, album_id, track_id = "A" * 22, "B" * 22, "C" * 22
         class FakeArtist:
