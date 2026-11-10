@@ -237,11 +237,10 @@ def _spotify_candidate_score(episode: dict[str, Any], record: dict[str, Any]) ->
     number = int(episode["number"])
     album_name = _normalise(str(record.get("album_name") or ""))
     query = _normalise(str(record.get("search_query") or ""))
-    number_pattern = rf"(?<!\d)0*{number}(?!\d)"
     number_evidence = (
-        re.search(number_pattern, name)
-        or re.search(number_pattern, album_name)
-        or re.search(number_pattern, query)
+        _spotify_number_matches_text(name, number)
+        or _spotify_number_matches_text(album_name, number)
+        or _spotify_number_matches_text(query, number)
     )
     part_marker = bool(re.search(r"\bteil\s*0*\d+\b|\bpart\s*0*\d+\b", name))
     title_in_track = title in name
@@ -254,15 +253,15 @@ def _spotify_candidate_score(episode: dict[str, Any], record: dict[str, Any]) ->
     score = 100
     if exact_title:
         score += 15
-    if re.search(r"\bteil\s*0*1\b|\bpart\s*0*1\b", name):
+    if part_marker:
         score += 20
-    if title in album_name:
+    if title_in_album:
         score += 10
     if record.get("track_number") == 1:
         score += 2
-    if re.search(number_pattern, name):
+    if _spotify_number_matches_text(name, number):
         score += 5
-    elif re.search(number_pattern, album_name):
+    elif _spotify_number_matches_text(album_name, number):
         score += 3
     return score
 
