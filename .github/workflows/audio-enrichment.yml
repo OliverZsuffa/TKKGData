@@ -60,6 +60,7 @@ jobs:
       matrix: ${{ steps.prepare.outputs.matrix }}
       batch_count: ${{ steps.prepare.outputs.batch_count }}
       max_parallel: ${{ steps.prepare.outputs.max_parallel }}
+      run_started_at: ${{ steps.prepare.outputs.run_started_at }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -157,7 +158,7 @@ jobs:
           EVENT_NAME: ${{ github.event_name }}
           INPUT_WRITE: ${{ inputs.write }}
           MAX_PARALLEL: ${{ needs.prepare.outputs.max_parallel }}
-          RUN_STARTED_AT: ${{ github.run_started_at }}
+          RUN_STARTED_AT: ${{ needs.prepare.outputs.run_started_at }}
         run: |
           ARGS=(--reports-dir data/batch-reports --matrix-json "$MATRIX_JSON" --discovery-result "$DISCOVERY_RESULT" --max-parallel "$MAX_PARALLEL" --run-started-at "$RUN_STARTED_AT")
           if [ "$EVENT_NAME" = "schedule" ] || [ "$INPUT_WRITE" = "true" ]; then ARGS+=(--write); fi
