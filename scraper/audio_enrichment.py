@@ -280,15 +280,12 @@ def resolve_spotify_album(episode: dict[str, Any], work_dir: Path) -> dict[str, 
         f'track:"TKKG ({number}) - {title}" artist:TKKG',
         f"TKKG ({number}) - {title}",
         f"TKKG {number:03d} {title} Teil 01",
-        f'{SPOTIFY_ALBUM_SEARCH_PREFIX}album:"Folge {((number - 1) // 3) * 3 + 1}-{((number - 1) // 3) * 3 + 3}" artist:TKKG',
-        f'{SPOTIFY_ALBUM_SEARCH_PREFIX}TKKG 3er Box Folge {((number - 1) // 3) * 3 + 1}-{((number - 1) // 3) * 3 + 3}',
-        f'{SPOTIFY_ALBUM_SEARCH_PREFIX}TKKG Folge {((number - 1) // 3) * 3 + 1}-{((number - 1) // 3) * 3 + 3}',
-        f'{SPOTIFY_ALBUM_SEARCH_PREFIX}album:"{((number - 1) // 5) * 5 + 1}-{((number - 1) // 5) * 5 + 5}" artist:TKKG',
-        f'{SPOTIFY_ALBUM_SEARCH_PREFIX}TKKG {number} {title}',
         f"TKKG {number} {title}",
         f"TKKG Folge {number} {title}",
         f"{number} {title}",
         f"{title} TKKG",
+        "TKKG",
+        "TKKG Retro-Archiv",
     ]
     candidates: dict[str, dict[str, Any]] = {}
     search_errors: list[str] = []
@@ -321,6 +318,30 @@ def resolve_spotify_album(episode: dict[str, Any], work_dir: Path) -> dict[str, 
         reverse=True,
     )
     ranked = [item for item in ranked if item[0] >= 100]
+    if not ranked:
+        artist_ids = {
+            artist_id
+            for record in candidates.values()
+            if _spotify_artist_matches(record)
+            for artist_id in record.get("artist_ids", [])
+            if isinstance(artist_id, str) and re.fullmatch(r"[A-Za-z0-9]{22}", artist_id)
+        }
+        try:
+            for record in _spotify_artist_album_records(artist_ids, episode):
+                track_id = record.get("song_id")
+                if isinstance(track_id, str):
+                    existing = candidates.get(track_id)
+                    if existing is None or _spotify_candidate_score(episode, record) > _spotify_candidate_score(episode, existing):
+                        candidates[track_id] = record
+        except Exception as exc:
+            search_errors.append(f"artist discography: {exc}")
+        ranked = sorted(
+            ((_spotify_candidate_score(episode, record), track_id, record)
+             for track_id, record in candidates.items()),
+            key=lambda item: (item[0], item[1]),
+            reverse=True,
+        )
+        ranked = [item for item in ranked if item[0] >= 100]
     if not ranked:
         detail = "; ".join(search_errors[:3]) or "no title and artist candidate passed validation"
         diagnostics = json.dumps(search_diagnostics[:100], ensure_ascii=False)
