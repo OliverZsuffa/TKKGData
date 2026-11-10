@@ -144,6 +144,71 @@ def _spotify_number_matches_text(value: str, number: int) -> bool:
     return False
 
 
+def _spotify_artist_album_records(
+    artist_ids: set[str], episode: dict[str, Any],
+) -> list[dict[str, Any]]:
+    """Find likely episode or box albums through an exact credited artist's discography."""
+    if not artist_ids:
+        return []
+    _spotify_metadata_library()
+    from spotdl.utils.spotify import SpotifyClient
+
+    client = SpotifyClient()
+    number = int(episode["number"])
+    title = _normalise(str(episode["title"]))
+    records: list[dict[str, Any]] = []
+    seen_albums: set[str] = set()
+    for artist_id in sorted(artist_ids):
+        offset = 0
+        while offset < 500:
+            page = None
+            errors: list[Exception] = []
+            for kwargs in (
+                {"include_groups": "album,compilation", "limit": 50, "offset": offset},
+                {"album_type": "album,compilation", "limit": 50, "offset": offset},
+                {"limit": 50, "offset": offset},
+            ):
+                try:
+                    page = client.artist_albums(artist_id, **kwargs)
+                    break
+                except TypeError as exc:
+                    errors.append(exc)
+            if not isinstance(page, dict):
+                if errors:
+                    raise RuntimeError(f"Spotify artist album lookup failed: {errors[-1]}")
+                break
+            items = page.get("items")
+            if not isinstance(items, list) or not items:
+                break
+            for album_item in items:
+                if not isinstance(album_item, dict):
+                    continue
+                album_id = album_item.get("id")
+                album_name = str(album_item.get("name") or "")
+                if (
+                    not isinstance(album_id, str)
+                    or not re.fullmatch(r"[A-Za-z0-9]{22}", album_id)
+                    or album_id in seen_albums
+                ):
+                    continue
+                normalized_album = _normalise(album_name)
+                if title not in normalized_album and not _spotify_number_matches_text(album_name, number):
+                    continue
+                seen_albums.add(album_id)
+                try:
+                    album_records = _save_spotify_metadata(f"{SPOTIFY_ALBUM_BASE}{album_id}")
+                except Exception:
+                    continue
+                for record in album_records:
+                    record["search_query"] = f"artist_albums:{artist_id} episode:{number}"
+                    records.append(record)
+            total = page.get("total")
+            offset += len(items)
+            if len(items) < 50 or (isinstance(total, int) and offset >= total):
+                break
+    return records
+
+
 def _episode_title_matches_track(
     episode: dict[str, Any], track: dict[str, Any], candidate_track_id: str | None = None,
 ) -> bool:
