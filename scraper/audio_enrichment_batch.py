@@ -175,6 +175,11 @@ def aggregate(
         combined["verified"].extend(report.get("verified", []))
         combined["failures"].extend(report.get("failures", []))
 
+    combined["failed_batches"] = list(combined["missing_reports"])
+    if discovery_result != "success" and not combined["failed_batches"]:
+        combined["failed_batches"] = ["matrix"]
+    combined["failed_batch_count"] = len(combined["failed_batches"])
+
     if discovery_result != "success" or combined["missing_reports"]:
         reasons = []
         if discovery_result != "success":
@@ -279,6 +284,7 @@ def main() -> int:
             "selected": report["selected_count"],
             "verified": report["verified_count"],
             "unresolved": report["unresolved_count"],
+            "failed_batches": report["failed_batch_count"],
             "batches": report["expected_batches"],
             "max_parallel": report["max_parallel"],
             "duration_seconds": report["duration_seconds"],
@@ -301,6 +307,7 @@ def main() -> int:
                     f"- Selected: **{report['selected_count']}**",
                     f"- Verified: **{report['verified_count']}**",
                     f"- Unresolved: **{report['unresolved_count']}**",
+                    f"- Failed batches: **{report['failed_batch_count']}**",
                     f"- Batches: **{report['expected_batches']}**",
                     f"- Maximum parallel batches: **{report['max_parallel']}**",
                     f"- Wall clock runtime: **{report['duration_seconds']} s**",
