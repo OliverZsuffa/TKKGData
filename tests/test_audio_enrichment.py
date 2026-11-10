@@ -206,6 +206,9 @@ class AudioEnrichmentTests(unittest.TestCase):
         self.assertEqual(len(result["links"]["spotify_tracks"]), 2)
         self.assertEqual(result["links"]["youtube_music_playlist"], f"https://music.youtube.com/playlist?list={playlist_id}")
         self.assertEqual(len(result["links"]["youtube_music_tracks"]), 2)
+        self.assertIn("spotify_seconds", result["timings"])
+        self.assertIn("playlist_seconds", result["timings"])
+        self.assertIn("total_seconds", result["timings"])
         self.assertEqual(ytm.search_calls, [])
 
     def test_explicit_playlist_id_can_be_verified_without_search(self):
@@ -277,7 +280,7 @@ class AudioEnrichmentTests(unittest.TestCase):
     def test_previous_verified_mapping_survives_empty_refresh(self):
         old = {
             "spotify": {"album_id": "a" * 22},
-            "youtube_music": {"playlist_id": "OLAK5uy_example123"},
+            "youtube_music": {"playlist": None, "track_count": 1},
             "verification": {"status": "verified"},
         }
         refreshed = [{"number": 150, "title": EPISODE["title"]}]
