@@ -134,13 +134,21 @@ def _spotify_artist_matches(record: dict[str, Any]) -> bool:
     return any(artist_key(name) in aliases for name in _artist_names(record) if name.strip())
 
 
-def _episode_title_matches_track(episode: dict[str, Any], track: dict[str, Any]) -> bool:
+def _episode_title_matches_track(
+    episode: dict[str, Any], track: dict[str, Any], candidate_track_id: str | None = None,
+) -> bool:
     number = int(episode["number"])
     expected_title = _normalise(str(episode["title"]))
     actual_title = _normalise(str(track.get("name") or ""))
+    album_title = _normalise(str(track.get("album_name") or ""))
     if not expected_title or expected_title not in actual_title:
         return False
-    return bool(re.search(rf"(?<!\d)0*{number}(?!\d)", actual_title))
+    number_pattern = rf"(?<!\d)0*{number}(?!\d)"
+    return bool(
+        re.search(number_pattern, actual_title)
+        or re.search(number_pattern, album_title)
+        or (candidate_track_id and track.get("song_id") == candidate_track_id)
+    )
 
 
 def _spotify_candidate_score(episode: dict[str, Any], record: dict[str, Any]) -> int:
@@ -149,15 +157,27 @@ def _spotify_candidate_score(episode: dict[str, Any], record: dict[str, Any]) ->
     name = _normalise(str(record.get("name") or ""))
     title = _normalise(str(episode["title"]))
     number = int(episode["number"])
-    if title not in name or not re.search(rf"(?<!\d)0*{number}(?!\d)", name):
+    album_name = _normalise(str(record.get("album_name") or ""))
+    query = _normalise(str(record.get("search_query") or ""))
+    number_pattern = rf"(?<!\d)0*{number}(?!\d)"
+    number_evidence = (
+        re.search(number_pattern, name)
+        or re.search(number_pattern, album_name)
+        or re.search(number_pattern, query)
+    )
+    if title not in name or not number_evidence:
         return -100
     score = 100
     if re.search(r"\bteil\s*0*1\b|\bpart\s*0*1\b", name):
         score += 20
-    if _normalise(str(record.get("album_name") or "")).find(title) >= 0:
+    if title in album_name:
         score += 10
     if record.get("track_number") == 1:
         score += 2
+    if re.search(number_pattern, name):
+        score += 5
+    elif re.search(number_pattern, album_name):
+        score += 3
     return score
 
 
@@ -174,9 +194,17 @@ def resolve_spotify_album(episode: dict[str, Any], work_dir: Path) -> dict[str, 
     ]
     candidates: dict[str, dict[str, Any]] = {}
     search_errors: list[str] = []
+    search_diagnostics: list[dict[str, Any]] = []
     for query in dict.fromkeys(queries):
         try:
             for record in _save_spotify_metadata(query)[:20]:
+                search_diagnostics.append({
+                    "query": query,
+                    "name": record.get("name"),
+                    "artists": _artist_names(record),
+                    "album_name": record.get("album_name"),
+                    "score": _spotify_candidate_score(episode, record),
+                })
                 track_id = record.get("song_id")
                 if isinstance(track_id, str):
                     existing = candidates.get(track_id)
@@ -194,7 +222,8 @@ def resolve_spotify_album(episode: dict[str, Any], work_dir: Path) -> dict[str, 
     ranked = [item for item in ranked if item[0] >= 100]
     if not ranked:
         detail = "; ".join(search_errors[:3]) or "no title and artist candidate passed validation"
-        raise ValueError(f"No credible Spotify track candidate for episode {number}: {detail}")
+        diagnostics = json.dumps(search_diagnostics[:20], ensure_ascii=False)
+        raise ValueError(f"No credible Spotify track candidate for episode {number}: {detail}. Candidates: {diagnostics}")
 
     album_cache: dict[str, list[dict[str, Any]]] = {}
     verified: list[tuple[int, str, str, list[dict[str, Any]], str]] = []
@@ -218,12 +247,12 @@ def resolve_spotify_album(episode: dict[str, Any], work_dir: Path) -> dict[str, 
         if not album_tracks or any(item.get("album_id") != album_id for item in album_tracks):
             rejected.append(f"{album_id}: inconsistent album metadata")
             continue
-        selected = [item for item in album_tracks if _episode_title_matches_track(episode, item)]
+        selected = [item for item in album_tracks if _episode_title_matches_track(episode, item, track_id)]
         if not selected:
             # A track-level search hit can be trusted only if its identity also appears
             # in the fetched parent album tracklist.
             selected = [item for item in album_tracks if item.get("song_id") == track_id]
-            if not selected or not _episode_title_matches_track(episode, selected[0]):
+            if not selected or not _episode_title_matches_track(episode, selected[0], track_id):
                 rejected.append(f"{album_id}: requested episode could not be isolated from album")
                 continue
         selected.sort(key=lambda item: (
