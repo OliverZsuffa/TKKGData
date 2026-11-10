@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import sys
+import types
 import unittest
 from pathlib import Path
 from unittest.mock import patch
@@ -35,8 +37,18 @@ class SpotifyHistoricalResolutionTests(unittest.TestCase):
                 self.search_type = type
                 return {"albums": {"items": [{"id": album_id}]}}
         client = FakeClient()
+        fake_spotdl = types.ModuleType("spotdl")
+        fake_spotdl.__path__ = []
+        fake_utils = types.ModuleType("spotdl.utils")
+        fake_utils.__path__ = []
+        fake_spotify = types.ModuleType("spotdl.utils.spotify")
+        fake_spotify.SpotifyClient = lambda: client
         with patch("scraper.audio_enrichment._spotify_metadata_library", return_value=(FakeSong, FakeAlbum)), \
-             patch("spotdl.utils.spotify.SpotifyClient", return_value=client):
+             patch.dict(sys.modules, {
+                 "spotdl": fake_spotdl,
+                 "spotdl.utils": fake_utils,
+                 "spotdl.utils.spotify": fake_spotify,
+             }):
             records = _save_spotify_metadata(
                 SPOTIFY_ALBUM_SEARCH_PREFIX + 'album:"Folge 19-21" artist:TKKG'
             )
