@@ -30,7 +30,9 @@ Use --write only when verified results should be written to data/episodes.json a
 
 Spotify metadata is resolved through the pinned spotDL 4.5.2 Python metadata classes directly. The workflow does not invoke the spotDL command line, instantiate its downloader, download audio, or check for FFmpeg. The spotDL dependency remains because its Spotify client and typed metadata classes provide the existing unauthenticated metadata lookup implementation. The client uses the package's configured SpotipyFree backend and does not require repository-specific Spotify secrets.
 
-The adapter resolves the first track from the episode number and title, validates its TKKG artist evidence and episode identity, then retrieves the full album track list. It validates album identity, unique contiguous track numbering, titles, and Spotify track IDs before generating stable album and track URLs.
+The adapter uses spotDL's raw Spotify search results and evaluates multiple candidates across bounded query variants. Candidate records are deduplicated by Spotify track ID and scored using the exact episode number, normalized episode title, split-track marker, artist credit, and album context. Artist credits are accepted only from an explicit exact-name allowlist. The current allowlist includes TKKG and the historical credit spelling TKKG Retro-Archiv; the spelling remains subject to confirmation against live provider metadata before it is described as a confirmed catalogue-wide alias.
+
+The resolver supports two release shapes. A dedicated episode album contributes its ordered episode tracks. A compilation contributes only the track or contiguous tracks whose titles identify the requested episode. Neighbouring episode tracks are never included. Ambiguous candidates, invalid IDs, and incomplete metadata remain unresolved. The existing audio schema represents the compilation parent album plus the selected individual track links without adding a new field.
 
 ## YouTube Music playlist discovery
 
