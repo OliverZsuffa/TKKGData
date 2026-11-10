@@ -39,7 +39,9 @@ jobs:
           fi
       - name: Resolve episode number to provider links
         run: |
-          python -m scraper.audio_enrichment \
+          PYTHON_BIN="$(command -v python)"
+          PYTHON_DIR="$(dirname "$PYTHON_BIN")"
+          PATH="$PYTHON_DIR" "$PYTHON_BIN" -m scraper.audio_enrichment \
             --episode "${{ matrix.episode }}" \
             --report "data/audio-enrichment-report-${{ matrix.episode }}.json"
       - name: Upload episode discovery report
