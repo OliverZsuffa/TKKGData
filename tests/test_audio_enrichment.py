@@ -280,7 +280,7 @@ class AudioEnrichmentTests(unittest.TestCase):
     def test_previous_verified_mapping_survives_empty_refresh(self):
         old = {
             "spotify": {"album_id": "a" * 22},
-            "youtube_music": {"playlist": None, "track_count": 1},
+            "youtube_music": {"playlist_id": "OLAK5uy_example123"},
             "verification": {"status": "verified"},
         }
         refreshed = [{"number": 150, "title": EPISODE["title"]}]
@@ -414,7 +414,7 @@ class AudioEnrichmentTests(unittest.TestCase):
         ]
         fake_release = {
             "spotify": {"track_count": 1},
-            "youtube_music": {"playlist_id": "OLAK5uy_example123"},
+            "youtube_music": {"playlist": None, "track_count": 1},
             "verification": {"status": "verified"},
         }
         with patch(
