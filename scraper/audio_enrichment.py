@@ -123,6 +123,7 @@ SPOTIFY_ARTIST_ALIASES = {
     "tkkg",
     "tkkg retro archiv",
 }
+SPOTIFY_ARTIST_ID_ALIASES = {"tkkg": "61qDotnjM0jnY5lkfOP7ve"}
 
 
 def _spotify_artist_key(value: str) -> str:
