@@ -15,7 +15,7 @@ The approved implementation is on the Request 006 branch. No canonical catalogue
 - Transient Spotify metadata failures such as a `NoneType` response are retried once before being recorded as unresolved.
 - The batch workflow selects inclusive ranges, partitions into bounded jobs, collects unique reports, validates exact coverage, preserves existing verified mappings, and publishes only once from the aggregation job.
 - The batch report distinguishes wall-clock runtime from summed per-episode processing time and records configured parallelism and failed batches.
-- A dedicated pull-request smoke workflow runs episodes 1 to 6 in two batches of three with two concurrent jobs. It aggregates reports in dry-run mode and never writes the catalogue. The first attempt exposed two shell escaping errors in the workflow itself. Both were fixed, and a subsequent run is testing the real batch jobs.
+- A dedicated pull-request smoke workflow runs episodes 1 to 6 in two batches of three with two concurrent jobs. The successful run verified all six episodes, with zero unresolved episodes and zero failed batches. Aggregation completed successfully in dry-run mode. It reported 199.26 seconds wall-clock time and 303.69 seconds summed episode-processing time. The canonical catalogue was not modified. The first attempts exposed two shell escaping errors in the workflow itself. Both were fixed before the successful run.
 
 ## Test results
 - CI at commit \`4800b24\` passed all 97 unit tests.
