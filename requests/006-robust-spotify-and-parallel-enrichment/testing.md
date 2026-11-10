@@ -61,6 +61,7 @@ After fixture coverage passes, run live dry-run checks for representative histor
 - Run the complete offline unittest suite.
 - Run Python compilation and catalogue/schema/export validation.
 - Validate both workflow syntax and workflow expressions.
+- Run the pull-request batch smoke workflow on episodes 1 to 10, split into two batches of five with two concurrent workers. Confirm both artifacts are aggregated and no canonical files are written.
 - Run a controlled parallel test on a small range, then compare measured duration with the same range processed sequentially.
 - Run the full requested range after the controlled test confirms provider stability.
 - Report wall-clock runtime from preparation, summed per-episode processing time, batch count, peak configured parallelism, verified count, unresolved count, and any failed batches.
