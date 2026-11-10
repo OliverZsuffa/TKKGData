@@ -11,7 +11,7 @@ The current audio enrichment workflow installs the full FFmpeg system package be
 The latest manual run for episode 149 completed as a GitHub Actions job but discovered no verified mappings. It spent approximately 7 minutes 50 seconds installing FFmpeg, then approximately 11 seconds installing Python audio dependencies, and approximately 2 minutes 8 seconds in discovery. The discovery report says the first YouTube Music track had no sufficiently corroborated song match. The report does not preserve the rejected candidates or the earlier playlist verification failure, so the actual reason cannot be diagnosed from the report alone.
 
 ## Desired outcome
-A generic, fast, metadata-only enrichment pipeline that takes an episode number and resolves it into verified Spotify album and track links plus the corresponding YouTube Music playlist and track links. It must not install or require FFmpeg, must remove the separate experimental subsystem, report useful evidence when matching fails, and publish only fully verified mappings.
+A generic, fast, metadata-only enrichment pipeline that takes an episode number and resolves it into verified Spotify album and track links plus the corresponding YouTube Music album or playlist page and individual track links. It must not install or require FFmpeg, must remove the separate experimental subsystem, report useful evidence when matching fails, and publish only fully verified mappings.
 
 ## Scope
 - Remove `scraper/audio_source_experiments.py`, its dedicated workflow steps, report upload, tests specific to that script, and current documentation references.
@@ -51,7 +51,7 @@ A generic, fast, metadata-only enrichment pipeline that takes an episode number 
 11. Offline tests, Python compilation, workflow syntax checks, dependency checks, and catalogue validation pass.
 12. A controlled before/after timing comparison confirms that FFmpeg installation is eliminated and records the new discovery runtime.
 13. From an episode number alone, the pipeline can produce a verified Spotify album link, all ordered Spotify track links, a verified YouTube Music playlist link, and all ordered YouTube Music track links, or a precise stage-specific failure report.
-14. Live integration tests cover episodes 148, 149, and 150. Episode 150 is the known positive control and must be rediscovered without a hardcoded playlist ID. Episode 149 is the known previous failure and must produce actionable diagnostics even if it remains unresolved. Episode 148 is an independent episode coverage test. Report results separately and do not count an unresolved episode as a successful test.
+14. Live integration tests cover episodes 148, 149, and 150. Episode 150 is the known positive control and must be rediscovered without a hardcoded playlist ID. A verified YouTube Music album page with all ordered song links is an acceptable result when no public playlist ID is exposed. Episode 149 is the known previous failure and must produce actionable diagnostics if unresolved. Episode 148 is an independent coverage test. Report results separately and do not count an unresolved episode as a successful test.
 
 ## Known investigation target
 Run 42815546600:
