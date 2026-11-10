@@ -551,51 +551,65 @@ def find_verified_youtube_music_tracks(
     resolved: list[dict[str, Any]] = []
     for index, spotify_track in enumerate(spotify["tracks"], start=1):
         title = str(spotify_track["name"])
-        try:
-            time.sleep(0.35)
-            results = ytm.search(title, filter="songs", limit=10)
-        except Exception as exc:
-            raise RuntimeError(f"YouTube Music song search failed for track {index} {title!r}: {exc}") from exc
-
+        query_variants = (
+            title,
+            f"TKKG {title}",
+            f"TKKG Folge {int(episode['number'])} {episode['title']} Teil {index:02d}",
+        )
         ranked: dict[str, tuple[int, dict[str, Any], list[str]]] = {}
         candidate_diagnostics: list[dict[str, Any]] = []
-        for candidate in results:
-            if not isinstance(candidate, dict):
+        search_errors: list[str] = []
+        for query in dict.fromkeys(query_variants):
+            try:
+                time.sleep(0.35)
+                results = ytm.search(query, filter="songs", limit=10)
+            except Exception as exc:
+                search_errors.append(f"{query!r}: {exc}")
                 continue
-            video_id = candidate.get("videoId")
-            score, evidence = _ytm_track_score(
-                spotify_track, candidate, str(spotify["title"]), str(episode["title"]),
+            for candidate in results:
+                if not isinstance(candidate, dict):
+                    continue
+                video_id = candidate.get("videoId")
+                score, evidence = _ytm_track_score(
+                    spotify_track, candidate, str(spotify["title"]), str(episode["title"]),
+                )
+                artists = _ytm_artist_names(candidate)
+                album = candidate.get("album")
+                album_name = album.get("name") if isinstance(album, dict) else album
+                diagnostic = {
+                    "query": query,
+                    "title": candidate.get("title"),
+                    "artists": artists[:5],
+                    "album": album_name,
+                    "duration": candidate.get("duration_seconds") or candidate.get("duration"),
+                    "video_id": video_id,
+                    "score": score,
+                    "evidence": evidence,
+                }
+                if not isinstance(video_id, str) or not re.fullmatch(r"[A-Za-z0-9_-]{11}", video_id):
+                    diagnostic["rejection_reason"] = "missing or invalid video ID"
+                    candidate_diagnostics.append(diagnostic)
+                    continue
+                if score < 130:
+                    diagnostic["rejection_reason"] = "score below unchanged threshold of 130"
+                    candidate_diagnostics.append(diagnostic)
+                    continue
+                previous = ranked.get(video_id)
+                if previous is None or score > previous[0]:
+                    ranked[video_id] = (score, candidate, evidence)
+                candidate_diagnostics.append(diagnostic)
+        if not ranked and search_errors and not candidate_diagnostics:
+            raise RuntimeError(
+                f"YouTube Music song search failed for track {index} {title!r}: "
+                + "; ".join(search_errors[:3])
             )
-            artists = _ytm_artist_names(candidate)
-            album = candidate.get("album")
-            album_name = album.get("name") if isinstance(album, dict) else album
-            diagnostic = {
-                "title": candidate.get("title"),
-                "artists": artists[:5],
-                "album": album_name,
-                "duration": candidate.get("duration_seconds") or candidate.get("duration"),
-                "video_id": video_id,
-                "score": score,
-                "evidence": evidence,
-            }
-            if not isinstance(video_id, str) or not re.fullmatch(r"[A-Za-z0-9_-]{11}", video_id):
-                diagnostic["rejection_reason"] = "missing or invalid video ID"
-                candidate_diagnostics.append(diagnostic)
-                continue
-            if score < 130:
-                diagnostic["rejection_reason"] = "score below unchanged threshold of 130"
-                candidate_diagnostics.append(diagnostic)
-                continue
-            previous = ranked.get(video_id)
-            if previous is None or score > previous[0]:
-                ranked[video_id] = (score, candidate, evidence)
-            candidate_diagnostics.append(diagnostic)
 
         if not ranked:
             detail = json.dumps(candidate_diagnostics[:10], ensure_ascii=False)
             raise ValueError(
                 f"No sufficiently corroborated YouTube Music song match for track {index}: "
-                f"{title!r}. Candidate diagnostics: {detail}"
+                f"{title!r}. Candidate diagnostics: {detail}. "
+                f"Search errors: {search_errors[:3]}"
             )
         ordered = sorted(ranked.values(), key=lambda item: item[0], reverse=True)
         if len(ordered) > 1 and ordered[0][0] - ordered[1][0] < 15:
