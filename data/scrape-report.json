@@ -164,7 +164,7 @@
   "audio_release_preservation_conflicts": [],
   "audio_release_coverage": {
     "episode_count": 243,
-    "verified_pairings": 2,
+    "verified_pairings": 3,
     "missing_pairings": [
       {
         "number": 1,
@@ -753,10 +753,6 @@
       {
         "number": 147,
         "title": "Hölle ohne Hintertür"
-      },
-      {
-        "number": 148,
-        "title": "Fieser Trick beim Finale"
       },
       {
         "number": 151,
@@ -1986,7 +1982,7 @@
   },
   "finished_at": "2026-11-10T13:28:57.058471+00:00",
   "audio_enrichment": {
-    "updated_at": "2026-11-10T13:31:21.090923+00:00",
+    "updated_at": "2026-11-10T13:41:46.588982+00:00",
     "verified_count": 1,
     "failure_count": 0
   }

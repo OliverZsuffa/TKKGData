@@ -18136,7 +18136,790 @@
       }
     ],
     "listening_links": [],
-    "last_checked": "2026-11-10T13:26:54.175858+00:00"
+    "last_checked": "2026-11-10T13:26:54.175858+00:00",
+    "audio_release": {
+      "spotify": {
+        "album_id": "0nFRzugvW1NVT1DUDxpQdb",
+        "url": "https://open.spotify.com/album/0nFRzugvW1NVT1DUDxpQdb",
+        "title": "148/Fieser Trick beim Finale",
+        "track_count": 40,
+        "source_query": "TKKG 148 Fieser Trick beim Finale Teil 01"
+      },
+      "youtube_music": {
+        "playlist": null,
+        "tracks": [
+          {
+            "track_number": 1,
+            "spotify_title": "148 - Fieser Trick beim Finale - Teil 01",
+            "spotify_track_id": "5AchQ6UiN5yz9KFYLbDKS3",
+            "spotify_track_url": "https://open.spotify.com/track/5AchQ6UiN5yz9KFYLbDKS3",
+            "video_id": "DqImt3Z8Rf0",
+            "url": "https://music.youtube.com/watch?v=DqImt3Z8Rf0",
+            "title": "148 - Fieser Trick beim Finale (Teil 01)",
+            "artists": [],
+            "album": "Album - 148/Fieser Trick beim Finale",
+            "duration_seconds": 90.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 2,
+            "spotify_title": "148 - Fieser Trick beim Finale - Teil 02",
+            "spotify_track_id": "3QEz8XZHWAggrUonF3pqo1",
+            "spotify_track_url": "https://open.spotify.com/track/3QEz8XZHWAggrUonF3pqo1",
+            "video_id": "ddQuZRoBBbM",
+            "url": "https://music.youtube.com/watch?v=ddQuZRoBBbM",
+            "title": "148 - Fieser Trick beim Finale (Teil 02)",
+            "artists": [],
+            "album": "Album - 148/Fieser Trick beim Finale",
+            "duration_seconds": 91.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 3,
+            "spotify_title": "148 - Fieser Trick beim Finale - Teil 03",
+            "spotify_track_id": "71AjWoQ5kfulDZjeEcK2ry",
+            "spotify_track_url": "https://open.spotify.com/track/71AjWoQ5kfulDZjeEcK2ry",
+            "video_id": "JVm-Cw7nJuo",
+            "url": "https://music.youtube.com/watch?v=JVm-Cw7nJuo",
+            "title": "148 - Fieser Trick beim Finale (Teil 03)",
+            "artists": [],
+            "album": "Album - 148/Fieser Trick beim Finale",
+            "duration_seconds": 94.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 4,
+            "spotify_title": "148 - Fieser Trick beim Finale - Teil 04",
+            "spotify_track_id": "3YioObDeKMbfSh5O4J66X2",
+            "spotify_track_url": "https://open.spotify.com/track/3YioObDeKMbfSh5O4J66X2",
+            "video_id": "6cAQi3dhFBo",
+            "url": "https://music.youtube.com/watch?v=6cAQi3dhFBo",
+            "title": "148 - Fieser Trick beim Finale (Teil 04)",
+            "artists": [],
+            "album": "Album - 148/Fieser Trick beim Finale",
+            "duration_seconds": 96.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 5,
+            "spotify_title": "148 - Fieser Trick beim Finale - Teil 05",
+            "spotify_track_id": "5oUtAxTQAbuF7dZl2Gpgrp",
+            "spotify_track_url": "https://open.spotify.com/track/5oUtAxTQAbuF7dZl2Gpgrp",
+            "video_id": "gR9yQITqs0c",
+            "url": "https://music.youtube.com/watch?v=gR9yQITqs0c",
+            "title": "148 - Fieser Trick beim Finale (Teil 05)",
+            "artists": [],
+            "album": "Album - 148/Fieser Trick beim Finale",
+            "duration_seconds": 88.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 6,
+            "spotify_title": "148 - Fieser Trick beim Finale - Teil 06",
+            "spotify_track_id": "0UR6Cqj494G4z7XAKA6dPd",
+            "spotify_track_url": "https://open.spotify.com/track/0UR6Cqj494G4z7XAKA6dPd",
+            "video_id": "6h2e3mr24uY",
+            "url": "https://music.youtube.com/watch?v=6h2e3mr24uY",
+            "title": "148 - Fieser Trick beim Finale (Teil 06)",
+            "artists": [],
+            "album": "Album - 148/Fieser Trick beim Finale",
+            "duration_seconds": 93.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 7,
+            "spotify_title": "148 - Fieser Trick beim Finale - Teil 07",
+            "spotify_track_id": "3r6JlPDI6i2G9IzZ7W1X4n",
+            "spotify_track_url": "https://open.spotify.com/track/3r6JlPDI6i2G9IzZ7W1X4n",
+            "video_id": "uFsRK6JNvas",
+            "url": "https://music.youtube.com/watch?v=uFsRK6JNvas",
+            "title": "148 - Fieser Trick beim Finale (Teil 07)",
+            "artists": [],
+            "album": "Album - 148/Fieser Trick beim Finale",
+            "duration_seconds": 92.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 8,
+            "spotify_title": "148 - Fieser Trick beim Finale - Teil 08",
+            "spotify_track_id": "2Paj4d3ITp0d6MviPis3kD",
+            "spotify_track_url": "https://open.spotify.com/track/2Paj4d3ITp0d6MviPis3kD",
+            "video_id": "yFwyl09ElKA",
+            "url": "https://music.youtube.com/watch?v=yFwyl09ElKA",
+            "title": "148 - Fieser Trick beim Finale (Teil 08)",
+            "artists": [],
+            "album": "Album - 148/Fieser Trick beim Finale",
+            "duration_seconds": 93.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 9,
+            "spotify_title": "148 - Fieser Trick beim Finale - Teil 09",
+            "spotify_track_id": "6VpEdChPY8ntVeDsHgGiH6",
+            "spotify_track_url": "https://open.spotify.com/track/6VpEdChPY8ntVeDsHgGiH6",
+            "video_id": "obVI0l9Ynzg",
+            "url": "https://music.youtube.com/watch?v=obVI0l9Ynzg",
+            "title": "148 - Fieser Trick beim Finale (Teil 09)",
+            "artists": [],
+            "album": "Album - 148/Fieser Trick beim Finale",
+            "duration_seconds": 92.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 10,
+            "spotify_title": "148 - Fieser Trick beim Finale - Teil 10",
+            "spotify_track_id": "1QQoMizBIzSf1zZPpDqJv4",
+            "spotify_track_url": "https://open.spotify.com/track/1QQoMizBIzSf1zZPpDqJv4",
+            "video_id": "cXsB4IbAV_g",
+            "url": "https://music.youtube.com/watch?v=cXsB4IbAV_g",
+            "title": "148 - Fieser Trick beim Finale (Teil 10)",
+            "artists": [],
+            "album": "Album - 148/Fieser Trick beim Finale",
+            "duration_seconds": 90.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 11,
+            "spotify_title": "148 - Fieser Trick beim Finale - Teil 11",
+            "spotify_track_id": "5a9yPdSM8cZTpnGKnsjlCM",
+            "spotify_track_url": "https://open.spotify.com/track/5a9yPdSM8cZTpnGKnsjlCM",
+            "video_id": "O37uQ0aI_gU",
+            "url": "https://music.youtube.com/watch?v=O37uQ0aI_gU",
+            "title": "148 - Fieser Trick beim Finale (Teil 11)",
+            "artists": [],
+            "album": "Album - 148/Fieser Trick beim Finale",
+            "duration_seconds": 93.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 12,
+            "spotify_title": "148 - Fieser Trick beim Finale - Teil 12",
+            "spotify_track_id": "79CzRwFy2EHO3BZqtn9lKL",
+            "spotify_track_url": "https://open.spotify.com/track/79CzRwFy2EHO3BZqtn9lKL",
+            "video_id": "k_Ad8yU7jaw",
+            "url": "https://music.youtube.com/watch?v=k_Ad8yU7jaw",
+            "title": "148 - Fieser Trick beim Finale (Teil 12)",
+            "artists": [],
+            "album": "Album - 148/Fieser Trick beim Finale",
+            "duration_seconds": 88.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 13,
+            "spotify_title": "148 - Fieser Trick beim Finale - Teil 13",
+            "spotify_track_id": "75lTFrknaS250qJOu1ZDst",
+            "spotify_track_url": "https://open.spotify.com/track/75lTFrknaS250qJOu1ZDst",
+            "video_id": "0dUPTTsoEyU",
+            "url": "https://music.youtube.com/watch?v=0dUPTTsoEyU",
+            "title": "148 - Fieser Trick beim Finale (Teil 13)",
+            "artists": [],
+            "album": "Album - 148/Fieser Trick beim Finale",
+            "duration_seconds": 92.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 14,
+            "spotify_title": "148 - Fieser Trick beim Finale - Teil 14",
+            "spotify_track_id": "0DjyIx4YuYYQKB9sb9savB",
+            "spotify_track_url": "https://open.spotify.com/track/0DjyIx4YuYYQKB9sb9savB",
+            "video_id": "dVohxr7Loj8",
+            "url": "https://music.youtube.com/watch?v=dVohxr7Loj8",
+            "title": "148 - Fieser Trick beim Finale (Teil 14)",
+            "artists": [],
+            "album": "Album - 148/Fieser Trick beim Finale",
+            "duration_seconds": 92.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 15,
+            "spotify_title": "148 - Fieser Trick beim Finale - Teil 15",
+            "spotify_track_id": "13vFxQPGDvsp3rjR9KqB2V",
+            "spotify_track_url": "https://open.spotify.com/track/13vFxQPGDvsp3rjR9KqB2V",
+            "video_id": "6EEQUZYsIaA",
+            "url": "https://music.youtube.com/watch?v=6EEQUZYsIaA",
+            "title": "148 - Fieser Trick beim Finale (Teil 15)",
+            "artists": [],
+            "album": "Album - 148/Fieser Trick beim Finale",
+            "duration_seconds": 94.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 16,
+            "spotify_title": "148 - Fieser Trick beim Finale - Teil 16",
+            "spotify_track_id": "1vvbWizE0ifwFlfTg4HFJY",
+            "spotify_track_url": "https://open.spotify.com/track/1vvbWizE0ifwFlfTg4HFJY",
+            "video_id": "DIkxn4eb7Xs",
+            "url": "https://music.youtube.com/watch?v=DIkxn4eb7Xs",
+            "title": "148 - Fieser Trick beim Finale (Teil 16)",
+            "artists": [],
+            "album": "Album - 148/Fieser Trick beim Finale",
+            "duration_seconds": 90.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 17,
+            "spotify_title": "148 - Fieser Trick beim Finale - Teil 17",
+            "spotify_track_id": "23nsmtYiYxkrxLWQDYk63t",
+            "spotify_track_url": "https://open.spotify.com/track/23nsmtYiYxkrxLWQDYk63t",
+            "video_id": "7L9qkikeqnE",
+            "url": "https://music.youtube.com/watch?v=7L9qkikeqnE",
+            "title": "148 - Fieser Trick beim Finale (Teil 17)",
+            "artists": [],
+            "album": "Album - 148/Fieser Trick beim Finale",
+            "duration_seconds": 98.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 18,
+            "spotify_title": "148 - Fieser Trick beim Finale - Teil 18",
+            "spotify_track_id": "66DAoLwNjBx2kRHEnxbPDd",
+            "spotify_track_url": "https://open.spotify.com/track/66DAoLwNjBx2kRHEnxbPDd",
+            "video_id": "PHqqu297zzM",
+            "url": "https://music.youtube.com/watch?v=PHqqu297zzM",
+            "title": "148 - Fieser Trick beim Finale (Teil 18)",
+            "artists": [],
+            "album": "Album - 148/Fieser Trick beim Finale",
+            "duration_seconds": 89.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 19,
+            "spotify_title": "148 - Fieser Trick beim Finale - Teil 19",
+            "spotify_track_id": "7pgIJ3aicpSmYwygalsRJD",
+            "spotify_track_url": "https://open.spotify.com/track/7pgIJ3aicpSmYwygalsRJD",
+            "video_id": "785rrIYolwk",
+            "url": "https://music.youtube.com/watch?v=785rrIYolwk",
+            "title": "148 - Fieser Trick beim Finale (Teil 19)",
+            "artists": [],
+            "album": "Album - 148/Fieser Trick beim Finale",
+            "duration_seconds": 91.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 20,
+            "spotify_title": "148 - Fieser Trick beim Finale - Teil 20",
+            "spotify_track_id": "06ihnxRuwUwIL1D8X21wPD",
+            "spotify_track_url": "https://open.spotify.com/track/06ihnxRuwUwIL1D8X21wPD",
+            "video_id": "vRYtqcQ-hUI",
+            "url": "https://music.youtube.com/watch?v=vRYtqcQ-hUI",
+            "title": "148 - Fieser Trick beim Finale (Teil 20)",
+            "artists": [],
+            "album": "Album - 148/Fieser Trick beim Finale",
+            "duration_seconds": 96.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 21,
+            "spotify_title": "148 - Fieser Trick beim Finale - Teil 21",
+            "spotify_track_id": "6AE7XQnR8zpCi472dQtL3P",
+            "spotify_track_url": "https://open.spotify.com/track/6AE7XQnR8zpCi472dQtL3P",
+            "video_id": "8bio24ZzNIo",
+            "url": "https://music.youtube.com/watch?v=8bio24ZzNIo",
+            "title": "148 - Fieser Trick beim Finale (Teil 21)",
+            "artists": [],
+            "album": "Album - 148/Fieser Trick beim Finale",
+            "duration_seconds": 88.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 22,
+            "spotify_title": "148 - Fieser Trick beim Finale - Teil 22",
+            "spotify_track_id": "4ED9PIGHqIrgJnkFqeMUom",
+            "spotify_track_url": "https://open.spotify.com/track/4ED9PIGHqIrgJnkFqeMUom",
+            "video_id": "v2XeipaQp9c",
+            "url": "https://music.youtube.com/watch?v=v2XeipaQp9c",
+            "title": "148 - Fieser Trick beim Finale (Teil 22)",
+            "artists": [],
+            "album": "Album - 148/Fieser Trick beim Finale",
+            "duration_seconds": 90.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 23,
+            "spotify_title": "148 - Fieser Trick beim Finale - Teil 23",
+            "spotify_track_id": "6oLzfB6cjwrVSb1h09pwQI",
+            "spotify_track_url": "https://open.spotify.com/track/6oLzfB6cjwrVSb1h09pwQI",
+            "video_id": "NODNHPqVYnI",
+            "url": "https://music.youtube.com/watch?v=NODNHPqVYnI",
+            "title": "148 - Fieser Trick beim Finale (Teil 23)",
+            "artists": [],
+            "album": "Album - 148/Fieser Trick beim Finale",
+            "duration_seconds": 93.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 24,
+            "spotify_title": "148 - Fieser Trick beim Finale - Teil 24",
+            "spotify_track_id": "1hMjcaSA3hRklLIWdZqnKf",
+            "spotify_track_url": "https://open.spotify.com/track/1hMjcaSA3hRklLIWdZqnKf",
+            "video_id": "1hce-sA7G2c",
+            "url": "https://music.youtube.com/watch?v=1hce-sA7G2c",
+            "title": "148 - Fieser Trick beim Finale (Teil 24)",
+            "artists": [],
+            "album": "Album - 148/Fieser Trick beim Finale",
+            "duration_seconds": 88.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 25,
+            "spotify_title": "148 - Fieser Trick beim Finale - Teil 25",
+            "spotify_track_id": "7aGyuWxK4i0wwiPm5213TU",
+            "spotify_track_url": "https://open.spotify.com/track/7aGyuWxK4i0wwiPm5213TU",
+            "video_id": "TpbM4WxYZLw",
+            "url": "https://music.youtube.com/watch?v=TpbM4WxYZLw",
+            "title": "148 - Fieser Trick beim Finale (Teil 25)",
+            "artists": [],
+            "album": "Album - 148/Fieser Trick beim Finale",
+            "duration_seconds": 91.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 26,
+            "spotify_title": "148 - Fieser Trick beim Finale - Teil 26",
+            "spotify_track_id": "0RdS05W0p1DEXd9i2Agv6f",
+            "spotify_track_url": "https://open.spotify.com/track/0RdS05W0p1DEXd9i2Agv6f",
+            "video_id": "ZO3AyrXa0_Q",
+            "url": "https://music.youtube.com/watch?v=ZO3AyrXa0_Q",
+            "title": "148 - Fieser Trick beim Finale (Teil 26)",
+            "artists": [],
+            "album": "Album - 148/Fieser Trick beim Finale",
+            "duration_seconds": 99.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 27,
+            "spotify_title": "148 - Fieser Trick beim Finale - Teil 27",
+            "spotify_track_id": "4xg9GG4ZwltN003BDYWZbx",
+            "spotify_track_url": "https://open.spotify.com/track/4xg9GG4ZwltN003BDYWZbx",
+            "video_id": "xAhi8zxDJiM",
+            "url": "https://music.youtube.com/watch?v=xAhi8zxDJiM",
+            "title": "148 - Fieser Trick beim Finale (Teil 27)",
+            "artists": [],
+            "album": "Album - 148/Fieser Trick beim Finale",
+            "duration_seconds": 89.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 28,
+            "spotify_title": "148 - Fieser Trick beim Finale - Teil 28",
+            "spotify_track_id": "6UAErpjLiFj8JHs5PAMHNI",
+            "spotify_track_url": "https://open.spotify.com/track/6UAErpjLiFj8JHs5PAMHNI",
+            "video_id": "wCKhIp8qnEo",
+            "url": "https://music.youtube.com/watch?v=wCKhIp8qnEo",
+            "title": "148 - Fieser Trick beim Finale (Teil 28)",
+            "artists": [],
+            "album": "Album - 148/Fieser Trick beim Finale",
+            "duration_seconds": 94.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 29,
+            "spotify_title": "148 - Fieser Trick beim Finale - Teil 29",
+            "spotify_track_id": "07baGAy9Dwavzt54Rl7p3V",
+            "spotify_track_url": "https://open.spotify.com/track/07baGAy9Dwavzt54Rl7p3V",
+            "video_id": "T6B_KNeZqg8",
+            "url": "https://music.youtube.com/watch?v=T6B_KNeZqg8",
+            "title": "148 - Fieser Trick beim Finale (Teil 29)",
+            "artists": [],
+            "album": "Album - 148/Fieser Trick beim Finale",
+            "duration_seconds": 90.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 30,
+            "spotify_title": "148 - Fieser Trick beim Finale - Teil 30",
+            "spotify_track_id": "6G3REf23lO7WHlgyb22dMy",
+            "spotify_track_url": "https://open.spotify.com/track/6G3REf23lO7WHlgyb22dMy",
+            "video_id": "FQJ6apJuKww",
+            "url": "https://music.youtube.com/watch?v=FQJ6apJuKww",
+            "title": "148 - Fieser Trick beim Finale (Teil 30)",
+            "artists": [],
+            "album": "Album - 148/Fieser Trick beim Finale",
+            "duration_seconds": 92.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 31,
+            "spotify_title": "148 - Fieser Trick beim Finale - Teil 31",
+            "spotify_track_id": "5c47sOZRYIUjjpyDi7ZItW",
+            "spotify_track_url": "https://open.spotify.com/track/5c47sOZRYIUjjpyDi7ZItW",
+            "video_id": "DUrHYZUTH20",
+            "url": "https://music.youtube.com/watch?v=DUrHYZUTH20",
+            "title": "148 - Fieser Trick beim Finale (Teil 31)",
+            "artists": [],
+            "album": "Album - 148/Fieser Trick beim Finale",
+            "duration_seconds": 91.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 32,
+            "spotify_title": "148 - Fieser Trick beim Finale - Teil 32",
+            "spotify_track_id": "75V6QsgF6hyfAuJZpIy6iz",
+            "spotify_track_url": "https://open.spotify.com/track/75V6QsgF6hyfAuJZpIy6iz",
+            "video_id": "kOjpiEXhklk",
+            "url": "https://music.youtube.com/watch?v=kOjpiEXhklk",
+            "title": "148 - Fieser Trick beim Finale (Teil 32)",
+            "artists": [],
+            "album": "Album - 148/Fieser Trick beim Finale",
+            "duration_seconds": 94.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 33,
+            "spotify_title": "148 - Fieser Trick beim Finale - Teil 33",
+            "spotify_track_id": "0YClZBYTBvLHGidqCWnpNl",
+            "spotify_track_url": "https://open.spotify.com/track/0YClZBYTBvLHGidqCWnpNl",
+            "video_id": "B0U_JZ2ur5E",
+            "url": "https://music.youtube.com/watch?v=B0U_JZ2ur5E",
+            "title": "148 - Fieser Trick beim Finale (Teil 33)",
+            "artists": [],
+            "album": "Album - 148/Fieser Trick beim Finale",
+            "duration_seconds": 90.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 34,
+            "spotify_title": "148 - Fieser Trick beim Finale - Teil 34",
+            "spotify_track_id": "0cJaZTqTLehT70UyZzSKbC",
+            "spotify_track_url": "https://open.spotify.com/track/0cJaZTqTLehT70UyZzSKbC",
+            "video_id": "H6AFRx_fChI",
+            "url": "https://music.youtube.com/watch?v=H6AFRx_fChI",
+            "title": "148 - Fieser Trick beim Finale (Teil 34)",
+            "artists": [],
+            "album": "Album - 148/Fieser Trick beim Finale",
+            "duration_seconds": 90.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 35,
+            "spotify_title": "148 - Fieser Trick beim Finale - Teil 35",
+            "spotify_track_id": "4C4bJ4HoqedTf2yFD0M2UE",
+            "spotify_track_url": "https://open.spotify.com/track/4C4bJ4HoqedTf2yFD0M2UE",
+            "video_id": "ahuUrR7Tk2g",
+            "url": "https://music.youtube.com/watch?v=ahuUrR7Tk2g",
+            "title": "148 - Fieser Trick beim Finale (Teil 35)",
+            "artists": [],
+            "album": "Album - 148/Fieser Trick beim Finale",
+            "duration_seconds": 94.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 36,
+            "spotify_title": "148 - Fieser Trick beim Finale - Teil 36",
+            "spotify_track_id": "4A6UIoll6h6L7NMtNvvjCP",
+            "spotify_track_url": "https://open.spotify.com/track/4A6UIoll6h6L7NMtNvvjCP",
+            "video_id": "-JDxBa8eb0g",
+            "url": "https://music.youtube.com/watch?v=-JDxBa8eb0g",
+            "title": "148 - Fieser Trick beim Finale (Teil 36)",
+            "artists": [],
+            "album": "Album - 148/Fieser Trick beim Finale",
+            "duration_seconds": 92.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 37,
+            "spotify_title": "148 - Fieser Trick beim Finale - Teil 37",
+            "spotify_track_id": "6LPuGWCqOy4LycH2ZMT39q",
+            "spotify_track_url": "https://open.spotify.com/track/6LPuGWCqOy4LycH2ZMT39q",
+            "video_id": "s_eAwTuxvko",
+            "url": "https://music.youtube.com/watch?v=s_eAwTuxvko",
+            "title": "148 - Fieser Trick beim Finale (Teil 37)",
+            "artists": [],
+            "album": "Album - 148/Fieser Trick beim Finale",
+            "duration_seconds": 94.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 38,
+            "spotify_title": "148 - Fieser Trick beim Finale - Teil 38",
+            "spotify_track_id": "6GmSV2FyyrT6r9nLFm8Sfd",
+            "spotify_track_url": "https://open.spotify.com/track/6GmSV2FyyrT6r9nLFm8Sfd",
+            "video_id": "5emlyQCN0OI",
+            "url": "https://music.youtube.com/watch?v=5emlyQCN0OI",
+            "title": "148 - Fieser Trick beim Finale (Teil 38)",
+            "artists": [],
+            "album": "Album - 148/Fieser Trick beim Finale",
+            "duration_seconds": 88.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 39,
+            "spotify_title": "148 - Fieser Trick beim Finale - Teil 39",
+            "spotify_track_id": "0BvXWiRqv4BeXJvNOSe7PL",
+            "spotify_track_url": "https://open.spotify.com/track/0BvXWiRqv4BeXJvNOSe7PL",
+            "video_id": "rKPFyD9PudI",
+            "url": "https://music.youtube.com/watch?v=rKPFyD9PudI",
+            "title": "148 - Fieser Trick beim Finale (Teil 39)",
+            "artists": [],
+            "album": "Album - 148/Fieser Trick beim Finale",
+            "duration_seconds": 94.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 40,
+            "spotify_title": "148 - Fieser Trick beim Finale - Teil 40",
+            "spotify_track_id": "06jxi7kegvLNvUVYveg8n5",
+            "spotify_track_url": "https://open.spotify.com/track/06jxi7kegvLNvUVYveg8n5",
+            "video_id": "m11REg3j7j8",
+            "url": "https://music.youtube.com/watch?v=m11REg3j7j8",
+            "title": "148 - Fieser Trick beim Finale (Teil 40)",
+            "artists": [],
+            "album": "Album - 148/Fieser Trick beim Finale",
+            "duration_seconds": 92.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          }
+        ],
+        "track_count": 40
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-11-10T13:41:46.588736+00:00",
+        "method": "exact_ordered_album_track_titles_and_duration",
+        "matched_track_count": 40,
+        "playlist_status": "unavailable",
+        "playlist_error": null
+      }
+    }
   },
   {
     "number": 149,
