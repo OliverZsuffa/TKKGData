@@ -185,6 +185,31 @@ def _spotify_number_matches_text(value: str, number: int) -> bool:
     return False
 
 
+def _spotify_album_search_items(payload: Any) -> list[dict[str, Any]]:
+    """Extract album objects from all Spotify search sections, including top results."""
+    found: dict[str, dict[str, Any]] = {}
+
+    def visit(value: Any) -> None:
+        if isinstance(value, dict):
+            uri = value.get("uri")
+            name = value.get("name")
+            if (
+                isinstance(uri, str)
+                and uri.startswith("spotify:album:")
+                and isinstance(name, str)
+                and name.strip()
+            ):
+                found[uri] = value
+            for nested in value.values():
+                visit(nested)
+        elif isinstance(value, list):
+            for nested in value:
+                visit(nested)
+
+    visit(payload)
+    return list(found.values())
+
+
 def _spotify_album_search_records(
     queries: list[str], episode: dict[str, Any],
     diagnostics: list[dict[str, Any]] | None = None,
@@ -208,31 +233,18 @@ def _spotify_album_search_records(
                 break
             search = payload.get("data", {}).get("searchV2", {}) if isinstance(payload, dict) else {}
             album_section = search.get("albumsV2", {}) if isinstance(search, dict) else {}
-            items = album_section.get("items", []) if isinstance(album_section, dict) else []
+            section_items = album_section.get("items", []) if isinstance(album_section, dict) else []
+            items = _spotify_album_search_items(payload)
             if diagnostics is not None:
                 diagnostics.append({
                     "album_search_query": query,
                     "album_search_offset": offset,
-                    "album_search_count": len(items) if isinstance(items, list) else 0,
-                    "album_search_sample": [
-                        (
-                            (item.get("data") or item.get("item", {}).get("data") or {}).get("name")
-                            if isinstance(item, dict) else None
-                        )
-                        for item in items[:10]
-                    ] if isinstance(items, list) else [],
+                    "album_search_count": len(section_items) if isinstance(section_items, list) else 0,
+                    "album_search_sample": [item.get("name") for item in items[:10]],
                 })
-            if not isinstance(items, list) or not items:
+            if not items:
                 break
-            for wrapper in items:
-                if not isinstance(wrapper, dict):
-                    continue
-                album_data = wrapper.get("data")
-                if not isinstance(album_data, dict):
-                    nested_item = wrapper.get("item")
-                    album_data = nested_item.get("data") if isinstance(nested_item, dict) else None
-                if not isinstance(album_data, dict):
-                    continue
+            for album_data in items:
                 album_name = str(album_data.get("name") or "")
                 normalized_name = _normalise(album_name)
                 album_uri = str(album_data.get("uri") or "")
