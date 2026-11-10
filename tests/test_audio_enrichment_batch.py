@@ -5,7 +5,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from scraper.audio_enrichment_batch import partition, select_episodes
+from scraper.audio_enrichment_batch import aggregate, partition, select_episodes
 
 
 class AudioEnrichmentBatchTests(unittest.TestCase):
@@ -54,6 +54,21 @@ class AudioEnrichmentBatchTests(unittest.TestCase):
         self.assertEqual(flattened, selected)
         self.assertEqual(len(batches), 49)
         self.assertEqual(len(batches[-1]), 3)
+
+    def test_missing_batch_report_blocks_publication(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            matrix = {"include": [{"batch": 0, "episodes": [1, 2]}]}
+            report = aggregate(
+                root / "episodes.json",
+                root / "reports",
+                json.dumps(matrix),
+                write=True,
+                discovery_result="success",
+            )
+        self.assertFalse(report["catalogue_updated"])
+        self.assertEqual(report["missing_reports"], ["batch-0.json"])
+        self.assertIn("publication_blocked", report)
 
     def test_partition_bounds(self):
         with self.assertRaisesRegex(ValueError, "between 1 and 10"):
