@@ -50,9 +50,9 @@ Prepare a range for parallel discovery. The workflow dispatch accepts inclusive 
 
     py -m scraper.audio_enrichment_batch prepare --start-episode 1 --end-episode 243 --batch-size 5 --max-parallel 4
 
-The workflow can also resolve a single episode or retain the default latest-first selection of five missing mappings. Discovery batches are dry-run only. A single aggregation job validates every report and is the only job allowed to publish the catalogue.
+To run it, open GitHub Actions, select **Audio enrichment**, and choose **Run workflow**. Set the start and end episode numbers, batch size, and parallelism. Start with write mode disabled, inspect the combined report, then repeat with write mode enabled when the results are acceptable. For the full catalogue, use start 1 and end 243. Discovery batches are always dry-run only. A single aggregation job validates every report and is the only job allowed to publish the catalogue. The scheduled run remains latest-first and limited to five missing mappings.
 
-The JSON report contains the Spotify album URL, ordered Spotify track URLs, the verified YouTube Music playlist or album page URL, and ordered YouTube Music song URLs. If YouTube Music matching remains unresolved, the report still retains the successfully resolved Spotify links and stage-specific failure diagnostics. If YouTube Music matching remains unresolved, the report still retains the successfully resolved Spotify links and the stage-specific failure diagnostics.
+The JSON report contains the Spotify album URL, ordered Spotify track URLs, the verified YouTube Music playlist or album page URL, and ordered YouTube Music song URLs. If YouTube Music matching remains unresolved, the report still retains the successfully resolved Spotify links and stage-specific failure diagnostics.
 
 Write only fully verified mappings:
 
