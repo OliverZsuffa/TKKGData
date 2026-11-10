@@ -8,7 +8,7 @@ Consumers:
 
 ## Current data
 
-The initial migration preserves the existing tracker catalogue without changing its episode record structure. The published compatibility endpoint is:
+The published compatibility endpoint is:
 
     https://raw.githubusercontent.com/OliverZsuffa/TKKGData/main/data/episodes.json
 
@@ -16,11 +16,9 @@ Dataset metadata and schema version are published separately at:
 
     https://raw.githubusercontent.com/OliverZsuffa/TKKGData/main/data/dataset-metadata.json
 
-The episode JSON remains an array so the current TKKGTracker can adopt it without changing its application behaviour. New optional fields, including verified audio release mappings, are additive. Consumers must tolerate unknown optional fields and missing enrichment.
+The episode JSON remains an array so consumers can adopt it without changing their application behaviour. New optional fields, including verified audio release mappings, are additive. Consumers must tolerate missing enrichment.
 
-The initial migration contains 243 episode records, numbered 1 through 243, copied from the TKKGTracker main branch snapshot. Existing source provenance, episode details, and official listening links are retained.
-
-Audio enrichment is an independent, optional layer. As of 2026-11-09, episode 150 is the first verified release mapping, with its 40 Spotify and YouTube Music tracks paired individually. The other 242 episodes remain in the enrichment queue. The weekly workflow attempts up to five of the highest-numbered episodes without verified audio mappings.
+The catalogue contains 243 episode records. Audio enrichment is an independent, optional layer. Current published coverage is one verified audio release mapping, with 40 Spotify and YouTube Music track pairs. The weekly workflow attempts up to five of the highest-numbered episodes without verified audio mappings.
 
 ## Ownership
 
@@ -36,7 +34,7 @@ Install core dependencies:
 
     py -m pip install -r requirements.txt
 
-Install optional audio discovery dependencies:
+Install audio metadata discovery dependencies:
 
     py -m pip install -r requirements-audio.txt
 
@@ -44,23 +42,25 @@ Run the catalogue scraper:
 
     py -m scraper.run
 
-Discover verified audio mappings without writing them:
+Resolve an episode number into provider links without writing to the catalogue:
 
-    py -m scraper.audio_enrichment --episode 150
+    py -m scraper.audio_enrichment --episode EPISODE_NUMBER
 
-Write only fully verified audio mappings:
+The JSON report contains the Spotify album URL, ordered Spotify track URLs, the verified YouTube Music playlist or album page URL, and ordered YouTube Music song URLs. If YouTube Music matching remains unresolved, the report still retains the successfully resolved Spotify links and stage-specific failure diagnostics. If YouTube Music matching remains unresolved, the report still retains the successfully resolved Spotify links and the stage-specific failure diagnostics.
 
-    py -m scraper.audio_enrichment --episode 150 --write
+Write only fully verified mappings:
 
-Run diagnostics for audio source matching:
+    py -m scraper.audio_enrichment --episode EPISODE_NUMBER --write
 
-    py -m scraper.audio_source_experiments --episode 150
+An optional playlist ID can be supplied for one selected episode when diagnosing or recovering a known playlist:
+
+    py -m scraper.audio_enrichment --episode EPISODE_NUMBER --playlist-id PLAYLIST_ID
 
 Run all offline tests:
 
     py -m unittest discover -s tests -v
 
-Network discovery is not part of the offline test suite. It runs only through explicit scraper or enrichment commands and scheduled workflows. Respect source terms, robots.txt, rate limits, and access restrictions.
+Live episode-number-to-links integration tests cover a small regression matrix and run separately from offline tests. Network discovery is not required for catalogue validation. Respect source terms, robots.txt, rate limits, and access restrictions.
 
 ## Publication and versioning
 

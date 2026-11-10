@@ -1,11 +1,15 @@
 from __future__ import annotations
 
+import os
+import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import patch
 
 from scraper.audio_enrichment import (
+    AudioDiscoveryError,
     _candidate_source,
+    _save_spotify_metadata,
     _track_titles_match,
     audio_release_coverage,
     enrich_catalogue,
@@ -107,6 +111,35 @@ class FakeSongSearchYTMusic:
 
 
 
+
+class FakeAlbumWithoutPlaylistYTMusic(FakeYTMusic):
+    def search(self, query, filter, limit):
+        self.search_calls.append((query, filter, limit))
+        if filter == "albums":
+            return [{
+                "resultType": "album",
+                "browseId": "MPREb_example",
+                "title": "150/Heiße Nächte im Dezember",
+                "artists": [{"name": "TKKG"}],
+            }]
+        return []
+
+    def get_album(self, browse_id):
+        self.asserted_browse_id = browse_id
+        return {
+            "title": "150/Heiße Nächte im Dezember",
+            "artists": [{"name": "TKKG"}],
+            "tracks": [
+                {
+                    "title": track["name"],
+                    "duration_seconds": 128 - index,
+                    "artists": [{"name": "TKKG"}],
+                }
+                for index, track in enumerate(SPOTIFY["tracks"], start=1)
+            ],
+        }
+
+
 class AudioEnrichmentTests(unittest.TestCase):
     def test_official_audio_playlist_browse_id_is_recognized(self):
         source = _candidate_source(
@@ -143,6 +176,41 @@ class AudioEnrichmentTests(unittest.TestCase):
             result["playlist_id"],
             "OLAK5uy_mQRbJNANh1H4CKbmM5ez5LSW1HJFvE3QI",
         )
+
+
+    def test_album_tracklist_is_verified_when_no_public_playlist_id_exists(self):
+        ytm = FakeAlbumWithoutPlaylistYTMusic()
+        with patch(
+            "scraper.audio_enrichment._extract_ytdlp_playlist",
+            return_value=ytdlp_playlist_info("MPREb_example"),
+        ) as extract:
+            result = find_verified_youtube_music_playlist(EPISODE, SPOTIFY, ytm)
+        extract.assert_called_once_with("https://music.youtube.com/browse/MPREb_example")
+        self.assertIsNone(result["playlist_id"])
+        self.assertEqual(result["album_id"], "MPREb_example")
+        self.assertEqual(result["album_url"], "https://music.youtube.com/browse/MPREb_example")
+        self.assertEqual(len(result["_matched_tracks"]), 2)
+        self.assertIn("ordered_album_match", result["_matched_tracks"][0]["match_evidence"])
+
+    def test_discovery_returns_album_page_and_ordered_song_links_without_playlist_id(self):
+        ytm = FakeAlbumWithoutPlaylistYTMusic()
+        with patch("scraper.audio_enrichment.resolve_spotify_album", return_value=SPOTIFY):
+            with patch(
+                "scraper.audio_enrichment._extract_ytdlp_playlist",
+                return_value=ytdlp_playlist_info("MPREb_example"),
+            ):
+                result = discover_episode_audio(EPISODE, ytm)
+        self.assertIsNone(result["audio_release"]["youtube_music"]["playlist"])
+        self.assertEqual(
+            result["links"]["youtube_music_album"],
+            "https://music.youtube.com/browse/MPREb_example",
+        )
+        self.assertEqual(len(result["links"]["youtube_music_tracks"]), 2)
+        self.assertEqual(
+            result["audio_release"]["verification"]["method"],
+            "exact_ordered_album_track_titles_and_duration",
+        )
+
 
     def test_explicit_ytdlp_playlist_is_verified_and_produces_individual_links(self):
         playlist_id = "OLAK5uy_example123"
@@ -198,6 +266,13 @@ class AudioEnrichmentTests(unittest.TestCase):
             result = discover_episode_audio(EPISODE, ytm, playlist_id)
         self.assertEqual(len(result["audio_release"]["youtube_music"]["tracks"]), 2)
         self.assertEqual(result["audio_release"]["verification"]["method"], "exact_ordered_playlist_track_titles_and_duration")
+        self.assertEqual(result["links"]["spotify_album"], SPOTIFY["url"])
+        self.assertEqual(len(result["links"]["spotify_tracks"]), 2)
+        self.assertEqual(result["links"]["youtube_music_playlist"], f"https://music.youtube.com/playlist?list={playlist_id}")
+        self.assertEqual(len(result["links"]["youtube_music_tracks"]), 2)
+        self.assertIn("spotify_seconds", result["timings"])
+        self.assertIn("playlist_seconds", result["timings"])
+        self.assertIn("total_seconds", result["timings"])
         self.assertEqual(ytm.search_calls, [])
 
     def test_explicit_playlist_id_can_be_verified_without_search(self):
@@ -348,6 +423,35 @@ class AudioEnrichmentTests(unittest.TestCase):
         self.assertTrue(all(item["spotify_track_url"].startswith("https://open.spotify.com/track/") for item in result))
         self.assertTrue(all("episode_album" in item["match_evidence"] for item in result))
 
+
+    def test_individual_song_search_tries_tkkg_specific_query_variants(self):
+        title = SPOTIFY["tracks"][0]["name"]
+        candidate = {
+            "videoId": "videoid0001",
+            "title": title,
+            "artists": [{"name": "TKKG"}],
+            "album": {"name": SPOTIFY["title"]},
+            "duration_seconds": 120,
+        }
+        second_title = SPOTIFY["tracks"][1]["name"]
+        second_candidate = {
+            **candidate,
+            "videoId": "videoid0002",
+            "title": second_title,
+        }
+        ytm = FakeSongSearchYTMusic({
+            f"TKKG {title}": [candidate],
+            f"TKKG {second_title}": [second_candidate],
+        })
+        result = find_verified_youtube_music_tracks(EPISODE, SPOTIFY, ytm)
+        self.assertEqual([item["video_id"] for item in result], ["videoid0001", "videoid0002"])
+        self.assertIn(f"TKKG {title}", [query for query, _, _ in ytm.calls])
+        self.assertIn(
+            "TKKG Folge 150 Heiße Nächte im Dezember Teil 01",
+            [query for query, _, _ in ytm.calls],
+        )
+
+
     def test_individual_song_mapping_requires_valid_spotify_track_identity(self):
         spotify = {**SPOTIFY, "tracks": [{**SPOTIFY["tracks"][0], "song_id": "invalid", "url": "not-a-spotify-url"}]}
         candidates = {
@@ -373,10 +477,13 @@ class AudioEnrichmentTests(unittest.TestCase):
                 "album": {"name": "Unrelated album"},
             }]
         }
-        with self.assertRaisesRegex(ValueError, "No sufficiently corroborated"):
+        with self.assertRaisesRegex(ValueError, "No sufficiently corroborated") as caught:
             find_verified_youtube_music_tracks(
                 EPISODE, SPOTIFY, FakeSongSearchYTMusic(candidates),
             )
+        self.assertIn("Candidate diagnostics", str(caught.exception))
+        self.assertIn('"score": 100', str(caught.exception))
+        self.assertIn("score below unchanged threshold of 130", str(caught.exception))
 
     def test_individual_song_search_rejects_ambiguous_matches(self):
         title = SPOTIFY["tracks"][0]["name"]
@@ -400,12 +507,22 @@ class AudioEnrichmentTests(unittest.TestCase):
         ]
         fake_release = {
             "spotify": {"track_count": 1},
-            "youtube_music": {"playlist_id": "OLAK5uy_example123"},
+            "youtube_music": {"playlist": None, "track_count": 1},
             "verification": {"status": "verified"},
         }
         with patch(
             "scraper.audio_enrichment.discover_episode_audio",
-            return_value={"audio_release": fake_release, "matched_tracks": []},
+            return_value={
+                "audio_release": fake_release,
+                "matched_tracks": [],
+                "links": {
+                    "spotify_album": "https://open.spotify.com/album/" + "a" * 22,
+                    "spotify_tracks": [],
+                    "youtube_music_playlist": None,
+                    "youtube_music_tracks": [],
+                },
+                "timings": {"total_seconds": 0.01},
+            },
         ):
             report = enrich_catalogue(episodes, limit=2, latest_first=True, ytm=object())
         self.assertEqual([item["number"] for item in report["verified"]], [3, 2])
@@ -418,6 +535,153 @@ class AudioEnrichmentTests(unittest.TestCase):
         coverage = audio_release_coverage(episodes)
         self.assertEqual(coverage["verified_pairings"], 1)
         self.assertEqual(coverage["missing_pairings"], [{"number": 2, "title": "B"}])
+
+
+    def test_spotify_metadata_library_works_without_ffmpeg_in_path(self):
+        class FakeSong:
+            @classmethod
+            def from_search_term(cls, query):
+                cls.query = query
+                return type("SongRecord", (), {"json": {"name": "First track"}})()
+
+        class FakeAlbum:
+            @classmethod
+            def from_url(cls, url, fetch_songs=False):
+                cls.call = (url, fetch_songs)
+                return type("AlbumRecord", (), {
+                    "songs": [type("TrackRecord", (), {"json": {"name": "Track 1"}})()]
+                })()
+
+        with tempfile.TemporaryDirectory() as empty_path:
+            with patch("scraper.audio_enrichment._spotify_metadata_library", return_value=(FakeSong, FakeAlbum)):
+                with patch.dict(os.environ, {"PATH": empty_path}):
+                    first = _save_spotify_metadata("TKKG 150 Heiße Nächte im Dezember Teil 01")
+                    album = _save_spotify_metadata(SPOTIFY["url"])
+        self.assertEqual(first, [{"name": "First track"}])
+        self.assertEqual(album, [{"name": "Track 1"}])
+        self.assertEqual(FakeSong.query, "TKKG 150 Heiße Nächte im Dezember Teil 01")
+        self.assertEqual(FakeAlbum.call, (SPOTIFY["url"], False))
+
+    def test_playlist_discovery_searches_spotify_album_and_track_metadata(self):
+        ytm = FakeYTMusic(["OLAK5uy_mQRbJNANh1H4CKbmM5ez5LSW1HJFvE3QI"])
+        with patch("scraper.audio_enrichment._extract_ytdlp_playlist", return_value=ytdlp_playlist_info("OLAK5uy_mQRbJNANh1H4CKbmM5ez5LSW1HJFvE3QI")):
+            find_verified_youtube_music_playlist(EPISODE, SPOTIFY, ytm)
+        queries = [query for query, _, _ in ytm.search_calls]
+        self.assertIn(SPOTIFY["title"], queries)
+        self.assertIn(f"TKKG {SPOTIFY['title']}", queries)
+        self.assertIn(f"TKKG {SPOTIFY['tracks'][0]['name']}", queries)
+
+    def test_discovery_failure_preserves_spotify_links_and_playlist_error(self):
+        class NoResultsYTMusic:
+            def search(self, query, filter, limit):
+                return []
+
+        with patch("scraper.audio_enrichment.resolve_spotify_album", return_value=SPOTIFY):
+            with self.assertRaises(AudioDiscoveryError) as caught:
+                discover_episode_audio(EPISODE, NoResultsYTMusic())
+        error = caught.exception
+        self.assertEqual(error.stage, "youtube_music")
+        self.assertEqual(error.spotify["url"], SPOTIFY["url"])
+        self.assertIn("No verified YouTube Music playlist", error.playlist_error)
+        self.assertIn("Complete playlist discovery also failed", str(error))
+
+    def test_unresolved_report_keeps_verified_spotify_links(self):
+        with patch(
+            "scraper.audio_enrichment.discover_episode_audio",
+            side_effect=AudioDiscoveryError(
+                "YouTube Music unresolved", stage="youtube_music",
+                spotify=SPOTIFY, playlist_error="No playlist candidate",
+            ),
+        ):
+            report = enrich_catalogue([dict(EPISODE)], ytm=object())
+        failure = report["failures"][0]
+        self.assertEqual(failure["stage"], "youtube_music")
+        self.assertEqual(failure["links"]["spotify_album"], SPOTIFY["url"])
+        self.assertEqual(len(failure["links"]["spotify_tracks"]), 2)
+        self.assertIsNone(failure["links"]["youtube_music_playlist"])
+
+    def test_audio_workflow_has_no_episode_specific_or_ffmpeg_setup(self):
+        workflow = Path(".github/workflows/audio-enrichment.yml").read_text(encoding="utf-8")
+        self.assertNotIn("150", workflow)
+        self.assertNotIn("ffmpeg", workflow.casefold())
+        self.assertNotIn("push:", workflow)
+        self.assertIn('default: ""', workflow)
+        self.assertIn("playlist_id:", workflow)
+
+    def test_live_integration_workflow_covers_148_149_150(self):
+        workflow = Path(".github/workflows/audio-enrichment-integration.yml").read_text(encoding="utf-8")
+        self.assertIn("episode: [148, 149, 150]", workflow)
+        self.assertIn("--episode", workflow)
+        self.assertNotIn("--playlist-id", workflow)
+
+
+
+    def test_explicit_episode_lookup_rechecks_existing_verified_mapping(self):
+        existing = {
+            "spotify": {"album_id": "a" * 22},
+            "youtube_music": {"tracks": []},
+            "verification": {"status": "verified"},
+        }
+        episode = {**EPISODE, "audio_release": existing}
+        fake_release = {
+            "spotify": {"track_count": 2},
+            "youtube_music": {"playlist": None, "tracks": [], "track_count": 2},
+            "verification": {"status": "verified"},
+        }
+        fake_discovery = {
+            "audio_release": fake_release,
+            "matched_tracks": [],
+            "links": {
+                "spotify_album": SPOTIFY["url"],
+                "spotify_tracks": [],
+                "youtube_music_playlist": None,
+                "youtube_music_tracks": [],
+            },
+            "timings": {"total_seconds": 0.01},
+        }
+        with patch("scraper.audio_enrichment.discover_episode_audio", return_value=fake_discovery) as discover:
+            report = enrich_catalogue(
+                [episode], selected_numbers={150}, limit=1, ytm=object(),
+            )
+        discover.assert_called_once()
+        self.assertEqual(report["target_count"], 1)
+        self.assertEqual(len(report["verified"]), 1)
+        self.assertEqual(episode["audio_release"], existing)
+
+
+
+    def test_explicit_episode_lookup_rechecks_existing_verified_mapping(self):
+        existing = {
+            "spotify": {"album_id": "a" * 22},
+            "youtube_music": {"tracks": []},
+            "verification": {"status": "verified"},
+        }
+        episode = {**EPISODE, "audio_release": existing}
+        fake_release = {
+            "spotify": {"track_count": 2},
+            "youtube_music": {"playlist": None, "tracks": [], "track_count": 2},
+            "verification": {"status": "verified"},
+        }
+        fake_discovery = {
+            "audio_release": fake_release,
+            "matched_tracks": [],
+            "links": {
+                "spotify_album": SPOTIFY["url"],
+                "spotify_tracks": [],
+                "youtube_music_playlist": None,
+                "youtube_music_tracks": [],
+            },
+            "timings": {"total_seconds": 0.01},
+        }
+        with patch("scraper.audio_enrichment.discover_episode_audio", return_value=fake_discovery) as discover:
+            report = enrich_catalogue(
+                [episode], selected_numbers={150}, limit=1, ytm=object(),
+            )
+        discover.assert_called_once()
+        self.assertEqual(report["target_count"], 1)
+        self.assertEqual(len(report["verified"]), 1)
+        self.assertEqual(episode["audio_release"], existing)
+
 
 
 if __name__ == "__main__":
