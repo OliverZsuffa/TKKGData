@@ -14,7 +14,7 @@ The approved implementation is on the Request 006 branch. No canonical catalogue
 - The exact Spotify artist aliases are used as identity checks. No arbitrary substring matching is allowed.
 - The batch workflow selects inclusive ranges, partitions into bounded jobs, collects unique reports, validates exact coverage, preserves existing verified mappings, and publishes only once from the aggregation job.
 - The batch report distinguishes wall-clock runtime from summed per-episode processing time and records configured parallelism and failed batches.
-- A dedicated pull-request smoke workflow now runs episodes 1 to 10 in two batches of five with two concurrent jobs. It aggregates reports in dry-run mode and never writes the catalogue.
+- A dedicated pull-request smoke workflow now runs episodes 1 to 6 in two batches of three with two concurrent jobs. It aggregates reports in dry-run mode and never writes the catalogue.
 
 ## Test results
 - CI at commit \`4800b24\` passed all 97 unit tests.
