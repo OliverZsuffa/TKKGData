@@ -1,19 +1,5 @@
-# Development requests
-
-Every substantial change is tracked in its own numbered request folder.
-
-## Workflow
-1. Read project instructions and relevant knowledge.
-2. Investigate the existing implementation and sources only as far as needed.
-3. Create request.md, implementation-plan.md, testing.md, and notes.md.
-4. Present the plan and wait for Oliver's explicit approval.
-5. Implement only the approved scope on a focused branch.
-6. Run automated checks, source validation, and relevant manual tests.
-7. Record actual results and remaining work in notes.md.
-8. Request explicit approval before merging or deploying.
-
 ## Request index
-- [005: Remove episode-specific logic and streamline metadata discovery](005-remove-episode-specific-production-logic/request.md) — remove the experimental subsystem, eliminate FFmpeg from metadata discovery, and improve matching diagnostics.
+- [005: Episode number to verified links and metadata-only discovery](005-remove-episode-specific-production-logic/request.md) — resolve an episode number into verified Spotify album and track links plus the corresponding YouTube Music playlist and song links, remove FFmpeg and the experimental subsystem, and improve diagnostics.
 - [004: Verify YouTube Music playlists through yt-dlp](004-ytdlp-playlist-verification/request.md) — verify exact ordered playlist entries and derive both provider track URLs.
 - [003: Reliable data workflows](003-reliable-data-workflows/request.md) — install FFmpeg and serialize shared dataset writes.
 - [002: Exact Spotify and YouTube Music track pairing](002-exact-track-pairing/request.md) — preserve exact provider track URLs for deterministic downloader matching.
