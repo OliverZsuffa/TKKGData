@@ -61,6 +61,8 @@ def partition(items: list[int], batch_size: int) -> list[list[int]]:
 
 
 def prepare(args: argparse.Namespace) -> int:
+    if args.max_parallel < 1 or args.max_parallel > 8:
+        raise ValueError("Maximum parallel batches must be between 1 and 8.")
     episodes = json.loads(args.catalogue.read_text(encoding="utf-8"))
     selected = select_episodes(
         episodes, episode=args.episode, start_episode=args.start_episode,
@@ -82,6 +84,7 @@ def prepare(args: argparse.Namespace) -> int:
         "selected_count": len(selected),
         "batch_count": len(batches),
         "batch_size": args.batch_size,
+        "max_parallel": args.max_parallel,
         "matrix": matrix,
     }, indent=2))
     return 0
@@ -108,7 +111,7 @@ def aggregate(
     reports: dict[int, dict[str, Any]] = {}
     for batch in batches:
         index = int(batch["batch"])
-        path = reports_dir / f"batch-{index:03d}.json"
+        path = reports_dir / f"batch-{index}.json"
         if not path.is_file():
             raise RuntimeError(f"Required batch report is missing: {path.name}")
         report = json.loads(path.read_text(encoding="utf-8"))
@@ -206,6 +209,7 @@ def main() -> int:
     prepare_parser.add_argument("--end-episode", type=int)
     prepare_parser.add_argument("--limit", type=int, default=5)
     prepare_parser.add_argument("--batch-size", type=int, default=5)
+    prepare_parser.add_argument("--max-parallel", type=int, default=4)
     aggregate_parser = subparsers.add_parser("aggregate")
     aggregate_parser.add_argument("--catalogue", type=Path, default=DEFAULT_CATALOGUE)
     aggregate_parser.add_argument("--reports-dir", type=Path, required=True)
