@@ -30,6 +30,11 @@ The run started at 12:24:55 UTC and completed at 12:35:21 UTC, for approximately
 
 This confirms that FFmpeg installation, not the matching algorithm, dominated the run's wall-clock time. The metadata job does not process audio, so this installation should be eliminated by replacing the spotDL CLI metadata call with a tested metadata-only adapter.
 
+## Episode-number-to-links target
+The intended normal operation is one episode number in, verified links out. The output should contain the Spotify album and ordered Spotify track URLs, the verified YouTube Music playlist URL, and ordered YouTube Music song/video URLs. The pipeline must expose stage-level outcomes so a failure to find a playlist is not confused with failure to resolve Spotify metadata.
+
+The known episode 150 workflow is the positive control, but its playlist ID must not be supplied in the automatic discovery test. The previous episode 149 failure remains a diagnostic case, not an assumed permanent failure. Episode 148 provides an additional independent sample. Test all three separately with writes disabled, and report exact results rather than promising that every episode will resolve.
+
 ## Open implementation questions
 
 - Verify which metadata-only Spotify client or supported library interface provides the required album and track fields without FFmpeg and without adding unnecessary credentials.
