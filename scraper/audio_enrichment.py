@@ -192,7 +192,33 @@ def _spotify_artist_album_records(
     for artist_id in sorted(artist_ids):
         if diagnostics is not None:
             diagnostics.append({"discography_artist_id": artist_id})
-        for page_items in client.paginate_artist_discography(artist_id, section="all"):
+        if hasattr(client, "paginate_artist_discography"):
+            pages = client.paginate_artist_discography(artist_id, section="all")
+        elif hasattr(client, "get_artist_discography"):
+            def page_generator():
+                offset = 0
+                while offset < 500:
+                    response = client.get_artist_discography(
+                        artist_id, section="all", offset=offset, limit=50,
+                    )
+                    section = (
+                        response.get("data", {})
+                        .get("artistUnion", {})
+                        .get("discography", {})
+                        .get("all", {})
+                    )
+                    page_items = section.get("items") or []
+                    if not page_items:
+                        break
+                    yield page_items
+                    offset += len(page_items)
+                    total = section.get("totalCount")
+                    if len(page_items) < 50 or (isinstance(total, int) and offset >= total):
+                        break
+            pages = page_generator()
+        else:
+            raise RuntimeError("Installed SpotAPI does not expose paginated artist discography")
+        for page_items in pages:
             if not isinstance(page_items, list):
                 continue
             if diagnostics is not None:
