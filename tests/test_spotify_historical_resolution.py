@@ -4,7 +4,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from scraper.audio_enrichment import _spotify_artist_matches, resolve_spotify_album
+from scraper.audio_enrichment import _spotify_artist_matches, discover_episode_audio, resolve_spotify_album
 
 
 class SpotifyHistoricalResolutionTests(unittest.TestCase):
@@ -51,6 +51,39 @@ class SpotifyHistoricalResolutionTests(unittest.TestCase):
         self.assertEqual(result["track_count"], 1)
         self.assertEqual(result["tracks"][0]["song_id"], track_id)
         self.assertEqual(result["release_type"], "compilation_track_selection")
+
+    def test_compilation_uses_individual_track_pairing_not_album_playlist(self):
+        episode = {"number": 20, "title": "Das Geheimnis der alten Villa"}
+        track_id = "B" * 22
+        spotify = {
+            "album_id": "A" * 22,
+            "url": "https://open.spotify.com/album/" + "A" * 22,
+            "title": "TKKG Hörspiel Sammlung",
+            "track_count": 1,
+            "source_query": "TKKG 20 Das Geheimnis der alten Villa",
+            "release_type": "compilation_track_selection",
+            "tracks": [{
+                "name": "20 - Das Geheimnis der alten Villa",
+                "track_number": 5,
+                "song_id": track_id,
+                "url": "https://open.spotify.com/track/" + track_id,
+            }],
+        }
+        matched = [{
+            "track_number": 1,
+            "title": "20 - Das Geheimnis der alten Villa",
+            "url": "https://music.youtube.com/watch?v=videoid0001",
+            "spotify_track_url": "https://open.spotify.com/track/" + track_id,
+            "match_evidence": ["exact_normalised_title"],
+        }]
+        with patch("scraper.audio_enrichment.resolve_spotify_album", return_value=spotify), \\
+             patch("scraper.audio_enrichment.find_verified_youtube_music_playlist", side_effect=AssertionError("must not pair a compilation album with a playlist")), \\
+             patch("scraper.audio_enrichment.find_verified_youtube_music_tracks", return_value=matched):
+            result = discover_episode_audio(episode, object())
+
+        self.assertIsNone(result["audio_release"]["youtube_music"]["playlist"])
+        self.assertIsNone(result["links"]["youtube_music_playlist"])
+        self.assertEqual(result["links"]["youtube_music_tracks"][0]["spotify_url"], "https://open.spotify.com/track/" + track_id)
 
     def test_ambiguous_equal_scoring_albums_are_rejected(self):
         episode = {"number": 20, "title": "Das Geheimnis der alten Villa"}
