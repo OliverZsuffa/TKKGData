@@ -55,6 +55,12 @@ class SpotifyHistoricalResolutionTests(unittest.TestCase):
         self.assertIn("episode:20", records[0]["search_query"])
         self.assertEqual(client.call, (artist_id, "album,compilation", 50, 0))
 
+    def test_verified_artist_id_fallback_for_tkkg(self):
+        self.assertEqual(
+            _spotify_artist_ids({"artists": ["TKKG"], "artist_ids": [""]}),
+            {"61qDotnjM0jnY5lkfOP7ve"},
+        )
+
     def test_artist_id_alignment_preserves_the_exact_credited_artist(self):
         self.assertEqual(
             _spotify_artist_ids({
