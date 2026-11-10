@@ -292,7 +292,8 @@ def find_verified_youtube_music_playlist(
                         continue
                     try:
                         matched_tracks = _playlist_track_records(
-                            spotify, album_tracks, album_title, explicit_playlist_id=False,
+                            spotify, album_tracks, album_title,
+                            explicit_playlist_id=False, source_type="album",
                         )
                     except ValueError as exc:
                         rejected.append(f"{source_id}: album track verification failed: {exc}")
@@ -426,6 +427,7 @@ def _playlist_track_records(
     playlist_title: str,
     *,
     explicit_playlist_id: bool,
+    source_type: str = "playlist",
 ) -> list[dict[str, Any]]:
     if len(playlist_tracks) != spotify["track_count"]:
         raise ValueError(
@@ -456,7 +458,11 @@ def _playlist_track_records(
         spotify_track_id, spotify_track_url = _spotify_track_identity(spotify_track, index)
         ytm_duration = _duration_seconds(candidate.get("duration_seconds") or candidate.get("duration"))
         spotify_duration = _duration_seconds(spotify_track.get("duration") or spotify_track.get("duration_ms"))
-        evidence = ["exact_normalised_title", "ordered_playlist_match", "playlist_title_matches_episode"]
+        evidence = [
+            "exact_normalised_title",
+            f"ordered_{source_type}_match",
+            f"{source_type}_title_matches_episode",
+        ]
         if explicit_playlist_id:
             evidence.append("explicit_playlist_id")
         if ytm_duration is not None and spotify_duration is not None:
@@ -899,6 +905,7 @@ def enrich_catalogue(
                     "spotify_album": partial_spotify["url"],
                     "spotify_tracks": _spotify_links(partial_spotify)["tracks"],
                     "youtube_music_playlist": None,
+                    "youtube_music_album": None,
                     "youtube_music_tracks": [],
                 }
                 failure["playlist_error"] = getattr(exc, "playlist_error", None)
@@ -916,6 +923,7 @@ def enrich_catalogue(
         playlist = audio_release["youtube_music"].get("playlist")
         playlist_note = (
             f", playlist {playlist['playlist_id']}" if isinstance(playlist, dict)
+            else ", verified album tracklist" if discovery["links"].get("youtube_music_album")
             else ", no verified album playlist"
         )
         print(
@@ -993,7 +1001,10 @@ def _write_github_step_summary(report: dict[str, Any]) -> None:
         lines.extend([
             f"### Episode {item['number']}: {item['title']}",
             f"- Spotify album: [open]({links['spotify_album']})",
-            f"- YouTube Music playlist: " + (f"[open]({links['youtube_music_playlist']})" if links["youtube_music_playlist"] else "not verified"),
+            f"- YouTube Music source: "
+            + (f"[playlist]({links['youtube_music_playlist']})" if links["youtube_music_playlist"]
+               else f"[album]({links['youtube_music_album']})" if links.get("youtube_music_album")
+               else "not verified"),
             f"- Stage timings: {item.get('timings', {})}",
             "",
             "| # | Track | Spotify | YouTube Music |",
@@ -1069,6 +1080,8 @@ def main() -> int:
             print(f"Episode {item['number']} Spotify album: {links['spotify_album']}", flush=True)
             if links["youtube_music_playlist"]:
                 print(f"Episode {item['number']} YouTube Music playlist: {links['youtube_music_playlist']}", flush=True)
+            elif links.get("youtube_music_album"):
+                print(f"Episode {item['number']} YouTube Music album: {links['youtube_music_album']}", flush=True)
             for spotify_track, ytm_track in zip(
                 links["spotify_tracks"], links["youtube_music_tracks"], strict=True,
             ):
