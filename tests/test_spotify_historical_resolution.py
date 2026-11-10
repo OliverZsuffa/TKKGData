@@ -54,8 +54,10 @@ class SpotifyHistoricalResolutionTests(unittest.TestCase):
         album_id, track_id = "A" * 22, "B" * 22
 
         class FakeSong:
+            calls = []
+
             def query_songs(self, query, limit=20):
-                self.query = query
+                self.calls.append((query, limit))
                 return {
                     "data": {
                         "searchV2": {
@@ -95,6 +97,7 @@ class SpotifyHistoricalResolutionTests(unittest.TestCase):
         self.assertEqual(len(records), 1)
         self.assertEqual(records[0]["song_id"], track_id)
         self.assertIn("album_search:", records[0]["search_query"])
+        self.assertIn(("07/3er Box - Folge 19-21", 50), FakeSong.calls)
         self.assertTrue(any(item.get("album_search_candidate") == "07/3er Box - Folge 19-21" for item in diagnostics))
 
     def test_verified_artist_id_fallback_for_tkkg(self):
