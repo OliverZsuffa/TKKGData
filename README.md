@@ -46,7 +46,7 @@ Resolve an episode number into provider links without writing to the catalogue:
 
     py -m scraper.audio_enrichment --episode EPISODE_NUMBER
 
-The JSON report contains the Spotify album URL, ordered Spotify track URLs, verified YouTube Music playlist URL when available, and ordered YouTube Music song URLs. If YouTube Music matching remains unresolved, the report still retains the successfully resolved Spotify links and the stage-specific failure diagnostics.
+The JSON report contains the Spotify album URL, ordered Spotify track URLs, the verified YouTube Music playlist or album page URL, and ordered YouTube Music song URLs. If YouTube Music matching remains unresolved, the report still retains the successfully resolved Spotify links and stage-specific failure diagnostics. If YouTube Music matching remains unresolved, the report still retains the successfully resolved Spotify links and the stage-specific failure diagnostics.
 
 Write only fully verified mappings:
 
