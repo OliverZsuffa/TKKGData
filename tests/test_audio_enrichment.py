@@ -131,7 +131,6 @@ class FakeAlbumWithoutPlaylistYTMusic(FakeYTMusic):
             "artists": [{"name": "TKKG"}],
             "tracks": [
                 {
-                    "videoId": f"videoid{index:04d}",
                     "title": track["name"],
                     "duration_seconds": 128 - index,
                     "artists": [{"name": "TKKG"}],
