@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import tempfile
 import time
@@ -888,7 +889,7 @@ def enrich_catalogue(
 
 
 def _write_github_step_summary(report: dict[str, Any]) -> None:
-    summary_path = Path(__import__("os").environ["GITHUB_STEP_SUMMARY"]) if __import__("os").environ.get("GITHUB_STEP_SUMMARY") else None
+    summary_path = Path(os.environ["GITHUB_STEP_SUMMARY"]) if os.environ.get("GITHUB_STEP_SUMMARY") else None
     if summary_path is None:
         return
     lines = [
