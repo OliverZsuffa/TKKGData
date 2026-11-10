@@ -133,6 +133,7 @@ jobs:
           path: data/batch-reports
           merge-multiple: true
       - name: Validate all batch reports and publish once
+        if: always()
         id: aggregate
         env:
           MATRIX_JSON: ${{ needs.prepare.outputs.matrix }}
