@@ -82,6 +82,7 @@ def prepare(args: argparse.Namespace) -> int:
             handle.write(f"matrix={encoded}\n")
             handle.write(f"batch_count={len(batches)}\n")
             handle.write(f"selected_count={len(selected)}\n")
+            handle.write(f"max_parallel={args.max_parallel}\n")
     print(json.dumps({
         "selected_count": len(selected),
         "batch_count": len(batches),
