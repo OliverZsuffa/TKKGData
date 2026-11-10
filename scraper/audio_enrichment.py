@@ -237,7 +237,10 @@ def resolve_spotify_album(episode: dict[str, Any], work_dir: Path) -> dict[str, 
     search_diagnostics: list[dict[str, Any]] = []
     for query in dict.fromkeys(queries):
         try:
-            for record in _save_spotify_metadata(query)[:20]:
+            query_records = _save_spotify_metadata(query)[:20]
+            if not query_records:
+                search_diagnostics.append({"query": query, "result_count": 0})
+            for record in query_records:
                 search_diagnostics.append({
                     "query": query,
                     "name": record.get("name"),
