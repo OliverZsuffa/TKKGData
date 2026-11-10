@@ -25,6 +25,7 @@ REPORT_PATH = DATA_DIR / "audio-enrichment-report.json"
 SCRAPE_REPORT_PATH = DATA_DIR / "scrape-report.json"
 YTM_BASE = "https://music.youtube.com/playlist?"
 SPOTIFY_ALBUM_BASE = "https://open.spotify.com/album/"
+SPOTIFY_ALBUM_SEARCH_PREFIX = "spotify-album-search:"
 
 
 def _normalise(value: str) -> str:
@@ -102,6 +103,21 @@ def _save_spotify_metadata(query: str, output_path: Path | None = None) -> list[
         if query.startswith(SPOTIFY_ALBUM_BASE):
             album = Album.from_url(query, fetch_songs=False)
             records = [track.json for track in album.songs]
+        elif query.startswith(SPOTIFY_ALBUM_SEARCH_PREFIX):
+            from spotdl.utils.spotify import SpotifyClient
+
+            search_query = query[len(SPOTIFY_ALBUM_SEARCH_PREFIX):]
+            payload = SpotifyClient().search(search_query, type="album")
+            album_items = payload.get("albums", {}).get("items", []) if isinstance(payload, dict) else []
+            records = []
+            for album_item in album_items[:10]:
+                album_id = album_item.get("id") if isinstance(album_item, dict) else None
+                if not isinstance(album_id, str) or not re.fullmatch(r"[A-Za-z0-9]{22}", album_id):
+                    continue
+                album_records = _save_spotify_metadata(f"{SPOTIFY_ALBUM_BASE}{album_id}")
+                for record in album_records:
+                    record["search_query"] = search_query
+                    records.append(record)
         else:
             records = _spotify_search_records(query)
     except Exception as exc:
@@ -204,6 +220,8 @@ def resolve_spotify_album(episode: dict[str, Any], work_dir: Path) -> dict[str, 
         f'track:"{title}" artist:"TKKG Retro-Archiv"',
         f'track:"{title}"',
         f"TKKG {number:03d} {title} Teil 01",
+        f'{SPOTIFY_ALBUM_SEARCH_PREFIX}album:"Folge {((number - 1) // 3) * 3 + 1}-{((number - 1) // 3) * 3 + 3}" artist:TKKG',
+        f'{SPOTIFY_ALBUM_SEARCH_PREFIX}album:"{((number - 1) // 5) * 5 + 1}-{((number - 1) // 5) * 5 + 5}" artist:TKKG',
         f"TKKG {number} {title}",
         f"TKKG Folge {number} {title}",
         f"{number} {title}",
