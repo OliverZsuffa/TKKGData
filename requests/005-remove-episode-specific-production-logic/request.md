@@ -1,7 +1,7 @@
-# Request 005: Remove episode-specific logic and streamline metadata discovery
+# Request 005: Episode number to verified links and metadata-only discovery
 
 ## Status
-Planning only. Awaiting approval of this revised scope.
+Approved on 2026-11-10. Implementation in progress.
 
 ## Context
 Episode numbers are ordinary catalogue data. Production code, workflows, and current operational documentation must not contain special handling for an individual episode. Episode-specific regression fixtures may remain in tests.
