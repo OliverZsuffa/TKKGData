@@ -7,45 +7,60 @@ Approved on 2026-11-10. Implementation is in progress on branch `implement/005-e
 - Replaced the spotDL command-line `save` operation with direct use of spotDL 4.5.2 metadata classes. The adapter calls the Spotify search and album metadata methods without creating a downloader or checking for FFmpeg.
 - Retained spotDL in `requirements-audio.txt` because its Spotify metadata classes and configured SpotipyFree client are still used. No new repository secrets or credentials were introduced.
 - Expanded YouTube Music album and playlist search variants to include the Spotify album title and the first three Spotify track titles, in addition to episode title variants.
-- Preserved strict ordered playlist validation, exact normalized title matching, track counts, duration checks, video ID checks, TKKG artist evidence, and ambiguity rejection.
-- Added bounded candidate diagnostics to individual song fallback failures. The score threshold remains 130.
-- Preserved the playlist discovery failure when individual song fallback also fails.
+- Added a fallback for official YouTube Music MPRE album pages that expose no OLAK playlist ID. The workflow uses yt-dlp on the album page to obtain the playable video IDs, then validates the complete ordered tracklist against Spotify.
+- Preserved strict track identity, ordering, count, title, duration, video ID, TKKG artist evidence, and ambiguity checks. The individual song matching threshold remains 130.
+- Added bounded candidate diagnostics to individual song fallback failures and retained the playlist discovery failure when individual song fallback also fails.
 - Added stage-specific failure reporting. If Spotify metadata resolves but YouTube Music matching fails, the report still includes the Spotify album and all ordered Spotify track links.
-- Added direct link output to the JSON report, terminal output, and GitHub Actions step summary.
-- Added per-stage and total timing fields to discovery reports.
+- Added direct link output to the JSON report, terminal output, and GitHub Actions step summary. The report includes a YouTube Music playlist URL when one exists, or the verified album page URL when the album has no public playlist ID.
+- Added per-stage and total timings.
 - Removed the push trigger, episode-specific playlist injection, marker handling, FFmpeg installation, and experiment workflow steps.
 - Made manual episode input empty by default and added a generic optional playlist ID input.
-- Added a read-only live integration workflow with separate jobs for episodes 148, 149, and 150. It never supplies the known playlist ID and never publishes test results.
+- Explicit episode selection rechecks existing verified mappings in dry-run mode. A different newly discovered mapping does not overwrite an existing verified mapping.
+- Added a read-only live integration workflow with separate jobs for episodes 148, 149, and 150. The workflow runs with FFmpeg excluded from PATH, supplies only the episode number, and never publishes test results.
 - Deleted `scraper/audio_source_experiments.py` and removed its current documentation references.
 
-## Validation status
+## Live integration results
 
-Automated tests, compilation, workflow validation, catalogue validation, and the live 148/149/150 integration matrix are pending GitHub Actions results. No live episode discovery result is claimed yet.
+Workflow run: https://github.com/OliverZsuffa/TKKGData/actions/runs/42820767263
 
-## Analysis of the latest episode 149 run
+All three independent dry-run jobs completed with **1 verified episode, 0 unresolved episodes**. Each episode produced 40 ordered Spotify track links and 40 ordered YouTube Music track links. Spotify track IDs and YouTube Music video IDs were unique, track numbers were contiguous from 1 through 40, and the minimum match score was 160. The matching threshold was not lowered.
+
+| Episode | Spotify album | Verified YouTube Music album page | Spotify tracks | YouTube Music tracks | Discovery time |
+|---|---|---|---:|---:|---:|
+| 148 | [Spotify](https://open.spotify.com/album/0nFRzugvW1NVT1DUDxpQdb) | [YouTube Music](https://music.youtube.com/browse/MPREb_unzpFfndzd7) | 40 | 40 | 26.61 s |
+| 149 | [Spotify](https://open.spotify.com/album/1OWuX6xSnnC3oebl45X28K) | [YouTube Music](https://music.youtube.com/browse/MPREb_9M8A5hcgSyo) | 40 | 40 | 31.52 s |
+| 150 | [Spotify](https://open.spotify.com/album/0ZqyFeMXxCyIJvYptGlnn1) | [YouTube Music](https://music.youtube.com/browse/MPREb_ukgkcubWGzw) | 40 | 40 | 28.05 s |
+
+The YouTube Music search results expose the correct official MPRE album pages for all three episodes, but those album records do not expose an OLAK playlist ID or video IDs through the album metadata API. yt-dlp successfully extracted the album page entries and their video IDs. The pipeline then verified all 40 ordered tracks against Spotify by normalized title, album identity, duration, and video ID.
+
+Consequently, the report exposes the verified YouTube Music album page and all individual song URLs. The canonical `audio_release.youtube_music.playlist` remains null when no public playlist ID exists. The individual verified song mappings are still complete and usable by TKKGDownloader.
+
+The live integration workflow ran with PATH restricted to the configured Python directory, so FFmpeg was unavailable to the discovery process. All three episodes still resolved successfully. The metadata-only Spotify lookup therefore works without installing or invoking FFmpeg.
+
+Per-episode stage timings:
+- Episode 148: Spotify 13.22 s, YouTube Music album discovery and extraction 13.39 s, total 26.61 s.
+- Episode 149: Spotify 18.50 s, YouTube Music album discovery and extraction 13.02 s, total 31.52 s.
+- Episode 150: Spotify 15.61 s, YouTube Music album discovery and extraction 12.43 s, total 28.05 s.
+
+Artifacts from the integration run contain the full JSON link lists and verification evidence for each episode.
+
+## Automated validation status
+
+The live integration workflow passed for all three episodes. Offline validation has passed on earlier commits, but a later unit test exposed an incomplete fake album fixture. The fixture has been corrected to exercise the yt-dlp album-page fallback. The validation workflow for the latest commit is still pending and must pass before this request is considered complete.
+
+## Analysis of the earlier episode 149 run
 
 Run: https://github.com/OliverZsuffa/TKKGData/actions/runs/42815546600
 
-- Event: manual workflow dispatch.
-- Selected episode: 149, `Tims gefährlichster Gegner`.
-- Limit: 1.
-- Write: enabled.
-- Overall job conclusion: success.
-- Discovery result: 0 verified, 1 unresolved. No catalogue mapping was committed.
-- First reported failure: no sufficiently corroborated YouTube Music song match for track 1, `149 - Tims gefährlichster Gegner - Teil 01`.
+The old manual run completed as a GitHub Actions job but discovered zero verified mappings. It searched individual songs and rejected the first candidate set because no candidate met the unchanged corroboration threshold. Its report discarded the earlier playlist discovery failure and did not preserve candidate evidence.
 
-The old job's green status only meant the workflow steps completed. It did not mean discovery succeeded. The old report did not include candidate evidence or the playlist failure.
+The new live run resolves episode 149 successfully by discovering its official MPRE album page, extracting the ordered entries with yt-dlp, and validating all 40 tracks.
 
 ## Runtime analysis of the old run
 
-The run started at 12:24:55 UTC and completed at 12:35:21 UTC, for approximately 10m26s.
-
+The old run took approximately 10m26s:
 - FFmpeg installation: about 7m50s.
 - Python audio dependency installation: about 11s.
 - Episode discovery: about 2m08s.
 
-This confirms that FFmpeg installation, not the matching algorithm, dominated the old run's wall-clock time. The revised workflow removes this installation. New stage timings will be recorded by the updated discovery report.
-
-## Live integration matrix
-
-The PR integration workflow runs episodes 148, 149, and 150 independently, with writes disabled and no explicit playlist override. Episode 150 is the positive control, episode 149 is the previous failure case, and episode 148 is independent coverage. Each job uploads a separate JSON report. An unresolved result remains diagnostic coverage, not an end-to-end pass.
+The new three live runs took approximately 26.61 to 31.52 seconds each, including Spotify metadata resolution and YouTube Music album extraction. This removes the previous FFmpeg installation bottleneck.
