@@ -52,6 +52,38 @@ class SpotifyHistoricalResolutionTests(unittest.TestCase):
         self.assertEqual(result["tracks"][0]["song_id"], track_id)
         self.assertEqual(result["release_type"], "compilation_track_selection")
 
+    def test_episode_number_in_search_query_can_identify_unumbered_track_title(self):
+        episode = {"number": 20, "title": "Das Geheimnis der alten Villa"}
+        album_id, track_id = "A" * 22, "B" * 22
+        candidate = {
+            "name": "Das Geheimnis der alten Villa",
+            "artists": ["TKKG Retro-Archiv"],
+            "album_id": album_id,
+            "album_name": "TKKG Hörspiel Sammlung",
+            "track_number": 5,
+            "song_id": track_id,
+            "url": "https://open.spotify.com/track/" + track_id,
+            "search_query": "TKKG 20 Das Geheimnis der alten Villa",
+        }
+        album_tracks = [
+            candidate,
+            {
+                "name": "Die andere Folge",
+                "artists": ["TKKG Retro-Archiv"],
+                "album_id": album_id,
+                "album_name": "TKKG Hörspiel Sammlung",
+                "track_number": 6,
+                "song_id": "C" * 22,
+                "url": "https://open.spotify.com/track/" + "C" * 22,
+            },
+        ]
+        def fake_lookup(query):
+            return album_tracks if query.endswith(album_id) else [candidate]
+        with patch("scraper.audio_enrichment._save_spotify_metadata", side_effect=fake_lookup):
+            result = resolve_spotify_album(episode, Path("."))
+        self.assertEqual(result["track_count"], 1)
+        self.assertEqual(result["tracks"][0]["song_id"], track_id)
+
     def test_compilation_uses_individual_track_pairing_not_album_playlist(self):
         episode = {"number": 20, "title": "Das Geheimnis der alten Villa"}
         track_id = "B" * 22
