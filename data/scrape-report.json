@@ -1164,5 +1164,11 @@
     "hub_or_fallback_link_count": 34,
     "invalid_links": []
   },
-  "finished_at": "2026-11-16T13:49:10.561771+00:00"
+  "finished_at": "2026-11-16T13:49:10.561771+00:00",
+  "audio_enrichment": {
+    "updated_at": "2026-11-17T15:30:41.294678+00:00",
+    "verified_count": 0,
+    "failure_count": 5,
+    "batch_count": 1
+  }
 }
