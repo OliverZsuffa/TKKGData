@@ -1,17 +1,18 @@
 # Implementation plan
 
-## Proposed design
-1. Add a focused audit module (for example scraper/audio_coverage_audit.py) that loads the canonical catalogue, reuses the existing verification-status definition, and computes coverage and per-episode missing status.
-2. Derive classifications from actual data fields only. At minimum, distinguish no audio_release record, non-verified status, absent Spotify information, absent YouTube Music playlist/track mappings, and track-count or pairing incompleteness when detectable. Do not fabricate discovery history.
-3. Add a GitHub Actions workflow manually triggered, read-only, with no contents write permission. The workflow installs only necessary project dependencies, runs the audit, uploads the report artifact, and publishes a summary.
-4. Report formats: human-readable Markdown summary, JSON audit report, and copy-ready command snippets. CLI selection should use repeated --episode flags. Provide a selection string or CSV-like episode number list usable when dispatching the existing workflow, and group output into batches of at most 10 for manageability.
-5. Investigate whether failed discover run artifacts can be reliably accessed from the audit workflow. If not, clearly scope failure-history analysis to persisted sources and add a separate design recommendation for retaining failure summaries, rather than making this workflow depend on ephemeral Actions artifacts.
-6. Add tests for classification, full coverage counts, ordering, snippets, and empty or malformed records.
-7. Update documentation, request index, and request notes with results.
+## Design
+1. Add a durable issue ledger (proposed `data/audio-discovery-issues.json`) separate from the canonical episode catalogue. Store only unresolved issues, keyed by episode number, with episode title, last attempted timestamp, failure stage/category, human-readable reason, and concise relevant diagnostic context. Keep structure versioned.
+2. Hook the existing discovery aggregation/publishing workflow into ledger maintenance. Failed or unresolved results update the ledger; verified success clears that episode's outstanding issue. Ensure these changes are committed reliably, including dry-run dispatches where appropriate, without accidentally publishing unverified catalogue mappings. Review permissions and commit behavior explicitly.
+3. Build an audit module reading the canonical catalogue and ledger. For each unverified episode: if ledger contains an issue, classify **Needs investigation**; otherwise **Ready for discovery**. If ledger is missing or corrupt, report an explicit warning and do not silently claim issue-free history.
+4. Add a manually triggered read-only GitHub Actions audit. It publishes both groups, full diagnostics, copy-ready CLI selection and workflow-dispatch selections, grouped in batches, as Markdown summary and JSON artifact.
+5. Copy-ready selections should be concise and practical. Provide repeated `--episode` command selections and numbered episode lists for dispatching the existing workflow in groups of at most 10.
+6. Historical attempts before the ledger exists cannot be reliably reconstructed from ephemeral reports. First-run episodes should be in the Ready for discovery group unless a durable source provides evidence of a past issue. Document this migration limitation.
+7. Tests: ledger update/clear, classification, data validation, selection formatting, ordering, corrupt/missing ledger handling, full coverage and empty cases.
+8. Update README/request index, run complete offline tests, compilation, catalogue contract validation and workflow syntax checks.
 
-## Files expected
-- scraper/audio_coverage_audit.py (or equivalent)
-- .github/workflows/audio-coverage-audit.yml
-- tests
-- docs/README.md or project README as appropriate
-- request folder documents
+## Expected files
+- `data/audio-discovery-issues.json`
+- audit module and tests
+- update existing aggregation workflow/module for issue-ledger maintenance
+- `.github/workflows/audio-coverage-audit.yml`
+- docs and request documentation
