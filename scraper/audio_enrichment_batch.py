@@ -138,7 +138,7 @@ def update_issue_ledger(ledger_path: Path, episodes: list[dict[str, Any]], verif
 def aggregate(
     catalogue_path: Path, reports_dir: Path, matrix_json: str, *, write: bool,
     discovery_result: str, max_parallel: int = 4,
-    run_started_at: str | None = None, issue_ledger_path: Path = DEFAULT_ISSUE_LEDGER,
+    run_started_at: str | None = None, issue_ledger_path: Path | None = None,
 ) -> dict[str, Any]:
     aggregate_started = datetime.now(timezone.utc)
     if max_parallel < 1 or max_parallel > 8:
@@ -222,7 +222,7 @@ def aggregate(
         current_episodes = json.loads(catalogue_path.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError):
         current_episodes = []
-    update_issue_ledger(issue_ledger_path, current_episodes, combined["verified"], combined["failures"], combined["missing_reports"], batches, timestamp=aggregate_started.isoformat())
+    update_issue_ledger(issue_ledger_path or catalogue_path.parent / "audio-discovery-issues.json", current_episodes, combined["verified"], combined["failures"], combined["missing_reports"], batches, timestamp=aggregate_started.isoformat())
 
 
     if discovery_result != "success" or combined["missing_reports"]:
