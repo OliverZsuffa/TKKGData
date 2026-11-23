@@ -73,7 +73,7 @@ def report_text(result: dict[str, Any]) -> str:
                 lines.append("  - Diagnostics: " + str(issue["diagnostics"]))
     else:
         lines.append("No episodes currently need investigation.")
-    return "\\n".join(lines) + "\\n"
+    return "\n".join(lines) + "\n"
 
 
 def main() -> int:
