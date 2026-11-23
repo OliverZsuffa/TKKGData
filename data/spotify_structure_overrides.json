@@ -1,0 +1,13 @@
+{
+ "48":{"alternate_titles":["Bestien der Finsternis"],"album_id":"4WgadnXmyPlFzQ6GyHUqRw","profile":"standard"},
+ "94":{"alternate_titles":["In dunkler Nacht am Marmor-Grab"],"album_id":"0in2tMW0QlYkCN4xZGMKFw","profile":"standard"},
+ "110":{"alternate_titles":["Das Phantom im Schokoladenmuseum"],"profile":"standard"},
+ "175":{"album_id":"7z37XBrYgYo7DCs9dFeHvq","profile":"two_disc_duplicated_numbering","expected_parts":80},
+ "200":{"album_id":"40AzKKVoE6d4TxqlZ2N4Fr","profile":"extended_numbered","expected_parts":80},
+ "218":{"album_id":"1JBdOPbN661RjpdWNm9Xfo","profile":"structured_extras","expected_parts":21},
+ "219":{"album_id":"65b6rQAtUIFQAySC4lDKpL","profile":"structured_extras","expected_parts":19},
+ "220":{"profile":"shared_title_song"},"221":{"profile":"shared_title_song"},
+ "222":{"profile":"shared_title_song"},"223":{"profile":"shared_title_song"},
+ "224":{"profile":"shared_title_song"},"225":{"profile":"shared_title_song"},
+ "226":{"profile":"shared_title_song"}
+}
