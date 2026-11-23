@@ -62,7 +62,7 @@ An optional playlist ID can be supplied for one selected episode when diagnosing
 
     py -m scraper.audio_enrichment --episode EPISODE_NUMBER --playlist-id PLAYLIST_ID
 
-Run all offline tests:
+Run a read-only audio coverage audit from GitHub Actions using the **Audio coverage audit** workflow. It separates missing audio mappings into Ready for discovery and Needs investigation, and publishes copy-ready selections and a report artifact. Discovery aggregation maintains the issue ledger in data/audio-discovery-issues.json, including during dry runs.\n\nRun all offline tests:
 
     py -m unittest discover -s tests -v
 
