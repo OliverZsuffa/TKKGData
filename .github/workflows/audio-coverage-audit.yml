@@ -1,0 +1,25 @@
+name: Audio coverage audit
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run read-only audit
+        run: python -m scraper.audio_coverage_audit --json audio-coverage-audit.json --markdown audio-coverage-audit.md
+      - uses: actions/upload-artifact@v4
+        with:
+          name: audio-coverage-audit
+          path: |
+            audio-coverage-audit.json
+            audio-coverage-audit.md
+          retention-days: 30
