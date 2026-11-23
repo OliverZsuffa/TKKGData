@@ -45,7 +45,7 @@ class AudioCoverageAuditTests(unittest.TestCase):
         failure = [{"number": 1, "title": "One", "stage": "youtube_music", "error": "unmatched"}]
         with tempfile.TemporaryDirectory() as d:
             ledger = Path(d) / "ledger.json"
-            update_issue_ledger(ledger, episodes, [], failure, [], [], matrix_failed=False, timestamp="now")
+            update_issue_ledger(ledger, episodes, [], failure, [], [], timestamp="now")
             self.assertEqual(json.loads(ledger.read_text())["issues"]["1"]["reason"], "unmatched")
             update_issue_ledger(ledger, episodes, [{"number": 1}], [], [], [], matrix_failed=False, timestamp="later")
             self.assertNotIn("1", json.loads(ledger.read_text())["issues"])
