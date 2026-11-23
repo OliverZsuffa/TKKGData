@@ -15,7 +15,8 @@ from scraper.validate import validate_catalogue
 
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_CATALOGUE = ROOT / "data" / "episodes.json"\nDEFAULT_ISSUE_LEDGER = ROOT / "data" / "audio-discovery-issues.json"
+DEFAULT_CATALOGUE = ROOT / "data" / "episodes.json"
+DEFAULT_ISSUE_LEDGER = ROOT / "data" / "audio-discovery-issues.json"
 
 
 def select_episodes(
@@ -96,10 +97,48 @@ def prepare(args: argparse.Namespace) -> int:
     return 0
 
 
+
+def update_issue_ledger(ledger_path: Path, episodes: list[dict[str, Any]], verified: list[dict[str, Any]], failures: list[dict[str, Any]], missing_reports: list[str], batches: list[dict[str, Any]], *, timestamp: str) -> None:
+    try:
+        ledger = json.loads(ledger_path.read_text(encoding="utf-8"))
+        if not isinstance(ledger, dict) or ledger.get("version") != 1 or not isinstance(ledger.get("issues"), dict):
+            raise ValueError("Malformed issue ledger.")
+    except FileNotFoundError:
+        ledger = {"version": 1, "issues": {}}
+    issues = ledger["issues"]
+    titles = {str(item.get("number")): item.get("title", "(title unavailable)") for item in episodes}
+    for item in verified:
+        issues.pop(str(int(item["number"])), None)
+    for item in failures:
+        key = str(int(item["number"]))
+        issues[key] = {
+            "episode_title": item.get("title", titles.get(key, "(title unavailable)")),
+            "attempted_at": timestamp,
+            "stage": item.get("stage", "unknown"),
+            "category": "discovery_unresolved",
+            "reason": item.get("error", "Unresolved discovery result"),
+            "diagnostics": item.get("diagnostics") or item.get("playlist_error") or "",
+        }
+    for batch in batches:
+        if f"batch-{int(batch['batch'])}.json" in missing_reports:
+            for number in batch.get("episodes", []):
+                key = str(int(number))
+                if key not in issues:
+                    issues[key] = {
+                        "episode_title": titles.get(key, "(title unavailable)"),
+                        "attempted_at": timestamp,
+                        "stage": "batch_report",
+                        "category": "batch_failure",
+                        "reason": "Batch did not produce a validated report.",
+                        "diagnostics": "No validated outcome report was available.",
+                    }
+    ledger_path.parent.mkdir(parents=True, exist_ok=True)
+    ledger_path.write_text(json.dumps(ledger, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
 def aggregate(
     catalogue_path: Path, reports_dir: Path, matrix_json: str, *, write: bool,
     discovery_result: str, max_parallel: int = 4,
-    run_started_at: str | None = None,
+    run_started_at: str | None = None, issue_ledger_path: Path = DEFAULT_ISSUE_LEDGER,
 ) -> dict[str, Any]:
     aggregate_started = datetime.now(timezone.utc)
     if max_parallel < 1 or max_parallel > 8:
@@ -179,6 +218,12 @@ def aggregate(
     if discovery_result != "success" and not combined["failed_batches"]:
         combined["failed_batches"] = ["matrix"]
     combined["failed_batch_count"] = len(combined["failed_batches"])
+    try:
+        current_episodes = json.loads(catalogue_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        current_episodes = []
+    update_issue_ledger(issue_ledger_path, current_episodes, combined["verified"], combined["failures"], combined["missing_reports"], batches, timestamp=aggregate_started.isoformat())
+
 
     if discovery_result != "success" or combined["missing_reports"]:
         reasons = []
@@ -265,7 +310,9 @@ def main() -> int:
     aggregate_parser.add_argument("--write", action="store_true")
     aggregate_parser.add_argument("--discovery-result", default="success")
     aggregate_parser.add_argument("--max-parallel", type=int, default=4)
-    aggregate_parser.add_argument("--run-started-at")\n    aggregate_parser.add_argument("--issue-ledger", type=Path, default=DEFAULT_ISSUE_LEDGER)
+    aggregate_parser.add_argument("--run-started-at")
+    aggregate_parser.add_argument("--issue-ledger", type=Path, default=DEFAULT_ISSUE_LEDGER)
+    aggregate_parser.add_argument("--issue-ledger", type=Path, default=DEFAULT_ISSUE_LEDGER)
     args = parser.parse_args()
     try:
         if args.command == "prepare":
@@ -275,7 +322,7 @@ def main() -> int:
         report = aggregate(
             args.catalogue, args.reports_dir, args.matrix_json,
             write=args.write, discovery_result=args.discovery_result,
-            max_parallel=args.max_parallel, run_started_at=args.run_started_at, issue_ledger_path=args.issue_ledger,
+            max_parallel=args.max_parallel, run_started_at=args.run_started_at, issue_ledger_path=args.issue_ledger, issue_ledger_path=args.issue_ledger,
         )
         report_path = args.reports_dir / "combined-report.json"
         report_path.parent.mkdir(parents=True, exist_ok=True)
