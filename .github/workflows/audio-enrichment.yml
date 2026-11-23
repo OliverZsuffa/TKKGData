@@ -171,8 +171,8 @@ jobs:
           path: data/batch-reports/combined-report.json
           if-no-files-found: warn
           retention-days: 30
-      - name: Commit verified audio mappings once
-        if: success() && (inputs.write == true || github.event_name == 'schedule')
+      - name: Commit audio issue ledger and optional verified mappings
+        if: always()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
