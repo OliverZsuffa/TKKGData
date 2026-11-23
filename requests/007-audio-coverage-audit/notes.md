@@ -2,4 +2,4 @@
 
 Status: proposal only. Implementation has not started.
 
-Repository review confirmed that the current catalogue has an audio coverage helper in scraper/audio_enrichment.py and the existing manual workflow supports single episode or inclusive range selection. Existing discovery reports include stage-specific failures, but historical report retention and queryability need investigation before promising failure-history analysis.
+The intended operational classification is **Ready for discovery** versus **Needs investigation**. Reliable separation requires a persistent issue ledger because current catalogue coverage alone does not reliably indicate whether discovery previously failed. Historical failures that are not retained may not be reconstructable when initializing the ledger.
