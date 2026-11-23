@@ -15,7 +15,7 @@ from scraper.validate import validate_catalogue
 
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_CATALOGUE = ROOT / "data" / "episodes.json"
+DEFAULT_CATALOGUE = ROOT / "data" / "episodes.json"\nDEFAULT_ISSUE_LEDGER = ROOT / "data" / "audio-discovery-issues.json"
 
 
 def select_episodes(
@@ -265,7 +265,7 @@ def main() -> int:
     aggregate_parser.add_argument("--write", action="store_true")
     aggregate_parser.add_argument("--discovery-result", default="success")
     aggregate_parser.add_argument("--max-parallel", type=int, default=4)
-    aggregate_parser.add_argument("--run-started-at")
+    aggregate_parser.add_argument("--run-started-at")\n    aggregate_parser.add_argument("--issue-ledger", type=Path, default=DEFAULT_ISSUE_LEDGER)
     args = parser.parse_args()
     try:
         if args.command == "prepare":
@@ -275,7 +275,7 @@ def main() -> int:
         report = aggregate(
             args.catalogue, args.reports_dir, args.matrix_json,
             write=args.write, discovery_result=args.discovery_result,
-            max_parallel=args.max_parallel, run_started_at=args.run_started_at,
+            max_parallel=args.max_parallel, run_started_at=args.run_started_at, issue_ledger_path=args.issue_ledger,
         )
         report_path = args.reports_dir / "combined-report.json"
         report_path.parent.mkdir(parents=True, exist_ok=True)
