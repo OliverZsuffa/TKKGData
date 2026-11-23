@@ -164,7 +164,7 @@
   "audio_release_preservation_conflicts": [],
   "audio_release_coverage": {
     "episode_count": 243,
-    "verified_pairings": 208,
+    "verified_pairings": 210,
     "missing_pairings": [
       {
         "number": 19,
@@ -193,14 +193,6 @@
       {
         "number": 128,
         "title": "Die Gehilfen des Terrors"
-      },
-      {
-        "number": 175,
-        "title": "Nachtwanderung mit Schrecken"
-      },
-      {
-        "number": 200,
-        "title": "Der große Coup"
       },
       {
         "number": 218,
@@ -1160,5 +1152,11 @@
     "hub_or_fallback_link_count": 34,
     "invalid_links": []
   },
-  "finished_at": "2026-11-23T21:33:00.993330+00:00"
+  "finished_at": "2026-11-23T21:33:00.993330+00:00",
+  "audio_enrichment": {
+    "updated_at": "2026-11-23T21:41:40.754623+00:00",
+    "verified_count": 2,
+    "failure_count": 30,
+    "batch_count": 7
+  }
 }
