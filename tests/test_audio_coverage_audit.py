@@ -54,7 +54,7 @@ class AudioCoverageAuditTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             ledger = Path(d) / "ledger.json"
             update_issue_ledger(ledger, [{"number": 8, "title": "Eight"}], [], [], ["batch-0.json"],
-                               [{"batch": 0, "episodes": [8]}], matrix_failed=False, timestamp="now")
+                               [{"batch": 0, "episodes": [8]}], timestamp="now")
             self.assertEqual(json.loads(ledger.read_text())["issues"]["8"]["category"], "batch_failure")
 
 
