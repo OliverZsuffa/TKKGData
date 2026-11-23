@@ -10,6 +10,11 @@ on:
         required: false
         type: string
         default: ""
+      episodes:
+        description: "Comma-separated episode numbers, e.g. 1,2,45,6543"
+        required: false
+        type: string
+        default: ""
       start_episode:
         description: "Inclusive first episode in a range"
         required: false
@@ -72,6 +77,7 @@ jobs:
         id: prepare
         env:
           INPUT_EPISODE: ${{ inputs.episode }}
+          INPUT_EPISODES: ${{ inputs.episodes }}
           INPUT_START: ${{ inputs.start_episode }}
           INPUT_END: ${{ inputs.end_episode }}
           INPUT_PLAYLIST_ID: ${{ inputs.playlist_id }}
@@ -80,6 +86,7 @@ jobs:
           ARGS=(--batch-size "${{ inputs.batch_size || 5 }}" --max-parallel "${{ inputs.max_parallel || 4 }}" --limit "${{ inputs.limit || 5 }}")
           if [ "$EVENT_NAME" = "workflow_dispatch" ]; then
             if [ -n "$INPUT_EPISODE" ]; then ARGS+=(--episode "$INPUT_EPISODE"); fi
+            if [ -n "$INPUT_EPISODES" ]; then ARGS+=(--episodes "$INPUT_EPISODES"); fi
             if [ -n "$INPUT_START" ]; then ARGS+=(--start-episode "$INPUT_START"); fi
             if [ -n "$INPUT_END" ]; then ARGS+=(--end-episode "$INPUT_END"); fi
             if [ -n "$INPUT_PLAYLIST_ID" ]; then ARGS+=(--playlist-id "$INPUT_PLAYLIST_ID"); fi
