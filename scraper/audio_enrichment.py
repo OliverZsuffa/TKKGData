@@ -443,6 +443,29 @@ def resolve_spotify_album(episode: dict[str, Any], work_dir: Path) -> dict[str, 
     """Resolve either a dedicated split-track release or the episode track in a compilation."""
     number = int(episode["number"])
     title = str(episode["title"])
+
+    # Reviewed album IDs and release layouts bypass fuzzy track discovery.
+    try:
+        from scraper.spotify_structure import validate_episode_parts
+        overrides = json.loads((ROOT / "data" / "spotify_structure_overrides.json").read_text(encoding="utf-8"))
+        override = overrides.get(str(number), {})
+    except (ImportError, OSError, json.JSONDecodeError):
+        override = {}
+    album_id_override = override.get("album_id")
+    if album_id_override:
+        album_tracks = _save_spotify_metadata(f"{SPOTIFY_ALBUM_BASE}{album_id_override}")
+        profile = override.get("profile", "standard")
+        validation = validate_episode_parts(album_tracks, profile)
+        expected = override.get("expected_parts")
+        if not validation.get("valid"):
+            raise ValueError(f"Configured Spotify album {album_id_override} failed structure validation: {validation.get('errors')}")
+        if expected is not None and len(validation["parts"]) != int(expected):
+            raise ValueError(f"Configured Spotify album {album_id_override} has {len(validation['parts'])} parts, expected {expected}.")
+        if validation["unknown"]:
+            raise ValueError(f"Configured Spotify album {album_id_override} has unclassified tracks: {[t.get('name') for t in validation['unknown']]}")
+        selected_records = validation["parts"]
+        selected_records.sort(key=lambda t: (int(t.get("disc_number") or 1), int(t.get("track_number") or 0)))
+        return {"album_id": album_id_override, "url": f"{SPOTIFY_ALBUM_BASE}{album_id_override}", "title": str(selected_records[0].get("album_name") or episode.get("title")), "track_count": len(selected_records), "tracks": selected_records, "source_query": "configured_album_override", "release_type": "episode_release", "selected_track_id": selected_records[0].get("song_id")}
     queries = [
         f'track:"{title}" artist:TKKG',
         f'artist:TKKG track:"{title}"',
