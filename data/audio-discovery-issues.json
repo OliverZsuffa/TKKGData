@@ -1,4 +1,45 @@
 {
   "version": 1,
-  "issues": {}
+  "issues": {
+    "239": {
+      "episode_title": "Vollgas ins Verderben",
+      "attempted_at": "2026-11-23T20:09:31.212543+00:00",
+      "stage": "spotify",
+      "category": "discovery_unresolved",
+      "reason": "Spotify metadata resolution failed: Spotify candidates for episode 239 were rejected: 0G8CFanH1SrSfRgdOHy8HC: selected episode tracks are not contiguous; 0G8CFanH1SrSfRgdOHy8HC: selected episode tracks are not contiguous; 0G8CFanH1SrSfRgdOHy8HC: selected episode tracks are not contiguous; 0G8CFanH1SrSfRgdOHy8HC: selected episode tracks are not contiguous; 0G8CFanH1SrSfRgdOHy8HC: selected episode tracks are not contiguous; 0G8CFanH1SrSfRgdOHy8HC: selected episode tracks are not contiguous; 0G8CFanH1SrSfRgdOHy8HC: selected episode tracks are not contiguous; 0G8CFanH1SrSfRgdOHy8HC: selected episode tracks are not contiguous",
+      "diagnostics": ""
+    },
+    "240": {
+      "episode_title": "Das verschollene Zepter von Gizeh",
+      "attempted_at": "2026-11-23T20:09:31.212543+00:00",
+      "stage": "spotify",
+      "category": "discovery_unresolved",
+      "reason": "Spotify metadata resolution failed: Spotify candidates for episode 240 were rejected: 59dffkOOO9cbMLPUTxyUSV: selected episode tracks are not contiguous; 59dffkOOO9cbMLPUTxyUSV: selected episode tracks are not contiguous; 59dffkOOO9cbMLPUTxyUSV: selected episode tracks are not contiguous; 59dffkOOO9cbMLPUTxyUSV: selected episode tracks are not contiguous; 59dffkOOO9cbMLPUTxyUSV: selected episode tracks are not contiguous; 59dffkOOO9cbMLPUTxyUSV: selected episode tracks are not contiguous; 59dffkOOO9cbMLPUTxyUSV: selected episode tracks are not contiguous",
+      "diagnostics": ""
+    },
+    "241": {
+      "episode_title": "Das Rätsel der Gruselvilla",
+      "attempted_at": "2026-11-23T20:09:31.212543+00:00",
+      "stage": "spotify",
+      "category": "discovery_unresolved",
+      "reason": "Spotify metadata resolution failed: Spotify candidates for episode 241 were rejected: 2o4MkaBd9xVDtUYIk9YKcq: selected episode tracks are not contiguous; 2o4MkaBd9xVDtUYIk9YKcq: selected episode tracks are not contiguous; 2o4MkaBd9xVDtUYIk9YKcq: selected episode tracks are not contiguous; 2o4MkaBd9xVDtUYIk9YKcq: selected episode tracks are not contiguous; 2o4MkaBd9xVDtUYIk9YKcq: selected episode tracks are not contiguous; 2o4MkaBd9xVDtUYIk9YKcq: selected episode tracks are not contiguous; 2o4MkaBd9xVDtUYIk9YKcq: selected episode tracks are not contiguous; 2o4MkaBd9xVDtUYIk9YKcq: selected episode tracks are not contiguous",
+      "diagnostics": ""
+    },
+    "242": {
+      "episode_title": "Verbrechen live im Radio",
+      "attempted_at": "2026-11-23T20:09:31.212543+00:00",
+      "stage": "spotify",
+      "category": "discovery_unresolved",
+      "reason": "Spotify metadata resolution failed: Spotify candidates for episode 242 were rejected: 3tZChRTvOtgsW5HEZ32ntC: selected episode tracks are not contiguous; 3tZChRTvOtgsW5HEZ32ntC: selected episode tracks are not contiguous; 3tZChRTvOtgsW5HEZ32ntC: selected episode tracks are not contiguous; 3tZChRTvOtgsW5HEZ32ntC: selected episode tracks are not contiguous; 3tZChRTvOtgsW5HEZ32ntC: selected episode tracks are not contiguous; 3tZChRTvOtgsW5HEZ32ntC: selected episode tracks are not contiguous; 3tZChRTvOtgsW5HEZ32ntC: selected episode tracks are not contiguous; 3tZChRTvOtgsW5HEZ32ntC: selected episode tracks are not contiguous",
+      "diagnostics": ""
+    },
+    "243": {
+      "episode_title": "Die Fährte des Hehlers",
+      "attempted_at": "2026-11-23T20:09:31.212543+00:00",
+      "stage": "spotify",
+      "category": "discovery_unresolved",
+      "reason": "Spotify metadata resolution failed: Spotify candidates for episode 243 were rejected: 3ki08nAwhvep3eAjfcIQcU: selected episode tracks are not contiguous; 3ki08nAwhvep3eAjfcIQcU: selected episode tracks are not contiguous; 3ki08nAwhvep3eAjfcIQcU: selected episode tracks are not contiguous; 3ki08nAwhvep3eAjfcIQcU: selected episode tracks are not contiguous; 3ki08nAwhvep3eAjfcIQcU: selected episode tracks are not contiguous; 3ki08nAwhvep3eAjfcIQcU: selected episode tracks are not contiguous; 3ki08nAwhvep3eAjfcIQcU: selected episode tracks are not contiguous; 3ki08nAwhvep3eAjfcIQcU: selected episode tracks are not contiguous",
+      "diagnostics": ""
+    }
+  }
 }
