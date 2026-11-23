@@ -37,8 +37,8 @@ class AudioCoverageAuditTests(unittest.TestCase):
         self.assertEqual([len(x) for x in chunks(items)], [10, 10, 1])
         result = {"ready_for_discovery": items, "needs_investigation": [], "warning": None}
         text = report_text(result)
-        self.assertIn("--episode 1 --episode 2", text)
-        self.assertIn("Ready batch 3", text)
+        self.assertIn("**Episodes to paste into Discover:** " + ", ".join(str(n) for n in range(1, 22)), text)
+        self.assertNotIn("Ready batch", text)
 
     def test_ledger_failure_updates_and_success_clears(self):
         episodes = [{"number": 1, "title": "One"}, {"number": 2, "title": "Two"}]
