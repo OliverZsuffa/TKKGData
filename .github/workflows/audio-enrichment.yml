@@ -176,9 +176,10 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/episodes.json data/episodes.csv data/dataset-metadata.json data/scrape-report.json
+          git add data/audio-discovery-issues.json
+          if [ "${{ inputs.write }}" = "true" ] || [ "${{ github.event_name }}" = "schedule" ]; then git add data/episodes.json data/episodes.csv data/dataset-metadata.json data/scrape-report.json; fi
           if ! git diff --cached --quiet; then
-            git commit -m "data: add verified TKKG audio sources"
+            git commit -m "data: update audio discovery coverage and issue ledger"
             git pull --rebase origin main
             git push
           else
