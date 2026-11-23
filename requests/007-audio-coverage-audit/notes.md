@@ -1,5 +1,1 @@
-# Implementation notes
-
-Status: proposal only. Implementation has not started.
-
-The intended operational classification is **Ready for discovery** versus **Needs investigation**. Reliable separation requires a persistent issue ledger because current catalogue coverage alone does not reliably indicate whether discovery previously failed. Historical failures that are not retained may not be reconstructable when initializing the ledger.
+# Implementation notes\n\nStatus: implementation underway.\n\nThe audit classifies episodes without verified mappings as Ready for discovery or Needs investigation based on the durable issue ledger. The manually dispatched audit is read-only. Discovery aggregation updates the ledger, and the discovery workflow commits ledger changes even during dry-run mode. The first ledger initialization cannot reconstruct ephemeral historical failure details.\n
