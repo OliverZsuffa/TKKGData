@@ -1,20 +1,27 @@
-# Request 007: Audio coverage audit and copy-ready discovery selection
+# Request 007: Separate missing audio episodes from discovery problems
 
 ## Goal
-Add a manually triggered GitHub Actions audit that identifies every catalogue episode without a verified audio listening mapping, and presents the selection in copy-ready formats for the existing audio discovery workflow. Make unresolved discovery outcomes easier to distinguish and investigate, including cases where discovery returns irrelevant or unusable results.
+Provide an operational queue separating episodes that simply have not yet been successfully discovered from episodes where discovery previously encountered an issue. The user should be able to run the first group through discovery and investigate the second.
+
+## Desired output
+Two clear lists:
+1. **Ready for discovery:** missing verified mapping and no recorded issue from discovery.
+2. **Needs investigation:** missing verified mapping but a recorded discovery attempt produced a failure, rejected/unusable candidates, or incomplete resolution.
+
+Each investigation entry should include episode number, title, last failure category and reason, stage, timestamp and useful diagnostic details, when available. Both lists should include copy-ready selections for the existing workflow.
 
 ## Scope
-- Read the current canonical episode catalogue and identify all episodes lacking a verified audio_release mapping.
-- Generate an audit report with episode number and title, missing or partial mapping details, and a copy-ready selection for the discovery CLI and workflow inputs.
-- Include an explicit classification of missing data, such as never enriched, Spotify unresolved, YouTube Music unresolved, incomplete track mapping, or discovery failure, where evidence exists. Avoid asserting a failure category without evidence.
-- Where prior discovery reports or persisted diagnostic data are available, surface those outcomes and their failure stage/reason. Identify limitations if historic failed runs are not persisted.
-- Output a concise GitHub Actions job summary and a downloadable artifact with full report and copy-ready snippets.
-- Keep this audit read-only. It must not modify the canonical catalogue or trigger enrichment automatically.
+- Audit the entire catalogue and classify missing episodes into the two operational groups.
+- Establish a durable issue history, so episodes discovered to have problems remain flagged across runs. Track episode number, attempt time, stage, failure category, reason, and concise diagnostics.
+- Update issue history when discovery runs: newly unresolved outcomes enter or update the issue record; a successful verified mapping clears the outstanding issue. Avoid overwriting verified mappings.
+- Provide copy-ready episode selection, grouped into manageable batches, for the existing Audio enrichment workflow.
+- Publish GitHub Actions job summary and downloadable JSON/Markdown report.
+- Keep the audit itself read-only and manually triggered. It must not run discovery or modify the episode catalogue.
 
 ## Acceptance criteria
-- Covers the full catalogue and correctly counts verified versus missing mappings.
-- Missing episodes are ordered and presented clearly, including episode numbers and titles.
-- Copy-ready CLI commands include repeated --episode arguments and avoid exceeding command-line practical limits by offering batch/range alternatives.
-- The output explains that the existing workflow supports individual episodes or inclusive ranges and helps users prepare dispatch selections.
-- Results distinguish confirmed evidence from inferred or unknown causes.
-- Automated tests cover the report and selection output.
+- Every missing mapping appears in exactly one operational list.
+- Episodes without known issues are immediately selectable for discovery.
+- Known problematic cases include useful last-attempt diagnostics.
+- An episode moves to the investigation list when a discovery attempt fails, and leaves the outstanding issue list after successful verification.
+- Existing catalogue verification and publication safeguards remain intact.
+- Automated tests cover classification, persistence/update logic, selection formatting and ordering.
