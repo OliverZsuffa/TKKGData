@@ -41,13 +41,13 @@ def validate_episode_parts(tracks: list[dict[str, Any]], profile: str = "standar
                 key=lambda t: int(t["part_number"]),
             )
             numbers = [t["part_number"] for t in disc_parts]
-            if numbers != list(range(1, len(numbers) + 1)):
+            if len(set(numbers)) != len(numbers) or numbers != list(range(1, len(numbers) + 1)):
                 return {"valid": False, "parts": [], "extras": extras, "unknown": unknown, "errors": [f"Disc {disc}: numbering is not continuous from 1"]}
             logical.extend(disc_parts)
         parts = logical
     else:
         parts.sort(key=lambda t: int(t["part_number"]))
         numbers = [t["part_number"] for t in parts]
-        if numbers and numbers != list(range(1, len(numbers) + 1)):
+        if len(set(numbers)) != len(numbers) or (numbers and numbers != list(range(1, len(numbers) + 1)):
             return {"valid": False, "parts": [], "extras": extras, "unknown": unknown, "errors": ["Part numbering is not continuous from 1"]}
     return {"valid": bool(parts), "parts": parts, "extras": extras, "unknown": unknown, "errors": [] if parts else ["No episode parts identified"]}
