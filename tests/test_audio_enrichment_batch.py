@@ -29,6 +29,23 @@ class AudioEnrichmentBatchTests(unittest.TestCase):
     def test_single_episode(self):
         self.assertEqual(select_episodes(self.episodes, episode=3), [3])
 
+    def test_comma_separated_episodes(self):
+        self.assertEqual(select_episodes(self.episodes, episodes_list="6,1,3,1"), [6, 1, 3])
+
+    def test_comma_separated_episodes_invalid_values(self):
+        with self.assertRaisesRegex(ValueError, "comma-separated list"):
+            select_episodes(self.episodes, episodes_list="1,x,3")
+        with self.assertRaisesRegex(ValueError, "positive episode numbers"):
+            select_episodes(self.episodes, episodes_list="1,0,3")
+
+    def test_comma_separated_episodes_unknown_episode(self):
+        with self.assertRaisesRegex(ValueError, "not present"):
+            select_episodes(self.episodes, episodes_list="1,99")
+
+    def test_episode_selection_modes_cannot_be_mixed(self):
+        with self.assertRaisesRegex(ValueError, "only one of"):
+            select_episodes(self.episodes, episode=1, episodes_list="1,2")
+
     def test_missing_defaults_to_latest_five(self):
         self.assertEqual(select_episodes(self.episodes), [6, 5, 4, 3, 1])
 

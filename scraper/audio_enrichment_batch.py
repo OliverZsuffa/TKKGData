@@ -22,13 +22,23 @@ DEFAULT_ISSUE_LEDGER = ROOT / "data" / "audio-discovery-issues.json"
 def select_episodes(
     episodes: list[dict[str, Any]], *, episode: int | None = None,
     start_episode: int | None = None, end_episode: int | None = None,
-    limit: int = 5,
+    episodes_list: str | None = None, limit: int = 5,
 ) -> list[int]:
     available = sorted(
         int(item["number"]) for item in episodes
         if isinstance(item, dict) and isinstance(item.get("number"), int)
     )
-    if episode is not None:
+    if episodes_list is not None:
+        if episode is not None or start_episode is not None or end_episode is not None:
+            raise ValueError("Use only one of --episode, --episodes, or an episode range.")
+        try:
+            requested = [int(value.strip()) for value in episodes_list.split(",") if value.strip()]
+        except ValueError as exc:
+            raise ValueError("--episodes must be a comma-separated list of episode numbers.") from exc
+        if not requested or any(number < 1 for number in requested):
+            raise ValueError("--episodes must contain positive episode numbers.")
+        requested = list(dict.fromkeys(requested))
+    elif episode is not None:
         if start_episode is not None or end_episode is not None:
             raise ValueError("Use either --episode or an episode range, not both.")
         requested = [episode]
@@ -297,6 +307,7 @@ def main() -> int:
     prepare_parser = subparsers.add_parser("prepare")
     prepare_parser.add_argument("--catalogue", type=Path, default=DEFAULT_CATALOGUE)
     prepare_parser.add_argument("--episode", type=int)
+    prepare_parser.add_argument("--episodes", help="Comma-separated episode numbers")
     prepare_parser.add_argument("--start-episode", type=int)
     prepare_parser.add_argument("--end-episode", type=int)
     prepare_parser.add_argument("--limit", type=int, default=5)
