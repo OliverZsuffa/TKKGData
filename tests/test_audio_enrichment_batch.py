@@ -6,7 +6,7 @@ import unittest
 from unittest.mock import patch
 from pathlib import Path
 
-from scraper.audio_enrichment_batch import aggregate, partition, select_episodes
+from scraper.audio_enrichment_batch import aggregate, partition, select_episodes, prepare
 
 
 class AudioEnrichmentBatchTests(unittest.TestCase):
@@ -45,6 +45,25 @@ class AudioEnrichmentBatchTests(unittest.TestCase):
     def test_episode_selection_modes_cannot_be_mixed(self):
         with self.assertRaisesRegex(ValueError, "only one of"):
             select_episodes(self.episodes, episode=1, episodes_list="1,2")
+
+
+    def test_prepare_forwards_comma_separated_selection(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            catalogue = root / "episodes.json"
+            catalogue.write_text(json.dumps(self.episodes), encoding="utf-8")
+            output = root / "github-output.txt"
+            args = type("Args", (), {
+                "catalogue": catalogue, "episode": None, "episodes": "6,1,3",
+                "start_episode": None, "end_episode": None, "limit": 1,
+                "batch_size": 2, "max_parallel": 2, "playlist_id": None,
+            })()
+            with patch.dict("os.environ", {"GITHUB_OUTPUT": str(output)}):
+                prepare(args)
+            saved = output.read_text(encoding="utf-8")
+            self.assertIn('"episodes":[6,1]', saved)
+            self.assertIn('"episodes":[3]', saved)
+            self.assertNotIn('"episodes":[5]', saved)
 
     def test_missing_defaults_to_latest_five(self):
         self.assertEqual(select_episodes(self.episodes), [6, 5, 4, 3, 1])
