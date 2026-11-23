@@ -312,7 +312,6 @@ def main() -> int:
     aggregate_parser.add_argument("--max-parallel", type=int, default=4)
     aggregate_parser.add_argument("--run-started-at")
     aggregate_parser.add_argument("--issue-ledger", type=Path, default=DEFAULT_ISSUE_LEDGER)
-    aggregate_parser.add_argument("--issue-ledger", type=Path, default=DEFAULT_ISSUE_LEDGER)
     args = parser.parse_args()
     try:
         if args.command == "prepare":
@@ -322,7 +321,7 @@ def main() -> int:
         report = aggregate(
             args.catalogue, args.reports_dir, args.matrix_json,
             write=args.write, discovery_result=args.discovery_result,
-            max_parallel=args.max_parallel, run_started_at=args.run_started_at, issue_ledger_path=args.issue_ledger, issue_ledger_path=args.issue_ledger,
+            max_parallel=args.max_parallel, run_started_at=args.run_started_at, issue_ledger_path=args.issue_ledger,
         )
         report_path = args.reports_dir / "combined-report.json"
         report_path.parent.mkdir(parents=True, exist_ok=True)
