@@ -33,7 +33,7 @@ class SpotifyStructureResolverTests(unittest.TestCase):
 
     @patch("scraper.audio_enrichment._save_spotify_metadata")
     def test_unknown_tracks_fail_closed(self, fetch):
-        tracks = numbered_tracks(80, "x", 1) + numbered_tracks(80, "x", 2)
+        tracks = numbered_tracks(40, "x", 1) + numbered_tracks(40, "x", 2)
         tracks.append({"name": "Unidentified extra", "disc_number": 2, "track_number": 41})
         fetch.return_value = tracks
         with self.assertRaisesRegex(ValueError, "unclassified tracks"):
