@@ -52,25 +52,28 @@ def report_text(result: dict[str, Any]) -> str:
     lines = ["# Audio coverage audit", ""]
     if result["warning"]:
         lines += ["**Warning:** " + result["warning"], ""]
-    lines += [f"## Ready for discovery ({len(result['ready_for_discovery'])})", ""]
-    for group in chunks(result["ready_for_discovery"]):
-        nums = [str(x["number"]) for x in group]
-        lines.append("- Episodes: " + ", ".join(nums))
-        lines.append("  `python -m scraper.audio_enrichment --episode " + " --episode ".join(nums) + "`")
-    lines += ["", f"## Needs investigation ({len(result['needs_investigation'])})", ""]
-    for item in result["needs_investigation"]:
-        issue = item["issue"]
-        lines.append(f"- **{item['number']}: {item['title']}**")
-        lines.append(f"  - Last attempt: {issue.get('attempted_at', 'unknown')}")
-        lines.append(f"  - Stage/category: {issue.get('stage', 'unknown')} / {issue.get('category', 'unknown')}")
-        lines.append(f"  - Reason: {issue.get('reason', 'unknown')}")
-        if issue.get("diagnostics"):
-            lines.append("  - Diagnostics: " + str(issue["diagnostics"]))
-    lines += ["", "## Dispatch selections", ""]
-    for label, group in (("Ready", result["ready_for_discovery"]), ("Investigation", result["needs_investigation"])):
-        for index, batch in enumerate(chunks(group), start=1):
-            lines.append(f"- {label} batch {index}: " + ", ".join(str(x["number"]) for x in batch))
-    return "\n".join(lines) + "\n"
+    ready = result["ready_for_discovery"]
+    investigation = result["needs_investigation"]
+    lines += [f"## Ready for discovery ({len(ready)})", ""]
+    if ready:
+        lines.append("**Episodes to paste into Discover:** " + ", ".join(str(x["number"]) for x in ready))
+    else:
+        lines.append("No episodes ready for discovery.")
+    lines += ["", f"## Needs investigation ({len(investigation)})", ""]
+    if investigation:
+        lines.append("**Episodes to paste into Discover:** " + ", ".join(str(x["number"]) for x in investigation))
+        lines.append("")
+        for item in investigation:
+            issue = item["issue"]
+            lines.append(f"- **{item['number']}: {item['title']}**")
+            lines.append(f"  - Last attempt: {issue.get('attempted_at', 'unknown')}")
+            lines.append(f"  - Stage/category: {issue.get('stage', 'unknown')} / {issue.get('category', 'unknown')}")
+            lines.append(f"  - Reason: {issue.get('reason', 'unknown')}")
+            if issue.get("diagnostics"):
+                lines.append("  - Diagnostics: " + str(issue["diagnostics"]))
+    else:
+        lines.append("No episodes currently need investigation.")
+    return "\\n".join(lines) + "\\n"
 
 
 def main() -> int:
