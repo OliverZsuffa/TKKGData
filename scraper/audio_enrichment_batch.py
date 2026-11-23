@@ -78,7 +78,7 @@ def prepare(args: argparse.Namespace) -> int:
     episodes = json.loads(args.catalogue.read_text(encoding="utf-8"))
     selected = select_episodes(
         episodes, episode=args.episode, start_episode=args.start_episode,
-        end_episode=args.end_episode, limit=args.limit,
+        end_episode=args.end_episode, episodes_list=args.episodes, limit=args.limit,
     )
     if args.playlist_id and len(selected) != 1:
         raise ValueError("--playlist-id requires exactly one selected episode.")
