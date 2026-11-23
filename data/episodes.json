@@ -163780,7 +163780,847 @@
         "source_url": "https://www.tkkg.de/produkte/hoerspiele?page=2"
       }
     ],
-    "last_checked": "2026-11-23T20:24:37.961759+00:00"
+    "last_checked": "2026-11-23T20:24:37.961759+00:00",
+    "audio_release": {
+      "spotify": {
+        "album_id": "5FvGyMLEy4vIasPH8E0ELE",
+        "url": "https://open.spotify.com/album/5FvGyMLEy4vIasPH8E0ELE",
+        "title": "216/Das Geheimnis im Jagdschloss (Kopfhörer-Hörspiel)",
+        "track_count": 43,
+        "source_query": "TKKG 216 Das Geheimnis im Jagdschloss Teil 01"
+      },
+      "youtube_music": {
+        "playlist": null,
+        "tracks": [
+          {
+            "track_number": 1,
+            "spotify_title": "216 - Das Geheimnis im Jagdschloss - Kopfhörer auf! (Intro)",
+            "spotify_track_id": "3Py97fBJ4RprHUcBo5AtLV",
+            "spotify_track_url": "https://open.spotify.com/track/3Py97fBJ4RprHUcBo5AtLV",
+            "video_id": "0DZYsTx210w",
+            "url": "https://music.youtube.com/watch?v=0DZYsTx210w",
+            "title": "216 - Das Geheimnis im Jagdschloss (Kopfhörer auf! (Intro))",
+            "artists": [],
+            "album": "Album - 216/Das Geheimnis im Jagdschloss (Kopfhörer-Hörspiel)",
+            "duration_seconds": 110.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 2,
+            "spotify_title": "216 - Das Geheimnis im Jagdschloss - Inhaltsangabe",
+            "spotify_track_id": "2MiJIAIMXazymiWWsrTcE6",
+            "spotify_track_url": "https://open.spotify.com/track/2MiJIAIMXazymiWWsrTcE6",
+            "video_id": "qM3_XNa1Zm0",
+            "url": "https://music.youtube.com/watch?v=qM3_XNa1Zm0",
+            "title": "216 - Das Geheimnis im Jagdschloss (Inhaltsangabe)",
+            "artists": [],
+            "album": "Album - 216/Das Geheimnis im Jagdschloss (Kopfhörer-Hörspiel)",
+            "duration_seconds": 76.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 3,
+            "spotify_title": "216 - Das Geheimnis im Jagdschloss - Titelsong",
+            "spotify_track_id": "2DN4NmeqOSaQuoEadPLb9f",
+            "spotify_track_url": "https://open.spotify.com/track/2DN4NmeqOSaQuoEadPLb9f",
+            "video_id": "XglrqFKDqaw",
+            "url": "https://music.youtube.com/watch?v=XglrqFKDqaw",
+            "title": "216 - Das Geheimnis im Jagdschloss (Titelsong)",
+            "artists": [],
+            "album": "Album - 216/Das Geheimnis im Jagdschloss (Kopfhörer-Hörspiel)",
+            "duration_seconds": 36.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 4,
+            "spotify_title": "216 - Das Geheimnis im Jagdschloss - Teil 01",
+            "spotify_track_id": "2NSACdsipwVRjmERZtOXio",
+            "spotify_track_url": "https://open.spotify.com/track/2NSACdsipwVRjmERZtOXio",
+            "video_id": "LUFd1CeUjxs",
+            "url": "https://music.youtube.com/watch?v=LUFd1CeUjxs",
+            "title": "216 - Das Geheimnis im Jagdschloss (Teil 01)",
+            "artists": [],
+            "album": "Album - 216/Das Geheimnis im Jagdschloss (Kopfhörer-Hörspiel)",
+            "duration_seconds": 100.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 5,
+            "spotify_title": "216 - Das Geheimnis im Jagdschloss - Teil 02",
+            "spotify_track_id": "31gALYIvmS2AvGc3dvUauq",
+            "spotify_track_url": "https://open.spotify.com/track/31gALYIvmS2AvGc3dvUauq",
+            "video_id": "5TZp0G92QBw",
+            "url": "https://music.youtube.com/watch?v=5TZp0G92QBw",
+            "title": "216 - Das Geheimnis im Jagdschloss (Teil 02)",
+            "artists": [],
+            "album": "Album - 216/Das Geheimnis im Jagdschloss (Kopfhörer-Hörspiel)",
+            "duration_seconds": 98.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 6,
+            "spotify_title": "216 - Das Geheimnis im Jagdschloss - Teil 03",
+            "spotify_track_id": "50lGcz7mk8I60PsVTEj5NW",
+            "spotify_track_url": "https://open.spotify.com/track/50lGcz7mk8I60PsVTEj5NW",
+            "video_id": "Q-zsDieiPPo",
+            "url": "https://music.youtube.com/watch?v=Q-zsDieiPPo",
+            "title": "216 - Das Geheimnis im Jagdschloss (Teil 03)",
+            "artists": [],
+            "album": "Album - 216/Das Geheimnis im Jagdschloss (Kopfhörer-Hörspiel)",
+            "duration_seconds": 97.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 7,
+            "spotify_title": "216 - Das Geheimnis im Jagdschloss - Teil 04",
+            "spotify_track_id": "1gFlu1jPsmRxnvZB4GL4Kl",
+            "spotify_track_url": "https://open.spotify.com/track/1gFlu1jPsmRxnvZB4GL4Kl",
+            "video_id": "mL6yqpdAztA",
+            "url": "https://music.youtube.com/watch?v=mL6yqpdAztA",
+            "title": "216 - Das Geheimnis im Jagdschloss (Teil 04)",
+            "artists": [],
+            "album": "Album - 216/Das Geheimnis im Jagdschloss (Kopfhörer-Hörspiel)",
+            "duration_seconds": 97.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 8,
+            "spotify_title": "216 - Das Geheimnis im Jagdschloss - Teil 05",
+            "spotify_track_id": "4FNOkWjjIr78p4mea0sZ2i",
+            "spotify_track_url": "https://open.spotify.com/track/4FNOkWjjIr78p4mea0sZ2i",
+            "video_id": "SKNDCfXxfvc",
+            "url": "https://music.youtube.com/watch?v=SKNDCfXxfvc",
+            "title": "216 - Das Geheimnis im Jagdschloss (Teil 05)",
+            "artists": [],
+            "album": "Album - 216/Das Geheimnis im Jagdschloss (Kopfhörer-Hörspiel)",
+            "duration_seconds": 96.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 9,
+            "spotify_title": "216 - Das Geheimnis im Jagdschloss - Teil 06",
+            "spotify_track_id": "7yONujjYb5tFC108R7rAZ6",
+            "spotify_track_url": "https://open.spotify.com/track/7yONujjYb5tFC108R7rAZ6",
+            "video_id": "8eFN8dIEV08",
+            "url": "https://music.youtube.com/watch?v=8eFN8dIEV08",
+            "title": "216 - Das Geheimnis im Jagdschloss (Teil 06)",
+            "artists": [],
+            "album": "Album - 216/Das Geheimnis im Jagdschloss (Kopfhörer-Hörspiel)",
+            "duration_seconds": 99.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 10,
+            "spotify_title": "216 - Das Geheimnis im Jagdschloss - Teil 07",
+            "spotify_track_id": "2TNxZTbtkOA01bkfF39zkO",
+            "spotify_track_url": "https://open.spotify.com/track/2TNxZTbtkOA01bkfF39zkO",
+            "video_id": "NCw4-Gkwnnw",
+            "url": "https://music.youtube.com/watch?v=NCw4-Gkwnnw",
+            "title": "216 - Das Geheimnis im Jagdschloss (Teil 07)",
+            "artists": [],
+            "album": "Album - 216/Das Geheimnis im Jagdschloss (Kopfhörer-Hörspiel)",
+            "duration_seconds": 97.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 11,
+            "spotify_title": "216 - Das Geheimnis im Jagdschloss - Teil 08",
+            "spotify_track_id": "6pFQycSvkGHnrZnECIxUjG",
+            "spotify_track_url": "https://open.spotify.com/track/6pFQycSvkGHnrZnECIxUjG",
+            "video_id": "vblbSLyJd74",
+            "url": "https://music.youtube.com/watch?v=vblbSLyJd74",
+            "title": "216 - Das Geheimnis im Jagdschloss (Teil 08)",
+            "artists": [],
+            "album": "Album - 216/Das Geheimnis im Jagdschloss (Kopfhörer-Hörspiel)",
+            "duration_seconds": 102.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 12,
+            "spotify_title": "216 - Das Geheimnis im Jagdschloss - Teil 09",
+            "spotify_track_id": "7F4o2XQlLskmxBPChKv08w",
+            "spotify_track_url": "https://open.spotify.com/track/7F4o2XQlLskmxBPChKv08w",
+            "video_id": "Lk78ITziyK8",
+            "url": "https://music.youtube.com/watch?v=Lk78ITziyK8",
+            "title": "216 - Das Geheimnis im Jagdschloss (Teil 09)",
+            "artists": [],
+            "album": "Album - 216/Das Geheimnis im Jagdschloss (Kopfhörer-Hörspiel)",
+            "duration_seconds": 89.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 13,
+            "spotify_title": "216 - Das Geheimnis im Jagdschloss - Teil 10",
+            "spotify_track_id": "5U5phKaVZ7kmvtFYunxGTi",
+            "spotify_track_url": "https://open.spotify.com/track/5U5phKaVZ7kmvtFYunxGTi",
+            "video_id": "V7ydDwszh9s",
+            "url": "https://music.youtube.com/watch?v=V7ydDwszh9s",
+            "title": "216 - Das Geheimnis im Jagdschloss (Teil 10)",
+            "artists": [],
+            "album": "Album - 216/Das Geheimnis im Jagdschloss (Kopfhörer-Hörspiel)",
+            "duration_seconds": 101.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 14,
+            "spotify_title": "216 - Das Geheimnis im Jagdschloss - Teil 11",
+            "spotify_track_id": "4rZdwkdhKQTUhStaltwWb8",
+            "spotify_track_url": "https://open.spotify.com/track/4rZdwkdhKQTUhStaltwWb8",
+            "video_id": "-enO3FOOeuM",
+            "url": "https://music.youtube.com/watch?v=-enO3FOOeuM",
+            "title": "216 - Das Geheimnis im Jagdschloss (Teil 11)",
+            "artists": [],
+            "album": "Album - 216/Das Geheimnis im Jagdschloss (Kopfhörer-Hörspiel)",
+            "duration_seconds": 99.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 15,
+            "spotify_title": "216 - Das Geheimnis im Jagdschloss - Teil 12",
+            "spotify_track_id": "2q7HZtdAas7aZhuTM6ThgP",
+            "spotify_track_url": "https://open.spotify.com/track/2q7HZtdAas7aZhuTM6ThgP",
+            "video_id": "oRNHX5KPLK4",
+            "url": "https://music.youtube.com/watch?v=oRNHX5KPLK4",
+            "title": "216 - Das Geheimnis im Jagdschloss (Teil 12)",
+            "artists": [],
+            "album": "Album - 216/Das Geheimnis im Jagdschloss (Kopfhörer-Hörspiel)",
+            "duration_seconds": 95.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 16,
+            "spotify_title": "216 - Das Geheimnis im Jagdschloss - Teil 13",
+            "spotify_track_id": "2utnu2vXTWL8VKb1xgAa02",
+            "spotify_track_url": "https://open.spotify.com/track/2utnu2vXTWL8VKb1xgAa02",
+            "video_id": "LbG4vktV9xM",
+            "url": "https://music.youtube.com/watch?v=LbG4vktV9xM",
+            "title": "216 - Das Geheimnis im Jagdschloss (Teil 13)",
+            "artists": [],
+            "album": "Album - 216/Das Geheimnis im Jagdschloss (Kopfhörer-Hörspiel)",
+            "duration_seconds": 98.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 17,
+            "spotify_title": "216 - Das Geheimnis im Jagdschloss - Teil 14",
+            "spotify_track_id": "23snBM3bHIGmuVq7ePDoId",
+            "spotify_track_url": "https://open.spotify.com/track/23snBM3bHIGmuVq7ePDoId",
+            "video_id": "QFd0N_b4N4I",
+            "url": "https://music.youtube.com/watch?v=QFd0N_b4N4I",
+            "title": "216 - Das Geheimnis im Jagdschloss (Teil 14)",
+            "artists": [],
+            "album": "Album - 216/Das Geheimnis im Jagdschloss (Kopfhörer-Hörspiel)",
+            "duration_seconds": 99.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 18,
+            "spotify_title": "216 - Das Geheimnis im Jagdschloss - Teil 15",
+            "spotify_track_id": "0XVIQoWJbCpq1brun2aZO5",
+            "spotify_track_url": "https://open.spotify.com/track/0XVIQoWJbCpq1brun2aZO5",
+            "video_id": "AEIBwhbpGxY",
+            "url": "https://music.youtube.com/watch?v=AEIBwhbpGxY",
+            "title": "216 - Das Geheimnis im Jagdschloss (Teil 15)",
+            "artists": [],
+            "album": "Album - 216/Das Geheimnis im Jagdschloss (Kopfhörer-Hörspiel)",
+            "duration_seconds": 95.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 19,
+            "spotify_title": "216 - Das Geheimnis im Jagdschloss - Teil 16",
+            "spotify_track_id": "5jW6RFUPiQQcOkOPmukCV6",
+            "spotify_track_url": "https://open.spotify.com/track/5jW6RFUPiQQcOkOPmukCV6",
+            "video_id": "PnIq0zrZ4-I",
+            "url": "https://music.youtube.com/watch?v=PnIq0zrZ4-I",
+            "title": "216 - Das Geheimnis im Jagdschloss (Teil 16)",
+            "artists": [],
+            "album": "Album - 216/Das Geheimnis im Jagdschloss (Kopfhörer-Hörspiel)",
+            "duration_seconds": 104.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 20,
+            "spotify_title": "216 - Das Geheimnis im Jagdschloss - Teil 17",
+            "spotify_track_id": "5nS0GztQ83nFOvkv1crrqj",
+            "spotify_track_url": "https://open.spotify.com/track/5nS0GztQ83nFOvkv1crrqj",
+            "video_id": "dWneRkVTBkg",
+            "url": "https://music.youtube.com/watch?v=dWneRkVTBkg",
+            "title": "216 - Das Geheimnis im Jagdschloss (Teil 17)",
+            "artists": [],
+            "album": "Album - 216/Das Geheimnis im Jagdschloss (Kopfhörer-Hörspiel)",
+            "duration_seconds": 92.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 21,
+            "spotify_title": "216 - Das Geheimnis im Jagdschloss - Teil 18",
+            "spotify_track_id": "2bG5S5RQcSqFZkyPTw2tZX",
+            "spotify_track_url": "https://open.spotify.com/track/2bG5S5RQcSqFZkyPTw2tZX",
+            "video_id": "6E7EaHJ7zjo",
+            "url": "https://music.youtube.com/watch?v=6E7EaHJ7zjo",
+            "title": "216 - Das Geheimnis im Jagdschloss (Teil 18)",
+            "artists": [],
+            "album": "Album - 216/Das Geheimnis im Jagdschloss (Kopfhörer-Hörspiel)",
+            "duration_seconds": 103.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 22,
+            "spotify_title": "216 - Das Geheimnis im Jagdschloss - Teil 19",
+            "spotify_track_id": "05XIrcYXSTE01Je7pCWW9n",
+            "spotify_track_url": "https://open.spotify.com/track/05XIrcYXSTE01Je7pCWW9n",
+            "video_id": "pgQU-On-fyw",
+            "url": "https://music.youtube.com/watch?v=pgQU-On-fyw",
+            "title": "216 - Das Geheimnis im Jagdschloss (Teil 19)",
+            "artists": [],
+            "album": "Album - 216/Das Geheimnis im Jagdschloss (Kopfhörer-Hörspiel)",
+            "duration_seconds": 93.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 23,
+            "spotify_title": "216 - Das Geheimnis im Jagdschloss - Teil 20",
+            "spotify_track_id": "1kjmGInjOTY4kBv3fTg8I7",
+            "spotify_track_url": "https://open.spotify.com/track/1kjmGInjOTY4kBv3fTg8I7",
+            "video_id": "usueXZEUAIU",
+            "url": "https://music.youtube.com/watch?v=usueXZEUAIU",
+            "title": "216 - Das Geheimnis im Jagdschloss (Teil 20)",
+            "artists": [],
+            "album": "Album - 216/Das Geheimnis im Jagdschloss (Kopfhörer-Hörspiel)",
+            "duration_seconds": 95.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 24,
+            "spotify_title": "216 - Das Geheimnis im Jagdschloss - Teil 21",
+            "spotify_track_id": "5pekL3gbDYzPPZu5TelIis",
+            "spotify_track_url": "https://open.spotify.com/track/5pekL3gbDYzPPZu5TelIis",
+            "video_id": "0m4pXU8sLhk",
+            "url": "https://music.youtube.com/watch?v=0m4pXU8sLhk",
+            "title": "216 - Das Geheimnis im Jagdschloss (Teil 21)",
+            "artists": [],
+            "album": "Album - 216/Das Geheimnis im Jagdschloss (Kopfhörer-Hörspiel)",
+            "duration_seconds": 99.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 25,
+            "spotify_title": "216 - Das Geheimnis im Jagdschloss - Teil 22",
+            "spotify_track_id": "1PjSKXDoj1P8Hl0xMulEXH",
+            "spotify_track_url": "https://open.spotify.com/track/1PjSKXDoj1P8Hl0xMulEXH",
+            "video_id": "NnWwRZSBsKI",
+            "url": "https://music.youtube.com/watch?v=NnWwRZSBsKI",
+            "title": "216 - Das Geheimnis im Jagdschloss (Teil 22)",
+            "artists": [],
+            "album": "Album - 216/Das Geheimnis im Jagdschloss (Kopfhörer-Hörspiel)",
+            "duration_seconds": 99.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 26,
+            "spotify_title": "216 - Das Geheimnis im Jagdschloss - Teil 23",
+            "spotify_track_id": "7lgQTsjF7dVFwNcIeoo4z9",
+            "spotify_track_url": "https://open.spotify.com/track/7lgQTsjF7dVFwNcIeoo4z9",
+            "video_id": "HuSXdrJI5qY",
+            "url": "https://music.youtube.com/watch?v=HuSXdrJI5qY",
+            "title": "216 - Das Geheimnis im Jagdschloss (Teil 23)",
+            "artists": [],
+            "album": "Album - 216/Das Geheimnis im Jagdschloss (Kopfhörer-Hörspiel)",
+            "duration_seconds": 99.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 27,
+            "spotify_title": "216 - Das Geheimnis im Jagdschloss - Teil 24",
+            "spotify_track_id": "4Phn5OmX3g213VcQqxD0th",
+            "spotify_track_url": "https://open.spotify.com/track/4Phn5OmX3g213VcQqxD0th",
+            "video_id": "bQEHQnSgW3Y",
+            "url": "https://music.youtube.com/watch?v=bQEHQnSgW3Y",
+            "title": "216 - Das Geheimnis im Jagdschloss (Teil 24)",
+            "artists": [],
+            "album": "Album - 216/Das Geheimnis im Jagdschloss (Kopfhörer-Hörspiel)",
+            "duration_seconds": 95.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 28,
+            "spotify_title": "216 - Das Geheimnis im Jagdschloss - Teil 25",
+            "spotify_track_id": "40bOVv1KiDa2HSmHYdPZDB",
+            "spotify_track_url": "https://open.spotify.com/track/40bOVv1KiDa2HSmHYdPZDB",
+            "video_id": "lqVvUEjMt_4",
+            "url": "https://music.youtube.com/watch?v=lqVvUEjMt_4",
+            "title": "216 - Das Geheimnis im Jagdschloss (Teil 25)",
+            "artists": [],
+            "album": "Album - 216/Das Geheimnis im Jagdschloss (Kopfhörer-Hörspiel)",
+            "duration_seconds": 101.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 29,
+            "spotify_title": "216 - Das Geheimnis im Jagdschloss - Teil 26",
+            "spotify_track_id": "3w4NiH0xOWK2YmcugXsyyD",
+            "spotify_track_url": "https://open.spotify.com/track/3w4NiH0xOWK2YmcugXsyyD",
+            "video_id": "svwzQrPrV5Y",
+            "url": "https://music.youtube.com/watch?v=svwzQrPrV5Y",
+            "title": "216 - Das Geheimnis im Jagdschloss (Teil 26)",
+            "artists": [],
+            "album": "Album - 216/Das Geheimnis im Jagdschloss (Kopfhörer-Hörspiel)",
+            "duration_seconds": 94.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 30,
+            "spotify_title": "216 - Das Geheimnis im Jagdschloss - Teil 27",
+            "spotify_track_id": "6pqXifdJf0NmOVPmXZC603",
+            "spotify_track_url": "https://open.spotify.com/track/6pqXifdJf0NmOVPmXZC603",
+            "video_id": "T-ZOfA4f6YM",
+            "url": "https://music.youtube.com/watch?v=T-ZOfA4f6YM",
+            "title": "216 - Das Geheimnis im Jagdschloss (Teil 27)",
+            "artists": [],
+            "album": "Album - 216/Das Geheimnis im Jagdschloss (Kopfhörer-Hörspiel)",
+            "duration_seconds": 94.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 31,
+            "spotify_title": "216 - Das Geheimnis im Jagdschloss - Teil 28",
+            "spotify_track_id": "2B3enRCyjqohhuXtrAJl9v",
+            "spotify_track_url": "https://open.spotify.com/track/2B3enRCyjqohhuXtrAJl9v",
+            "video_id": "ftGJWFp9Go0",
+            "url": "https://music.youtube.com/watch?v=ftGJWFp9Go0",
+            "title": "216 - Das Geheimnis im Jagdschloss (Teil 28)",
+            "artists": [],
+            "album": "Album - 216/Das Geheimnis im Jagdschloss (Kopfhörer-Hörspiel)",
+            "duration_seconds": 102.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 32,
+            "spotify_title": "216 - Das Geheimnis im Jagdschloss - Teil 29",
+            "spotify_track_id": "46MET4PimWdpeKkXgTEmss",
+            "spotify_track_url": "https://open.spotify.com/track/46MET4PimWdpeKkXgTEmss",
+            "video_id": "uPa7PYMW1V4",
+            "url": "https://music.youtube.com/watch?v=uPa7PYMW1V4",
+            "title": "216 - Das Geheimnis im Jagdschloss (Teil 29)",
+            "artists": [],
+            "album": "Album - 216/Das Geheimnis im Jagdschloss (Kopfhörer-Hörspiel)",
+            "duration_seconds": 98.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 33,
+            "spotify_title": "216 - Das Geheimnis im Jagdschloss - Teil 30",
+            "spotify_track_id": "1uDeNojk7spbi0YcQKCJuM",
+            "spotify_track_url": "https://open.spotify.com/track/1uDeNojk7spbi0YcQKCJuM",
+            "video_id": "Z-zlJJN21H0",
+            "url": "https://music.youtube.com/watch?v=Z-zlJJN21H0",
+            "title": "216 - Das Geheimnis im Jagdschloss (Teil 30)",
+            "artists": [],
+            "album": "Album - 216/Das Geheimnis im Jagdschloss (Kopfhörer-Hörspiel)",
+            "duration_seconds": 97.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 34,
+            "spotify_title": "216 - Das Geheimnis im Jagdschloss - Teil 31",
+            "spotify_track_id": "0bARYaTLIAuNKVNCs13x49",
+            "spotify_track_url": "https://open.spotify.com/track/0bARYaTLIAuNKVNCs13x49",
+            "video_id": "3WX8xX-Sn68",
+            "url": "https://music.youtube.com/watch?v=3WX8xX-Sn68",
+            "title": "216 - Das Geheimnis im Jagdschloss (Teil 31)",
+            "artists": [],
+            "album": "Album - 216/Das Geheimnis im Jagdschloss (Kopfhörer-Hörspiel)",
+            "duration_seconds": 97.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 35,
+            "spotify_title": "216 - Das Geheimnis im Jagdschloss - Teil 32",
+            "spotify_track_id": "2f7UFR0fxhfIgaHqonKFW7",
+            "spotify_track_url": "https://open.spotify.com/track/2f7UFR0fxhfIgaHqonKFW7",
+            "video_id": "KdxQAbcahdY",
+            "url": "https://music.youtube.com/watch?v=KdxQAbcahdY",
+            "title": "216 - Das Geheimnis im Jagdschloss (Teil 32)",
+            "artists": [],
+            "album": "Album - 216/Das Geheimnis im Jagdschloss (Kopfhörer-Hörspiel)",
+            "duration_seconds": 101.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 36,
+            "spotify_title": "216 - Das Geheimnis im Jagdschloss - Teil 33",
+            "spotify_track_id": "290Y8Pi60xm2roSbuMD4XU",
+            "spotify_track_url": "https://open.spotify.com/track/290Y8Pi60xm2roSbuMD4XU",
+            "video_id": "8PcO16WTL7s",
+            "url": "https://music.youtube.com/watch?v=8PcO16WTL7s",
+            "title": "216 - Das Geheimnis im Jagdschloss (Teil 33)",
+            "artists": [],
+            "album": "Album - 216/Das Geheimnis im Jagdschloss (Kopfhörer-Hörspiel)",
+            "duration_seconds": 95.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 37,
+            "spotify_title": "216 - Das Geheimnis im Jagdschloss - Teil 34",
+            "spotify_track_id": "37uBka5w07QGKaMV88hqbk",
+            "spotify_track_url": "https://open.spotify.com/track/37uBka5w07QGKaMV88hqbk",
+            "video_id": "_0KO-lPL_Mc",
+            "url": "https://music.youtube.com/watch?v=_0KO-lPL_Mc",
+            "title": "216 - Das Geheimnis im Jagdschloss (Teil 34)",
+            "artists": [],
+            "album": "Album - 216/Das Geheimnis im Jagdschloss (Kopfhörer-Hörspiel)",
+            "duration_seconds": 99.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 38,
+            "spotify_title": "216 - Das Geheimnis im Jagdschloss - Teil 35",
+            "spotify_track_id": "4vr6OhA6p8x9qpQ122ENYa",
+            "spotify_track_url": "https://open.spotify.com/track/4vr6OhA6p8x9qpQ122ENYa",
+            "video_id": "Wd5hArs2qq4",
+            "url": "https://music.youtube.com/watch?v=Wd5hArs2qq4",
+            "title": "216 - Das Geheimnis im Jagdschloss (Teil 35)",
+            "artists": [],
+            "album": "Album - 216/Das Geheimnis im Jagdschloss (Kopfhörer-Hörspiel)",
+            "duration_seconds": 91.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 39,
+            "spotify_title": "216 - Das Geheimnis im Jagdschloss - Teil 36",
+            "spotify_track_id": "7wgKgAhcbEGZAnM4MubuOC",
+            "spotify_track_url": "https://open.spotify.com/track/7wgKgAhcbEGZAnM4MubuOC",
+            "video_id": "KvCOR7RqqAI",
+            "url": "https://music.youtube.com/watch?v=KvCOR7RqqAI",
+            "title": "216 - Das Geheimnis im Jagdschloss (Teil 36)",
+            "artists": [],
+            "album": "Album - 216/Das Geheimnis im Jagdschloss (Kopfhörer-Hörspiel)",
+            "duration_seconds": 104.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 40,
+            "spotify_title": "216 - Das Geheimnis im Jagdschloss - Teil 37",
+            "spotify_track_id": "5CeOcaZJb2VJcEpoHsygog",
+            "spotify_track_url": "https://open.spotify.com/track/5CeOcaZJb2VJcEpoHsygog",
+            "video_id": "dbhiBSXKPco",
+            "url": "https://music.youtube.com/watch?v=dbhiBSXKPco",
+            "title": "216 - Das Geheimnis im Jagdschloss (Teil 37)",
+            "artists": [],
+            "album": "Album - 216/Das Geheimnis im Jagdschloss (Kopfhörer-Hörspiel)",
+            "duration_seconds": 95.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 41,
+            "spotify_title": "216 - Das Geheimnis im Jagdschloss - Teil 38",
+            "spotify_track_id": "3YFqNXIzSpmbCerILj5h0E",
+            "spotify_track_url": "https://open.spotify.com/track/3YFqNXIzSpmbCerILj5h0E",
+            "video_id": "VHZkm5cZF1s",
+            "url": "https://music.youtube.com/watch?v=VHZkm5cZF1s",
+            "title": "216 - Das Geheimnis im Jagdschloss (Teil 38)",
+            "artists": [],
+            "album": "Album - 216/Das Geheimnis im Jagdschloss (Kopfhörer-Hörspiel)",
+            "duration_seconds": 95.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 42,
+            "spotify_title": "216 - Das Geheimnis im Jagdschloss - Teil 39",
+            "spotify_track_id": "1tIYWssEJgwWhJ6Ifc1bmM",
+            "spotify_track_url": "https://open.spotify.com/track/1tIYWssEJgwWhJ6Ifc1bmM",
+            "video_id": "781mlisaFeQ",
+            "url": "https://music.youtube.com/watch?v=781mlisaFeQ",
+            "title": "216 - Das Geheimnis im Jagdschloss (Teil 39)",
+            "artists": [],
+            "album": "Album - 216/Das Geheimnis im Jagdschloss (Kopfhörer-Hörspiel)",
+            "duration_seconds": 116.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 43,
+            "spotify_title": "216 - Das Geheimnis im Jagdschloss - Outro",
+            "spotify_track_id": "1l20YRLeDidF8ogbUVegR9",
+            "spotify_track_url": "https://open.spotify.com/track/1l20YRLeDidF8ogbUVegR9",
+            "video_id": "qQOylI5lkjE",
+            "url": "https://music.youtube.com/watch?v=qQOylI5lkjE",
+            "title": "216 - Das Geheimnis im Jagdschloss (Outro)",
+            "artists": [],
+            "album": "Album - 216/Das Geheimnis im Jagdschloss (Kopfhörer-Hörspiel)",
+            "duration_seconds": 71.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          }
+        ],
+        "track_count": 43
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-11-23T20:32:09.870394+00:00",
+        "method": "exact_ordered_album_track_titles_and_duration",
+        "matched_track_count": 43,
+        "playlist_status": "unavailable",
+        "playlist_error": null
+      }
+    }
   },
   {
     "number": 217,
