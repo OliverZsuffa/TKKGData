@@ -25,7 +25,7 @@ An optional `audio_release` object has `schema_version: 2` and stores each provi
 
 Spotify and YouTube Music track counts are checked against their own lists. They are not required to be equal. Track numbering, ordering, identity, and album or playlist metadata are validated independently.
 
-Historical records migrated from the previous paired schema retain old pairing evidence in `youtube_music.tracks[].legacy_pairing`. This is explicitly historical provenance, not a canonical cross-provider mapping. The original verification method and timestamp are retained under `verification.migration.source_verification`. Migration does not claim a fresh provider lookup.
+The original verification method and timestamp are retained under `verification.migration.source_verification`. Migration does not claim a fresh provider lookup. Historical Spotify and YouTube Music pairings are not copied into the new dataset because they are redundant with the two independent provider tracklists. The pre-migration catalogue remains recoverable through Git history.
 
 ## Migration of existing records
 
