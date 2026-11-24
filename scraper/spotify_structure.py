@@ -172,7 +172,7 @@ def select_episode_release_tracks(
             raise ValueError(
                 "Another episode part appears inside the selected episode sequence."
             )
-        if classification == "unknown":
+        if index not in selected_indices and classification == "unknown":
             raise ValueError(
                 f"Unclassified track {ordered[index].get('name')!r} appears inside the selected episode sequence."
             )
