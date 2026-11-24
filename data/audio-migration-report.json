@@ -1077,5 +1077,130 @@
   "preservation_check": {
     "all_override_entries_mapped": true,
     "all_legacy_tracks_migrated": true
-  }
+  },
+  "alternate_titles_migrated": [
+    {
+      "episode": 48,
+      "canonical_title": "Bestien in der Finsternis",
+      "alternate_titles": [
+        "Bestien der Finsternis"
+      ]
+    },
+    {
+      "episode": 94,
+      "canonical_title": "In dunkler Nacht am Mamorgrab",
+      "alternate_titles": [
+        "In dunkler Nacht am Marmor-Grab"
+      ]
+    },
+    {
+      "episode": 110,
+      "canonical_title": "Das Phantom im Schokoladen-Museum",
+      "alternate_titles": [
+        "Das Phantom im Schokoladenmuseum"
+      ]
+    }
+  ],
+  "discovery_hints_migrated": [
+    {
+      "episode": 48,
+      "spotify": {
+        "preferred_album_id": "4WgadnXmyPlFzQ6GyHUqRw",
+        "release_profile": "standard"
+      }
+    },
+    {
+      "episode": 94,
+      "spotify": {
+        "preferred_album_id": "0in2tMW0QlYkCN4xZGMKFw",
+        "release_profile": "standard"
+      }
+    },
+    {
+      "episode": 110,
+      "spotify": {
+        "release_profile": "standard"
+      }
+    },
+    {
+      "episode": 175,
+      "spotify": {
+        "preferred_album_id": "7z37XBrYgYo7DCs9dFeHvq",
+        "release_profile": "two_disc_duplicated_numbering",
+        "expected_story_parts": 80
+      }
+    },
+    {
+      "episode": 200,
+      "spotify": {
+        "preferred_album_id": "40AzKKVoE6d4TxqlZ2N4Fr",
+        "release_profile": "extended_numbered",
+        "expected_story_parts": 80
+      }
+    },
+    {
+      "episode": 218,
+      "spotify": {
+        "preferred_album_id": "1JBdOPbN661RjpdWNm9Xfo",
+        "release_profile": "structured_extras",
+        "expected_story_parts": 21
+      }
+    },
+    {
+      "episode": 219,
+      "spotify": {
+        "preferred_album_id": "65b6rQAtUIFQAySC4lDKpL",
+        "release_profile": "structured_extras",
+        "expected_story_parts": 19
+      }
+    },
+    {
+      "episode": 220,
+      "spotify": {
+        "release_profile": "shared_title_song"
+      }
+    },
+    {
+      "episode": 221,
+      "spotify": {
+        "release_profile": "shared_title_song"
+      }
+    },
+    {
+      "episode": 222,
+      "spotify": {
+        "release_profile": "shared_title_song"
+      }
+    },
+    {
+      "episode": 223,
+      "spotify": {
+        "release_profile": "shared_title_song"
+      }
+    },
+    {
+      "episode": 224,
+      "spotify": {
+        "release_profile": "shared_title_song"
+      }
+    },
+    {
+      "episode": 225,
+      "spotify": {
+        "release_profile": "shared_title_song"
+      }
+    },
+    {
+      "episode": 226,
+      "spotify": {
+        "release_profile": "shared_title_song"
+      }
+    }
+  ],
+  "legacy_pairing_evidence_retained": 7205,
+  "source_tracks_accounted_for": 14410,
+  "unmapped_source_tracks": 0,
+  "unmapped_override_entries": 0,
+  "provider_rescrapes": 0,
+  "canonical_episode_titles_changed": 0
 }
