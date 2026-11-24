@@ -74,11 +74,6 @@ def _migrate_release(episode: dict[str, Any], migrated_at: str) -> dict[str, Any
             "duration_seconds": source.get("duration_seconds"),
             "match_score": source.get("match_score"),
             "match_evidence": deepcopy(source.get("match_evidence") or []),
-            "legacy_pairing": {
-                "spotify_track_id": spotify_id,
-                "spotify_track_url": spotify_url,
-                "spotify_title": spotify_title,
-            },
         }
         youtube_tracks.append({key: value for key, value in youtube_track.items() if value is not None})
 
