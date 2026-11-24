@@ -494,6 +494,13 @@ def resolve_spotify_album(episode: dict[str, Any], work_dir: Path) -> dict[str, 
         "TKKG",
         "TKKG Retro-Archiv",
     ]
+    for alternate_title in _episode_title_variants(episode)[1:]:
+        queries.extend([
+            f'track:"{alternate_title}" artist:TKKG',
+            f'album:"{alternate_title}" artist:TKKG',
+            f'track:"{alternate_title}" artist:"TKKG Retro-Archiv"',
+            f"{alternate_title} TKKG",
+        ])
     candidates: dict[str, dict[str, Any]] = {}
     search_errors: list[str] = []
     search_diagnostics: list[dict[str, Any]] = []
