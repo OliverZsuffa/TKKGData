@@ -1450,19 +1450,18 @@ def _spotify_links(spotify: dict[str, Any]) -> dict[str, Any]:
 
 def _release_links(
     spotify: dict[str, Any], playlist: dict[str, Any] | None,
-    youtube_music_tracks: list[dict[str, Any]], album_url: str | None = None,
+    youtube_music_tracks: list[dict[str, Any]], album: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     return {
         "spotify_album": spotify["url"],
         "spotify_tracks": _spotify_links(spotify)["tracks"],
         "youtube_music_playlist": playlist["url"] if playlist else None,
-        "youtube_music_album": album_url,
+        "youtube_music_album": album["url"] if album else None,
         "youtube_music_tracks": [
             {
                 "track_number": track["track_number"],
                 "title": track["title"],
                 "url": track["url"],
-                "spotify_url": track["spotify_track_url"],
             }
             for track in youtube_music_tracks
         ],
@@ -1488,43 +1487,36 @@ def discover_episode_audio(
         ) from exc
     spotify_seconds = round(time.perf_counter() - spotify_started, 2)
 
-    # Search complete playlists first, then use individual song matching only
-    # as a fallback. Never lower the existing matching threshold.
-    youtube_music_playlist = None
-    youtube_music_album = None
-    playlist_failure = None
-    youtube_music_tracks = None
+    # Resolve YouTube Music as its own release. Its track count and segmentation
+    # are intentionally independent of the Spotify album.
     playlist_started = time.perf_counter()
-    if spotify.get("release_type") == "compilation_track_selection":
-        playlist_failure = (
-            "Album-level playlist pairing skipped because the Spotify source is a compilation; "
-            "only individual episode track pairs are safe."
+    try:
+        youtube_release = find_verified_youtube_music_release(
+            episode, ytm, playlist_id_override,
         )
-    else:
-        try:
-            playlist_result = find_verified_youtube_music_playlist(
-                episode, spotify, ytm, playlist_id_override,
-            )
-            youtube_music_tracks = playlist_result.pop("_matched_tracks")
-            if playlist_result.get("playlist_id"):
-                youtube_music_playlist = playlist_result
-            else:
-                youtube_music_album = playlist_result.get("album_url")
-        except Exception as exc:
-            playlist_failure = str(exc)
+    except Exception as exc:
+        playlist_seconds = round(time.perf_counter() - playlist_started, 2)
+        timings = {
+            "spotify_seconds": spotify_seconds,
+            "playlist_seconds": playlist_seconds,
+            "individual_song_search_seconds": 0.0,
+            "total_seconds": round(time.perf_counter() - total_started, 2),
+        }
+        raise AudioDiscoveryError(
+            f"Independent YouTube Music release resolution failed: {exc}",
+            stage="youtube_music", spotify=spotify, playlist_error=str(exc),
+            timings=timings,
+        ) from exc
     playlist_seconds = round(time.perf_counter() - playlist_started, 2)
+    youtube_music_tracks = youtube_release["tracks"]
+    youtube_music_playlist = youtube_release.get("playlist")
+    youtube_music_album = youtube_release.get("album")
+    playlist_failure = None
 
-    song_search_seconds = 0.0
-    if youtube_music_tracks is None:
-        song_started = time.perf_counter()
-        try:
-            youtube_music_tracks = find_verified_youtube_music_tracks(episode, spotify, ytm)
-        except Exception as exc:
-            song_search_seconds = round(time.perf_counter() - song_started, 2)
-            timings = {
+    timings = {
                 "spotify_seconds": spotify_seconds,
                 "playlist_seconds": playlist_seconds,
-                "individual_song_search_seconds": song_search_seconds,
+                "individual_song_search_seconds": 0.0,
                 "total_seconds": round(time.perf_counter() - total_started, 2),
             }
             raise AudioDiscoveryError(
@@ -1556,17 +1548,18 @@ def discover_episode_audio(
             "artist_names": _artist_names(track),
         })
     youtube_track_records = [
-        {"track_number": int(track["track_number"]), "video_id": track.get("video_id") or parse_qs(urlparse(str(track.get("url") or "")).query).get("v", [None])[0],
-         "url": track["url"], "title": track["title"], "artists": track.get("artists") or [],
-         "album": track.get("album"), "duration_seconds": track.get("duration_seconds"),
-         "match_score": track.get("match_score"), "match_evidence": track.get("match_evidence") or []}
+        {
+            "track_number": int(track["track_number"]),
+            "video_id": track["video_id"],
+            "url": track["url"],
+            "title": track["title"],
+            "artists": track.get("artists") or [],
+            "album": track.get("album"),
+            **({"duration_seconds": track["duration_seconds"]} if track.get("duration_seconds") is not None else {}),
+        }
         for track in youtube_music_tracks
     ]
-    ytm_album_record = None
-    if youtube_music_album:
-        browse_id = urlparse(youtube_music_album).path.rstrip("/").split("/")[-1]
-        album_title = next((track.get("album") for track in youtube_track_records if track.get("album")), spotify["title"])
-        ytm_album_record = {"browse_id": browse_id, "url": youtube_music_album, "title": str(album_title), "track_count": len(youtube_track_records)}
+    ytm_album_record = youtube_music_album
     audio_release = {
         "schema_version": 2,
         "spotify": {"album": {"album_id": spotify["album_id"], "url": spotify["url"], "title": spotify["title"],
@@ -1576,27 +1569,14 @@ def discover_episode_audio(
                           "tracks": youtube_track_records, "track_count": len(youtube_track_records)},
         "verification": {
             "status": "verified", "verified_at": verified_at,
-            "method": ("exact_ordered_playlist_track_titles_and_duration" if youtube_music_playlist
-                       else "exact_ordered_album_track_titles_and_duration" if youtube_music_album
-                       else "exact_track_titles_with_artist_album_or_duration_corroboration"),
+            "method": "independent_provider_tracklist_validation",
             "spotify": {"status": "verified", "verified_track_count": len(spotify_track_records)},
             "youtube_music": {"status": "verified", "verified_track_count": len(youtube_track_records),
                               "playlist_status": "verified" if youtube_music_playlist else "unavailable",
                               "playlist_error": playlist_failure},
         },
     }
-    matched_tracks = [
-        {
-            "spotify_title": spotify_track["name"],
-            "spotify_track_url": ytm_track["spotify_track_url"],
-            "youtube_music_title": ytm_track["title"],
-            "youtube_music_url": ytm_track["url"],
-            "match_evidence": ytm_track["match_evidence"],
-        }
-        for spotify_track, ytm_track in zip(
-            spotify["tracks"], youtube_music_tracks, strict=True,
-        )
-    ]
+    matched_tracks = []
     return {
         "audio_release": audio_release,
         "matched_tracks": matched_tracks,
