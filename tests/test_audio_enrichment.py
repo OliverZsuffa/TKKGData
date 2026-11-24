@@ -376,34 +376,51 @@ class AudioEnrichmentTests(unittest.TestCase):
             "sources": [{"name": "test", "url": "https://example.com", "retrieved_at": "2026-11-09T00:00:00Z"}],
             "last_checked": "2026-11-09T00:00:00Z", "listening_links": [],
             "audio_release": {
+                "schema_version": 2,
                 "spotify": {
-                    "album_id": "0ZqyFeMXxCyIJvYptGlnn1",
-                    "url": "https://open.spotify.com/album/0ZqyFeMXxCyIJvYptGlnn1",
-                    "title": "150/Heiße Nächte im Dezember", "track_count": 2,
-                    "source_query": "TKKG 150 Heiße Nächte im Dezember Teil 01",
+                    "album": {
+                        "album_id": "0ZqyFeMXxCyIJvYptGlnn1",
+                        "url": "https://open.spotify.com/album/0ZqyFeMXxCyIJvYptGlnn1",
+                        "title": "150/Heiße Nächte im Dezember", "track_count": 2,
+                        "source_query": "TKKG 150 Heiße Nächte im Dezember Teil 01",
+                    },
+                    "tracks": [
+                        {"track_number": 1, "track_id": SPOTIFY["tracks"][0]["song_id"], "url": SPOTIFY["tracks"][0]["url"], "title": SPOTIFY["tracks"][0]["name"]},
+                        {"track_number": 2, "track_id": SPOTIFY["tracks"][1]["song_id"], "url": SPOTIFY["tracks"][1]["url"], "title": SPOTIFY["tracks"][1]["name"]},
+                    ],
+                    "track_count": 2,
                 },
                 "youtube_music": {
+                    "album": None,
                     "playlist": {
                         "playlist_id": "OLAK5uy_mQRbJNANh1H4CKbmM5ez5LSW1HJFvE3QI",
                         "url": "https://music.youtube.com/playlist?list=OLAK5uy_mQRbJNANh1H4CKbmM5ez5LSW1HJFvE3QI",
                         "title": "150/Heiße Nächte im Dezember", "track_count": 2,
                     },
                     "tracks": [
-                        {"track_number": 1, "spotify_title": SPOTIFY["tracks"][0]["name"], "spotify_track_id": SPOTIFY["tracks"][0]["song_id"], "spotify_track_url": SPOTIFY["tracks"][0]["url"], "video_id": "videoid0001", "url": "https://music.youtube.com/watch?v=videoid0001", "title": SPOTIFY["tracks"][0]["name"], "artists": ["TKKG"], "album": "150/Heiße Nächte im Dezember", "duration_seconds": 120, "match_score": 140, "match_evidence": ["exact_normalised_title", "episode_album"]},
-                        {"track_number": 2, "spotify_title": SPOTIFY["tracks"][1]["name"], "spotify_track_id": SPOTIFY["tracks"][1]["song_id"], "spotify_track_url": SPOTIFY["tracks"][1]["url"], "video_id": "videoid0002", "url": "https://music.youtube.com/watch?v=videoid0002", "title": SPOTIFY["tracks"][1]["name"], "artists": ["TKKG"], "album": "150/Heiße Nächte im Dezember", "duration_seconds": 120, "match_score": 140, "match_evidence": ["exact_normalised_title", "episode_album"]},
+                        {"track_number": 1, "video_id": "videoid0001", "url": "https://music.youtube.com/watch?v=videoid0001", "title": SPOTIFY["tracks"][0]["name"], "artists": ["TKKG"], "album": "150/Heiße Nächte im Dezember", "duration_seconds": 120, "match_score": 140, "match_evidence": ["exact_normalised_title", "episode_album"]},
+                        {"track_number": 2, "video_id": "videoid0002", "url": "https://music.youtube.com/watch?v=videoid0002", "title": SPOTIFY["tracks"][1]["name"], "artists": ["TKKG"], "album": "150/Heiße Nächte im Dezember", "duration_seconds": 120, "match_score": 140, "match_evidence": ["exact_normalised_title", "episode_album"]},
                     ],
                     "track_count": 2,
                 },
                 "verification": {
                     "status": "verified", "verified_at": "2026-11-09T00:00:00Z",
-                    "method": "test", "matched_track_count": 2,
-                    "playlist_status": "verified", "playlist_error": None,
+                    "method": "test",
+                    "spotify": {"status": "verified", "verified_track_count": 2},
+                    "youtube_music": {"status": "verified", "verified_track_count": 2, "playlist_status": "verified", "playlist_error": None},
                 },
             },
         }
         self.assertEqual(validate_catalogue([episode]), [])
+        third = dict(episode["audio_release"]["youtube_music"]["tracks"][-1])
+        third.update({"track_number": 3, "video_id": "videoid0003", "url": "https://music.youtube.com/watch?v=videoid0003"})
+        episode["audio_release"]["youtube_music"]["tracks"].append(third)
         episode["audio_release"]["youtube_music"]["track_count"] = 3
-        self.assertTrue(any("track counts differ" in error for error in validate_catalogue([episode])))
+        episode["audio_release"]["youtube_music"]["playlist"]["track_count"] = 3
+        episode["audio_release"]["verification"]["youtube_music"]["verified_track_count"] = 3
+        self.assertEqual(validate_catalogue([episode]), [])
+        episode["audio_release"]["youtube_music"]["track_count"] = 4
+        self.assertTrue(any("track count does not match its own track list" in error for error in validate_catalogue([episode])))
 
 
     def test_individual_song_links_are_resolved_with_album_evidence(self):
