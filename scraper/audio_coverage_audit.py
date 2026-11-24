@@ -7,6 +7,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from scraper.audio_availability import load_audio_unavailable
+
 ROOT = Path(__file__).resolve().parents[1]
 CATALOGUE = ROOT / "data" / "episodes.json"
 LEDGER = ROOT / "data" / "audio-discovery-issues.json"
@@ -18,6 +20,7 @@ def verified(item: dict[str, Any]) -> bool:
 
 
 def audit(episodes: list[dict[str, Any]], ledger_path: Path = LEDGER) -> dict[str, Any]:
+    unavailable = load_audio_unavailable()
     warning = None
     issues: dict[str, Any] = {}
     try:
@@ -30,9 +33,17 @@ def audit(episodes: list[dict[str, Any]], ledger_path: Path = LEDGER) -> dict[st
     except (OSError, json.JSONDecodeError, ValueError) as exc:
         warning = f"Issue ledger unreadable: {exc}. Prior discovery failures cannot be inferred."
 
-    ready, investigation = [], []
+    ready, investigation, known_unavailable = [], [], []
     for item in sorted(episodes, key=lambda x: int(x.get("number", 0))):
         if verified(item):
+            continue
+        number_value = int(item.get("number", 0))
+        if number_value in unavailable:
+            known_unavailable.append({
+                "number": number_value,
+                "title": item.get("title", "(title unavailable)"),
+                **unavailable[number_value],
+            })
             continue
         number = str(item.get("number"))
         entry = {"number": item.get("number"), "title": item.get("title", "(title unavailable)")}
@@ -41,7 +52,12 @@ def audit(episodes: list[dict[str, Any]], ledger_path: Path = LEDGER) -> dict[st
             investigation.append(entry)
         else:
             ready.append(entry)
-    return {"ready_for_discovery": ready, "needs_investigation": investigation, "warning": warning}
+    return {
+        "ready_for_discovery": ready,
+        "needs_investigation": investigation,
+        "known_unavailable": known_unavailable,
+        "warning": warning,
+    }
 
 
 def chunks(items: list[dict[str, Any]], size: int = 10) -> list[list[dict[str, Any]]]:
@@ -54,6 +70,7 @@ def report_text(result: dict[str, Any]) -> str:
         lines += ["**Warning:** " + result["warning"], ""]
     ready = result["ready_for_discovery"]
     investigation = result["needs_investigation"]
+    known_unavailable = result.get("known_unavailable", [])
     lines += [f"## Ready for discovery ({len(ready)})", ""]
     if ready:
         lines.append("**Episodes to paste into Discover:** " + ", ".join(str(x["number"]) for x in ready))
@@ -73,6 +90,13 @@ def report_text(result: dict[str, Any]) -> str:
                 lines.append("  - Diagnostics: " + str(issue["diagnostics"]))
     else:
         lines.append("No episodes currently need investigation.")
+    lines += ["", f"## Known unavailable ({len(known_unavailable)})", ""]
+    if known_unavailable:
+        for item in known_unavailable:
+            lines.append(f"- **{item['number']}: {item['title']}**")
+            lines.append(f"  - Reason: {item.get('reason', 'No official digital music release expected.')}")
+    else:
+        lines.append("No episodes have a known unavailable status.")
     return "\n".join(lines) + "\n"
 
 

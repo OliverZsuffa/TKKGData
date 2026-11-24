@@ -20,6 +20,10 @@ class AudioEnrichmentBatchTests(unittest.TestCase):
             {"number": 6},
         ]
 
+    def test_automatic_selection_excludes_known_unavailable_episodes(self):
+        episodes = [{"number": number} for number in (19, 20, 37, 38)]
+        self.assertEqual(select_episodes(episodes, limit=10), [38])
+
     def test_inclusive_range(self):
         self.assertEqual(
             select_episodes(self.episodes, start_episode=2, end_episode=5),

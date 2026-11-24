@@ -18,7 +18,7 @@ Dataset metadata and schema version are published separately at:
 
 The episode JSON remains an array. Optional audio metadata uses schema version 2, with separate ordered Spotify and YouTube Music track lists. Their counts and segmentation are allowed to differ. Episode title aliases and reviewed Spotify discovery hints are stored directly on their episode records.
 
-The catalogue contains 243 episode records. This migration carries forward 213 existing verified audio releases, comprising 7,205 Spotify tracks and 7,205 YouTube Music tracks. No provider data was re-scraped to migrate the structure. The automatic YouTube Music resolver now validates its own album or playlist tracklist without pairing tracks to Spotify. Unequal track counts and segmentation are supported. TKKGDownloader compatibility is a separate follow-up and is not yet complete.
+The catalogue contains 243 episode records. This migration carries forward 213 existing verified audio releases, comprising 7,205 Spotify tracks and 7,205 YouTube Music tracks. No provider data was re-scraped to migrate the structure. Episodes 19, 20 and 37 are recorded in `data/audio-unavailable.json` because EUROPA did not rerelease them after FSK flagging. They are excluded from automatic discovery and reported as known unavailable rather than failed. The automatic YouTube Music resolver now validates its own album or playlist tracklist without pairing tracks to Spotify. Unequal track counts and segmentation are supported. TKKGDownloader compatibility is a separate follow-up and is not yet complete.
 
 ## Ownership
 
