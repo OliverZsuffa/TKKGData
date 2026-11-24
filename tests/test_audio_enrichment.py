@@ -306,6 +306,19 @@ class AudioEnrichmentTests(unittest.TestCase):
         self.assertEqual(tracks[32]["title"], titles[32])
         self.assertEqual(tracks[-1]["title"], titles[-1])
 
+    def test_youtube_music_accepts_zero_padded_episode_numbers(self):
+        from scraper.audio_enrichment import _youtube_music_track_records
+
+        episode = {"number": 1, "title": "Die Jagd nach den Millionendieben"}
+        entries = [
+            {"id": "videoid0001", "title": "001 - Die Jagd nach den Millionendieben (Teil 01)", "artists": ["TKKG Retro-Archiv"]},
+            {"id": "videoid0002", "title": "001 - Die Jagd nach den Millionendieben (Teil 02)", "artists": ["TKKG Retro-Archiv"]},
+        ]
+        tracks = _youtube_music_track_records(
+            episode, entries, "001/Die Jagd nach den Millionendieben", ["TKKG Retro-Archiv"],
+        )
+        self.assertEqual(len(tracks), 2)
+
     def test_youtube_music_tracklist_rejects_unknown_tracks_and_duplicate_video_ids(self):
         episode = {"number": 218, "title": "Schutzgeld für Dämonen"}
         from scraper.audio_enrichment import _youtube_music_track_records
