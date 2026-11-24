@@ -622,7 +622,6 @@ def resolve_spotify_album(episode: dict[str, Any], work_dir: Path) -> dict[str, 
             if not selected or not _episode_title_matches_track(episode, selected[0], track_id):
                 rejected.append(f"{album_id}: requested episode could not be isolated from album")
                 continue
-        profile = profile
         selected = select_episode_release_tracks(album_tracks, selected, profile)
         selected.sort(key=lambda item: (
             int(item.get("disc_number") or 1),
