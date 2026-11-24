@@ -383,16 +383,24 @@ def _spotify_artist_album_records(
     return records
 
 
+def _episode_title_variants(episode: dict[str, Any]) -> list[str]:
+    values = [episode.get("title"), *(episode.get("alternate_titles") or [])]
+    return list(dict.fromkeys(
+        _normalise(str(value)) for value in values
+        if isinstance(value, str) and value.strip()
+    ))
+
+
 def _episode_title_matches_track(
     episode: dict[str, Any], track: dict[str, Any], candidate_track_id: str | None = None,
 ) -> bool:
     number = int(episode["number"])
-    expected_title = _normalise(str(episode["title"]))
+    expected_titles = _episode_title_variants(episode)
     actual_title = _normalise(str(track.get("name") or ""))
     album_title = _normalise(str(track.get("album_name") or ""))
     part_marker = bool(re.search(r"\bteil\s*0*\d+\b|\bpart\s*0*\d+\b", actual_title))
-    title_in_track = bool(expected_title and expected_title in actual_title)
-    title_in_album = bool(expected_title and expected_title in album_title)
+    title_in_track = any(title in actual_title for title in expected_titles)
+    title_in_album = any(title in album_title for title in expected_titles)
     if not title_in_track and not (title_in_album and part_marker):
         return False
     return bool(
@@ -406,7 +414,8 @@ def _spotify_candidate_score(episode: dict[str, Any], record: dict[str, Any]) ->
     if not _spotify_artist_matches(record):
         return -100
     name = _normalise(str(record.get("name") or ""))
-    title = _normalise(str(episode["title"]))
+    titles = _episode_title_variants(episode)
+    title = titles[0] if titles else ""
     number = int(episode["number"])
     album_name = _normalise(str(record.get("album_name") or ""))
     query = _normalise(str(record.get("search_query") or ""))
@@ -416,9 +425,9 @@ def _spotify_candidate_score(episode: dict[str, Any], record: dict[str, Any]) ->
         or _spotify_number_matches_text(query, number)
     )
     part_marker = bool(re.search(r"\bteil\s*0*\d+\b|\bpart\s*0*\d+\b", name))
-    title_in_track = title in name
-    title_in_album = title in album_name
-    exact_title = name == title
+    title_in_track = any(value in name for value in titles)
+    title_in_album = any(value in album_name for value in titles)
+    exact_title = name in titles
     if not title_in_track and not (title_in_album and part_marker):
         return -100
     if not number_evidence and not exact_title:
@@ -446,9 +455,11 @@ def resolve_spotify_album(episode: dict[str, Any], work_dir: Path) -> dict[str, 
 
     # Reviewed album IDs and release layouts bypass fuzzy track discovery.
     try:
-        from scraper.spotify_structure import validate_episode_parts
+        from scraper.spotify_structure import validate_episode_parts, validate_selected_track_positions
         overrides = json.loads((ROOT / "data" / "spotify_structure_overrides.json").read_text(encoding="utf-8"))
         override = overrides.get(str(number), {})
+        if override.get("alternate_titles"):
+            episode = {**episode, "alternate_titles": override["alternate_titles"]}
     except (ImportError, OSError, json.JSONDecodeError):
         override = {}
     album_id_override = override.get("album_id")
@@ -601,12 +612,10 @@ def resolve_spotify_album(episode: dict[str, Any], work_dir: Path) -> dict[str, 
             int(item.get("disc_number") or 1),
             int(item.get("track_number") or 0),
         ))
-        numbers = [int(item.get("track_number") or 0) for item in selected]
-        if any(value < 1 for value in numbers) or len(set((item.get("disc_number") or 1, item.get("track_number")) for item in selected)) != len(selected):
-            rejected.append(f"{album_id}: selected episode tracks have invalid or duplicate positions")
-            continue
-        if len(selected) > 1 and numbers != list(range(numbers[0], numbers[0] + len(numbers))):
-            rejected.append(f"{album_id}: selected episode tracks are not contiguous")
+        from scraper.spotify_structure import validate_selected_track_positions
+        position_errors = validate_selected_track_positions(selected)
+        if position_errors:
+            rejected.append(f"{album_id}: {position_errors[0]}")
             continue
         if not all(isinstance(item.get("name"), str) and item["name"].strip() for item in selected):
             rejected.append(f"{album_id}: selected track has no title")
