@@ -92,6 +92,16 @@ class SpotifyStructureTests(unittest.TestCase):
         )
         self.assertEqual(validate_selected_track_positions(selected), [])
 
+    def test_explicitly_selected_single_track_compilation_episode_is_kept(self):
+        from scraper.spotify_structure import select_episode_release_tracks
+
+        album = [
+            {"name": "20 - Das Geheimnis der alten Villa", "track_number": 5, "song_id": "selected"},
+            {"name": "21 - Die andere Folge", "track_number": 6, "song_id": "other"},
+        ]
+        selected = select_episode_release_tracks(album, [album[0]])
+        self.assertEqual([track["song_id"] for track in selected], ["selected"])
+
     def test_unknown_track_inside_episode_sequence_is_rejected(self):
         from scraper.spotify_structure import select_episode_release_tracks
 
