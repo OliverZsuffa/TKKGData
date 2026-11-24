@@ -1353,7 +1353,7 @@ def discover_episode_audio(
             "artist_names": _artist_names(track),
         })
     youtube_track_records = [
-        {"track_number": int(track["track_number"]), "video_id": track["video_id"],
+        {"track_number": int(track["track_number"]), "video_id": track.get("video_id") or parse_qs(urlparse(str(track.get("url") or "")).query).get("v", [None])[0],
          "url": track["url"], "title": track["title"], "artists": track.get("artists") or [],
          "album": track.get("album"), "duration_seconds": track.get("duration_seconds"),
          "match_score": track.get("match_score"), "match_evidence": track.get("match_evidence") or []}
