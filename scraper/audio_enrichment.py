@@ -15,6 +15,7 @@ from pathlib import Path
 from typing import Any
 
 from scraper.export import write_catalogue
+from scraper.audio_availability import load_audio_unavailable
 from urllib.parse import parse_qs, urlencode, urlparse
 
 
@@ -1604,17 +1605,26 @@ def discover_episode_audio(
 
 
 def audio_release_coverage(episodes: list[dict[str, Any]]) -> dict[str, Any]:
+    unavailable = load_audio_unavailable()
     verified = [
         item for item in episodes
         if isinstance(item.get("audio_release"), dict)
         and item["audio_release"].get("verification", {}).get("status") == "verified"
     ]
+    known_unavailable = [
+        item for item in episodes if int(item.get("number", 0)) in unavailable
+    ]
     return {
         "episode_count": len(episodes),
         "verified_pairings": len(verified),
+        "known_unavailable": [
+            {"number": item.get("number"), "title": item.get("title"), **unavailable[int(item["number"])]}
+            for item in known_unavailable
+        ],
         "missing_pairings": [
             {"number": item.get("number"), "title": item.get("title")}
-            for item in episodes if item not in verified
+            for item in episodes
+            if item not in verified and int(item.get("number", 0)) not in unavailable
         ],
     }
 
@@ -1666,26 +1676,42 @@ def enrich_catalogue(
 ) -> dict[str, Any]:
     if limit < 1:
         raise ValueError("limit must be at least 1.")
-    targets = [
+    unavailable = load_audio_unavailable()
+    selected_items = [
         item for item in episodes
-        if (selected_numbers is None or item.get("number") in selected_numbers)
-        and (
-            selected_numbers is not None
-            or not (
+        if selected_numbers is None or item.get("number") in selected_numbers
+    ]
+    if selected_numbers is None:
+        selected_items = [
+            item for item in selected_items
+            if int(item.get("number", 0)) not in unavailable
+            and not (
                 isinstance(item.get("audio_release"), dict)
                 and item["audio_release"].get("verification", {}).get("status") == "verified"
             )
-        )
-    ]
+        ]
     if latest_first:
-        targets.sort(key=lambda item: int(item.get("number", 0)), reverse=True)
-    targets = targets[:limit]
+        selected_items.sort(key=lambda item: int(item.get("number", 0)), reverse=True)
+    selected_items = selected_items[:limit]
+    known_unavailable = [
+        {
+            "number": int(item["number"]),
+            "title": item.get("title"),
+            **unavailable[int(item["number"])],
+        }
+        for item in selected_items if int(item.get("number", 0)) in unavailable
+    ]
+    targets = [
+        item for item in selected_items
+        if int(item.get("number", 0)) not in unavailable
+    ]
     run_started = time.perf_counter()
     report: dict[str, Any] = {
         "started_at": datetime.now(timezone.utc).isoformat(),
         "mode": "write" if write else "dry_run",
-        "target_count": len(targets),
-        "selected_numbers": [int(item["number"]) for item in targets],
+        "target_count": len(selected_items),
+        "selected_numbers": [int(item["number"]) for item in selected_items],
+        "known_unavailable": known_unavailable,
         "verified": [],
         "failures": [],
         "coverage_before": audio_release_coverage(episodes),
