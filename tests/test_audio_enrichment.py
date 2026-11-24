@@ -276,6 +276,53 @@ class AudioEnrichmentTests(unittest.TestCase):
         self.assertIn("total_seconds", result["timings"])
         self.assertEqual(ytm.search_calls, [])
 
+    def test_youtube_music_tracklist_keeps_extras_and_variable_story_parts(self):
+        episode = {"number": 218, "title": "Schutzgeld für Dämonen"}
+        titles = [
+            "218 - Schutzgeld für Dämonen (Inhaltsangabe)",
+            "218 - Schutzgeld für Dämonen (Anfangssong)",
+            "218 - Schutzgeld für Dämonen (Teil 01)",
+            "218 - Schutzgeld für Dämonen (Teil 02)",
+            "218 - Schutzgeld für Dämonen (Teil 03)",
+            "218 - Schutzgeld für Dämonen (Schlußsong)",
+            "218 - Schutzgeld für Dämonen (Outro)",
+        ]
+        entries = [
+            {"id": f"videoid{index:04d}", "title": title, "artists": [{"name": "TKKG"}]}
+            for index, title in enumerate(titles, start=1)
+        ]
+        from scraper.audio_enrichment import _youtube_music_track_records
+
+        tracks = _youtube_music_track_records(
+            episode, entries, "218/Schutzgeld für Dämonen", ["TKKG"],
+        )
+        self.assertEqual(len(tracks), 7)
+        self.assertEqual([track["track_number"] for track in tracks], list(range(1, 8)))
+        self.assertEqual(tracks[0]["title"], titles[0])
+        self.assertEqual(tracks[-1]["title"], titles[-1])
+
+    def test_youtube_music_tracklist_rejects_unknown_tracks_and_duplicate_video_ids(self):
+        episode = {"number": 218, "title": "Schutzgeld für Dämonen"}
+        from scraper.audio_enrichment import _youtube_music_track_records
+
+        unknown = [
+            {"id": "videoid0001", "title": "218 - Schutzgeld für Dämonen (Teil 01)", "artists": ["TKKG"]},
+            {"id": "videoid0002", "title": "218 - Schutzgeld für Dämonen (Bonus Track)", "artists": ["TKKG"]},
+        ]
+        with self.assertRaisesRegex(ValueError, "unclassified tracks"):
+            _youtube_music_track_records(
+                episode, unknown, "218/Schutzgeld für Dämonen", ["TKKG"],
+            )
+
+        duplicate = [
+            {"id": "videoid0001", "title": "218 - Schutzgeld für Dämonen (Teil 01)", "artists": ["TKKG"]},
+            {"id": "videoid0001", "title": "218 - Schutzgeld für Dämonen (Teil 02)", "artists": ["TKKG"]},
+        ]
+        with self.assertRaisesRegex(ValueError, "repeats video ID"):
+            _youtube_music_track_records(
+                episode, duplicate, "218/Schutzgeld für Dämonen", ["TKKG"],
+            )
+
     def test_discovery_accepts_different_provider_track_counts(self):
         ytm_tracks = [
             {"track_number": index, "video_id": f"videoid{index:04d}", "url": f"https://music.youtube.com/watch?v=videoid{index:04d}",
