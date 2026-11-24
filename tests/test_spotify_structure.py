@@ -91,6 +91,17 @@ class SpotifyStructureTests(unittest.TestCase):
         )
         self.assertEqual(validate_selected_track_positions(selected), [])
 
+    def test_unknown_track_inside_episode_sequence_is_rejected(self):
+        from scraper.spotify_structure import select_episode_release_tracks
+
+        album = [
+            {"name": "Teil 01", "track_number": 1, "song_id": "part-1"},
+            {"name": "Unrecognised content", "track_number": 2, "song_id": "unknown"},
+            {"name": "Teil 02", "track_number": 3, "song_id": "part-2"},
+        ]
+        with self.assertRaisesRegex(ValueError, "Unclassified track"):
+            select_episode_release_tracks(album, [album[0], album[2]])
+
     def test_selected_parts_with_shared_intro_and_outro_need_not_be_physically_contiguous(self):
         tracks = [
             {"name": "TKKG Titelsong", "track_number": 1},
