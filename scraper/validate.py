@@ -39,45 +39,71 @@ def validate_catalogue(episodes: list[dict], schema_path: Path | None = None) ->
 
         audio_release = episode.get("audio_release")
         if isinstance(audio_release, dict):
-            spotify = audio_release.get("spotify")
-            youtube_music = audio_release.get("youtube_music")
-            verification = audio_release.get("verification")
-            if isinstance(spotify, dict) and isinstance(youtube_music, dict) and isinstance(verification, dict):
-                spotify_id = spotify.get("album_id")
-                spotify_path_id = urlparse(str(spotify.get("url", ""))).path.rstrip("/").split("/")[-1]
-                if spotify_id != spotify_path_id:
-                    errors.append(f"episode {episode.get('number')}: Spotify album ID does not match its URL")
-                playlist = youtube_music.get("playlist")
-                if isinstance(playlist, dict):
-                    ytm_id = playlist.get("playlist_id")
-                    ytm_query_id = parse_qs(urlparse(str(playlist.get("url", ""))).query).get("list", [None])[0]
-                    if ytm_id != ytm_query_id:
-                        errors.append(f"episode {episode.get('number')}: YouTube Music playlist ID does not match its URL")
-                    if playlist.get("track_count") != spotify.get("track_count"):
-                        errors.append(f"episode {episode.get('number')}: YouTube Music playlist and Spotify track counts differ")
-                ytm_tracks = youtube_music.get("tracks", [])
-                ytm_count = youtube_music.get("track_count")
-                counts = (
-                    spotify.get("track_count"),
-                    ytm_count,
-                    verification.get("matched_track_count"),
-                    len(ytm_tracks) if isinstance(ytm_tracks, list) else None,
-                )
-                if any(not isinstance(count, int) for count in counts) or len(set(counts)) != 1:
-                    errors.append(f"episode {episode.get('number')}: verified Spotify, individual YouTube Music, and matched track counts differ")
-                for track_index, track in enumerate(ytm_tracks if isinstance(ytm_tracks, list) else []):
-                    if not isinstance(track, dict):
-                        continue
-                    video_id = track.get("video_id")
-                    query_id = parse_qs(urlparse(str(track.get("url", ""))).query).get("v", [None])[0]
-                    if video_id != query_id:
-                        errors.append(f"episode {episode.get('number')} YouTube Music track {track_index + 1}: video ID does not match its URL")
-                    spotify_track_id = track.get("spotify_track_id")
-                    spotify_track_path_id = urlparse(str(track.get("spotify_track_url", ""))).path.rstrip("/").split("/")[-1]
-                    if spotify_track_id != spotify_track_path_id:
-                        errors.append(f"episode {episode.get('number')} Spotify track {track_index + 1}: track ID does not match its URL")
-                    if track.get("track_number") != track_index + 1:
-                        errors.append(f"episode {episode.get('number')} YouTube Music track order is not contiguous")
+            if audio_release.get("schema_version") != 2:
+                errors.append(f"episode {episode.get('number')}: unsupported audio_release schema version")
+            verification = audio_release.get("verification") or {}
+            for provider_name in ("spotify", "youtube_music"):
+                provider = audio_release.get(provider_name)
+                provider_verification = verification.get(provider_name) or {}
+                if provider is None:
+                    if provider_verification.get("status") == "verified":
+                        errors.append(f"episode {episode.get('number')}: {provider_name} is marked verified but has no release data")
+                    continue
+                if not isinstance(provider, dict):
+                    errors.append(f"episode {episode.get('number')}: {provider_name} release must be an object or null")
+                    continue
+                tracks = provider.get("tracks", [])
+                if not isinstance(tracks, list) or provider.get("track_count") != len(tracks):
+                    errors.append(f"episode {episode.get('number')}: {provider_name} track count does not match its own track list")
+                    continue
+                if provider_verification.get("status") == "verified" and provider_verification.get("verified_track_count") != len(tracks):
+                    errors.append(f"episode {episode.get('number')}: {provider_name} verified track count does not match its own list")
+                if provider_name == "spotify":
+                    album = provider.get("album") or {}
+                    album_id = album.get("album_id")
+                    album_path_id = urlparse(str(album.get("url", ""))).path.rstrip("/").split("/")[-1]
+                    if album_id != album_path_id:
+                        errors.append(f"episode {episode.get('number')}: Spotify album ID does not match its URL")
+                    positions = set()
+                    previous = None
+                    for track_index, track in enumerate(tracks):
+                        if not isinstance(track, dict):
+                            continue
+                        track_id = track.get("track_id")
+                        track_path_id = urlparse(str(track.get("url", ""))).path.rstrip("/").split("/")[-1]
+                        if track_id != track_path_id:
+                            errors.append(f"episode {episode.get('number')} Spotify track {track_index + 1}: track ID does not match its URL")
+                        position = (int(track.get("disc_number") or 1), int(track.get("track_number") or 0))
+                        if position in positions or (previous is not None and position < previous):
+                            errors.append(f"episode {episode.get('number')} Spotify track order contains duplicate or decreasing album positions")
+                        positions.add(position)
+                        previous = position
+                else:
+                    playlist = provider.get("playlist")
+                    if isinstance(playlist, dict):
+                        ytm_id = playlist.get("playlist_id")
+                        ytm_query_id = parse_qs(urlparse(str(playlist.get("url", ""))).query).get("list", [None])[0]
+                        if ytm_id != ytm_query_id:
+                            errors.append(f"episode {episode.get('number')}: YouTube Music playlist ID does not match its URL")
+                    album = provider.get("album")
+                    if isinstance(album, dict):
+                        browse_id = album.get("browse_id")
+                        browse_path_id = urlparse(str(album.get("url", ""))).path.rstrip("/").split("/")[-1]
+                        if browse_id != browse_path_id:
+                            errors.append(f"episode {episode.get('number')}: YouTube Music album browse ID does not match its URL")
+                    for track_index, track in enumerate(tracks):
+                        if not isinstance(track, dict):
+                            continue
+                        video_id = track.get("video_id")
+                        query_id = parse_qs(urlparse(str(track.get("url", ""))).query).get("v", [None])[0]
+                        if video_id != query_id:
+                            errors.append(f"episode {episode.get('number')} YouTube Music track {track_index + 1}: video ID does not match its URL")
+                        if track.get("track_number") != track_index + 1:
+                            errors.append(f"episode {episode.get('number')} YouTube Music track order is not contiguous")
+            if verification.get("status") == "verified":
+                for provider_name in ("spotify", "youtube_music"):
+                    if (verification.get(provider_name) or {}).get("status") != "verified":
+                        errors.append(f"episode {episode.get('number')}: combined audio release is verified but {provider_name} is not")
 
         number = episode.get("number")
         title = episode.get("title")
