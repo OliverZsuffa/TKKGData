@@ -41,6 +41,24 @@ class SpotifyStructureResolverTests(unittest.TestCase):
         self.assertEqual(result["source_query"], "configured_album_override")
 
     @patch("scraper.audio_enrichment._save_spotify_metadata")
+    def test_configured_release_preserves_intro_and_outro_tracks(self, fetch):
+        tracks = (
+            numbered_tracks(40, "x", 1)
+            + [{"name": "Intro", "disc_number": 1, "track_number": 41, "album_name": "Test release"}]
+            + numbered_tracks(40, "x", 2)
+            + [{"name": "Outsong", "disc_number": 2, "track_number": 41, "album_name": "Test release"}]
+        )
+        fetch.return_value = tracks
+        result = resolve_spotify_album({"number": 175, "title": "Test"}, Path("."))
+        self.assertEqual(result["track_count"], 82)
+        self.assertEqual(result["tracks"][40]["name"], "Intro")
+        self.assertEqual(result["tracks"][-1]["name"], "Outsong")
+        self.assertEqual(
+            [track["name"] for track in result["tracks"] if "Teil" in track["name"]][:2],
+            ["Teil 01", "Teil 02"],
+        )
+
+    @patch("scraper.audio_enrichment._save_spotify_metadata")
     def test_expected_count_rejects_incomplete_album(self, fetch):
         fetch.return_value = numbered_tracks(39, "x", 1) + numbered_tracks(40, "x", 2)
         with self.assertRaisesRegex(ValueError, "expected 80"):
