@@ -85,12 +85,16 @@ def validate_catalogue(episodes: list[dict], schema_path: Path | None = None) ->
                         ytm_query_id = parse_qs(urlparse(str(playlist.get("url", ""))).query).get("list", [None])[0]
                         if ytm_id != ytm_query_id:
                             errors.append(f"episode {episode.get('number')}: YouTube Music playlist ID does not match its URL")
+                        if playlist.get("track_count") != len(tracks):
+                            errors.append(f"episode {episode.get('number')}: YouTube Music playlist count does not match its own track list")
                     album = provider.get("album")
                     if isinstance(album, dict):
                         browse_id = album.get("browse_id")
                         browse_path_id = urlparse(str(album.get("url", ""))).path.rstrip("/").split("/")[-1]
                         if browse_id != browse_path_id:
                             errors.append(f"episode {episode.get('number')}: YouTube Music album browse ID does not match its URL")
+                        if album.get("track_count") != len(tracks):
+                            errors.append(f"episode {episode.get('number')}: YouTube Music album count does not match its own track list")
                     for track_index, track in enumerate(tracks):
                         if not isinstance(track, dict):
                             continue
