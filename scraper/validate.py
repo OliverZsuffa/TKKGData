@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def _normalize_title(value: str) -> str:
-    return re.sub(r"[^a-z0-9äöüß]+", "", value.casefold())
+    return value.strip().casefold()
 
 
 def validate_catalogue(episodes: list[dict], schema_path: Path | None = None) -> list[str]:
