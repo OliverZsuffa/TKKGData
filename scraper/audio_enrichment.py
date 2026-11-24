@@ -756,6 +756,7 @@ def _youtube_music_track_records(
     if not number_match:
         number_match = any(
             re.search(rf"(?<!\d){number}(?!\d)", _normalise(track["title"]))
+            and any(alias in _normalise(track["title"]) for alias in title_variants)
             for track in records
         )
     if not number_match:
