@@ -1,5 +1,5 @@
 {
-  "started_at": "2026-11-24T13:42:27.599338+00:00",
+  "started_at": "2026-11-24T13:52:04.758255+00:00",
   "sources": {
     "archive_index_entries": 217,
     "archive_index_max_number": 217,
@@ -165,19 +165,30 @@
   "audio_release_coverage": {
     "episode_count": 243,
     "verified_pairings": 213,
-    "missing_pairings": [
+    "known_unavailable": [
       {
         "number": 19,
-        "title": "Der Schatz in der Drachenhöhle"
+        "title": "Der Schatz in der Drachenhöhle",
+        "status": "unavailable",
+        "reason": "EUROPA did not rerelease this episode after it was flagged by the FSK. No official Spotify or YouTube Music release is expected.",
+        "basis": "User-provided catalogue knowledge"
       },
       {
         "number": 20,
-        "title": "Das Geheimnis der chinesischen Vase"
+        "title": "Das Geheimnis der chinesischen Vase",
+        "status": "unavailable",
+        "reason": "EUROPA did not rerelease this episode after it was flagged by the FSK. No official Spotify or YouTube Music release is expected.",
+        "basis": "User-provided catalogue knowledge"
       },
       {
         "number": 37,
-        "title": "Der letzte Schuss"
-      },
+        "title": "Der letzte Schuss",
+        "status": "unavailable",
+        "reason": "EUROPA did not rerelease this episode after it was flagged by the FSK. No official Spotify or YouTube Music release is expected.",
+        "basis": "User-provided catalogue knowledge"
+      }
+    ],
+    "missing_pairings": [
       {
         "number": 128,
         "title": "Die Gehilfen des Terrors"
@@ -1140,5 +1151,5 @@
     "hub_or_fallback_link_count": 34,
     "invalid_links": []
   },
-  "finished_at": "2026-11-24T13:44:41.243331+00:00"
+  "finished_at": "2026-11-24T13:54:10.341738+00:00"
 }
