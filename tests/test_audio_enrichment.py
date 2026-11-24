@@ -208,7 +208,7 @@ class AudioEnrichmentTests(unittest.TestCase):
         self.assertEqual(len(result["links"]["youtube_music_tracks"]), 2)
         self.assertEqual(
             result["audio_release"]["verification"]["method"],
-            "exact_ordered_album_track_titles_and_duration",
+            "independent_provider_tracklist_validation",
         )
 
 
@@ -256,8 +256,8 @@ class AudioEnrichmentTests(unittest.TestCase):
             "title": "Album - 150/Heiße Nächte im Dezember",
             "playlist_count": 2,
             "entries": [
-                {"id": "videoid0001", "title": "150 - Heiße Nächte im Dezember (Teil 01)", "duration": 128},
-                {"id": "videoid0002", "title": "150 - Heiße Nächte im Dezember (Teil 02)", "duration": 127},
+                {"id": "videoid0001", "title": "150 - Heiße Nächte im Dezember (Teil 01)", "duration": 128, "artists": [{"name": "TKKG"}]},
+                {"id": "videoid0002", "title": "150 - Heiße Nächte im Dezember (Teil 02)", "duration": 127, "artists": [{"name": "TKKG"}]},
             ],
         }
         ytm = FakeYTMusic()
@@ -265,15 +265,42 @@ class AudioEnrichmentTests(unittest.TestCase):
              patch("scraper.audio_enrichment._extract_ytdlp_playlist", return_value=info):
             result = discover_episode_audio(EPISODE, ytm, playlist_id)
         self.assertEqual(len(result["audio_release"]["youtube_music"]["tracks"]), 2)
-        self.assertEqual(result["audio_release"]["verification"]["method"], "exact_ordered_playlist_track_titles_and_duration")
+        self.assertEqual(result["audio_release"]["verification"]["method"], "independent_provider_tracklist_validation")
         self.assertEqual(result["links"]["spotify_album"], SPOTIFY["url"])
         self.assertEqual(len(result["links"]["spotify_tracks"]), 2)
         self.assertEqual(result["links"]["youtube_music_playlist"], f"https://music.youtube.com/playlist?list={playlist_id}")
         self.assertEqual(len(result["links"]["youtube_music_tracks"]), 2)
+        self.assertNotIn("spotify_url", result["links"]["youtube_music_tracks"][0])
         self.assertIn("spotify_seconds", result["timings"])
         self.assertIn("playlist_seconds", result["timings"])
         self.assertIn("total_seconds", result["timings"])
         self.assertEqual(ytm.search_calls, [])
+
+    def test_discovery_accepts_different_provider_track_counts(self):
+        ytm_tracks = [
+            {"track_number": index, "video_id": f"videoid{index:04d}", "url": f"https://music.youtube.com/watch?v=videoid{index:04d}",
+             "title": f"150 - Heiße Nächte im Dezember (Teil {index:02d})", "artists": ["TKKG"],
+             "album": "150/Heiße Nächte im Dezember"}
+            for index in range(1, 4)
+        ]
+        ytm_release = {
+            "album": None,
+            "playlist": None,
+            "tracks": ytm_tracks,
+            "track_count": 3,
+        }
+        with patch("scraper.audio_enrichment.resolve_spotify_album", return_value=SPOTIFY), \
+             patch("scraper.audio_enrichment.find_verified_youtube_music_release", return_value=ytm_release):
+            result = discover_episode_audio(EPISODE, FakeYTMusic())
+
+        release = result["audio_release"]
+        self.assertEqual(release["spotify"]["track_count"], 2)
+        self.assertEqual(release["youtube_music"]["track_count"], 3)
+        self.assertEqual(len(release["spotify"]["tracks"]), 2)
+        self.assertEqual(len(release["youtube_music"]["tracks"]), 3)
+        self.assertEqual(result["matched_tracks"], [])
+        self.assertEqual(release["verification"]["spotify"]["verified_track_count"], 2)
+        self.assertEqual(release["verification"]["youtube_music"]["verified_track_count"], 3)
 
     def test_explicit_playlist_id_can_be_verified_without_search(self):
         ytm = FakeYTMusic(["OLAK5uy_mQRbJNANh1H4CKbmM5ez5LSW1HJFvE3QI"])
