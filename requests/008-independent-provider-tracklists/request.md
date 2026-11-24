@@ -31,21 +31,23 @@ This request is limited to TKKGData.
 
 - No changes to TKKGDownloader or TKKGTracker in this request.
 - No downloader compatibility implementation or changes to download execution.
-- No automatic migration or rewriting of existing legacy `audio_release` objects.
-- No deletion, renumbering, replacement, or re-pairing of existing Spotify or YouTube Music tracks.
+- No deletion or unnecessary re-scraping of existing Spotify or YouTube Music data.
+- No loss of existing track IDs, URLs, titles, durations, album metadata, ordering, or provenance during migration.
 - No fuzzy matching that silently accepts an uncertain album or track list.
-- No publication of partially verified provider lists as a verified episode release.
+- No publication of partially verified provider lists as a newly verified episode release.
 
 ## Data preservation requirements
 
-1. Existing `audio_release` values must remain byte-for-byte unchanged for episodes not explicitly changed by a separate approved operation.
-2. The new representation must live in a separate optional field, provisionally `audio_release_v2`, rather than changing the meaning of the existing field.
-3. Existing consumers and validators must continue to accept the legacy structure.
-4. Discovery must never replace a verified legacy mapping merely because a new discovery run found a different candidate.
-5. A new v2 mapping is written only after both provider lists independently pass their verification requirements.
-6. A failed, ambiguous, incomplete, or interrupted discovery must leave both the old data and any previously verified v2 data untouched.
-7. Catalogue writes must be atomic at the dataset level: validation happens before publication, and a failed run must not leave a partially updated catalogue.
-8. The migration is additive. No bulk conversion of historical records is included.
+1. The current catalogue must be snapshotted before migration so it can be restored exactly.
+2. The `audio_release` schema may change to independent provider lists. The old paired structure does not need to remain the canonical format.
+3. Every already scraped Spotify and YouTube Music track must be carried into the new provider-specific list. Existing YouTube Music data must not be discarded or re-scraped just because the old structure paired it with Spotify tracks.
+4. Preserve original track titles, IDs, URLs, durations, album metadata, ordering, provenance, and verification status wherever those values exist.
+5. Each source track must be accounted for exactly once after migration, or explicitly listed in a migration report if its fields cannot be mapped safely.
+6. Do not infer missing order, metadata, or verification. Flag uncertainty for review.
+7. A failed, ambiguous, incomplete, or interrupted migration or discovery must leave the original catalogue recoverable and must not partially replace the published dataset.
+8. Discovery should fill genuine gaps after migration, not repeat successful scraping solely to populate the new structure.
+9. New candidates must not silently overwrite existing verified provider data.
+10. The complete migrated catalogue must pass schema and dataset validation before publication.
 
 ## Acceptance criteria
 
@@ -53,9 +55,9 @@ This request is limited to TKKGData.
 - Provider-specific ordering and original track titles are preserved exactly as observed.
 - YouTube Music story part numbering is checked independently, including the recognised intro, Inhaltsangabe, closing song, and outro entries where present.
 - The validator no longer requires cross-provider track count equality for v2 records.
-- The validator still enforces the complete existing legacy contract for `audio_release`.
+- The migration preserves all existing provider track data, and the new validator enforces independent provider lists.
 - Existing legacy records remain unchanged and continue to pass validation.
-- A failed v2 discovery cannot erase or modify existing verified data.
+- A failed migration or discovery cannot erase or modify existing verified data.
 - Offline tests cover legacy compatibility, unequal counts, incomplete album extraction, duplicate IDs, malformed ordering, ambiguous releases, and safe preservation.
 - A dry-run discovery report exposes both provider lists and all verification evidence before any write.
 - The full existing test suite and published catalogue validation pass before a v2 result can be published.
