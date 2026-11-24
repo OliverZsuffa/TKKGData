@@ -50,6 +50,55 @@ class SpotifyStructureTests(unittest.TestCase):
         ]
         self.assertIn("duplicate positions", validate_selected_track_positions(tracks)[0])
 
+    def test_full_release_keeps_summary_intro_parts_outro_and_outsong_in_album_order(self):
+        tracks = [
+            {"name": "Inhaltsangabe", "disc_number": 1, "track_number": 1},
+            {"name": "Intro", "disc_number": 1, "track_number": 2},
+            {"name": "Teil 01", "disc_number": 1, "track_number": 3},
+            {"name": "Teil 02", "disc_number": 1, "track_number": 4},
+            {"name": "Outro", "disc_number": 1, "track_number": 5},
+            {"name": "Outsong", "disc_number": 1, "track_number": 6},
+        ]
+        result = validate_episode_parts(tracks)
+        self.assertTrue(result["valid"])
+        self.assertEqual(
+            [track["name"] for track in result["tracks"]],
+            [track["name"] for track in tracks],
+        )
+        self.assertEqual(len(result["parts"]), 2)
+        self.assertEqual(
+            [track["classification"] for track in result["tracks"]],
+            ["summary", "intro", "episode_part", "episode_part", "outro", "closing_song"],
+        )
+
+    def test_shared_title_song_and_episode_extras_are_preserved_without_other_episode_parts(self):
+        from scraper.spotify_structure import select_episode_release_tracks
+
+        album = [
+            {"name": "TKKG Titelsong", "disc_number": 1, "track_number": 1, "song_id": "song-opening"},
+            {"name": "Inhaltsangabe", "disc_number": 1, "track_number": 2, "song_id": "song-summary"},
+            {"name": "Teil 01", "disc_number": 1, "track_number": 3, "song_id": "part-1"},
+            {"name": "Teil 02", "disc_number": 1, "track_number": 4, "song_id": "part-2"},
+            {"name": "Outro", "disc_number": 1, "track_number": 5, "song_id": "song-outro"},
+            {"name": "Outsong", "disc_number": 1, "track_number": 6, "song_id": "song-closing"},
+            {"name": "225 - Andere Folge Teil 01", "disc_number": 1, "track_number": 7, "song_id": "other-part"},
+        ]
+        selected_parts = [album[2], album[3]]
+        selected = select_episode_release_tracks(album, selected_parts, "shared_title_song")
+        self.assertEqual(
+            [track["song_id"] for track in selected],
+            ["song-opening", "song-summary", "part-1", "part-2", "song-outro", "song-closing"],
+        )
+        self.assertEqual(validate_selected_track_positions(selected), [])
+
+    def test_selected_parts_with_shared_intro_and_outro_need_not_be_physically_contiguous(self):
+        tracks = [
+            {"name": "TKKG Titelsong", "track_number": 1},
+            {"name": "Teil 01", "track_number": 4},
+            {"name": "Outro", "track_number": 5},
+        ]
+        self.assertEqual(validate_selected_track_positions(tracks), [])
+
     def test_two_disc_repeated_numbers(self):
         tracks = [{"name":f"Teil {i:02}","disc_number":d,"track_number":i} for d in (1,2) for i in range(1,3)]
         result = validate_episode_parts(tracks, "two_disc_duplicated_numbering")
