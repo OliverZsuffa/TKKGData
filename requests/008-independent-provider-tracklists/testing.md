@@ -1,13 +1,16 @@
 # Testing plan
 
-## Legacy compatibility and preservation
+## Migration and preservation
 
-- Load representative existing `audio_release` fixtures and validate them with the unchanged v1 rules.
-- Assert the exact legacy JSON values and serialization remain unchanged after loading and saving a catalogue containing v2 data.
-- Assert a v2 discovery failure leaves any existing v1 object untouched.
-- Assert a new v2 result can coexist with a legacy v1 object without modifying it.
-- Assert a conflicting new result cannot silently replace an existing verified v2 object.
-- Assert an interrupted or invalid write does not replace the canonical catalogue file.
+- Snapshot the current catalogue and verify that the snapshot can restore it exactly.
+- Run migration against the real current catalogue and representative fixtures.
+- Assert every existing YouTube Music track is carried over exactly once, including title, video ID, URL, duration, album association, order, and available provenance.
+- Assert every existing Spotify track is carried over exactly once with its available metadata.
+- Cover records with both providers, only one provider, incomplete metadata, and legacy paired entries.
+- Assert no provider data is re-scraped merely to migrate the structure.
+- Assert fields whose mapping is ambiguous are reported, not guessed or silently dropped.
+- Assert a failed or interrupted migration leaves the canonical catalogue unchanged.
+- Assert a failed discovery cannot erase migrated data and a new candidate cannot silently replace existing verified provider data.
 
 ## Independent provider validation
 
@@ -34,6 +37,6 @@
 - Dry-run report presents separate provider lists and their independent verification outcomes.
 - Different provider counts are shown clearly and are not reported as a validation error by themselves.
 - Failed or ambiguous discovery preserves the current canonical dataset.
-- Write mode updates only the new v2 field for the selected episode after complete verification.
+- Migration writes the new `audio_release` structure only after the complete catalogue passes validation and every source track is accounted for.
 - Full offline tests, schema checks, catalogue validation, compilation, and workflow syntax checks pass.
 - Live dry-run results are inspected before enabling any writes.
