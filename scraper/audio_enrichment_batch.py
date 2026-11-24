@@ -10,6 +10,7 @@ from pathlib import Path
 from typing import Any
 
 from scraper.audio_enrichment import audio_release_coverage
+from scraper.audio_availability import load_audio_unavailable
 from scraper.export import write_catalogue
 from scraper.validate import validate_catalogue
 
@@ -24,6 +25,7 @@ def select_episodes(
     start_episode: int | None = None, end_episode: int | None = None,
     episodes_list: str | None = None, limit: int = 5,
 ) -> list[int]:
+    unavailable = load_audio_unavailable()
     available = sorted(
         int(item["number"]) for item in episodes
         if isinstance(item, dict) and isinstance(item.get("number"), int)
@@ -51,7 +53,8 @@ def select_episodes(
     else:
         missing = {
             int(item["number"]) for item in episodes
-            if not (
+            if int(item["number"]) not in unavailable
+            and not (
                 isinstance(item.get("audio_release"), dict)
                 and item["audio_release"].get("verification", {}).get("status") == "verified"
             )
@@ -190,6 +193,7 @@ def aggregate(
         "batches": [],
         "verified": [],
         "failures": [],
+        "known_unavailable": [],
         "preserved_existing": [],
         "missing_reports": [],
         "catalogue_updated": False,
@@ -213,6 +217,7 @@ def aggregate(
         processed = sorted(
             [int(item["number"]) for item in report.get("verified", [])]
             + [int(item["number"]) for item in report.get("failures", [])]
+            + [int(item["number"]) for item in report.get("known_unavailable", [])]
         )
         if processed != expected_numbers:
             raise RuntimeError(f"Batch {index} report has missing or duplicate episode outcomes.")
@@ -222,9 +227,11 @@ def aggregate(
             "episodes": expected_numbers,
             "verified_count": len(report.get("verified", [])),
             "unresolved_count": len(report.get("failures", [])),
+            "known_unavailable_count": len(report.get("known_unavailable", [])),
         })
         combined["verified"].extend(report.get("verified", []))
         combined["failures"].extend(report.get("failures", []))
+        combined["known_unavailable"].extend(report.get("known_unavailable", []))
 
     combined["failed_batches"] = list(combined["missing_reports"])
     if discovery_result != "success" and not combined["failed_batches"]:
