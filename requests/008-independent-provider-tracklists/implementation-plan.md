@@ -17,6 +17,14 @@
 
 ```json
 {
+  "alternate_titles": ["Known spelling or source-title variant"],
+  "audio_discovery": {
+    "spotify": {
+      "preferred_album_id": "...",
+      "release_profile": "standard",
+      "expected_story_parts": 21
+    }
+  },
   "audio_release": {
     "schema_version": 2,
     "spotify": {
@@ -79,7 +87,18 @@ This is a design proposal, not a final frozen schema. Confirm actual provider me
 - If Spotify track-level IDs or URLs cannot be retrieved reliably, do not invent them. Record only fields supported by the actual source and define the verification threshold accordingly.
 - Avoid duplicating fields that can be derived safely, but retain explicit track counts if they make validation and consumer access clearer.
 
-## 3. Implement provider-specific discovery
+## 3. Store discovery knowledge in the episode dataset
+
+- Add optional `alternate_titles` to the episode schema. It is an array of unique strings. Keep `title` as the canonical official title. Do not replace it with an alias.
+- Add optional `audio_discovery.spotify` with `preferred_album_id`, `release_profile`, and `expected_story_parts` fields. Omit fields that are not known for an episode.
+- Migrate every entry in `data/spotify_structure_overrides.json` into the corresponding episode record. Preserve album IDs, profile names, expected part counts, and alternate title values exactly.
+- For episodes 48, 94, 110, 175, and 200, cross-check migrated hints against existing verified Spotify album records. A mismatch must be reported and must not overwrite either value automatically.
+- For episodes 218 and 219, retain the reviewed album IDs and structure profiles even though audio discovery has not yet succeeded.
+- For episodes 220 through 226, retain the `shared_title_song` profile.
+- Update discovery to read only the episode's `audio_discovery` and `alternate_titles` fields. Remove all runtime reads of `spotify_structure_overrides.json`.
+- Delete the override file only after migration tests prove every entry has been transferred.
+
+## 4. Implement provider-specific discovery
 
 ### Spotify
 
@@ -101,7 +120,7 @@ This is a design proposal, not a final frozen schema. Confirm actual provider me
 - Do not assume a fixed number of story parts or extras.
 - Do not reject a complete YouTube Music album solely because its count differs from Spotify.
 
-## 4. Define independent verification rules
+## 5. Define independent verification rules
 
 ### Spotify verification
 
@@ -130,7 +149,7 @@ This is a design proposal, not a final frozen schema. Confirm actual provider me
 - Never require equal track counts, equal track titles, equal track numbering, or one-to-one track correspondence.
 - Keep uncertainty explicit. If the identity of either provider release is ambiguous, do not mark the combined v2 object verified.
 
-## 5. Add a dry-run report before writing
+## 6. Add a dry-run report before writing
 
 - Extend the episode discovery report to show Spotify and YouTube Music album metadata and track lists separately.
 - Show provider-specific track counts, total duration where available, original order, part classification, IDs, URLs, and verification evidence.
@@ -139,13 +158,15 @@ This is a design proposal, not a final frozen schema. Confirm actual provider me
 - Keep dry-run as the default.
 - Do not update the canonical dataset unless the user explicitly enables write mode.
 
-## 6. Migrate existing scraped data without losing it
+## 7. Migrate existing scraped data without losing it
 
 - Build a deterministic migration that reads every existing `audio_release` record and maps its Spotify and YouTube Music fields into the corresponding independent provider lists.
 - Carry over every already scraped YouTube Music track, including its original title, video ID, URL, duration, artist metadata, album association, track order, and any other available source fields. Do not discard a track merely because its former Spotify pair is no longer meaningful.
 - Carry over all existing Spotify tracks in the same way. Do not re-scrape either provider just to perform the structural migration.
 - Preserve provider order exactly as represented by the existing data. Where the old pairing obscures original album order or numbering, retain the available sequence and flag uncertainty for review rather than guessing.
 - Preserve existing album IDs, URLs, playlist IDs, source metadata, verification timestamps, and provenance wherever present.
+- Migrate the Spotify override file into `audio_discovery.spotify` and `alternate_titles` on each matching episode before deleting the file.
+- Validate that every override entry maps to exactly one existing episode and that no existing verified Spotify album ID conflicts with the migrated preferred album ID.
 - Do not claim that migrated data has been freshly verified. Retain its existing verification status and record that it was structurally migrated from the previous schema.
 - If existing records contain only one provider, migrate that provider independently. Missing provider data stays missing and can be discovered later.
 - Generate a migration report listing migrated episodes, track counts before and after for each provider, fields that could not be mapped, and any records requiring manual review.
@@ -155,7 +176,7 @@ This is a design proposal, not a final frozen schema. Confirm actual provider me
 - New discovery results may enrich missing metadata, but must not overwrite existing verified provider data without an explicit conflict resolution.
 - Preserve the existing issue-ledger behaviour and do not let a successful Spotify-only lookup clear an issue when the YouTube Music side remains unresolved.
 
-## 7. Update validation and documentation
+## 8. Update validation and documentation
 
 - Add strict JSON Schema definitions for independent provider album metadata, provider track records, and verification counts.
 - Update `scraper/validate.py` to validate the migrated `audio_release` structure.
@@ -165,7 +186,7 @@ This is a design proposal, not a final frozen schema. Confirm actual provider me
 - Update the README's published coverage statement only after actual data publication changes the coverage.
 - Document the completed migration and rollback procedure.
 
-## 8. Regression fixtures and rollout matrix
+## 9. Regression fixtures and rollout matrix
 
 Use observed source records, not invented IDs or guessed album metadata.
 
@@ -179,10 +200,11 @@ Use observed source records, not invented IDs or guessed album metadata.
 
 The fixtures should include complete real provider metadata and source provenance captured from discovery. In addition, use the actual current catalogue as a migration fixture. Include records with both providers, only one provider, legacy track pairs, extras, and incomplete metadata. If a full observed list is unavailable, keep that episode as a live dry-run case rather than inventing fixture entries.
 
-## 9. Tests and release gates
+## 10. Tests and release gates
 
-- Schema tests for the new independent provider structure and for legacy records accepted by the migration reader.
+- Schema tests for the new independent provider structure, `alternate_titles`, and `audio_discovery.spotify`.
 - Migration tests proving every existing Spotify and YouTube Music track is carried over exactly once with its original metadata and order wherever known.
+- Override migration tests proving every album ID, profile, expected story-part count, and alternate title is transferred to the correct episode before the override file is removed.
 - Regression tests proving the pre-migration catalogue snapshot can be restored exactly.
 - Unequal provider track count tests.
 - Provider-specific track ordering and numbering tests.
@@ -197,6 +219,6 @@ The fixtures should include complete real provider metadata and source provenanc
 - Run dry-run discovery for the representative episodes. Inspect the complete provider lists before any write.
 - Only after the migration report and provider dry-run results are reviewed should the migrated catalogue be published. New discovery should only fill genuine gaps or resolve flagged uncertainty.
 
-## 10. Out of scope follow-up
+## 11. Out of scope follow-up
 
 TKKGDownloader must later be updated to read the independent provider lists and download the YouTube Music list in its own order. That work belongs in a separate approved request in the TKKGDownloader repository. Until then, downloader compatibility must be handled deliberately so the data migration does not silently break existing downloads.
