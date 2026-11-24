@@ -455,7 +455,11 @@ def resolve_spotify_album(episode: dict[str, Any], work_dir: Path) -> dict[str, 
 
     # Reviewed album IDs and release layouts bypass fuzzy track discovery.
     try:
-        from scraper.spotify_structure import validate_episode_parts, validate_selected_track_positions
+        from scraper.spotify_structure import (
+            select_episode_release_tracks,
+            validate_episode_parts,
+            validate_selected_track_positions,
+        )
         overrides = json.loads((ROOT / "data" / "spotify_structure_overrides.json").read_text(encoding="utf-8"))
         override = overrides.get(str(number), {})
         if override.get("alternate_titles"):
@@ -474,9 +478,26 @@ def resolve_spotify_album(episode: dict[str, Any], work_dir: Path) -> dict[str, 
             raise ValueError(f"Configured Spotify album {album_id_override} has {len(validation['parts'])} parts, expected {expected}.")
         if validation["unknown"]:
             raise ValueError(f"Configured Spotify album {album_id_override} has unclassified tracks: {[t.get('name') for t in validation['unknown']]}")
-        selected_records = validation["parts"]
-        selected_records.sort(key=lambda t: (int(t.get("disc_number") or 1), int(t.get("track_number") or 0)))
-        return {"album_id": album_id_override, "url": f"{SPOTIFY_ALBUM_BASE}{album_id_override}", "title": str(selected_records[0].get("album_name") or episode.get("title")), "track_count": len(selected_records), "tracks": selected_records, "source_query": "configured_album_override", "release_type": "episode_release", "selected_track_id": selected_records[0].get("song_id")}
+        selected_records = validation["tracks"]
+        position_errors = validate_selected_track_positions(selected_records)
+        if position_errors:
+            raise ValueError(
+                f"Configured Spotify album {album_id_override} failed selected-track validation: {position_errors}"
+            )
+        return {
+            "album_id": album_id_override,
+            "url": f"{SPOTIFY_ALBUM_BASE}{album_id_override}",
+            "title": str(selected_records[0].get("album_name") or episode.get("title")),
+            "track_count": len(selected_records),
+            "tracks": selected_records,
+            "source_query": "configured_album_override",
+            "release_type": "episode_release",
+            "selected_track_id": next(
+                (track.get("song_id") for track in selected_records
+                 if track.get("classification") == "episode_part"),
+                selected_records[0].get("song_id"),
+            ),
+        }
     queries = [
         f'track:"{title}" artist:TKKG',
         f'artist:TKKG track:"{title}"',
@@ -615,11 +636,12 @@ def resolve_spotify_album(episode: dict[str, Any], work_dir: Path) -> dict[str, 
             if not selected or not _episode_title_matches_track(episode, selected[0], track_id):
                 rejected.append(f"{album_id}: requested episode could not be isolated from album")
                 continue
+        profile = override.get("profile", "standard")
+        selected = select_episode_release_tracks(album_tracks, selected, profile)
         selected.sort(key=lambda item: (
             int(item.get("disc_number") or 1),
             int(item.get("track_number") or 0),
         ))
-        from scraper.spotify_structure import validate_selected_track_positions
         position_errors = validate_selected_track_positions(selected)
         if position_errors:
             rejected.append(f"{album_id}: {position_errors[0]}")
