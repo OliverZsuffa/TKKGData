@@ -720,7 +720,7 @@ def _youtube_music_track_records(
     normalized_release_title = _normalise(release_title)
     if not any(value in normalized_release_title for value in title_variants):
         raise ValueError(f"YouTube Music release title {release_title!r} does not identify the episode.")
-    number_match = bool(re.search(rf"(?<!\d){number}(?!\d)", normalized_release_title))
+    number_match = bool(re.search(rf"(?<!\d)0*{number}(?!\d)", normalized_release_title))
     records: list[dict[str, Any]] = []
     ids: set[str] = set()
     track_artists: list[str] = list(artist_evidence)
@@ -755,7 +755,7 @@ def _youtube_music_track_records(
 
     if not number_match:
         number_match = any(
-            re.search(rf"(?<!\d){number}(?!\d)", _normalise(track["title"]))
+            re.search(rf"(?<!\d)0*{number}(?!\d)", _normalise(track["title"]))
             and any(alias in _normalise(track["title"]) for alias in title_variants)
             for track in records
         )
