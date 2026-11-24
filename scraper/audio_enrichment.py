@@ -1483,58 +1483,36 @@ def discover_episode_audio(
             "total_seconds": round(time.perf_counter() - total_started, 2),
         }
         raise AudioDiscoveryError(
-            f"Spotify metadata resolution failed: {exc}", stage="spotify",
+            f"Spotify metadata resolution failed: {exc}",
+            stage="spotify",
             timings=timings,
         ) from exc
     spotify_seconds = round(time.perf_counter() - spotify_started, 2)
 
-    # Resolve YouTube Music as its own release. Its track count and segmentation
-    # are intentionally independent of the Spotify album.
-    playlist_started = time.perf_counter()
+    youtube_started = time.perf_counter()
     try:
         youtube_release = find_verified_youtube_music_release(
             episode, ytm, playlist_id_override,
         )
     except Exception as exc:
-        playlist_seconds = round(time.perf_counter() - playlist_started, 2)
         timings = {
             "spotify_seconds": spotify_seconds,
-            "playlist_seconds": playlist_seconds,
+            "playlist_seconds": round(time.perf_counter() - youtube_started, 2),
             "individual_song_search_seconds": 0.0,
             "total_seconds": round(time.perf_counter() - total_started, 2),
         }
         raise AudioDiscoveryError(
             f"Independent YouTube Music release resolution failed: {exc}",
-            stage="youtube_music", spotify=spotify, playlist_error=str(exc),
+            stage="youtube_music",
+            spotify=spotify,
+            playlist_error=str(exc),
             timings=timings,
         ) from exc
-    playlist_seconds = round(time.perf_counter() - playlist_started, 2)
+    youtube_seconds = round(time.perf_counter() - youtube_started, 2)
     youtube_music_tracks = youtube_release["tracks"]
-    youtube_music_playlist = youtube_release.get("playlist")
     youtube_music_album = youtube_release.get("album")
-    playlist_failure = None
+    youtube_music_playlist = youtube_release.get("playlist")
 
-    timings = {
-                "spotify_seconds": spotify_seconds,
-                "playlist_seconds": playlist_seconds,
-                "individual_song_search_seconds": 0.0,
-                "total_seconds": round(time.perf_counter() - total_started, 2),
-            }
-            raise AudioDiscoveryError(
-                f"YouTube Music track resolution failed: {exc}. "
-                f"Complete playlist discovery also failed: {playlist_failure}",
-                stage="youtube_music", spotify=spotify, playlist_error=playlist_failure,
-                timings=timings,
-            ) from exc
-        song_search_seconds = round(time.perf_counter() - song_started, 2)
-
-    timings = {
-        "spotify_seconds": spotify_seconds,
-        "playlist_seconds": playlist_seconds,
-        "individual_song_search_seconds": song_search_seconds,
-        "total_seconds": round(time.perf_counter() - total_started, 2),
-    }
-    verified_at = datetime.now(timezone.utc).isoformat()
     spotify_track_records = []
     for index, track in enumerate(spotify["tracks"], start=1):
         track_id, track_url = _spotify_track_identity(track, index)
@@ -1548,8 +1526,10 @@ def discover_episode_audio(
             **({"duration_seconds": round(duration, 2)} if duration is not None else {}),
             "artist_names": _artist_names(track),
         })
-    youtube_track_records = [
-        {
+
+    youtube_track_records = []
+    for track in youtube_music_tracks:
+        youtube_track_records.append({
             "track_number": int(track["track_number"]),
             "video_id": track["video_id"],
             "url": track["url"],
@@ -1557,36 +1537,58 @@ def discover_episode_audio(
             "artists": track.get("artists") or [],
             "album": track.get("album"),
             **({"duration_seconds": track["duration_seconds"]} if track.get("duration_seconds") is not None else {}),
-        }
-        for track in youtube_music_tracks
-    ]
-    ytm_album_record = youtube_music_album
+        })
+
+    verified_at = datetime.now(timezone.utc).isoformat()
     audio_release = {
         "schema_version": 2,
-        "spotify": {"album": {"album_id": spotify["album_id"], "url": spotify["url"], "title": spotify["title"],
-                              "track_count": len(spotify_track_records), "source_query": spotify["source_query"]},
-                    "tracks": spotify_track_records, "track_count": len(spotify_track_records)},
-        "youtube_music": {"album": ytm_album_record, "playlist": youtube_music_playlist,
-                          "tracks": youtube_track_records, "track_count": len(youtube_track_records)},
+        "spotify": {
+            "album": {
+                "album_id": spotify["album_id"],
+                "url": spotify["url"],
+                "title": spotify["title"],
+                "track_count": len(spotify_track_records),
+                "source_query": spotify["source_query"],
+            },
+            "tracks": spotify_track_records,
+            "track_count": len(spotify_track_records),
+        },
+        "youtube_music": {
+            "album": youtube_music_album,
+            "playlist": youtube_music_playlist,
+            "tracks": youtube_track_records,
+            "track_count": len(youtube_track_records),
+        },
         "verification": {
-            "status": "verified", "verified_at": verified_at,
+            "status": "verified",
+            "verified_at": verified_at,
             "method": "independent_provider_tracklist_validation",
-            "spotify": {"status": "verified", "verified_track_count": len(spotify_track_records)},
-            "youtube_music": {"status": "verified", "verified_track_count": len(youtube_track_records),
-                              "playlist_status": "verified" if youtube_music_playlist else "unavailable",
-                              "playlist_error": playlist_failure},
+            "spotify": {
+                "status": "verified",
+                "verified_track_count": len(spotify_track_records),
+            },
+            "youtube_music": {
+                "status": "verified",
+                "verified_track_count": len(youtube_track_records),
+                "playlist_status": "verified" if youtube_music_playlist else "unavailable",
+                "playlist_error": None,
+            },
         },
     }
-    matched_tracks = []
+    timings = {
+        "spotify_seconds": spotify_seconds,
+        "playlist_seconds": youtube_seconds,
+        "individual_song_search_seconds": 0.0,
+        "total_seconds": round(time.perf_counter() - total_started, 2),
+    }
     return {
         "audio_release": audio_release,
-        "matched_tracks": matched_tracks,
+        "matched_tracks": [],
         "links": _release_links(
             spotify, youtube_music_playlist, youtube_music_tracks, youtube_music_album,
         ),
         "timings": timings,
     }
-
 
 
 def audio_release_coverage(episodes: list[dict[str, Any]]) -> dict[str, Any]:
