@@ -638,6 +638,14 @@ class AudioEnrichmentTests(unittest.TestCase):
             report = enrich_catalogue(episodes, limit=2, latest_first=True, ytm=object())
         self.assertEqual([item["number"] for item in report["verified"]], [3, 2])
 
+    def test_known_unavailable_episodes_are_skipped_without_discovery_errors(self):
+        episodes = [{"number": number, "title": f"Episode {number}"} for number in (19, 20, 37)]
+        report = enrich_catalogue(episodes, selected_numbers={19, 20, 37}, ytm=None)
+        self.assertEqual(report["selected_numbers"], [19, 20, 37])
+        self.assertEqual([item["number"] for item in report["known_unavailable"]], [19, 20, 37])
+        self.assertEqual(report["failures"], [])
+        self.assertEqual(report["verified"], [])
+
     def test_coverage_counts_verified_and_missing_records(self):
         episodes = [
             {"number": 1, "title": "A", "audio_release": {"verification": {"status": "verified"}}},
