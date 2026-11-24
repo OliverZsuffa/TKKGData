@@ -1,5 +1,5 @@
 {
-  "started_at": "2026-11-24T11:36:27.916457+00:00",
+  "started_at": "2026-11-24T13:42:27.599338+00:00",
   "sources": {
     "archive_index_entries": 217,
     "archive_index_max_number": 217,
@@ -1140,11 +1140,5 @@
     "hub_or_fallback_link_count": 34,
     "invalid_links": []
   },
-  "finished_at": "2026-11-24T11:38:42.721971+00:00",
-  "audio_enrichment": {
-    "updated_at": "2026-11-24T11:47:41.694547+00:00",
-    "verified_count": 3,
-    "failure_count": 26,
-    "batch_count": 6
-  }
+  "finished_at": "2026-11-24T13:44:41.243331+00:00"
 }
