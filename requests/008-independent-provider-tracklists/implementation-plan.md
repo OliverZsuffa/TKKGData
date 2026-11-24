@@ -20,7 +20,7 @@
   "alternate_titles": ["Known spelling or source-title variant"],
   "audio_discovery": {
     "spotify": {
-      "preferred_album_id": "...",
+      "preferred_album_id": "preferred_album_id",
       "release_profile": "standard",
       "expected_story_parts": 21
     }
@@ -29,59 +29,62 @@
     "schema_version": 2,
     "spotify": {
       "album": {
-        "album_id": "...",
-        "url": "https://open.spotify.com/album/...",
-        "title": "...",
-        "artist_names": ["TKKG"],
+        "album_id": "spotify_album_id",
+        "url": "https://open.spotify.com/album/spotify_album_id",
+        "title": "Spotify album title",
         "track_count": 25,
-        "source_query": "..."
+        "source_query": "reviewed episode album"
       },
       "tracks": [
         {
           "track_number": 1,
-          "track_id": "...",
-          "url": "https://open.spotify.com/track/...",
-          "title": "...",
-          "duration_seconds": 180.0,
-          "artist_names": ["TKKG"]
+          "track_id": "spotify_track_id",
+          "url": "https://open.spotify.com/track/spotify_track_id",
+          "title": "Original Spotify track title"
         }
       ],
       "track_count": 25
     },
     "youtube_music": {
       "album": {
-        "browse_id": "...",
-        "url": "https://music.youtube.com/browse/...",
-        "playlist_id": null,
-        "playlist_url": null,
-        "title": "...",
-        "artist_names": ["TKKG"],
+        "browse_id": "MPRE_album_id",
+        "url": "https://music.youtube.com/browse/MPRE_album_id",
+        "title": "YouTube Music album title",
         "track_count": 35
       },
+      "playlist": null,
       "tracks": [
         {
           "track_number": 1,
-          "video_id": "...",
-          "url": "https://music.youtube.com/watch?v=...",
-          "title": "...",
-          "duration_seconds": 70.0,
-          "artist_names": ["TKKG"]
+          "video_id": "youtube_video_id",
+          "url": "https://music.youtube.com/watch?v=youtube_video_id",
+          "title": "Original YouTube Music track title",
+          "artists": ["TKKG"],
+          "album": "YouTube Music album title"
         }
       ],
       "track_count": 35
     },
     "verification": {
       "status": "verified",
-      "verified_at": "...",
-      "method": "independent_provider_album_verification",
-      "spotify_verified_track_count": 25,
-      "youtube_music_verified_track_count": 35
+      "verified_at": "2026-11-24T12:00:00Z",
+      "method": "independent_provider_tracklist_validation",
+      "spotify": {
+        "status": "verified",
+        "verified_track_count": 25
+      },
+      "youtube_music": {
+        "status": "verified",
+        "verified_track_count": 35,
+        "playlist_status": "unavailable",
+        "playlist_error": null
+      }
     }
   }
 }
 ```
 
-This is a design proposal, not a final frozen schema. Confirm actual provider metadata availability before deciding which fields are required or nullable. Preserve the original provider title and album title. Do not fabricate missing duration, artist, browse ID, or playlist ID values.
+The schema above reflects the implemented structure. Optional source metadata is omitted when unavailable. Preserve original provider titles and album titles, and never fabricate missing duration, artist, browse ID, or playlist ID values.
 
 - Store a YouTube Music album page URL even when there is no public OLAK playlist ID. Keep playlist identity separate from album browse identity.
 - If Spotify track-level IDs or URLs cannot be retrieved reliably, do not invent them. Record only fields supported by the actual source and define the verification threshold accordingly.
@@ -99,6 +102,8 @@ This is a design proposal, not a final frozen schema. Confirm actual provider me
 - Delete the override file only after migration tests prove every entry has been transferred.
 
 ## 4. Implement provider-specific discovery
+
+Implementation now uses episode-level alternate titles and Spotify discovery hints. YouTube Music album and playlist discovery validates its own track list and does not compare its count or titles with Spotify.
 
 ### Spotify
 
