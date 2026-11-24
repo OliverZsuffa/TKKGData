@@ -453,45 +453,36 @@ def resolve_spotify_album(episode: dict[str, Any], work_dir: Path) -> dict[str, 
     number = int(episode["number"])
     title = str(episode["title"])
 
-    # Reviewed album IDs and release layouts bypass fuzzy track discovery.
-    try:
-        from scraper.spotify_structure import (
-            select_episode_release_tracks,
-            validate_episode_parts,
-            validate_selected_track_positions,
-        )
-        overrides = json.loads((ROOT / "data" / "spotify_structure_overrides.json").read_text(encoding="utf-8"))
-        override = overrides.get(str(number), {})
-        if override.get("alternate_titles"):
-            episode = {**episode, "alternate_titles": override["alternate_titles"]}
-    except (ImportError, OSError, json.JSONDecodeError):
-        override = {}
-    album_id_override = override.get("album_id")
-    if album_id_override:
-        album_tracks = _save_spotify_metadata(f"{SPOTIFY_ALBUM_BASE}{album_id_override}")
-        profile = override.get("profile", "standard")
+    # Reviewed release guidance is stored directly on the episode record.
+    from scraper.spotify_structure import (
+        select_episode_release_tracks,
+        validate_episode_parts,
+        validate_selected_track_positions,
+    )
+    discovery = episode.get("audio_discovery") or {}
+    spotify_hints = discovery.get("spotify") or {}
+    profile = spotify_hints.get("release_profile", "standard")
+    preferred_album_id = spotify_hints.get("preferred_album_id")
+    if preferred_album_id:
+        album_tracks = _save_spotify_metadata(f"{SPOTIFY_ALBUM_BASE}{preferred_album_id}")
         validation = validate_episode_parts(album_tracks, profile)
-        expected = override.get("expected_parts")
+        expected = spotify_hints.get("expected_story_parts")
         if not validation.get("valid"):
-            raise ValueError(f"Configured Spotify album {album_id_override} failed structure validation: {validation.get('errors')}")
+            raise ValueError(f"Configured Spotify album {preferred_album_id} failed structure validation: {validation.get('errors')}")
         if expected is not None and len(validation["parts"]) != int(expected):
-            raise ValueError(f"Configured Spotify album {album_id_override} has {len(validation['parts'])} parts, expected {expected}.")
+            raise ValueError(f"Configured Spotify album {preferred_album_id} has {len(validation['parts'])} parts, expected {expected}.")
         if validation["unknown"]:
-            raise ValueError(f"Configured Spotify album {album_id_override} has unclassified tracks: {[t.get('name') for t in validation['unknown']]}")
+            raise ValueError(f"Configured Spotify album {preferred_album_id} has unclassified tracks: {[t.get('name') for t in validation['unknown']]}")
         selected_records = validation["tracks"]
         return {
-            "album_id": album_id_override,
-            "url": f"{SPOTIFY_ALBUM_BASE}{album_id_override}",
+            "album_id": preferred_album_id,
+            "url": f"{SPOTIFY_ALBUM_BASE}{preferred_album_id}",
             "title": str(selected_records[0].get("album_name") or episode.get("title")),
             "track_count": len(selected_records),
             "tracks": selected_records,
-            "source_query": "configured_album_override",
+            "source_query": "episode_audio_discovery_preferred_album",
             "release_type": "episode_release",
-            "selected_track_id": next(
-                (track.get("song_id") for track in selected_records
-                 if track.get("classification") == "episode_part"),
-                selected_records[0].get("song_id"),
-            ),
+            "selected_track_id": next((track.get("song_id") for track in selected_records if track.get("classification") == "episode_part"), selected_records[0].get("song_id")),
         }
     queries = [
         f'track:"{title}" artist:TKKG',
@@ -631,7 +622,7 @@ def resolve_spotify_album(episode: dict[str, Any], work_dir: Path) -> dict[str, 
             if not selected or not _episode_title_matches_track(episode, selected[0], track_id):
                 rejected.append(f"{album_id}: requested episode could not be isolated from album")
                 continue
-        profile = override.get("profile", "standard")
+        profile = profile
         selected = select_episode_release_tracks(album_tracks, selected, profile)
         selected.sort(key=lambda item: (
             int(item.get("disc_number") or 1),
@@ -735,13 +726,6 @@ def find_verified_youtube_music_playlist(
 ) -> dict[str, Any]:
     number = int(episode["number"])
     title = str(episode["title"])
-    try:
-        overrides = json.loads((ROOT / "data" / "spotify_structure_overrides.json").read_text(encoding="utf-8"))
-        alternate_titles = overrides.get(str(number), {}).get("alternate_titles", [])
-        if alternate_titles:
-            episode = {**episode, "alternate_titles": alternate_titles}
-    except (OSError, json.JSONDecodeError):
-        pass
     title_variants = _episode_title_variants(episode)
     if playlist_id_override:
         if not playlist_id_override.startswith(("OLAK5uy_", "PL")):
@@ -1356,32 +1340,47 @@ def discover_episode_audio(
         "total_seconds": round(time.perf_counter() - total_started, 2),
     }
     verified_at = datetime.now(timezone.utc).isoformat()
+    spotify_track_records = []
+    for index, track in enumerate(spotify["tracks"], start=1):
+        track_id, track_url = _spotify_track_identity(track, index)
+        duration = _duration_seconds(track.get("duration_ms") or track.get("duration"))
+        spotify_track_records.append({
+            "track_number": int(track.get("track_number") or index),
+            **({"disc_number": int(track["disc_number"])} if track.get("disc_number") is not None else {}),
+            "track_id": track_id,
+            "url": track_url,
+            "title": str(track.get("name") or ""),
+            **({"duration_seconds": round(duration, 2)} if duration is not None else {}),
+            "artist_names": _artist_names(track),
+        })
+    youtube_track_records = [
+        {"track_number": int(track["track_number"]), "video_id": track["video_id"],
+         "url": track["url"], "title": track["title"], "artists": track.get("artists") or [],
+         "album": track.get("album"), "duration_seconds": track.get("duration_seconds"),
+         "match_score": track.get("match_score"), "match_evidence": track.get("match_evidence") or []}
+        for track in youtube_music_tracks
+    ]
+    ytm_album_record = None
+    if youtube_music_album:
+        browse_id = urlparse(youtube_music_album).path.rstrip("/").split("/")[-1]
+        album_title = next((track.get("album") for track in youtube_track_records if track.get("album")), spotify["title"])
+        ytm_album_record = {"browse_id": browse_id, "url": youtube_music_album, "title": str(album_title), "track_count": len(youtube_track_records)}
     audio_release = {
-        "spotify": {
-            "album_id": spotify["album_id"],
-            "url": spotify["url"],
-            "title": spotify["title"],
-            "track_count": spotify["track_count"],
-            "source_query": spotify["source_query"],
-        },
-        "youtube_music": {
-            "playlist": youtube_music_playlist,
-            "tracks": youtube_music_tracks,
-            "track_count": len(youtube_music_tracks),
-        },
+        "schema_version": 2,
+        "spotify": {"album": {"album_id": spotify["album_id"], "url": spotify["url"], "title": spotify["title"],
+                              "track_count": len(spotify_track_records), "source_query": spotify["source_query"]},
+                    "tracks": spotify_track_records, "track_count": len(spotify_track_records)},
+        "youtube_music": {"album": ytm_album_record, "playlist": youtube_music_playlist,
+                          "tracks": youtube_track_records, "track_count": len(youtube_track_records)},
         "verification": {
-            "status": "verified",
-            "verified_at": verified_at,
-            "method": (
-                "exact_ordered_playlist_track_titles_and_duration"
-                if youtube_music_playlist
-                else "exact_ordered_album_track_titles_and_duration"
-                if youtube_music_album
-                else "exact_track_titles_with_artist_album_or_duration_corroboration"
-            ),
-            "matched_track_count": len(youtube_music_tracks),
-            "playlist_status": "verified" if youtube_music_playlist else "unavailable",
-            "playlist_error": playlist_failure,
+            "status": "verified", "verified_at": verified_at,
+            "method": ("exact_ordered_playlist_track_titles_and_duration" if youtube_music_playlist
+                       else "exact_ordered_album_track_titles_and_duration" if youtube_music_album
+                       else "exact_track_titles_with_artist_album_or_duration_corroboration"),
+            "spotify": {"status": "verified", "verified_track_count": len(spotify_track_records)},
+            "youtube_music": {"status": "verified", "verified_track_count": len(youtube_track_records),
+                              "playlist_status": "verified" if youtube_music_playlist else "unavailable",
+                              "playlist_error": playlist_failure},
         },
     }
     matched_tracks = [
