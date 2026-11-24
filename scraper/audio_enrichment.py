@@ -1808,16 +1808,20 @@ def _write_github_step_summary(report: dict[str, Any]) -> None:
                else "not verified"),
             f"- Stage timings: {item.get('timings', {})}",
             "",
-            "| # | Track | Spotify | YouTube Music |",
-            "|---:|---|---|---|",
+            "#### Spotify tracks",
+            "| # | Track | Link |",
+            "|---:|---|---|",
         ])
-        for spotify_track, ytm_track in zip(
-            links["spotify_tracks"], links["youtube_music_tracks"], strict=True,
-        ):
-            lines.append(
-                f"| {spotify_track['track_number']} | {spotify_track['title']} | "
-                f"[open]({spotify_track['url']}) | [open]({ytm_track['url']}) |"
-            )
+        for track in links["spotify_tracks"]:
+            lines.append(f"| {track['track_number']} | {track['title']} | [open]({track['url']}) |")
+        lines.extend([
+            "",
+            "#### YouTube Music tracks",
+            "| # | Track | Link |",
+            "|---:|---|---|",
+        ])
+        for track in links["youtube_music_tracks"]:
+            lines.append(f"| {track['track_number']} | {track['title']} | [open]({track['url']}) |")
         lines.append("")
     for item in report["failures"]:
         lines.extend([
@@ -1829,14 +1833,14 @@ def _write_github_step_summary(report: dict[str, Any]) -> None:
         links = item.get("links")
         if links:
             lines.append(f"- Spotify album: [open]({links['spotify_album']})")
-            lines.append("")
-            lines.extend(["| # | Track | Spotify | YouTube Music |", "|---:|---|---|---|"])
+            lines.extend(["", "| # | Spotify track | Link |", "|---:|---|---|"])
             for track in links["spotify_tracks"]:
-                lines.append(f"| {track['track_number']} | {track['title']} | [open]({track['url']}) | unresolved |")
+                lines.append(f"| {track['track_number']} | {track['title']} | [open]({track['url']}) |")
         lines.append("")
     if report["failures"]:
         lines.extend(["**Warning:** one or more episodes remain unresolved. The workflow completed, but this is not an end-to-end success.", ""])
     summary_path.write_text("\n".join(lines), encoding="utf-8", errors="replace")
+
 
 
 def main() -> int:
@@ -1845,7 +1849,7 @@ def main() -> int:
     )
     parser.add_argument("--episode", type=int, action="append", help="Episode number to process; may be repeated.")
     parser.add_argument("--limit", type=int, default=5, help="Maximum number of missing episodes to process (default: 5).")
-    parser.add_argument("--write", action="store_true", help="Save only successfully verified pairings to episodes.json. Default is dry-run.")
+    parser.add_argument("--write", action="store_true", help="Save only successfully verified provider releases to episodes.json. Default is dry-run.")
     parser.add_argument("--latest-first", action="store_true", help="Process the highest-numbered missing episodes first.")
     parser.add_argument("--playlist-id", help="Optional explicit YouTube Music playlist ID for verification or recovery.")
     parser.add_argument("--catalogue", type=Path, default=CATALOGUE_PATH, help="Path to the episode JSON catalogue.")
@@ -1883,14 +1887,12 @@ def main() -> int:
                 print(f"Episode {item['number']} YouTube Music playlist: {links['youtube_music_playlist']}", flush=True)
             elif links.get("youtube_music_album"):
                 print(f"Episode {item['number']} YouTube Music album: {links['youtube_music_album']}", flush=True)
-            for spotify_track, ytm_track in zip(
-                links["spotify_tracks"], links["youtube_music_tracks"], strict=True,
-            ):
-                print(
-                    f"  {spotify_track['track_number']:02d}. Spotify: {spotify_track['url']} | "
-                    f"YouTube Music: {ytm_track['url']}",
-                    flush=True,
-                )
+            print("  Spotify tracks:", flush=True)
+            for track in links["spotify_tracks"]:
+                print(f"    {track['track_number']:02d}. {track['url']}", flush=True)
+            print("  YouTube Music tracks:", flush=True)
+            for track in links["youtube_music_tracks"]:
+                print(f"    {track['track_number']:02d}. {track['url']}", flush=True)
         for item in report["failures"]:
             if item.get("links"):
                 print(f"Episode {item['number']} Spotify album: {item['links']['spotify_album']}", flush=True)
