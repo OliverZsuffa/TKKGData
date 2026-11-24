@@ -164,7 +164,7 @@
   "audio_release_preservation_conflicts": [],
   "audio_release_coverage": {
     "episode_count": 243,
-    "verified_pairings": 210,
+    "verified_pairings": 213,
     "missing_pairings": [
       {
         "number": 19,
@@ -177,18 +177,6 @@
       {
         "number": 37,
         "title": "Der letzte Schuss"
-      },
-      {
-        "number": 48,
-        "title": "Bestien in der Finsternis"
-      },
-      {
-        "number": 94,
-        "title": "In dunkler Nacht am Mamorgrab"
-      },
-      {
-        "number": 110,
-        "title": "Das Phantom im Schokoladen-Museum"
       },
       {
         "number": 128,
@@ -1152,5 +1140,11 @@
     "hub_or_fallback_link_count": 34,
     "invalid_links": []
   },
-  "finished_at": "2026-11-24T11:38:42.721971+00:00"
+  "finished_at": "2026-11-24T11:38:42.721971+00:00",
+  "audio_enrichment": {
+    "updated_at": "2026-11-24T11:47:41.694547+00:00",
+    "verified_count": 3,
+    "failure_count": 26,
+    "batch_count": 6
+  }
 }

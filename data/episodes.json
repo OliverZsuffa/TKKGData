@@ -27690,7 +27690,505 @@
       }
     ],
     "listening_links": [],
-    "last_checked": "2026-11-24T11:36:27.916457+00:00"
+    "last_checked": "2026-11-24T11:36:27.916457+00:00",
+    "audio_release": {
+      "spotify": {
+        "album_id": "4WgadnXmyPlFzQ6GyHUqRw",
+        "url": "https://open.spotify.com/album/4WgadnXmyPlFzQ6GyHUqRw",
+        "title": "048/Bestien der Finsternis",
+        "track_count": 25,
+        "source_query": "configured_album_override"
+      },
+      "youtube_music": {
+        "playlist": null,
+        "tracks": [
+          {
+            "track_number": 1,
+            "spotify_title": "048 - Bestien in der Finsternis - Teil 01",
+            "spotify_track_id": "0Q19YbLZRBD190S6WbZdIb",
+            "spotify_track_url": "https://open.spotify.com/track/0Q19YbLZRBD190S6WbZdIb",
+            "video_id": "FKMBZALxF_0",
+            "url": "https://music.youtube.com/watch?v=FKMBZALxF_0",
+            "title": "048 - Bestien in der Finsternis (Teil 01)",
+            "artists": [],
+            "album": "Album - 048/Bestien der Finsternis",
+            "duration_seconds": 128.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 2,
+            "spotify_title": "048 - Bestien in der Finsternis - Teil 02",
+            "spotify_track_id": "1moOFc7NrVWLyRx5zvW8DW",
+            "spotify_track_url": "https://open.spotify.com/track/1moOFc7NrVWLyRx5zvW8DW",
+            "video_id": "JILgJ_OV8iY",
+            "url": "https://music.youtube.com/watch?v=JILgJ_OV8iY",
+            "title": "048 - Bestien in der Finsternis (Teil 02)",
+            "artists": [],
+            "album": "Album - 048/Bestien der Finsternis",
+            "duration_seconds": 89.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 3,
+            "spotify_title": "048 - Bestien in der Finsternis - Teil 03",
+            "spotify_track_id": "7jWJckYRLmJT1FDJZOMmtL",
+            "spotify_track_url": "https://open.spotify.com/track/7jWJckYRLmJT1FDJZOMmtL",
+            "video_id": "Y-Da4e3osbA",
+            "url": "https://music.youtube.com/watch?v=Y-Da4e3osbA",
+            "title": "048 - Bestien in der Finsternis (Teil 03)",
+            "artists": [],
+            "album": "Album - 048/Bestien der Finsternis",
+            "duration_seconds": 88.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 4,
+            "spotify_title": "048 - Bestien in der Finsternis - Teil 04",
+            "spotify_track_id": "59TJR8lBryutfoOrS26D3t",
+            "spotify_track_url": "https://open.spotify.com/track/59TJR8lBryutfoOrS26D3t",
+            "video_id": "kTZ0HTWeylE",
+            "url": "https://music.youtube.com/watch?v=kTZ0HTWeylE",
+            "title": "048 - Bestien in der Finsternis (Teil 04)",
+            "artists": [],
+            "album": "Album - 048/Bestien der Finsternis",
+            "duration_seconds": 86.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 5,
+            "spotify_title": "048 - Bestien in der Finsternis - Teil 05",
+            "spotify_track_id": "3n76zkSJV0jiHq582D1V0F",
+            "spotify_track_url": "https://open.spotify.com/track/3n76zkSJV0jiHq582D1V0F",
+            "video_id": "RSXpYPEuXKg",
+            "url": "https://music.youtube.com/watch?v=RSXpYPEuXKg",
+            "title": "048 - Bestien in der Finsternis (Teil 05)",
+            "artists": [],
+            "album": "Album - 048/Bestien der Finsternis",
+            "duration_seconds": 88.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 6,
+            "spotify_title": "048 - Bestien in der Finsternis - Teil 06",
+            "spotify_track_id": "3L3FHp84ntSPIDU1T55SuP",
+            "spotify_track_url": "https://open.spotify.com/track/3L3FHp84ntSPIDU1T55SuP",
+            "video_id": "t_bhlyIh2Gc",
+            "url": "https://music.youtube.com/watch?v=t_bhlyIh2Gc",
+            "title": "048 - Bestien in der Finsternis (Teil 06)",
+            "artists": [],
+            "album": "Album - 048/Bestien der Finsternis",
+            "duration_seconds": 89.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 7,
+            "spotify_title": "048 - Bestien in der Finsternis - Teil 07",
+            "spotify_track_id": "4DE9gJQQoUZazWSHuD1kCL",
+            "spotify_track_url": "https://open.spotify.com/track/4DE9gJQQoUZazWSHuD1kCL",
+            "video_id": "lImyUrcyGQM",
+            "url": "https://music.youtube.com/watch?v=lImyUrcyGQM",
+            "title": "048 - Bestien in der Finsternis (Teil 07)",
+            "artists": [],
+            "album": "Album - 048/Bestien der Finsternis",
+            "duration_seconds": 89.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 8,
+            "spotify_title": "048 - Bestien in der Finsternis - Teil 08",
+            "spotify_track_id": "0KnFERpU9ABGOLE4L9Xw7B",
+            "spotify_track_url": "https://open.spotify.com/track/0KnFERpU9ABGOLE4L9Xw7B",
+            "video_id": "ZPp0I3R57A8",
+            "url": "https://music.youtube.com/watch?v=ZPp0I3R57A8",
+            "title": "048 - Bestien in der Finsternis (Teil 08)",
+            "artists": [],
+            "album": "Album - 048/Bestien der Finsternis",
+            "duration_seconds": 84.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 9,
+            "spotify_title": "048 - Bestien in der Finsternis - Teil 09",
+            "spotify_track_id": "0BYgP7mdnyA9xvnxKNaJ26",
+            "spotify_track_url": "https://open.spotify.com/track/0BYgP7mdnyA9xvnxKNaJ26",
+            "video_id": "MXdXGnuS4S0",
+            "url": "https://music.youtube.com/watch?v=MXdXGnuS4S0",
+            "title": "048 - Bestien in der Finsternis (Teil 09)",
+            "artists": [],
+            "album": "Album - 048/Bestien der Finsternis",
+            "duration_seconds": 85.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 10,
+            "spotify_title": "048 - Bestien in der Finsternis - Teil 10",
+            "spotify_track_id": "5I6nJCUCmKyFu28DNPDmIu",
+            "spotify_track_url": "https://open.spotify.com/track/5I6nJCUCmKyFu28DNPDmIu",
+            "video_id": "QpJ0vdxSGwU",
+            "url": "https://music.youtube.com/watch?v=QpJ0vdxSGwU",
+            "title": "048 - Bestien in der Finsternis (Teil 10)",
+            "artists": [],
+            "album": "Album - 048/Bestien der Finsternis",
+            "duration_seconds": 95.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 11,
+            "spotify_title": "048 - Bestien in der Finsternis - Teil 11",
+            "spotify_track_id": "5ikWh70YHCvRVVejxLHrCw",
+            "spotify_track_url": "https://open.spotify.com/track/5ikWh70YHCvRVVejxLHrCw",
+            "video_id": "yMeuBTNhpA8",
+            "url": "https://music.youtube.com/watch?v=yMeuBTNhpA8",
+            "title": "048 - Bestien in der Finsternis (Teil 11)",
+            "artists": [],
+            "album": "Album - 048/Bestien der Finsternis",
+            "duration_seconds": 84.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 12,
+            "spotify_title": "048 - Bestien in der Finsternis - Teil 12",
+            "spotify_track_id": "2wrTJQgbHrLVkqb30rYDyn",
+            "spotify_track_url": "https://open.spotify.com/track/2wrTJQgbHrLVkqb30rYDyn",
+            "video_id": "xWFFb7hHR-0",
+            "url": "https://music.youtube.com/watch?v=xWFFb7hHR-0",
+            "title": "048 - Bestien in der Finsternis (Teil 12)",
+            "artists": [],
+            "album": "Album - 048/Bestien der Finsternis",
+            "duration_seconds": 88.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 13,
+            "spotify_title": "048 - Bestien in der Finsternis - Teil 13",
+            "spotify_track_id": "2aXRiMKB62M2wGYicrabq3",
+            "spotify_track_url": "https://open.spotify.com/track/2aXRiMKB62M2wGYicrabq3",
+            "video_id": "PjtPZ1jop-w",
+            "url": "https://music.youtube.com/watch?v=PjtPZ1jop-w",
+            "title": "048 - Bestien in der Finsternis (Teil 13)",
+            "artists": [],
+            "album": "Album - 048/Bestien der Finsternis",
+            "duration_seconds": 88.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 14,
+            "spotify_title": "048 - Bestien in der Finsternis - Teil 14",
+            "spotify_track_id": "1ZXXilBRz9pFgZbZKfmd1G",
+            "spotify_track_url": "https://open.spotify.com/track/1ZXXilBRz9pFgZbZKfmd1G",
+            "video_id": "lkfIyS3Luzo",
+            "url": "https://music.youtube.com/watch?v=lkfIyS3Luzo",
+            "title": "048 - Bestien in der Finsternis (Teil 14)",
+            "artists": [],
+            "album": "Album - 048/Bestien der Finsternis",
+            "duration_seconds": 87.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 15,
+            "spotify_title": "048 - Bestien in der Finsternis - Teil 15",
+            "spotify_track_id": "54ZSCa880hJADKipUnHZN6",
+            "spotify_track_url": "https://open.spotify.com/track/54ZSCa880hJADKipUnHZN6",
+            "video_id": "SJALs_fj3HU",
+            "url": "https://music.youtube.com/watch?v=SJALs_fj3HU",
+            "title": "048 - Bestien in der Finsternis (Teil 15)",
+            "artists": [],
+            "album": "Album - 048/Bestien der Finsternis",
+            "duration_seconds": 85.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 16,
+            "spotify_title": "048 - Bestien in der Finsternis - Teil 16",
+            "spotify_track_id": "5lOdUxNDtKPHv2Yzv9hcX1",
+            "spotify_track_url": "https://open.spotify.com/track/5lOdUxNDtKPHv2Yzv9hcX1",
+            "video_id": "RMNz4x5Bwrc",
+            "url": "https://music.youtube.com/watch?v=RMNz4x5Bwrc",
+            "title": "048 - Bestien in der Finsternis (Teil 16)",
+            "artists": [],
+            "album": "Album - 048/Bestien der Finsternis",
+            "duration_seconds": 85.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 17,
+            "spotify_title": "048 - Bestien in der Finsternis - Teil 17",
+            "spotify_track_id": "2dD0E1UsWQ2NhV0qpWeKWl",
+            "spotify_track_url": "https://open.spotify.com/track/2dD0E1UsWQ2NhV0qpWeKWl",
+            "video_id": "xkcoH9-PWw0",
+            "url": "https://music.youtube.com/watch?v=xkcoH9-PWw0",
+            "title": "048 - Bestien in der Finsternis (Teil 17)",
+            "artists": [],
+            "album": "Album - 048/Bestien der Finsternis",
+            "duration_seconds": 87.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 18,
+            "spotify_title": "048 - Bestien in der Finsternis - Teil 18",
+            "spotify_track_id": "4NTMVo9LQuoBIAWRJAVy4J",
+            "spotify_track_url": "https://open.spotify.com/track/4NTMVo9LQuoBIAWRJAVy4J",
+            "video_id": "FOAzvpA-BAk",
+            "url": "https://music.youtube.com/watch?v=FOAzvpA-BAk",
+            "title": "048 - Bestien in der Finsternis (Teil 18)",
+            "artists": [],
+            "album": "Album - 048/Bestien der Finsternis",
+            "duration_seconds": 92.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 19,
+            "spotify_title": "048 - Bestien in der Finsternis - Teil 19",
+            "spotify_track_id": "71h0PEo9azctzInSIpLqMY",
+            "spotify_track_url": "https://open.spotify.com/track/71h0PEo9azctzInSIpLqMY",
+            "video_id": "bD05Wx7QOIs",
+            "url": "https://music.youtube.com/watch?v=bD05Wx7QOIs",
+            "title": "048 - Bestien in der Finsternis (Teil 19)",
+            "artists": [],
+            "album": "Album - 048/Bestien der Finsternis",
+            "duration_seconds": 87.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 20,
+            "spotify_title": "048 - Bestien in der Finsternis - Teil 20",
+            "spotify_track_id": "0FcNZflU2kWYQDOFCYCGrG",
+            "spotify_track_url": "https://open.spotify.com/track/0FcNZflU2kWYQDOFCYCGrG",
+            "video_id": "6YCne04X54M",
+            "url": "https://music.youtube.com/watch?v=6YCne04X54M",
+            "title": "048 - Bestien in der Finsternis (Teil 20)",
+            "artists": [],
+            "album": "Album - 048/Bestien der Finsternis",
+            "duration_seconds": 87.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 21,
+            "spotify_title": "048 - Bestien in der Finsternis - Teil 21",
+            "spotify_track_id": "7G6y7uzKRtEICt7eUkdxS7",
+            "spotify_track_url": "https://open.spotify.com/track/7G6y7uzKRtEICt7eUkdxS7",
+            "video_id": "eomDc2giRug",
+            "url": "https://music.youtube.com/watch?v=eomDc2giRug",
+            "title": "048 - Bestien in der Finsternis (Teil 21)",
+            "artists": [],
+            "album": "Album - 048/Bestien der Finsternis",
+            "duration_seconds": 94.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 22,
+            "spotify_title": "048 - Bestien in der Finsternis - Teil 22",
+            "spotify_track_id": "6FhBYGkjWZshISNf4WOtN1",
+            "spotify_track_url": "https://open.spotify.com/track/6FhBYGkjWZshISNf4WOtN1",
+            "video_id": "i89gO_MZC-M",
+            "url": "https://music.youtube.com/watch?v=i89gO_MZC-M",
+            "title": "048 - Bestien in der Finsternis (Teil 22)",
+            "artists": [],
+            "album": "Album - 048/Bestien der Finsternis",
+            "duration_seconds": 85.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 23,
+            "spotify_title": "048 - Bestien in der Finsternis - Teil 23",
+            "spotify_track_id": "4t4zmVpWEZJ3j54xbZECZm",
+            "spotify_track_url": "https://open.spotify.com/track/4t4zmVpWEZJ3j54xbZECZm",
+            "video_id": "smK9EGA6M-I",
+            "url": "https://music.youtube.com/watch?v=smK9EGA6M-I",
+            "title": "048 - Bestien in der Finsternis (Teil 23)",
+            "artists": [],
+            "album": "Album - 048/Bestien der Finsternis",
+            "duration_seconds": 85.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 24,
+            "spotify_title": "048 - Bestien in der Finsternis - Teil 24",
+            "spotify_track_id": "39zE3x28wJOoHof1p254YE",
+            "spotify_track_url": "https://open.spotify.com/track/39zE3x28wJOoHof1p254YE",
+            "video_id": "bYK7oSgP3mQ",
+            "url": "https://music.youtube.com/watch?v=bYK7oSgP3mQ",
+            "title": "048 - Bestien in der Finsternis (Teil 24)",
+            "artists": [],
+            "album": "Album - 048/Bestien der Finsternis",
+            "duration_seconds": 93.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 25,
+            "spotify_title": "048 - Bestien in der Finsternis - Teil 25",
+            "spotify_track_id": "6rYn96U4Rr4UXr3VVXPWaK",
+            "spotify_track_url": "https://open.spotify.com/track/6rYn96U4Rr4UXr3VVXPWaK",
+            "video_id": "CDnc8I1695o",
+            "url": "https://music.youtube.com/watch?v=CDnc8I1695o",
+            "title": "048 - Bestien in der Finsternis (Teil 25)",
+            "artists": [],
+            "album": "Album - 048/Bestien der Finsternis",
+            "duration_seconds": 83.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          }
+        ],
+        "track_count": 25
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-11-24T11:41:00.016093+00:00",
+        "method": "exact_ordered_album_track_titles_and_duration",
+        "matched_track_count": 25,
+        "playlist_status": "unavailable",
+        "playlist_error": null
+      }
+    }
   },
   {
     "number": 49,
@@ -55370,7 +55868,505 @@
       }
     ],
     "listening_links": [],
-    "last_checked": "2026-11-24T11:36:27.916457+00:00"
+    "last_checked": "2026-11-24T11:36:27.916457+00:00",
+    "audio_release": {
+      "spotify": {
+        "album_id": "0in2tMW0QlYkCN4xZGMKFw",
+        "url": "https://open.spotify.com/album/0in2tMW0QlYkCN4xZGMKFw",
+        "title": "094/In dunkler Nacht am Marmor-Grab",
+        "track_count": 25,
+        "source_query": "configured_album_override"
+      },
+      "youtube_music": {
+        "playlist": null,
+        "tracks": [
+          {
+            "track_number": 1,
+            "spotify_title": "094 - In dunkler Nacht am Marmor-Grab - Teil 01",
+            "spotify_track_id": "09EUY8k321bBbaeiJ1wYi4",
+            "spotify_track_url": "https://open.spotify.com/track/09EUY8k321bBbaeiJ1wYi4",
+            "video_id": "hdlJV9QLtQI",
+            "url": "https://music.youtube.com/watch?v=hdlJV9QLtQI",
+            "title": "094 - In dunkler Nacht am Marmor-Grab (Teil 01)",
+            "artists": [],
+            "album": "Album - 094/In dunkler Nacht am Marmor-Grab",
+            "duration_seconds": 136.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 2,
+            "spotify_title": "094 - In dunkler Nacht am Marmor-Grab - Teil 02",
+            "spotify_track_id": "3qoZIh0qqQHfp6LxtJ1vYX",
+            "spotify_track_url": "https://open.spotify.com/track/3qoZIh0qqQHfp6LxtJ1vYX",
+            "video_id": "zUj7NsFkjlk",
+            "url": "https://music.youtube.com/watch?v=zUj7NsFkjlk",
+            "title": "094 - In dunkler Nacht am Marmor-Grab (Teil 02)",
+            "artists": [],
+            "album": "Album - 094/In dunkler Nacht am Marmor-Grab",
+            "duration_seconds": 94.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 3,
+            "spotify_title": "094 - In dunkler Nacht am Marmor-Grab - Teil 03",
+            "spotify_track_id": "6PzGLYW1LkMGAM52UMRBil",
+            "spotify_track_url": "https://open.spotify.com/track/6PzGLYW1LkMGAM52UMRBil",
+            "video_id": "CSo5CxyVjvg",
+            "url": "https://music.youtube.com/watch?v=CSo5CxyVjvg",
+            "title": "094 - In dunkler Nacht am Marmor-Grab (Teil 03)",
+            "artists": [],
+            "album": "Album - 094/In dunkler Nacht am Marmor-Grab",
+            "duration_seconds": 101.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 4,
+            "spotify_title": "094 - In dunkler Nacht am Marmor-Grab - Teil 04",
+            "spotify_track_id": "6jwoL0xQdj8if59BYdq8uW",
+            "spotify_track_url": "https://open.spotify.com/track/6jwoL0xQdj8if59BYdq8uW",
+            "video_id": "_zhLzqIPmrk",
+            "url": "https://music.youtube.com/watch?v=_zhLzqIPmrk",
+            "title": "094 - In dunkler Nacht am Marmor-Grab (Teil 04)",
+            "artists": [],
+            "album": "Album - 094/In dunkler Nacht am Marmor-Grab",
+            "duration_seconds": 91.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 5,
+            "spotify_title": "094 - In dunkler Nacht am Marmor-Grab - Teil 05",
+            "spotify_track_id": "41VjuiIpkJghCa4t367mvf",
+            "spotify_track_url": "https://open.spotify.com/track/41VjuiIpkJghCa4t367mvf",
+            "video_id": "tZFe1X_IbYs",
+            "url": "https://music.youtube.com/watch?v=tZFe1X_IbYs",
+            "title": "094 - In dunkler Nacht am Marmor-Grab (Teil 05)",
+            "artists": [],
+            "album": "Album - 094/In dunkler Nacht am Marmor-Grab",
+            "duration_seconds": 106.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 6,
+            "spotify_title": "094 - In dunkler Nacht am Marmor-Grab - Teil 06",
+            "spotify_track_id": "4Z5jPrb7dLustj2Ck5COcu",
+            "spotify_track_url": "https://open.spotify.com/track/4Z5jPrb7dLustj2Ck5COcu",
+            "video_id": "ot-pLWazjEE",
+            "url": "https://music.youtube.com/watch?v=ot-pLWazjEE",
+            "title": "094 - In dunkler Nacht am Marmor-Grab (Teil 06)",
+            "artists": [],
+            "album": "Album - 094/In dunkler Nacht am Marmor-Grab",
+            "duration_seconds": 87.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 7,
+            "spotify_title": "094 - In dunkler Nacht am Marmor-Grab - Teil 07",
+            "spotify_track_id": "15pLLTLcCEwXoH7Apfkawk",
+            "spotify_track_url": "https://open.spotify.com/track/15pLLTLcCEwXoH7Apfkawk",
+            "video_id": "cit-fjdwSaA",
+            "url": "https://music.youtube.com/watch?v=cit-fjdwSaA",
+            "title": "094 - In dunkler Nacht am Marmor-Grab (Teil 07)",
+            "artists": [],
+            "album": "Album - 094/In dunkler Nacht am Marmor-Grab",
+            "duration_seconds": 97.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 8,
+            "spotify_title": "094 - In dunkler Nacht am Marmor-Grab - Teil 08",
+            "spotify_track_id": "65HYyjJ3ISIHumlovpNPYe",
+            "spotify_track_url": "https://open.spotify.com/track/65HYyjJ3ISIHumlovpNPYe",
+            "video_id": "g9Tmqpf1r4I",
+            "url": "https://music.youtube.com/watch?v=g9Tmqpf1r4I",
+            "title": "094 - In dunkler Nacht am Marmor-Grab (Teil 08)",
+            "artists": [],
+            "album": "Album - 094/In dunkler Nacht am Marmor-Grab",
+            "duration_seconds": 106.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 9,
+            "spotify_title": "094 - In dunkler Nacht am Marmor-Grab - Teil 09",
+            "spotify_track_id": "621jjzt7EMEIGDyWHKDZP9",
+            "spotify_track_url": "https://open.spotify.com/track/621jjzt7EMEIGDyWHKDZP9",
+            "video_id": "uwsTSVht1b8",
+            "url": "https://music.youtube.com/watch?v=uwsTSVht1b8",
+            "title": "094 - In dunkler Nacht am Marmor-Grab (Teil 09)",
+            "artists": [],
+            "album": "Album - 094/In dunkler Nacht am Marmor-Grab",
+            "duration_seconds": 89.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 10,
+            "spotify_title": "094 - In dunkler Nacht am Marmor-Grab - Teil 10",
+            "spotify_track_id": "3wXTXM5PZ5ufFWw4DcEcUV",
+            "spotify_track_url": "https://open.spotify.com/track/3wXTXM5PZ5ufFWw4DcEcUV",
+            "video_id": "Lj0dL_MtXtA",
+            "url": "https://music.youtube.com/watch?v=Lj0dL_MtXtA",
+            "title": "094 - In dunkler Nacht am Marmor-Grab (Teil 10)",
+            "artists": [],
+            "album": "Album - 094/In dunkler Nacht am Marmor-Grab",
+            "duration_seconds": 98.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 11,
+            "spotify_title": "094 - In dunkler Nacht am Marmor-Grab - Teil 11",
+            "spotify_track_id": "6DtN61DUH6HRyE6Cuzuxxw",
+            "spotify_track_url": "https://open.spotify.com/track/6DtN61DUH6HRyE6Cuzuxxw",
+            "video_id": "unKUzwicv4Q",
+            "url": "https://music.youtube.com/watch?v=unKUzwicv4Q",
+            "title": "094 - In dunkler Nacht am Marmor-Grab (Teil 11)",
+            "artists": [],
+            "album": "Album - 094/In dunkler Nacht am Marmor-Grab",
+            "duration_seconds": 98.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 12,
+            "spotify_title": "094 - In dunkler Nacht am Marmor-Grab - Teil 12",
+            "spotify_track_id": "7cLviRhaoVb0dls9vUZuLL",
+            "spotify_track_url": "https://open.spotify.com/track/7cLviRhaoVb0dls9vUZuLL",
+            "video_id": "0J4lFN7eUZo",
+            "url": "https://music.youtube.com/watch?v=0J4lFN7eUZo",
+            "title": "094 - In dunkler Nacht am Marmor-Grab (Teil 12)",
+            "artists": [],
+            "album": "Album - 094/In dunkler Nacht am Marmor-Grab",
+            "duration_seconds": 103.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 13,
+            "spotify_title": "094 - In dunkler Nacht am Marmor-Grab - Teil 13",
+            "spotify_track_id": "3rVu27bkBoS6fDvxa7E8NO",
+            "spotify_track_url": "https://open.spotify.com/track/3rVu27bkBoS6fDvxa7E8NO",
+            "video_id": "DB_d2hQ3jCg",
+            "url": "https://music.youtube.com/watch?v=DB_d2hQ3jCg",
+            "title": "094 - In dunkler Nacht am Marmor-Grab (Teil 13)",
+            "artists": [],
+            "album": "Album - 094/In dunkler Nacht am Marmor-Grab",
+            "duration_seconds": 92.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 14,
+            "spotify_title": "094 - In dunkler Nacht am Marmor-Grab - Teil 14",
+            "spotify_track_id": "5WIHOW8WuU8G8MAgQeYBL0",
+            "spotify_track_url": "https://open.spotify.com/track/5WIHOW8WuU8G8MAgQeYBL0",
+            "video_id": "7_ADh9TDps0",
+            "url": "https://music.youtube.com/watch?v=7_ADh9TDps0",
+            "title": "094 - In dunkler Nacht am Marmor-Grab (Teil 14)",
+            "artists": [],
+            "album": "Album - 094/In dunkler Nacht am Marmor-Grab",
+            "duration_seconds": 86.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 15,
+            "spotify_title": "094 - In dunkler Nacht am Marmor-Grab - Teil 15",
+            "spotify_track_id": "58ISeWoETpQ5b8E5QrOzFt",
+            "spotify_track_url": "https://open.spotify.com/track/58ISeWoETpQ5b8E5QrOzFt",
+            "video_id": "JvVm3-Zagdw",
+            "url": "https://music.youtube.com/watch?v=JvVm3-Zagdw",
+            "title": "094 - In dunkler Nacht am Marmor-Grab (Teil 15)",
+            "artists": [],
+            "album": "Album - 094/In dunkler Nacht am Marmor-Grab",
+            "duration_seconds": 106.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 16,
+            "spotify_title": "094 - In dunkler Nacht am Marmor-Grab - Teil 16",
+            "spotify_track_id": "11oE6hnK6DZkTNODxwe8Q6",
+            "spotify_track_url": "https://open.spotify.com/track/11oE6hnK6DZkTNODxwe8Q6",
+            "video_id": "v40dEKHONSI",
+            "url": "https://music.youtube.com/watch?v=v40dEKHONSI",
+            "title": "094 - In dunkler Nacht am Marmor-Grab (Teil 16)",
+            "artists": [],
+            "album": "Album - 094/In dunkler Nacht am Marmor-Grab",
+            "duration_seconds": 90.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 17,
+            "spotify_title": "094 - In dunkler Nacht am Marmor-Grab - Teil 17",
+            "spotify_track_id": "5a96a7MEBffCUHLApmaVXp",
+            "spotify_track_url": "https://open.spotify.com/track/5a96a7MEBffCUHLApmaVXp",
+            "video_id": "7VsMh7LRxX4",
+            "url": "https://music.youtube.com/watch?v=7VsMh7LRxX4",
+            "title": "094 - In dunkler Nacht am Marmor-Grab (Teil 17)",
+            "artists": [],
+            "album": "Album - 094/In dunkler Nacht am Marmor-Grab",
+            "duration_seconds": 100.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 18,
+            "spotify_title": "094 - In dunkler Nacht am Marmor-Grab - Teil 18",
+            "spotify_track_id": "4JR9hsHAlFZX1BPiHJ1g15",
+            "spotify_track_url": "https://open.spotify.com/track/4JR9hsHAlFZX1BPiHJ1g15",
+            "video_id": "yIh0Maf1mnw",
+            "url": "https://music.youtube.com/watch?v=yIh0Maf1mnw",
+            "title": "094 - In dunkler Nacht am Marmor-Grab (Teil 18)",
+            "artists": [],
+            "album": "Album - 094/In dunkler Nacht am Marmor-Grab",
+            "duration_seconds": 99.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 19,
+            "spotify_title": "094 - In dunkler Nacht am Marmor-Grab - Teil 19",
+            "spotify_track_id": "3k5611ijKfZ02fzsI3jyWI",
+            "spotify_track_url": "https://open.spotify.com/track/3k5611ijKfZ02fzsI3jyWI",
+            "video_id": "xYQ9by_DOZ8",
+            "url": "https://music.youtube.com/watch?v=xYQ9by_DOZ8",
+            "title": "094 - In dunkler Nacht am Marmor-Grab (Teil 19)",
+            "artists": [],
+            "album": "Album - 094/In dunkler Nacht am Marmor-Grab",
+            "duration_seconds": 94.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 20,
+            "spotify_title": "094 - In dunkler Nacht am Marmor-Grab - Teil 20",
+            "spotify_track_id": "4cBfJWeiOBY2U8jHeaSyFO",
+            "spotify_track_url": "https://open.spotify.com/track/4cBfJWeiOBY2U8jHeaSyFO",
+            "video_id": "fXCORABF9-Q",
+            "url": "https://music.youtube.com/watch?v=fXCORABF9-Q",
+            "title": "094 - In dunkler Nacht am Marmor-Grab (Teil 20)",
+            "artists": [],
+            "album": "Album - 094/In dunkler Nacht am Marmor-Grab",
+            "duration_seconds": 97.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 21,
+            "spotify_title": "094 - In dunkler Nacht am Marmor-Grab - Teil 21",
+            "spotify_track_id": "6tNS7ptaQXsIwHb4Pskmt6",
+            "spotify_track_url": "https://open.spotify.com/track/6tNS7ptaQXsIwHb4Pskmt6",
+            "video_id": "J2jFC9PBBn4",
+            "url": "https://music.youtube.com/watch?v=J2jFC9PBBn4",
+            "title": "094 - In dunkler Nacht am Marmor-Grab (Teil 21)",
+            "artists": [],
+            "album": "Album - 094/In dunkler Nacht am Marmor-Grab",
+            "duration_seconds": 91.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 22,
+            "spotify_title": "094 - In dunkler Nacht am Marmor-Grab - Teil 22",
+            "spotify_track_id": "6hzHDlZvpZCZj9XEZNwYwT",
+            "spotify_track_url": "https://open.spotify.com/track/6hzHDlZvpZCZj9XEZNwYwT",
+            "video_id": "xjGlQCeWnQU",
+            "url": "https://music.youtube.com/watch?v=xjGlQCeWnQU",
+            "title": "094 - In dunkler Nacht am Marmor-Grab (Teil 22)",
+            "artists": [],
+            "album": "Album - 094/In dunkler Nacht am Marmor-Grab",
+            "duration_seconds": 99.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 23,
+            "spotify_title": "094 - In dunkler Nacht am Marmor-Grab - Teil 23",
+            "spotify_track_id": "7cOMAHBVam7rlqeP8DsZy2",
+            "spotify_track_url": "https://open.spotify.com/track/7cOMAHBVam7rlqeP8DsZy2",
+            "video_id": "tRR5vbcV2eM",
+            "url": "https://music.youtube.com/watch?v=tRR5vbcV2eM",
+            "title": "094 - In dunkler Nacht am Marmor-Grab (Teil 23)",
+            "artists": [],
+            "album": "Album - 094/In dunkler Nacht am Marmor-Grab",
+            "duration_seconds": 98.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 24,
+            "spotify_title": "094 - In dunkler Nacht am Marmor-Grab - Teil 24",
+            "spotify_track_id": "3ZjJhM0omPIS5zDgSHY5pL",
+            "spotify_track_url": "https://open.spotify.com/track/3ZjJhM0omPIS5zDgSHY5pL",
+            "video_id": "2LK_CI2uq6Q",
+            "url": "https://music.youtube.com/watch?v=2LK_CI2uq6Q",
+            "title": "094 - In dunkler Nacht am Marmor-Grab (Teil 24)",
+            "artists": [],
+            "album": "Album - 094/In dunkler Nacht am Marmor-Grab",
+            "duration_seconds": 104.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 25,
+            "spotify_title": "094 - In dunkler Nacht am Marmor-Grab - Teil 25",
+            "spotify_track_id": "3r5nMq4DLyZFNq4zZeHXzf",
+            "spotify_track_url": "https://open.spotify.com/track/3r5nMq4DLyZFNq4zZeHXzf",
+            "video_id": "kAJ73TQb_Vw",
+            "url": "https://music.youtube.com/watch?v=kAJ73TQb_Vw",
+            "title": "094 - In dunkler Nacht am Marmor-Grab (Teil 25)",
+            "artists": [],
+            "album": "Album - 094/In dunkler Nacht am Marmor-Grab",
+            "duration_seconds": 86.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          }
+        ],
+        "track_count": 25
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-11-24T11:41:18.998650+00:00",
+        "method": "exact_ordered_album_track_titles_and_duration",
+        "matched_track_count": 25,
+        "playlist_status": "unavailable",
+        "playlist_error": null
+      }
+    }
   },
   {
     "number": 95,
@@ -67760,7 +68756,790 @@
       }
     ],
     "listening_links": [],
-    "last_checked": "2026-11-24T11:36:27.916457+00:00"
+    "last_checked": "2026-11-24T11:36:27.916457+00:00",
+    "audio_release": {
+      "spotify": {
+        "album_id": "7aMc9Dk7FhceVhhSRvGVKi",
+        "url": "https://open.spotify.com/album/7aMc9Dk7FhceVhhSRvGVKi",
+        "title": "110/Das Phantom im Schokoladenmuseum",
+        "track_count": 40,
+        "source_query": "110 Das Phantom im Schokoladen-Museum"
+      },
+      "youtube_music": {
+        "playlist": null,
+        "tracks": [
+          {
+            "track_number": 1,
+            "spotify_title": "110 - Das Phantom im Schokoladenmuseum - Teil 01",
+            "spotify_track_id": "4yQ5H70xWPxtpP25TwCpAU",
+            "spotify_track_url": "https://open.spotify.com/track/4yQ5H70xWPxtpP25TwCpAU",
+            "video_id": "AnnoTfToPMY",
+            "url": "https://music.youtube.com/watch?v=AnnoTfToPMY",
+            "title": "110 - Das Phantom im Schokoladenmuseum (Teil 01)",
+            "artists": [],
+            "album": "Album - 110/Das Phantom im Schokoladenmuseum",
+            "duration_seconds": 85.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 2,
+            "spotify_title": "110 - Das Phantom im Schokoladenmuseum - Teil 02",
+            "spotify_track_id": "1jfJYWGyRR6n7cOugcYJI9",
+            "spotify_track_url": "https://open.spotify.com/track/1jfJYWGyRR6n7cOugcYJI9",
+            "video_id": "jMCVZEholQ8",
+            "url": "https://music.youtube.com/watch?v=jMCVZEholQ8",
+            "title": "110 - Das Phantom im Schokoladenmuseum (Teil 02)",
+            "artists": [],
+            "album": "Album - 110/Das Phantom im Schokoladenmuseum",
+            "duration_seconds": 76.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 3,
+            "spotify_title": "110 - Das Phantom im Schokoladenmuseum - Teil 03",
+            "spotify_track_id": "6YLR5xjwkF09ijfHcJ4ZoT",
+            "spotify_track_url": "https://open.spotify.com/track/6YLR5xjwkF09ijfHcJ4ZoT",
+            "video_id": "qu1gUq7kecw",
+            "url": "https://music.youtube.com/watch?v=qu1gUq7kecw",
+            "title": "110 - Das Phantom im Schokoladenmuseum (Teil 03)",
+            "artists": [],
+            "album": "Album - 110/Das Phantom im Schokoladenmuseum",
+            "duration_seconds": 86.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 4,
+            "spotify_title": "110 - Das Phantom im Schokoladenmuseum - Teil 04",
+            "spotify_track_id": "240QpgmuTAZCNej92yH16N",
+            "spotify_track_url": "https://open.spotify.com/track/240QpgmuTAZCNej92yH16N",
+            "video_id": "TPEo3jh88cE",
+            "url": "https://music.youtube.com/watch?v=TPEo3jh88cE",
+            "title": "110 - Das Phantom im Schokoladenmuseum (Teil 04)",
+            "artists": [],
+            "album": "Album - 110/Das Phantom im Schokoladenmuseum",
+            "duration_seconds": 77.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 5,
+            "spotify_title": "110 - Das Phantom im Schokoladenmuseum - Teil 05",
+            "spotify_track_id": "3qItTekTXWiAPNRHpkQBn8",
+            "spotify_track_url": "https://open.spotify.com/track/3qItTekTXWiAPNRHpkQBn8",
+            "video_id": "EqTvnV50L6Y",
+            "url": "https://music.youtube.com/watch?v=EqTvnV50L6Y",
+            "title": "110 - Das Phantom im Schokoladenmuseum (Teil 05)",
+            "artists": [],
+            "album": "Album - 110/Das Phantom im Schokoladenmuseum",
+            "duration_seconds": 84.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 6,
+            "spotify_title": "110 - Das Phantom im Schokoladenmuseum - Teil 06",
+            "spotify_track_id": "0t5HVGXz26Btp9x7URbhaL",
+            "spotify_track_url": "https://open.spotify.com/track/0t5HVGXz26Btp9x7URbhaL",
+            "video_id": "gD5wsPs51nA",
+            "url": "https://music.youtube.com/watch?v=gD5wsPs51nA",
+            "title": "110 - Das Phantom im Schokoladenmuseum (Teil 06)",
+            "artists": [],
+            "album": "Album - 110/Das Phantom im Schokoladenmuseum",
+            "duration_seconds": 79.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 7,
+            "spotify_title": "110 - Das Phantom im Schokoladenmuseum - Teil 07",
+            "spotify_track_id": "28nuomOHyMBiYmPhIeCYme",
+            "spotify_track_url": "https://open.spotify.com/track/28nuomOHyMBiYmPhIeCYme",
+            "video_id": "w__omT51knM",
+            "url": "https://music.youtube.com/watch?v=w__omT51knM",
+            "title": "110 - Das Phantom im Schokoladenmuseum (Teil 07)",
+            "artists": [],
+            "album": "Album - 110/Das Phantom im Schokoladenmuseum",
+            "duration_seconds": 83.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 8,
+            "spotify_title": "110 - Das Phantom im Schokoladenmuseum - Teil 08",
+            "spotify_track_id": "5CJpKHDDUGelg4W0yU1LOS",
+            "spotify_track_url": "https://open.spotify.com/track/5CJpKHDDUGelg4W0yU1LOS",
+            "video_id": "ST7lHhSR_ng",
+            "url": "https://music.youtube.com/watch?v=ST7lHhSR_ng",
+            "title": "110 - Das Phantom im Schokoladenmuseum (Teil 08)",
+            "artists": [],
+            "album": "Album - 110/Das Phantom im Schokoladenmuseum",
+            "duration_seconds": 86.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 9,
+            "spotify_title": "110 - Das Phantom im Schokoladenmuseum - Teil 09",
+            "spotify_track_id": "1DTAcf6tusl8eoBbKPWZaq",
+            "spotify_track_url": "https://open.spotify.com/track/1DTAcf6tusl8eoBbKPWZaq",
+            "video_id": "CVtB2ex6Wss",
+            "url": "https://music.youtube.com/watch?v=CVtB2ex6Wss",
+            "title": "110 - Das Phantom im Schokoladenmuseum (Teil 09)",
+            "artists": [],
+            "album": "Album - 110/Das Phantom im Schokoladenmuseum",
+            "duration_seconds": 75.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 10,
+            "spotify_title": "110 - Das Phantom im Schokoladenmuseum - Teil 10",
+            "spotify_track_id": "1aIsnMkupa3AxXmPC4ef4m",
+            "spotify_track_url": "https://open.spotify.com/track/1aIsnMkupa3AxXmPC4ef4m",
+            "video_id": "by9xbQ06EH8",
+            "url": "https://music.youtube.com/watch?v=by9xbQ06EH8",
+            "title": "110 - Das Phantom im Schokoladenmuseum (Teil 10)",
+            "artists": [],
+            "album": "Album - 110/Das Phantom im Schokoladenmuseum",
+            "duration_seconds": 87.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 11,
+            "spotify_title": "110 - Das Phantom im Schokoladenmuseum - Teil 11",
+            "spotify_track_id": "4ZAbc0ytDxRGIjBYZ244MB",
+            "spotify_track_url": "https://open.spotify.com/track/4ZAbc0ytDxRGIjBYZ244MB",
+            "video_id": "d4nCqmQ5hss",
+            "url": "https://music.youtube.com/watch?v=d4nCqmQ5hss",
+            "title": "110 - Das Phantom im Schokoladenmuseum (Teil 11)",
+            "artists": [],
+            "album": "Album - 110/Das Phantom im Schokoladenmuseum",
+            "duration_seconds": 78.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 12,
+            "spotify_title": "110 - Das Phantom im Schokoladenmuseum - Teil 12",
+            "spotify_track_id": "2h7pQHb40om8WwkujztJmD",
+            "spotify_track_url": "https://open.spotify.com/track/2h7pQHb40om8WwkujztJmD",
+            "video_id": "LO7G2h6hXCY",
+            "url": "https://music.youtube.com/watch?v=LO7G2h6hXCY",
+            "title": "110 - Das Phantom im Schokoladenmuseum (Teil 12)",
+            "artists": [],
+            "album": "Album - 110/Das Phantom im Schokoladenmuseum",
+            "duration_seconds": 79.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 13,
+            "spotify_title": "110 - Das Phantom im Schokoladenmuseum - Teil 13",
+            "spotify_track_id": "3OKfgIrYhL7gHEopDealDA",
+            "spotify_track_url": "https://open.spotify.com/track/3OKfgIrYhL7gHEopDealDA",
+            "video_id": "ore1oNvwfRk",
+            "url": "https://music.youtube.com/watch?v=ore1oNvwfRk",
+            "title": "110 - Das Phantom im Schokoladenmuseum (Teil 13)",
+            "artists": [],
+            "album": "Album - 110/Das Phantom im Schokoladenmuseum",
+            "duration_seconds": 85.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 14,
+            "spotify_title": "110 - Das Phantom im Schokoladenmuseum - Teil 14",
+            "spotify_track_id": "2CSFwtxVdEndPu5mx6sXfJ",
+            "spotify_track_url": "https://open.spotify.com/track/2CSFwtxVdEndPu5mx6sXfJ",
+            "video_id": "mGmX27ql0HM",
+            "url": "https://music.youtube.com/watch?v=mGmX27ql0HM",
+            "title": "110 - Das Phantom im Schokoladenmuseum (Teil 14)",
+            "artists": [],
+            "album": "Album - 110/Das Phantom im Schokoladenmuseum",
+            "duration_seconds": 81.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 15,
+            "spotify_title": "110 - Das Phantom im Schokoladenmuseum - Teil 15",
+            "spotify_track_id": "2IguGHudZtk2pLz1c99NC2",
+            "spotify_track_url": "https://open.spotify.com/track/2IguGHudZtk2pLz1c99NC2",
+            "video_id": "sqATR1B0MQE",
+            "url": "https://music.youtube.com/watch?v=sqATR1B0MQE",
+            "title": "110 - Das Phantom im Schokoladenmuseum (Teil 15)",
+            "artists": [],
+            "album": "Album - 110/Das Phantom im Schokoladenmuseum",
+            "duration_seconds": 85.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 16,
+            "spotify_title": "110 - Das Phantom im Schokoladenmuseum - Teil 16",
+            "spotify_track_id": "2W9q6soF3Jk6RV4ujEk6B8",
+            "spotify_track_url": "https://open.spotify.com/track/2W9q6soF3Jk6RV4ujEk6B8",
+            "video_id": "aPNqZ0u2Xkw",
+            "url": "https://music.youtube.com/watch?v=aPNqZ0u2Xkw",
+            "title": "110 - Das Phantom im Schokoladenmuseum (Teil 16)",
+            "artists": [],
+            "album": "Album - 110/Das Phantom im Schokoladenmuseum",
+            "duration_seconds": 77.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 17,
+            "spotify_title": "110 - Das Phantom im Schokoladenmuseum - Teil 17",
+            "spotify_track_id": "00VhREIS4bypgpAPpGazFt",
+            "spotify_track_url": "https://open.spotify.com/track/00VhREIS4bypgpAPpGazFt",
+            "video_id": "KaZ9li0Ym9k",
+            "url": "https://music.youtube.com/watch?v=KaZ9li0Ym9k",
+            "title": "110 - Das Phantom im Schokoladenmuseum (Teil 17)",
+            "artists": [],
+            "album": "Album - 110/Das Phantom im Schokoladenmuseum",
+            "duration_seconds": 82.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 18,
+            "spotify_title": "110 - Das Phantom im Schokoladenmuseum - Teil 18",
+            "spotify_track_id": "4X7XTmvEwk4ogr3wfAJhYT",
+            "spotify_track_url": "https://open.spotify.com/track/4X7XTmvEwk4ogr3wfAJhYT",
+            "video_id": "iXq6Uj2Jclo",
+            "url": "https://music.youtube.com/watch?v=iXq6Uj2Jclo",
+            "title": "110 - Das Phantom im Schokoladenmuseum (Teil 18)",
+            "artists": [],
+            "album": "Album - 110/Das Phantom im Schokoladenmuseum",
+            "duration_seconds": 79.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 19,
+            "spotify_title": "110 - Das Phantom im Schokoladenmuseum - Teil 19",
+            "spotify_track_id": "7ogT91Gi4eOfWsH7hA8jPq",
+            "spotify_track_url": "https://open.spotify.com/track/7ogT91Gi4eOfWsH7hA8jPq",
+            "video_id": "eS2frdXyGxY",
+            "url": "https://music.youtube.com/watch?v=eS2frdXyGxY",
+            "title": "110 - Das Phantom im Schokoladenmuseum (Teil 19)",
+            "artists": [],
+            "album": "Album - 110/Das Phantom im Schokoladenmuseum",
+            "duration_seconds": 84.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 20,
+            "spotify_title": "110 - Das Phantom im Schokoladenmuseum - Teil 20",
+            "spotify_track_id": "3De3AxQqa7zgEho2wU7beM",
+            "spotify_track_url": "https://open.spotify.com/track/3De3AxQqa7zgEho2wU7beM",
+            "video_id": "MuhJFogexxI",
+            "url": "https://music.youtube.com/watch?v=MuhJFogexxI",
+            "title": "110 - Das Phantom im Schokoladenmuseum (Teil 20)",
+            "artists": [],
+            "album": "Album - 110/Das Phantom im Schokoladenmuseum",
+            "duration_seconds": 82.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 21,
+            "spotify_title": "110 - Das Phantom im Schokoladenmuseum - Teil 21",
+            "spotify_track_id": "3UMyOBeRT8H0AncD69GqmQ",
+            "spotify_track_url": "https://open.spotify.com/track/3UMyOBeRT8H0AncD69GqmQ",
+            "video_id": "4EhLn7SFMbE",
+            "url": "https://music.youtube.com/watch?v=4EhLn7SFMbE",
+            "title": "110 - Das Phantom im Schokoladenmuseum (Teil 21)",
+            "artists": [],
+            "album": "Album - 110/Das Phantom im Schokoladenmuseum",
+            "duration_seconds": 77.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 22,
+            "spotify_title": "110 - Das Phantom im Schokoladenmuseum - Teil 22",
+            "spotify_track_id": "4vCF6m4sJNpDJNo7vqYdk6",
+            "spotify_track_url": "https://open.spotify.com/track/4vCF6m4sJNpDJNo7vqYdk6",
+            "video_id": "RWws1KU4HaM",
+            "url": "https://music.youtube.com/watch?v=RWws1KU4HaM",
+            "title": "110 - Das Phantom im Schokoladenmuseum (Teil 22)",
+            "artists": [],
+            "album": "Album - 110/Das Phantom im Schokoladenmuseum",
+            "duration_seconds": 87.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 23,
+            "spotify_title": "110 - Das Phantom im Schokoladenmuseum - Teil 23",
+            "spotify_track_id": "7zI3epWQlk1Ud36Ye63Uf9",
+            "spotify_track_url": "https://open.spotify.com/track/7zI3epWQlk1Ud36Ye63Uf9",
+            "video_id": "oYqb7CkDc8g",
+            "url": "https://music.youtube.com/watch?v=oYqb7CkDc8g",
+            "title": "110 - Das Phantom im Schokoladenmuseum (Teil 23)",
+            "artists": [],
+            "album": "Album - 110/Das Phantom im Schokoladenmuseum",
+            "duration_seconds": 82.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 24,
+            "spotify_title": "110 - Das Phantom im Schokoladenmuseum - Teil 24",
+            "spotify_track_id": "2ZimDC2EaYZnTPpj1gP9kJ",
+            "spotify_track_url": "https://open.spotify.com/track/2ZimDC2EaYZnTPpj1gP9kJ",
+            "video_id": "8ZhYDIqk5Dc",
+            "url": "https://music.youtube.com/watch?v=8ZhYDIqk5Dc",
+            "title": "110 - Das Phantom im Schokoladenmuseum (Teil 24)",
+            "artists": [],
+            "album": "Album - 110/Das Phantom im Schokoladenmuseum",
+            "duration_seconds": 75.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 25,
+            "spotify_title": "110 - Das Phantom im Schokoladenmuseum - Teil 25",
+            "spotify_track_id": "2jqbdDVwAEUgmQVvN0wwMq",
+            "spotify_track_url": "https://open.spotify.com/track/2jqbdDVwAEUgmQVvN0wwMq",
+            "video_id": "8wUXj5zcD5s",
+            "url": "https://music.youtube.com/watch?v=8wUXj5zcD5s",
+            "title": "110 - Das Phantom im Schokoladenmuseum (Teil 25)",
+            "artists": [],
+            "album": "Album - 110/Das Phantom im Schokoladenmuseum",
+            "duration_seconds": 88.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 26,
+            "spotify_title": "110 - Das Phantom im Schokoladenmuseum - Teil 26",
+            "spotify_track_id": "1S3IdSZdcdtAyigwq03bjS",
+            "spotify_track_url": "https://open.spotify.com/track/1S3IdSZdcdtAyigwq03bjS",
+            "video_id": "hToutwFMtlQ",
+            "url": "https://music.youtube.com/watch?v=hToutwFMtlQ",
+            "title": "110 - Das Phantom im Schokoladenmuseum (Teil 26)",
+            "artists": [],
+            "album": "Album - 110/Das Phantom im Schokoladenmuseum",
+            "duration_seconds": 82.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 27,
+            "spotify_title": "110 - Das Phantom im Schokoladenmuseum - Teil 27",
+            "spotify_track_id": "6LhxV0EdGvobiPMfkpvpVn",
+            "spotify_track_url": "https://open.spotify.com/track/6LhxV0EdGvobiPMfkpvpVn",
+            "video_id": "BlQlXLJEU2k",
+            "url": "https://music.youtube.com/watch?v=BlQlXLJEU2k",
+            "title": "110 - Das Phantom im Schokoladenmuseum (Teil 27)",
+            "artists": [],
+            "album": "Album - 110/Das Phantom im Schokoladenmuseum",
+            "duration_seconds": 79.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 28,
+            "spotify_title": "110 - Das Phantom im Schokoladenmuseum - Teil 28",
+            "spotify_track_id": "4uct7vNEsa0t7hezum8APw",
+            "spotify_track_url": "https://open.spotify.com/track/4uct7vNEsa0t7hezum8APw",
+            "video_id": "iA1gcxukA84",
+            "url": "https://music.youtube.com/watch?v=iA1gcxukA84",
+            "title": "110 - Das Phantom im Schokoladenmuseum (Teil 28)",
+            "artists": [],
+            "album": "Album - 110/Das Phantom im Schokoladenmuseum",
+            "duration_seconds": 81.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 29,
+            "spotify_title": "110 - Das Phantom im Schokoladenmuseum - Teil 29",
+            "spotify_track_id": "2VhUgHAkyvdiUh1MPbGDjP",
+            "spotify_track_url": "https://open.spotify.com/track/2VhUgHAkyvdiUh1MPbGDjP",
+            "video_id": "XH4WjaJbB4E",
+            "url": "https://music.youtube.com/watch?v=XH4WjaJbB4E",
+            "title": "110 - Das Phantom im Schokoladenmuseum (Teil 29)",
+            "artists": [],
+            "album": "Album - 110/Das Phantom im Schokoladenmuseum",
+            "duration_seconds": 83.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 30,
+            "spotify_title": "110 - Das Phantom im Schokoladenmuseum - Teil 30",
+            "spotify_track_id": "5izJcsVQfWdJ9Yl0awJBJk",
+            "spotify_track_url": "https://open.spotify.com/track/5izJcsVQfWdJ9Yl0awJBJk",
+            "video_id": "rkyZJfWZQGw",
+            "url": "https://music.youtube.com/watch?v=rkyZJfWZQGw",
+            "title": "110 - Das Phantom im Schokoladenmuseum (Teil 30)",
+            "artists": [],
+            "album": "Album - 110/Das Phantom im Schokoladenmuseum",
+            "duration_seconds": 84.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 31,
+            "spotify_title": "110 - Das Phantom im Schokoladenmuseum - Teil 31",
+            "spotify_track_id": "4J5EMIkFIfEH4641rAZJqf",
+            "spotify_track_url": "https://open.spotify.com/track/4J5EMIkFIfEH4641rAZJqf",
+            "video_id": "188OXud54dI",
+            "url": "https://music.youtube.com/watch?v=188OXud54dI",
+            "title": "110 - Das Phantom im Schokoladenmuseum (Teil 31)",
+            "artists": [],
+            "album": "Album - 110/Das Phantom im Schokoladenmuseum",
+            "duration_seconds": 80.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 32,
+            "spotify_title": "110 - Das Phantom im Schokoladenmuseum - Teil 32",
+            "spotify_track_id": "11OKSTB1SJoCNQ6wZyXS64",
+            "spotify_track_url": "https://open.spotify.com/track/11OKSTB1SJoCNQ6wZyXS64",
+            "video_id": "WBXMGO8m3Cg",
+            "url": "https://music.youtube.com/watch?v=WBXMGO8m3Cg",
+            "title": "110 - Das Phantom im Schokoladenmuseum (Teil 32)",
+            "artists": [],
+            "album": "Album - 110/Das Phantom im Schokoladenmuseum",
+            "duration_seconds": 82.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 33,
+            "spotify_title": "110 - Das Phantom im Schokoladenmuseum - Teil 33",
+            "spotify_track_id": "4cEqKJFmDSKiGj3vNiUBXQ",
+            "spotify_track_url": "https://open.spotify.com/track/4cEqKJFmDSKiGj3vNiUBXQ",
+            "video_id": "coeXaMfK5rg",
+            "url": "https://music.youtube.com/watch?v=coeXaMfK5rg",
+            "title": "110 - Das Phantom im Schokoladenmuseum (Teil 33)",
+            "artists": [],
+            "album": "Album - 110/Das Phantom im Schokoladenmuseum",
+            "duration_seconds": 79.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 34,
+            "spotify_title": "110 - Das Phantom im Schokoladenmuseum - Teil 34",
+            "spotify_track_id": "7zluiEm9EkpU67WOXhtrIO",
+            "spotify_track_url": "https://open.spotify.com/track/7zluiEm9EkpU67WOXhtrIO",
+            "video_id": "nYdgOWNkDRY",
+            "url": "https://music.youtube.com/watch?v=nYdgOWNkDRY",
+            "title": "110 - Das Phantom im Schokoladenmuseum (Teil 34)",
+            "artists": [],
+            "album": "Album - 110/Das Phantom im Schokoladenmuseum",
+            "duration_seconds": 80.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 35,
+            "spotify_title": "110 - Das Phantom im Schokoladenmuseum - Teil 35",
+            "spotify_track_id": "5zMsnfL2onXvegG4Y7q5wa",
+            "spotify_track_url": "https://open.spotify.com/track/5zMsnfL2onXvegG4Y7q5wa",
+            "video_id": "O5ep0UKy1Es",
+            "url": "https://music.youtube.com/watch?v=O5ep0UKy1Es",
+            "title": "110 - Das Phantom im Schokoladenmuseum (Teil 35)",
+            "artists": [],
+            "album": "Album - 110/Das Phantom im Schokoladenmuseum",
+            "duration_seconds": 87.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 36,
+            "spotify_title": "110 - Das Phantom im Schokoladenmuseum - Teil 36",
+            "spotify_track_id": "3VASr5jtTZDgfTWC8cVRN0",
+            "spotify_track_url": "https://open.spotify.com/track/3VASr5jtTZDgfTWC8cVRN0",
+            "video_id": "bwV_OoG_Xsg",
+            "url": "https://music.youtube.com/watch?v=bwV_OoG_Xsg",
+            "title": "110 - Das Phantom im Schokoladenmuseum (Teil 36)",
+            "artists": [],
+            "album": "Album - 110/Das Phantom im Schokoladenmuseum",
+            "duration_seconds": 79.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 37,
+            "spotify_title": "110 - Das Phantom im Schokoladenmuseum - Teil 37",
+            "spotify_track_id": "1LYximRXIFqmTlRUTLMfkM",
+            "spotify_track_url": "https://open.spotify.com/track/1LYximRXIFqmTlRUTLMfkM",
+            "video_id": "X8hRNwtAToE",
+            "url": "https://music.youtube.com/watch?v=X8hRNwtAToE",
+            "title": "110 - Das Phantom im Schokoladenmuseum (Teil 37)",
+            "artists": [],
+            "album": "Album - 110/Das Phantom im Schokoladenmuseum",
+            "duration_seconds": 83.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 38,
+            "spotify_title": "110 - Das Phantom im Schokoladenmuseum - Teil 38",
+            "spotify_track_id": "2PGvaw4VeTWBg942rI1Mzn",
+            "spotify_track_url": "https://open.spotify.com/track/2PGvaw4VeTWBg942rI1Mzn",
+            "video_id": "KPv-zyaM_ZY",
+            "url": "https://music.youtube.com/watch?v=KPv-zyaM_ZY",
+            "title": "110 - Das Phantom im Schokoladenmuseum (Teil 38)",
+            "artists": [],
+            "album": "Album - 110/Das Phantom im Schokoladenmuseum",
+            "duration_seconds": 83.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 39,
+            "spotify_title": "110 - Das Phantom im Schokoladenmuseum - Teil 39",
+            "spotify_track_id": "58aHxt1RqWrJMNookTEYQN",
+            "spotify_track_url": "https://open.spotify.com/track/58aHxt1RqWrJMNookTEYQN",
+            "video_id": "FzfUisRCEJU",
+            "url": "https://music.youtube.com/watch?v=FzfUisRCEJU",
+            "title": "110 - Das Phantom im Schokoladenmuseum (Teil 39)",
+            "artists": [],
+            "album": "Album - 110/Das Phantom im Schokoladenmuseum",
+            "duration_seconds": 78.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          },
+          {
+            "track_number": 40,
+            "spotify_title": "110 - Das Phantom im Schokoladenmuseum - Teil 40",
+            "spotify_track_id": "2pILLvserOs9Z0wr4fx2o3",
+            "spotify_track_url": "https://open.spotify.com/track/2pILLvserOs9Z0wr4fx2o3",
+            "video_id": "A78_ZYpa88k",
+            "url": "https://music.youtube.com/watch?v=A78_ZYpa88k",
+            "title": "110 - Das Phantom im Schokoladenmuseum (Teil 40)",
+            "artists": [],
+            "album": "Album - 110/Das Phantom im Schokoladenmuseum",
+            "duration_seconds": 81.0,
+            "match_score": 160,
+            "match_evidence": [
+              "exact_normalised_title",
+              "ordered_album_match",
+              "album_title_matches_episode",
+              "duration_within_8_seconds"
+            ]
+          }
+        ],
+        "track_count": 40
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-11-24T11:42:04.517185+00:00",
+        "method": "exact_ordered_album_track_titles_and_duration",
+        "matched_track_count": 40,
+        "playlist_status": "unavailable",
+        "playlist_error": null
+      }
+    }
   },
   {
     "number": 111,
