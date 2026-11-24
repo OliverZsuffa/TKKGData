@@ -639,7 +639,7 @@ class AudioEnrichmentTests(unittest.TestCase):
         self.assertEqual(error.stage, "youtube_music")
         self.assertEqual(error.spotify["url"], SPOTIFY["url"])
         self.assertIn("No independently verified YouTube Music release", error.playlist_error)
-        self.assertIn("Complete playlist discovery also failed", str(error))
+        self.assertIn("Independent YouTube Music release resolution failed", str(error))
 
     def test_unresolved_report_keeps_verified_spotify_links(self):
         with patch(
