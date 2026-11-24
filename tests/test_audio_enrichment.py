@@ -276,16 +276,19 @@ class AudioEnrichmentTests(unittest.TestCase):
         self.assertIn("total_seconds", result["timings"])
         self.assertEqual(ytm.search_calls, [])
 
-    def test_youtube_music_tracklist_keeps_extras_and_variable_story_parts(self):
-        episode = {"number": 218, "title": "Schutzgeld für Dämonen"}
+    def test_youtube_music_tracklist_keeps_218s_35_tracks_and_alternate_title(self):
+        episode = {
+            "number": 218,
+            "title": "Schutzgeld für Dämonen",
+            "alternate_titles": ["Schutzgeld fuer Daemonen"],
+        }
+        alias = "Schutzgeld fuer Daemonen"
         titles = [
-            "218 - Schutzgeld für Dämonen (Inhaltsangabe)",
-            "218 - Schutzgeld für Dämonen (Anfangssong)",
-            "218 - Schutzgeld für Dämonen (Teil 01)",
-            "218 - Schutzgeld für Dämonen (Teil 02)",
-            "218 - Schutzgeld für Dämonen (Teil 03)",
-            "218 - Schutzgeld für Dämonen (Schlußsong)",
-            "218 - Schutzgeld für Dämonen (Outro)",
+            f"218 - {alias} (Inhaltsangabe)",
+            f"218 - {alias} (Anfangssong)",
+            *[f"218 - {alias} (Teil {index:02d})" for index in range(1, 32)],
+            f"218 - {alias} (Schlußsong)",
+            f"218 - {alias} (Outro)",
         ]
         entries = [
             {"id": f"videoid{index:04d}", "title": title, "artists": [{"name": "TKKG"}]}
@@ -294,11 +297,13 @@ class AudioEnrichmentTests(unittest.TestCase):
         from scraper.audio_enrichment import _youtube_music_track_records
 
         tracks = _youtube_music_track_records(
-            episode, entries, "218/Schutzgeld für Dämonen", ["TKKG"],
+            episode, entries, f"218/{alias}", ["TKKG"],
         )
-        self.assertEqual(len(tracks), 7)
-        self.assertEqual([track["track_number"] for track in tracks], list(range(1, 8)))
+        self.assertEqual(len(tracks), 35)
+        self.assertEqual([track["track_number"] for track in tracks], list(range(1, 36)))
         self.assertEqual(tracks[0]["title"], titles[0])
+        self.assertEqual(tracks[2]["title"], titles[2])
+        self.assertEqual(tracks[32]["title"], titles[32])
         self.assertEqual(tracks[-1]["title"], titles[-1])
 
     def test_youtube_music_tracklist_rejects_unknown_tracks_and_duplicate_video_ids(self):
