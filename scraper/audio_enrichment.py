@@ -894,7 +894,19 @@ def find_verified_youtube_music_release(
     rejected: list[str] = []
     for kind, source_id, candidate in list(candidates.values())[:8]:
         try:
-            verified[f"{kind}:{source_id}"] = extract_candidate(candidate, kind, source_id)
+            result = extract_candidate(candidate, kind, source_id)
+            playlist_id = (result.get("playlist") or {}).get("playlist_id")
+            identity = f"playlist:{playlist_id}" if playlist_id else f"album:{source_id}"
+            if identity in verified:
+                previous = verified[identity]
+                previous_ids = [track["video_id"] for track in previous["tracks"]]
+                current_ids = [track["video_id"] for track in result["tracks"]]
+                if previous_ids != current_ids:
+                    raise ValueError("duplicate provider identity returned conflicting track lists")
+                if previous.get("album") is None and result.get("album") is not None:
+                    previous["album"] = result["album"]
+                continue
+            verified[identity] = result
         except Exception as exc:
             rejected.append(f"{source_id}: {exc}")
     if not verified:
