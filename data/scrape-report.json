@@ -164,7 +164,7 @@
   "audio_release_preservation_conflicts": [],
   "audio_release_coverage": {
     "episode_count": 243,
-    "verified_pairings": 213,
+    "verified_pairings": 232,
     "known_unavailable": [
       {
         "number": 19,
@@ -194,84 +194,8 @@
         "title": "Die Gehilfen des Terrors"
       },
       {
-        "number": 218,
-        "title": "Schutzgeld für Dämonen"
-      },
-      {
-        "number": 219,
-        "title": "Terror frei Haus"
-      },
-      {
-        "number": 220,
-        "title": "Attentat am Gämsengrat"
-      },
-      {
-        "number": 221,
-        "title": "Beim Raubzug helfen Ahnungslose"
-      },
-      {
-        "number": 222,
-        "title": "Roter Drache 222"
-      },
-      {
-        "number": 223,
-        "title": "Betrüger Super Sauber"
-      },
-      {
-        "number": 224,
-        "title": "Bilderdiebe haben kein Gesicht"
-      },
-      {
-        "number": 225,
-        "title": "Tanz mit der Giftschlange"
-      },
-      {
         "number": 226,
         "title": "Der Täter unter uns"
-      },
-      {
-        "number": 227,
-        "title": "Zwei für Zwölf"
-      },
-      {
-        "number": 228,
-        "title": "Das Geld, das niemand wollte"
-      },
-      {
-        "number": 229,
-        "title": "Auf den Schwingen des Totenvogels"
-      },
-      {
-        "number": 230,
-        "title": "Die Tesla-Verschwörung"
-      },
-      {
-        "number": 231,
-        "title": "Knackis streicheln mit der Faust"
-      },
-      {
-        "number": 232,
-        "title": "Drohnenaugen in der Nacht"
-      },
-      {
-        "number": 233,
-        "title": "Räuberwald"
-      },
-      {
-        "number": 234,
-        "title": "Im Auftrag des Bösen"
-      },
-      {
-        "number": 235,
-        "title": "Ein Gruselfest für ein Vermögen"
-      },
-      {
-        "number": 236,
-        "title": "Schatten aus der Unterwelt"
-      },
-      {
-        "number": 237,
-        "title": "K.I. Kriminelle Illusion"
       },
       {
         "number": 238,
@@ -1151,5 +1075,11 @@
     "hub_or_fallback_link_count": 34,
     "invalid_links": []
   },
-  "finished_at": "2026-11-24T13:54:10.341738+00:00"
+  "finished_at": "2026-11-24T13:54:10.341738+00:00",
+  "audio_enrichment": {
+    "updated_at": "2026-11-24T14:05:57.246654+00:00",
+    "verified_count": 19,
+    "failure_count": 8,
+    "batch_count": 6
+  }
 }
