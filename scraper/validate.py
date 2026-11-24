@@ -11,6 +11,10 @@ from jsonschema import Draft202012Validator, FormatChecker
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def _normalize_title(value: str) -> str:
+    return re.sub(r"[^a-z0-9äöüß]+", "", value.casefold())
+
+
 def validate_catalogue(episodes: list[dict], schema_path: Path | None = None) -> list[str]:
     schema_file = schema_path or ROOT / "schemas" / "episode.schema.json"
     schema = json.loads(schema_file.read_text(encoding="utf-8"))
@@ -37,9 +41,9 @@ def validate_catalogue(episodes: list[dict], schema_path: Path | None = None) ->
                     "EAN contains no plausible 8–14 digit identifier"
                 )
 
-        canonical_title = _normalise(str(episode.get("title") or ""))
+        canonical_title = _normalize_title(str(episode.get("title") or ""))
         alternate_titles = episode.get("alternate_titles") or []
-        normalized_aliases = [_normalise(str(value)) for value in alternate_titles]
+        normalized_aliases = [_normalize_title(str(value)) for value in alternate_titles]
         if canonical_title in normalized_aliases:
             errors.append(f"episode {episode.get('number')}: alternate_titles contains the canonical title")
         if len(set(normalized_aliases)) != len(normalized_aliases):
