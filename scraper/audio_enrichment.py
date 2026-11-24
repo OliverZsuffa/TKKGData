@@ -706,6 +706,209 @@ def _candidate_artists(candidate: dict[str, Any], playlist: dict[str, Any]) -> l
     return [value for value in values if value.strip()]
 
 
+def _youtube_music_track_records(
+    episode: dict[str, Any], entries: list[dict[str, Any]], release_title: str,
+    artist_evidence: list[str],
+) -> list[dict[str, Any]]:
+    """Validate a complete YouTube Music release without consulting Spotify tracks."""
+    from scraper.spotify_structure import validate_episode_parts
+
+    if not entries or any(not isinstance(item, dict) for item in entries):
+        raise ValueError("YouTube Music release does not contain a complete track list.")
+    number = int(episode["number"])
+    title_variants = _episode_title_variants(episode)
+    normalized_release_title = _normalise(release_title)
+    if not any(value in normalized_release_title for value in title_variants):
+        raise ValueError(f"YouTube Music release title {release_title!r} does not identify the episode.")
+    number_match = bool(re.search(rf"(?<!\d){number}(?!\d)", normalized_release_title))
+    records: list[dict[str, Any]] = []
+    ids: set[str] = set()
+    track_artists: list[str] = list(artist_evidence)
+    for index, entry in enumerate(entries, start=1):
+        track_title = str(entry.get("title") or entry.get("name") or "").strip()
+        if not track_title:
+            raise ValueError(f"YouTube Music track {index} has no title.")
+        video_id = entry.get("id") or entry.get("videoId") or entry.get("video_id")
+        if not isinstance(video_id, str) or not re.fullmatch(r"[A-Za-z0-9_-]{11}", video_id):
+            raw_url = entry.get("url")
+            if isinstance(raw_url, str):
+                video_id = parse_qs(urlparse(raw_url).query).get("v", [None])[0]
+        if not isinstance(video_id, str) or not re.fullmatch(r"[A-Za-z0-9_-]{11}", video_id):
+            raise ValueError(f"YouTube Music track {index} has no valid video ID.")
+        if video_id in ids:
+            raise ValueError(f"YouTube Music track list repeats video ID {video_id}.")
+        ids.add(video_id)
+        artists = _ytm_artist_names(entry)
+        track_artists.extend(artists)
+        album = entry.get("album")
+        album_name = album.get("name") if isinstance(album, dict) else album
+        duration = _duration_seconds(entry.get("duration_seconds") or entry.get("duration"))
+        records.append({
+            "track_number": index,
+            "video_id": video_id,
+            "url": f"https://music.youtube.com/watch?v={video_id}",
+            "title": track_title,
+            "artists": artists,
+            "album": str(album_name or release_title),
+            **({"duration_seconds": round(duration, 2)} if duration is not None else {}),
+        })
+
+    if not number_match:
+        number_match = any(
+            re.search(rf"(?<!\d){number}(?!\d)", _normalise(track["title"]))
+            for track in records
+        )
+    if not number_match:
+        raise ValueError(f"Neither the YouTube Music release nor its tracks identify episode {number}.")
+    if not any(re.search(r"\btkkg\b", _normalise(name)) for name in track_artists):
+        raise ValueError("YouTube Music release has no corroborating TKKG artist evidence.")
+
+    classified_input = [
+        {"name": track["title"], "track_number": track["track_number"]}
+        for track in records
+    ]
+    validation = validate_episode_parts(classified_input)
+    if not validation.get("valid"):
+        raise ValueError("; ".join(validation.get("errors") or ["No numbered episode parts found"]))
+    if validation.get("unknown"):
+        unknown = [item.get("name") for item in validation["unknown"]]
+        raise ValueError(f"YouTube Music release contains unclassified tracks: {unknown[:8]}")
+    return records
+
+
+def find_verified_youtube_music_release(
+    episode: dict[str, Any], ytm: Any, playlist_id_override: str | None = None,
+) -> dict[str, Any]:
+    """Find and verify a complete YouTube Music release independently of Spotify."""
+    number = int(episode["number"])
+    title_variants = _episode_title_variants(episode)
+
+    def extract_candidate(candidate: dict[str, Any], kind: str, source_id: str) -> dict[str, Any]:
+        album_record = None
+        playlist_id = None
+        if kind == "album":
+            album = ytm.get_album(source_id)
+            if not isinstance(album, dict):
+                raise ValueError("YouTube Music returned a malformed album response.")
+            album_title = str(album.get("title") or candidate.get("title") or "")
+            playlist_id = album.get("audioPlaylistId")
+            album_url = f"https://music.youtube.com/browse/{source_id}"
+            artist_names = _candidate_artists(candidate, album)
+            source_url = (
+                f"{YTM_BASE}{urlencode({'list': playlist_id})}"
+                if isinstance(playlist_id, str) and playlist_id.startswith(("OLAK5uy_", "PL"))
+                else album_url
+            )
+            info = _extract_ytdlp_playlist(source_url)
+            album_record = {
+                "browse_id": source_id,
+                "url": album_url,
+                "title": album_title,
+                "track_count": 0,
+            }
+        else:
+            playlist_id = source_id
+            album_title = str(candidate.get("title") or "")
+            artist_names = _candidate_artists(candidate, {})
+            source_url = f"{YTM_BASE}{urlencode({'list': playlist_id})}"
+            info = _extract_ytdlp_playlist(source_url)
+
+        release_title = str(info.get("title") or album_title or candidate.get("title") or "")
+        entries = info.get("entries")
+        if not isinstance(entries, list) or not entries or any(item is None for item in entries):
+            raise ValueError("yt-dlp did not return a complete track list.")
+        declared_count = info.get("playlist_count")
+        if isinstance(declared_count, int) and declared_count != len(entries):
+            raise ValueError(
+                f"YouTube Music reports {declared_count} tracks but returned {len(entries)} entries."
+            )
+        if not any(value in _normalise(release_title) for value in title_variants):
+            raise ValueError(f"Release title {release_title!r} does not identify episode {number}.")
+        tracks = _youtube_music_track_records(episode, entries, release_title, artist_names)
+        if album_record is not None:
+            album_record["track_count"] = len(tracks)
+        playlist_record = None
+        if isinstance(playlist_id, str) and playlist_id.startswith(("OLAK5uy_", "PL")):
+            playlist_record = {
+                "playlist_id": playlist_id,
+                "url": f"{YTM_BASE}{urlencode({'list': playlist_id})}",
+                "title": release_title,
+                "track_count": len(tracks),
+            }
+        return {
+            "album": album_record,
+            "playlist": playlist_record,
+            "tracks": tracks,
+            "track_count": len(tracks),
+            "source_type": kind,
+        }
+
+    if playlist_id_override:
+        if not playlist_id_override.startswith(("OLAK5uy_", "PL")):
+            raise ValueError("The supplied YouTube Music playlist ID has an unsupported format.")
+        return extract_candidate(
+            {"title": str(episode.get("title") or "")},
+            "playlist",
+            playlist_id_override,
+        )
+
+    queries = tuple(dict.fromkeys(
+        query.strip()
+        for variant in title_variants
+        for query in (
+            f"TKKG {number:03d} {variant}",
+            f"TKKG Folge {number} {variant}",
+            f"{number} {variant}",
+            f"{variant} TKKG",
+        )
+        if query.strip()
+    ))
+    candidates: dict[str, tuple[str, str, dict[str, Any]]] = {}
+    search_summaries: list[dict[str, Any]] = []
+    for query in queries:
+        for filter_name in ("albums", "playlists"):
+            try:
+                time.sleep(0.35)
+                results = ytm.search(query, filter=filter_name, limit=10)
+            except Exception as exc:
+                raise RuntimeError(f"YouTube Music search failed for {query!r}: {exc}") from exc
+            for result in results:
+                if not isinstance(result, dict):
+                    continue
+                search_summaries.append({
+                    key: result.get(key)
+                    for key in ("resultType", "title", "browseId", "playlistId", "audioPlaylistId", "artist", "artists")
+                    if result.get(key) is not None
+                } | {"filter": filter_name, "query": query})
+                candidate_title = _normalise(str(result.get("title") or ""))
+                if not any(value in candidate_title for value in title_variants):
+                    continue
+                source = _candidate_source(result, filter_name)
+                if source is None:
+                    continue
+                kind, source_id = source
+                candidates.setdefault(f"{kind}:{source_id}", (kind, source_id, result))
+
+    verified: dict[str, dict[str, Any]] = {}
+    rejected: list[str] = []
+    for kind, source_id, candidate in list(candidates.values())[:8]:
+        try:
+            verified[f"{kind}:{source_id}"] = extract_candidate(candidate, kind, source_id)
+        except Exception as exc:
+            rejected.append(f"{source_id}: {exc}")
+    if not verified:
+        detail = "; ".join(rejected[:12]) or "no matching album or playlist candidates found"
+        raise ValueError(
+            f"No independently verified YouTube Music release for episode {number}: {detail}. "
+            f"Search results: {json.dumps(search_summaries[:30], ensure_ascii=False)}"
+        )
+    if len(verified) > 1:
+        raise ValueError(
+            f"Ambiguous YouTube Music release for episode {number}: {', '.join(sorted(verified))}"
+        )
+    return next(iter(verified.values()))
+
+
 def _track_titles_match(spotify_tracks: list[dict[str, Any]], ytm_tracks: list[dict[str, Any]]) -> bool:
     if not spotify_tracks or len(spotify_tracks) != len(ytm_tracks):
         return False
