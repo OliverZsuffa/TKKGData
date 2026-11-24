@@ -63,7 +63,7 @@ class AudioReleaseMigrationTests(unittest.TestCase):
             },
         }
 
-    def test_migrates_both_provider_lists_and_keeps_legacy_evidence(self):
+    def test_migrates_independent_provider_lists_without_legacy_pairing(self):
         migrated, report = migrate_catalogue(
             [self.legacy_episode()], migrated_at="2026-11-24T12:00:00+00:00"
         )
@@ -75,10 +75,8 @@ class AudioReleaseMigrationTests(unittest.TestCase):
         self.assertEqual(release["spotify"]["tracks"][1]["title"], "218 - Schutzgeld für Dämonen - Teil 02")
         self.assertEqual(release["youtube_music"]["tracks"][0]["video_id"], "abcdefghijk")
         self.assertEqual(release["youtube_music"]["tracks"][0]["duration_seconds"], 120)
-        self.assertEqual(
-            release["youtube_music"]["tracks"][0]["legacy_pairing"]["spotify_track_id"],
-            "2" * 22,
-        )
+        self.assertNotIn("legacy_pairing", release["youtube_music"]["tracks"][0])
+        self.assertNotIn("legacy_pairing", release["youtube_music"]["tracks"][1])
         self.assertEqual(release["verification"]["migration"]["source_verification"]["method"], "legacy_method")
         self.assertEqual(report["migrated_episode_count"], 1)
         self.assertEqual(report["spotify_track_count"], 2)
