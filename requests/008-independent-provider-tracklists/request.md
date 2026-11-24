@@ -18,12 +18,14 @@ Normalising track titles alone cannot solve this because the number and boundari
 
 This request is limited to TKKGData.
 
-- Introduce an additive, independently versioned audio metadata structure for Spotify and YouTube Music.
+- Replace the old paired-track `audio_release` structure with independently ordered Spotify and YouTube Music release data.
 - Resolve and retain each provider's own ordered album track list, original titles, track numbers, durations, artist and album evidence, and stable provider URLs or IDs.
 - Verify each provider release independently against the requested episode identity and its own internal track structure.
+- Store known title variants and spelling differences in a top-level `alternate_titles` array on the episode, keeping the canonical official `title` unchanged.
+- Move reviewed Spotify album IDs, release layout profiles, and expected story-part counts from `data/spotify_structure_overrides.json` into a per-episode `audio_discovery.spotify` object.
 - Allow provider track counts, titles, durations, and segmentation to differ.
 - Discover the official YouTube Music album as a complete album, preferring its album page and extracting playable video IDs for every entry when required.
-- Keep the existing `audio_release` object and its validation contract unchanged for compatibility.
+- Remove the separate Spotify override file and read all per-episode release guidance directly from the episode dataset.
 - Preserve provenance and diagnostics so unresolved or ambiguous candidates remain reviewable.
 - Update schemas, catalogue validation, discovery reports, workflows, documentation, and tests within TKKGData.
 
@@ -48,6 +50,8 @@ This request is limited to TKKGData.
 8. Discovery should fill genuine gaps after migration, not repeat successful scraping solely to populate the new structure.
 9. New candidates must not silently overwrite existing verified provider data.
 10. The complete migrated catalogue must pass schema and dataset validation before publication.
+11. Reviewed Spotify discovery hints are stored on their episode records, not in a separate override file.
+12. Known alternate titles are stored on the relevant episode and used consistently by Spotify and YouTube Music discovery.
 
 ## Acceptance criteria
 
@@ -56,7 +60,9 @@ This request is limited to TKKGData.
 - YouTube Music story part numbering is checked independently, including the recognised intro, Inhaltsangabe, closing song, and outro entries where present.
 - The validator no longer requires cross-provider track count equality for v2 records.
 - The migration preserves all existing provider track data, and the new validator enforces independent provider lists.
-- Existing legacy records remain unchanged and continue to pass validation.
+- Existing provider tracks are migrated into the new independent structure, with no source track silently dropped.
+- The override file is removed after all its values are migrated into episode records.
+- Alternate title variants from the former override file are retained in the corresponding episode records.
 - A failed migration or discovery cannot erase or modify existing verified data.
 - Offline tests cover legacy compatibility, unequal counts, incomplete album extraction, duplicate IDs, malformed ordering, ambiguous releases, and safe preservation.
 - A dry-run discovery report exposes both provider lists and all verification evidence before any write.
