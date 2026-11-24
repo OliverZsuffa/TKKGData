@@ -761,7 +761,7 @@ def _youtube_music_track_records(
         )
     if not number_match:
         raise ValueError(f"Neither the YouTube Music release nor its tracks identify episode {number}.")
-    if not any(re.search(r"\btkkg\b", _normalise(name)) for name in track_artists):
+    if not any(re.search(r"\btkkg\b", unicodedata.normalize("NFKC", name).casefold()) for name in track_artists):
         raise ValueError("YouTube Music release has no corroborating TKKG artist evidence.")
 
     classified_input = [
