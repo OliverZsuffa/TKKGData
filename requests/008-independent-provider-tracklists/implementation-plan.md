@@ -1,23 +1,23 @@
 # Implementation plan
 
-## 1. Freeze and document the existing contract
+## 1. Preserve the current catalogue and plan an in-place schema migration
 
-- Treat the current `audio_release` field as the legacy v1 contract.
-- Do not weaken or reinterpret its schema, validation, or downstream meaning.
-- Add regression tests that load representative existing verified records and assert that their parsed values and serialized JSON remain unchanged.
-- Capture a baseline of the current catalogue before implementation. Record the current `audio_release` objects, their episode numbers, and a content hash so tests can detect accidental modifications.
-- Keep existing preservation logic in place. A new discovery result must not replace a legacy verified mapping.
+- The existing `audio_release` field may be changed. It is not necessary to retain the old paired-track structure as the permanent contract.
+- Before changing anything, create a complete, machine-verifiable snapshot of the current catalogue and record hashes for every existing `audio_release` object.
+- Inventory every episode with Spotify and/or YouTube Music data, including incomplete and partially verified records.
+- The new schema will represent Spotify and YouTube Music as independent provider release objects inside `audio_release`.
+- Do not create a parallel `audio_release_v2` field unless implementation reveals a concrete compatibility reason that cannot be handled by a controlled migration.
+- Existing consumers may need a compatibility period, but the canonical data should not retain the flawed one-to-one pairing as its source of truth.
 
-## 2. Add a separate v2 field
+## 2. Define the new independent provider structure
 
-- Introduce an optional sibling field, provisionally named `audio_release_v2`, in the episode schema.
-- Do not place v2 records inside the legacy `audio_release` object.
-- Version the new object explicitly and keep strict `additionalProperties: false` validation.
+- Replace the old paired-track layout with a versioned `audio_release` object containing independent `spotify` and `youtube_music` album metadata and ordered track lists.
+- Keep strict `additionalProperties: false` validation.
 - Proposed shape:
 
 ```json
 {
-  "audio_release_v2": {
+  "audio_release": {
     "schema_version": 2,
     "spotify": {
       "album": {
@@ -139,22 +139,28 @@ This is a design proposal, not a final frozen schema. Confirm actual provider me
 - Keep dry-run as the default.
 - Do not update the canonical dataset unless the user explicitly enables write mode.
 
-## 6. Preserve existing data during writes
+## 6. Migrate existing scraped data without losing it
 
-- Load the current catalogue and retain all legacy fields.
-- Write a new `audio_release_v2` object only after both provider lists pass all checks.
-- If an episode already has a verified v2 object, compare the new result with it. Do not silently replace a different verified mapping. Report a conflict for review.
-- If an episode has a verified legacy `audio_release` object, preserve it exactly. The v2 object may coexist with it, but discovery must not convert or delete the legacy object.
-- Write the catalogue through a temporary file, validate the complete candidate catalogue, then replace the target file only after validation succeeds.
-- Ensure CSV generation and dataset metadata updates happen only after the validated JSON candidate is ready.
+- Build a deterministic migration that reads every existing `audio_release` record and maps its Spotify and YouTube Music fields into the corresponding independent provider lists.
+- Carry over every already scraped YouTube Music track, including its original title, video ID, URL, duration, artist metadata, album association, track order, and any other available source fields. Do not discard a track merely because its former Spotify pair is no longer meaningful.
+- Carry over all existing Spotify tracks in the same way. Do not re-scrape either provider just to perform the structural migration.
+- Preserve provider order exactly as represented by the existing data. Where the old pairing obscures original album order or numbering, retain the available sequence and flag uncertainty for review rather than guessing.
+- Preserve existing album IDs, URLs, playlist IDs, source metadata, verification timestamps, and provenance wherever present.
+- Do not claim that migrated data has been freshly verified. Retain its existing verification status and record that it was structurally migrated from the previous schema.
+- If existing records contain only one provider, migrate that provider independently. Missing provider data stays missing and can be discovered later.
+- Generate a migration report listing migrated episodes, track counts before and after for each provider, fields that could not be mapped, and any records requiring manual review.
+- Compare pre-migration and post-migration inventories. Every source track must be accounted for exactly once in the corresponding provider list, or explicitly listed in the migration report as unresolved. No silent drops.
+- Keep a recoverable pre-migration snapshot. Write the migrated catalogue to a temporary file, validate the complete candidate catalogue, run preservation assertions, and only then replace the canonical dataset.
+- If any migration check fails, abort the write and leave the original catalogue untouched.
+- New discovery results may enrich missing metadata, but must not overwrite existing verified provider data without an explicit conflict resolution.
 - Preserve the existing issue-ledger behaviour and do not let a successful Spotify-only lookup clear an issue when the YouTube Music side remains unresolved.
 
 ## 7. Update validation and documentation
 
-- Add strict JSON Schema definitions for v2 provider album metadata, provider track records, and independent verification counts.
-- Update `scraper/validate.py` so legacy and v2 objects are validated separately.
-- For v2, compare each provider's declared count to its own list length and verified count. Do not compare Spotify count to YouTube Music count.
-- Keep all existing v1 checks unchanged.
+- Add strict JSON Schema definitions for independent provider album metadata, provider track records, and verification counts.
+- Update `scraper/validate.py` to validate the migrated `audio_release` structure.
+- Compare each provider's declared count to its own list length and verified count. Do not compare Spotify count to YouTube Music count.
+- Keep a temporary legacy input reader or migration utility only as long as needed to migrate existing records and support rollback.
 - Update the audio source catalogue documentation to explain both contracts and the compatibility period.
 - Update the README's published coverage statement only after actual data publication changes the coverage.
 - Add a documented future migration policy. Do not bulk migrate existing records as part of this request.
@@ -171,23 +177,25 @@ Use observed source records, not invented IDs or guessed album metadata.
 - Episode 150: existing 40-track legacy mapping, used to prove v1 compatibility.
 - Episode 226: retain as a separate Spotify resolution failure. Do not misclassify it as a YouTube Music segmentation issue.
 
-The fixtures should include complete real provider metadata and source provenance captured from discovery. If a full observed list is unavailable, keep that episode as a live dry-run case rather than inventing fixture entries.
+The fixtures should include complete real provider metadata and source provenance captured from discovery. In addition, use the actual current catalogue as a migration fixture. Include records with both providers, only one provider, legacy track pairs, extras, and incomplete metadata. If a full observed list is unavailable, keep that episode as a live dry-run case rather than inventing fixture entries.
 
 ## 9. Tests and release gates
 
-- Schema tests for valid v1 and v2 objects.
-- Regression tests proving all existing v1 fixtures still pass unchanged.
+- Schema tests for the new independent provider structure and for legacy records accepted by the migration reader.
+- Migration tests proving every existing Spotify and YouTube Music track is carried over exactly once with its original metadata and order wherever known.
+- Regression tests proving the pre-migration catalogue snapshot can be restored exactly.
 - Unequal provider track count tests.
 - Provider-specific track ordering and numbering tests.
 - YouTube Music extras and variable part count tests.
 - Duplicate IDs, missing IDs, null entries, incomplete extraction, gaps, duplicate part numbers, and unrelated episode track tests.
 - Ambiguous album candidate and wrong artist tests.
-- Preservation tests proving failed or interrupted v2 discovery cannot modify v1 or existing v2 data.
+- Preservation tests proving failed or interrupted migration cannot modify the original catalogue.
+- Tests proving a failed provider discovery cannot erase migrated data or existing verified provider lists.
 - Conflict tests proving a new result cannot silently replace an existing verified mapping.
 - Atomic write tests proving invalid candidate data never replaces the published catalogue.
 - Run the full offline test suite, schema validation, dataset validation, Python compilation, and workflow syntax checks.
 - Run dry-run discovery for the representative episodes. Inspect the complete provider lists before any write.
-- Only after the dry-run results are approved should v2 write mode be enabled for selected episodes.
+- Only after the migration report and provider dry-run results are reviewed should the migrated catalogue be published. New discovery should only fill genuine gaps or resolve flagged uncertainty.
 
 ## 10. Out of scope follow-up
 
