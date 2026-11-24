@@ -2,7 +2,7 @@ import unittest
 from unittest.mock import patch
 from pathlib import Path
 
-from scraper.audio_enrichment import resolve_spotify_album, SPOTIFY_ALBUM_BASE
+from scraper.audio_enrichment import resolve_spotify_album, SPOTIFY_ALBUM_BASE, _spotify_candidate_score
 
 
 def numbered_tracks(count, album_id, disc=1):
@@ -14,6 +14,21 @@ def numbered_tracks(count, album_id, disc=1):
 
 
 class SpotifyStructureResolverTests(unittest.TestCase):
+    def test_alternate_title_is_accepted_as_candidate_evidence(self):
+        episode = {
+            "number": 110,
+            "title": "Das Phantom im Schokoladen-Museum",
+            "alternate_titles": ["Das Phantom im Schokoladenmuseum"],
+        }
+        record = {
+            "name": "110 - Das Phantom im Schokoladenmuseum - Teil 01",
+            "artists": ["TKKG"],
+            "album_name": "110/Das Phantom im Schokoladenmuseum",
+            "search_query": "TKKG 110 Das Phantom im Schokoladenmuseum",
+            "track_number": 1,
+        }
+        self.assertGreaterEqual(_spotify_candidate_score(episode, record), 100)
+
     @patch("scraper.audio_enrichment._save_spotify_metadata")
     def test_two_disc_override_returns_both_disc_sequences(self, fetch):
         tracks = numbered_tracks(40, "x", 1) + numbered_tracks(40, "x", 2)
