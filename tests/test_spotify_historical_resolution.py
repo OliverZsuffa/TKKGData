@@ -302,6 +302,7 @@ class SpotifyHistoricalResolutionTests(unittest.TestCase):
         }
         matched = [{
             "track_number": 1,
+            "video_id": "videoid0001",
             "title": "20 - Das Geheimnis der alten Villa",
             "url": "https://music.youtube.com/watch?v=videoid0001",
             "spotify_track_url": "https://open.spotify.com/track/" + track_id,
