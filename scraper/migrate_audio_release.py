@@ -4,6 +4,7 @@ import argparse
 import json
 import shutil
 import tempfile
+import tempfile
 from copy import deepcopy
 from datetime import datetime, timezone
 from pathlib import Path
@@ -219,20 +220,54 @@ def main() -> int:
     parser.add_argument("--catalogue", type=Path, default=DEFAULT_CATALOGUE)
     parser.add_argument("--overrides", type=Path, default=DEFAULT_OVERRIDES)
     parser.add_argument("--write", action="store_true", help="write the migrated catalogue and report")
-    parser.add_argument("--report", type=Path, default=ROOT / "audio-migration-report.json")
+    parser.add_argument("--report", type=Path, default=ROOT / "data" / "audio-migration-report.json")
     args = parser.parse_args()
     episodes = json.loads(args.catalogue.read_text(encoding="utf-8"))
     overrides = json.loads(args.overrides.read_text(encoding="utf-8")) if args.overrides.exists() else {}
     migrated, report = migrate_catalogue(episodes, overrides)
     if args.write:
-        backup = args.catalogue.with_suffix(args.catalogue.suffix + ".pre-independent-audio.bak")
-        if not backup.exists():
-            shutil.copy2(args.catalogue, backup)
-        temporary = args.catalogue.with_suffix(args.catalogue.suffix + ".tmp")
-        temporary.write_text(json.dumps(migrated, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-        json.loads(temporary.read_text(encoding="utf-8"))
-        temporary.replace(args.catalogue)
-        args.report.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        from scraper.export import write_catalogue
+        from scraper.validate import validate_catalogue
+
+        errors = validate_catalogue(migrated)
+        if errors:
+            raise SystemExit("Candidate migration failed catalogue validation:\\n" + "\\n".join(errors))
+
+        related_paths = [
+            args.catalogue,
+            args.catalogue.with_name("episodes.csv"),
+            args.catalogue.with_name("dataset-metadata.json"),
+            args.overrides,
+            args.report,
+        ]
+        with tempfile.TemporaryDirectory(prefix="tkkg_audio_migration_") as backup_dir:
+            backup_root = Path(backup_dir)
+            backups: dict[Path, Path] = {}
+            for target in related_paths:
+                if target.exists():
+                    backup = backup_root / target.name
+                    shutil.copy2(target, backup)
+                    backups[target] = backup
+            try:
+                write_catalogue(migrated, args.catalogue.parent)
+                args.report.parent.mkdir(parents=True, exist_ok=True)
+                args.report.write_text(
+                    json.dumps(report, ensure_ascii=False, indent=2) + "\\n",
+                    encoding="utf-8",
+                )
+                if args.overrides.exists():
+                    args.overrides.unlink()
+                final_episodes = json.loads(args.catalogue.read_text(encoding="utf-8"))
+                final_errors = validate_catalogue(final_episodes)
+                if final_errors:
+                    raise RuntimeError("Written migration failed validation: " + "; ".join(final_errors[:10]))
+            except Exception:
+                for target in related_paths:
+                    if target.exists():
+                        target.unlink()
+                for target, backup in backups.items():
+                    shutil.copy2(backup, target)
+                raise
     else:
         print(json.dumps(report, ensure_ascii=False, indent=2))
     return 0
