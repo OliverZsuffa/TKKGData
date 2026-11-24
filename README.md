@@ -16,9 +16,9 @@ Dataset metadata and schema version are published separately at:
 
     https://raw.githubusercontent.com/OliverZsuffa/TKKGData/main/data/dataset-metadata.json
 
-The episode JSON remains an array so consumers can adopt it without changing their application behaviour. New optional fields, including verified audio release mappings, are additive. Consumers must tolerate missing enrichment.
+The episode JSON remains an array. Optional audio metadata uses schema version 2, with separate ordered Spotify and YouTube Music track lists. Their counts and segmentation are allowed to differ. Episode title aliases and reviewed Spotify discovery hints are stored directly on their episode records.
 
-The catalogue contains 243 episode records. Audio enrichment is an independent, optional layer. Current published coverage is three verified audio release mappings for episodes 148, 149 and 150, each with 40 Spotify and YouTube Music track pairs. The weekly workflow attempts up to five of the highest-numbered episodes without verified audio mappings.
+The catalogue contains 243 episode records. This migration carries forward 213 existing verified audio releases, comprising 7,205 Spotify tracks and 7,205 YouTube Music tracks. No provider data was re-scraped to migrate the structure. The current automatic YouTube Music discovery still relies on Spotify matching, so unequal-count releases are representable but require the remaining independent discovery implementation. TKKGDownloader compatibility is a separate follow-up and is not yet complete.
 
 ## Ownership
 
