@@ -66,6 +66,7 @@ class SpotifyStructureTests(unittest.TestCase):
             [track["name"] for track in tracks],
         )
         self.assertEqual(len(result["parts"]), 2)
+        self.assertEqual([track["track_number"] for track in result["tracks"]], [1, 2, 3, 4, 5, 6])
         self.assertEqual(
             [track["classification"] for track in result["tracks"]],
             ["summary", "intro", "episode_part", "episode_part", "outro", "closing_song"],
