@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "description": "Episodes with a reviewed, known absence of an official digital music rerelease. These are not discovery failures and should not be retried automatically.",
+  "episodes": {
+    "19": {
+      "status": "unavailable",
+      "reason": "EUROPA did not rerelease this episode after it was flagged by the FSK. No official Spotify or YouTube Music release is expected.",
+      "basis": "User-provided catalogue knowledge"
+    },
+    "20": {
+      "status": "unavailable",
+      "reason": "EUROPA did not rerelease this episode after it was flagged by the FSK. No official Spotify or YouTube Music release is expected.",
+      "basis": "User-provided catalogue knowledge"
+    },
+    "37": {
+      "status": "unavailable",
+      "reason": "EUROPA did not rerelease this episode after it was flagged by the FSK. No official Spotify or YouTube Music release is expected.",
+      "basis": "User-provided catalogue knowledge"
+    }
+  }
+}
