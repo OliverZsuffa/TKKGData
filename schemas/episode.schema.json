@@ -305,7 +305,7 @@
                 "url": {
                   "type": "string",
                   "format": "uri",
-                  "pattern": "^https://open\\\\.spotify\\\\.com/album/[A-Za-z0-9]{22}$"
+                  "pattern": "^https://open\\.spotify\\.com/album/[A-Za-z0-9]{22}$"
                 },
                 "title": {
                   "type": "string",
@@ -349,7 +349,7 @@
                   "url": {
                     "type": "string",
                     "format": "uri",
-                    "pattern": "^https://open\\\\.spotify\\\\.com/track/[A-Za-z0-9]{22}$"
+                    "pattern": "^https://open\\.spotify\\.com/track/[A-Za-z0-9]{22}$"
                   },
                   "title": {
                     "type": "string",
@@ -410,7 +410,7 @@
                 "url": {
                   "type": "string",
                   "format": "uri",
-                  "pattern": "^https://music\\\\.youtube\\\\.com/browse/"
+                  "pattern": "^https://music\\.youtube\\.com/browse/"
                 },
                 "title": {
                   "type": "string",
@@ -448,7 +448,7 @@
                 "url": {
                   "type": "string",
                   "format": "uri",
-                  "pattern": "^https://music\\\\.youtube\\\\.com/playlist\\\\?list="
+                  "pattern": "^https://music\\.youtube\\.com/playlist\\?list="
                 },
                 "title": {
                   "type": "string",
@@ -485,7 +485,7 @@
                   "url": {
                     "type": "string",
                     "format": "uri",
-                    "pattern": "^https://music\\\\.youtube\\\\.com/watch\\\\?v=[A-Za-z0-9_-]{11}$"
+                    "pattern": "^https://music\\.youtube\\.com/watch\\?v=[A-Za-z0-9_-]{11}$"
                   },
                   "title": {
                     "type": "string",
@@ -535,7 +535,7 @@
                       "spotify_track_url": {
                         "type": "string",
                         "format": "uri",
-                        "pattern": "^https://open\\\\.spotify\\\\.com/track/[A-Za-z0-9]{22}$"
+                        "pattern": "^https://open\\.spotify\\.com/track/[A-Za-z0-9]{22}$"
                       },
                       "spotify_title": {
                         "type": "string",
