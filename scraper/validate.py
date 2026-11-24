@@ -37,11 +37,27 @@ def validate_catalogue(episodes: list[dict], schema_path: Path | None = None) ->
                     "EAN contains no plausible 8–14 digit identifier"
                 )
 
+        canonical_title = _normalise(str(episode.get("title") or ""))
+        alternate_titles = episode.get("alternate_titles") or []
+        normalized_aliases = [_normalise(str(value)) for value in alternate_titles]
+        if canonical_title in normalized_aliases:
+            errors.append(f"episode {episode.get('number')}: alternate_titles contains the canonical title")
+        if len(set(normalized_aliases)) != len(normalized_aliases):
+            errors.append(f"episode {episode.get('number')}: alternate_titles contains duplicate normalized values")
+
         audio_release = episode.get("audio_release")
         if isinstance(audio_release, dict):
             if audio_release.get("schema_version") != 2:
                 errors.append(f"episode {episode.get('number')}: unsupported audio_release schema version")
             verification = audio_release.get("verification") or {}
+            discovery_spotify = (episode.get("audio_discovery") or {}).get("spotify") or {}
+            release_spotify = audio_release.get("spotify")
+            if (
+                discovery_spotify.get("preferred_album_id")
+                and isinstance(release_spotify, dict)
+                and discovery_spotify["preferred_album_id"] != (release_spotify.get("album") or {}).get("album_id")
+            ):
+                errors.append(f"episode {episode.get('number')}: preferred Spotify album ID conflicts with the stored release")
             for provider_name in ("spotify", "youtube_music"):
                 provider = audio_release.get(provider_name)
                 provider_verification = verification.get(provider_name) or {}
@@ -64,6 +80,8 @@ def validate_catalogue(episodes: list[dict], schema_path: Path | None = None) ->
                     album_path_id = urlparse(str(album.get("url", ""))).path.rstrip("/").split("/")[-1]
                     if album_id != album_path_id:
                         errors.append(f"episode {episode.get('number')}: Spotify album ID does not match its URL")
+                    if album.get("track_count") != len(tracks):
+                        errors.append(f"episode {episode.get('number')}: Spotify album count does not match its own track list")
                     positions = set()
                     previous = None
                     for track_index, track in enumerate(tracks):
