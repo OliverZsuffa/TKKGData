@@ -718,6 +718,14 @@ def find_verified_youtube_music_playlist(
 ) -> dict[str, Any]:
     number = int(episode["number"])
     title = str(episode["title"])
+    try:
+        overrides = json.loads((ROOT / "data" / "spotify_structure_overrides.json").read_text(encoding="utf-8"))
+        alternate_titles = overrides.get(str(number), {}).get("alternate_titles", [])
+        if alternate_titles:
+            episode = {**episode, "alternate_titles": alternate_titles}
+    except (OSError, json.JSONDecodeError):
+        pass
+    title_variants = _episode_title_variants(episode)
     if playlist_id_override:
         if not playlist_id_override.startswith(("OLAK5uy_", "PL")):
             raise ValueError("The supplied YouTube Music playlist ID has an unsupported format.")
@@ -729,7 +737,7 @@ def find_verified_youtube_music_playlist(
                 f"yt-dlp returned playlist ID {returned_id!r}, expected {playlist_id_override!r}."
             )
         playlist_title = str(info.get("title") or "")
-        if _normalise(title) not in _normalise(playlist_title):
+        if not any(value in _normalise(playlist_title) for value in title_variants):
             raise ValueError(
                 f"YouTube Music playlist title {playlist_title!r} does not identify episode {number}."
             )
@@ -754,9 +762,15 @@ def find_verified_youtube_music_playlist(
         }
 
     query_variants = [
-        f"TKKG {number:03d} {title}",
-        f"TKKG Folge {number} {title}",
-        f"{number} {title}",
+        query
+        for variant in title_variants
+        for query in (
+            f"TKKG {number:03d} {variant}",
+            f"TKKG Folge {number} {variant}",
+            f"{number} {variant}",
+            f"{variant} TKKG",
+        )
+    ] + [
         f"TKKG {spotify['title']}",
         str(spotify["title"]),
     ]
@@ -779,7 +793,7 @@ def find_verified_youtube_music_playlist(
                     continue
                 search_summaries.append({key: result.get(key) for key in ("resultType", "title", "browseId", "playlistId", "audioPlaylistId", "artist", "artists") if result.get(key) is not None} | {"filter": filter_name, "query": query})
                 candidate_title = str(result.get("title") or "")
-                if _normalise(title) not in _normalise(candidate_title):
+                if not any(value in _normalise(candidate_title) for value in title_variants):
                     continue
                 source = _candidate_source(result, filter_name)
                 if source is None:
@@ -811,7 +825,7 @@ def find_verified_youtube_music_playlist(
                     ):
                         rejected.append(f"{source_id}: no TKKG artist evidence")
                         continue
-                    if _normalise(title) not in _normalise(album_title):
+                    if not any(value in _normalise(album_title) for value in title_variants):
                         rejected.append(f"{source_id}: album title does not identify episode {number}")
                         continue
                     if not isinstance(album_tracks, list) or len(album_tracks) != spotify["track_count"]:
@@ -883,7 +897,7 @@ def find_verified_youtube_music_playlist(
             rejected.append(f"{source_id}: playlist or album retrieval failed: {exc}")
             continue
         playlist_title = str(info.get("title") or candidate.get("title") or "")
-        if _normalise(title) not in _normalise(playlist_title):
+        if not any(value in _normalise(playlist_title) for value in title_variants):
             rejected.append(f"{playlist_id}: title does not identify episode {number}")
             continue
         entries = info.get("entries")
