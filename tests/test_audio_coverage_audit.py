@@ -20,6 +20,16 @@ class AudioCoverageAuditTests(unittest.TestCase):
         self.assertEqual([x["number"] for x in result["ready_for_discovery"]], [1])
         self.assertEqual([x["number"] for x in result["needs_investigation"]], [2])
 
+    def test_known_fsk_unavailable_episodes_are_separated_from_discovery(self):
+        episodes = [{"number": number, "title": f"Episode {number}"} for number in (19, 20, 37)]
+        with tempfile.TemporaryDirectory() as d:
+            ledger = Path(d) / "ledger.json"
+            ledger.write_text(json.dumps({"version": 1, "issues": {}}))
+            result = audit(episodes, ledger)
+        self.assertEqual(result["ready_for_discovery"], [])
+        self.assertEqual(result["needs_investigation"], [])
+        self.assertEqual([item["number"] for item in result["known_unavailable"]], [19, 20, 37])
+
     def test_missing_ledger_warns_and_defaults_unrecorded_to_ready(self):
         result = audit([{"number": 1}], Path("missing-ledger-file.json"))
         self.assertIsNotNone(result["warning"])
