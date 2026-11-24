@@ -12,7 +12,7 @@
 - It remains a JSON array with the original TKKGTracker episode record shape and field names.
 - The stable dataset metadata sidecar is data/dataset-metadata.json.
 - The current schema version is 1.0.0.
-- New fields such as audio_release are optional and additive.
+- New episode fields such as alternate_titles and audio_discovery are optional. The optional audio_release object has its own schema_version and currently uses version 2, with independent Spotify and YouTube Music track lists.
 - Git commit SHAs provide immutable snapshots. The main branch URLs provide the latest snapshot.
 - Consumers must validate the metadata version and episode count before use.
 
@@ -25,7 +25,7 @@ The initial migration transferred 243 episode records byte-for-byte from TKKGTra
 - Distinguish candidate discoveries from verified published mappings.
 - Preserve unresolved conflicts for review rather than silently selecting one candidate.
 - Keep personal progress and preferences outside the shared dataset.
-- The current audio model supports one optional verified audio_release object per episode. Multiple editions and release variants require a future additive model and compatibility projection.
+- audio_release schema version 2 stores provider-specific album metadata and ordered track lists. Provider track counts and segment boundaries are independent. Historical pair evidence is retained only as migration provenance.
 
 ## Publication principles
 The latest episode array and metadata sidecar are published on main. GitHub Actions validates the catalogue before committing generated changes. A failed scrape or validation must not replace the last known valid dataset. The catalogue refresh and audio enrichment workflows share a concurrency group and rebase generated commits on the latest main before pushing.
