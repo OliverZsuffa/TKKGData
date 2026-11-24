@@ -383,16 +383,24 @@ def _spotify_artist_album_records(
     return records
 
 
+def _episode_title_variants(episode: dict[str, Any]) -> list[str]:
+    values = [episode.get("title"), *(episode.get("alternate_titles") or [])]
+    return list(dict.fromkeys(
+        _normalise(str(value)) for value in values
+        if isinstance(value, str) and value.strip()
+    ))
+
+
 def _episode_title_matches_track(
     episode: dict[str, Any], track: dict[str, Any], candidate_track_id: str | None = None,
 ) -> bool:
     number = int(episode["number"])
-    expected_title = _normalise(str(episode["title"]))
+    expected_titles = _episode_title_variants(episode)
     actual_title = _normalise(str(track.get("name") or ""))
     album_title = _normalise(str(track.get("album_name") or ""))
     part_marker = bool(re.search(r"\bteil\s*0*\d+\b|\bpart\s*0*\d+\b", actual_title))
-    title_in_track = bool(expected_title and expected_title in actual_title)
-    title_in_album = bool(expected_title and expected_title in album_title)
+    title_in_track = any(title in actual_title for title in expected_titles)
+    title_in_album = any(title in album_title for title in expected_titles)
     if not title_in_track and not (title_in_album and part_marker):
         return False
     return bool(
@@ -406,7 +414,8 @@ def _spotify_candidate_score(episode: dict[str, Any], record: dict[str, Any]) ->
     if not _spotify_artist_matches(record):
         return -100
     name = _normalise(str(record.get("name") or ""))
-    title = _normalise(str(episode["title"]))
+    titles = _episode_title_variants(episode)
+    title = titles[0] if titles else ""
     number = int(episode["number"])
     album_name = _normalise(str(record.get("album_name") or ""))
     query = _normalise(str(record.get("search_query") or ""))
@@ -416,9 +425,9 @@ def _spotify_candidate_score(episode: dict[str, Any], record: dict[str, Any]) ->
         or _spotify_number_matches_text(query, number)
     )
     part_marker = bool(re.search(r"\bteil\s*0*\d+\b|\bpart\s*0*\d+\b", name))
-    title_in_track = title in name
-    title_in_album = title in album_name
-    exact_title = name == title
+    title_in_track = any(value in name for value in titles)
+    title_in_album = any(value in album_name for value in titles)
+    exact_title = name in titles
     if not title_in_track and not (title_in_album and part_marker):
         return -100
     if not number_evidence and not exact_title:
@@ -446,9 +455,15 @@ def resolve_spotify_album(episode: dict[str, Any], work_dir: Path) -> dict[str, 
 
     # Reviewed album IDs and release layouts bypass fuzzy track discovery.
     try:
-        from scraper.spotify_structure import validate_episode_parts
+        from scraper.spotify_structure import (
+            select_episode_release_tracks,
+            validate_episode_parts,
+            validate_selected_track_positions,
+        )
         overrides = json.loads((ROOT / "data" / "spotify_structure_overrides.json").read_text(encoding="utf-8"))
         override = overrides.get(str(number), {})
+        if override.get("alternate_titles"):
+            episode = {**episode, "alternate_titles": override["alternate_titles"]}
     except (ImportError, OSError, json.JSONDecodeError):
         override = {}
     album_id_override = override.get("album_id")
@@ -463,9 +478,21 @@ def resolve_spotify_album(episode: dict[str, Any], work_dir: Path) -> dict[str, 
             raise ValueError(f"Configured Spotify album {album_id_override} has {len(validation['parts'])} parts, expected {expected}.")
         if validation["unknown"]:
             raise ValueError(f"Configured Spotify album {album_id_override} has unclassified tracks: {[t.get('name') for t in validation['unknown']]}")
-        selected_records = validation["parts"]
-        selected_records.sort(key=lambda t: (int(t.get("disc_number") or 1), int(t.get("track_number") or 0)))
-        return {"album_id": album_id_override, "url": f"{SPOTIFY_ALBUM_BASE}{album_id_override}", "title": str(selected_records[0].get("album_name") or episode.get("title")), "track_count": len(selected_records), "tracks": selected_records, "source_query": "configured_album_override", "release_type": "episode_release", "selected_track_id": selected_records[0].get("song_id")}
+        selected_records = validation["tracks"]
+        return {
+            "album_id": album_id_override,
+            "url": f"{SPOTIFY_ALBUM_BASE}{album_id_override}",
+            "title": str(selected_records[0].get("album_name") or episode.get("title")),
+            "track_count": len(selected_records),
+            "tracks": selected_records,
+            "source_query": "configured_album_override",
+            "release_type": "episode_release",
+            "selected_track_id": next(
+                (track.get("song_id") for track in selected_records
+                 if track.get("classification") == "episode_part"),
+                selected_records[0].get("song_id"),
+            ),
+        }
     queries = [
         f'track:"{title}" artist:TKKG',
         f'artist:TKKG track:"{title}"',
@@ -483,6 +510,13 @@ def resolve_spotify_album(episode: dict[str, Any], work_dir: Path) -> dict[str, 
         "TKKG",
         "TKKG Retro-Archiv",
     ]
+    for alternate_title in _episode_title_variants(episode)[1:]:
+        queries.extend([
+            f'track:"{alternate_title}" artist:TKKG',
+            f'album:"{alternate_title}" artist:TKKG',
+            f'track:"{alternate_title}" artist:"TKKG Retro-Archiv"',
+            f"{alternate_title} TKKG",
+        ])
     candidates: dict[str, dict[str, Any]] = {}
     search_errors: list[str] = []
     search_diagnostics: list[dict[str, Any]] = []
@@ -597,16 +631,15 @@ def resolve_spotify_album(episode: dict[str, Any], work_dir: Path) -> dict[str, 
             if not selected or not _episode_title_matches_track(episode, selected[0], track_id):
                 rejected.append(f"{album_id}: requested episode could not be isolated from album")
                 continue
+        profile = override.get("profile", "standard")
+        selected = select_episode_release_tracks(album_tracks, selected, profile)
         selected.sort(key=lambda item: (
             int(item.get("disc_number") or 1),
             int(item.get("track_number") or 0),
         ))
-        numbers = [int(item.get("track_number") or 0) for item in selected]
-        if any(value < 1 for value in numbers) or len(set((item.get("disc_number") or 1, item.get("track_number")) for item in selected)) != len(selected):
-            rejected.append(f"{album_id}: selected episode tracks have invalid or duplicate positions")
-            continue
-        if len(selected) > 1 and numbers != list(range(numbers[0], numbers[0] + len(numbers))):
-            rejected.append(f"{album_id}: selected episode tracks are not contiguous")
+        position_errors = validate_selected_track_positions(selected)
+        if position_errors:
+            rejected.append(f"{album_id}: {position_errors[0]}")
             continue
         if not all(isinstance(item.get("name"), str) and item["name"].strip() for item in selected):
             rejected.append(f"{album_id}: selected track has no title")
@@ -702,6 +735,14 @@ def find_verified_youtube_music_playlist(
 ) -> dict[str, Any]:
     number = int(episode["number"])
     title = str(episode["title"])
+    try:
+        overrides = json.loads((ROOT / "data" / "spotify_structure_overrides.json").read_text(encoding="utf-8"))
+        alternate_titles = overrides.get(str(number), {}).get("alternate_titles", [])
+        if alternate_titles:
+            episode = {**episode, "alternate_titles": alternate_titles}
+    except (OSError, json.JSONDecodeError):
+        pass
+    title_variants = _episode_title_variants(episode)
     if playlist_id_override:
         if not playlist_id_override.startswith(("OLAK5uy_", "PL")):
             raise ValueError("The supplied YouTube Music playlist ID has an unsupported format.")
@@ -713,7 +754,7 @@ def find_verified_youtube_music_playlist(
                 f"yt-dlp returned playlist ID {returned_id!r}, expected {playlist_id_override!r}."
             )
         playlist_title = str(info.get("title") or "")
-        if _normalise(title) not in _normalise(playlist_title):
+        if not any(value in _normalise(playlist_title) for value in title_variants):
             raise ValueError(
                 f"YouTube Music playlist title {playlist_title!r} does not identify episode {number}."
             )
@@ -738,9 +779,15 @@ def find_verified_youtube_music_playlist(
         }
 
     query_variants = [
-        f"TKKG {number:03d} {title}",
-        f"TKKG Folge {number} {title}",
-        f"{number} {title}",
+        query
+        for variant in title_variants
+        for query in (
+            f"TKKG {number:03d} {variant}",
+            f"TKKG Folge {number} {variant}",
+            f"{number} {variant}",
+            f"{variant} TKKG",
+        )
+    ] + [
         f"TKKG {spotify['title']}",
         str(spotify["title"]),
     ]
@@ -763,7 +810,7 @@ def find_verified_youtube_music_playlist(
                     continue
                 search_summaries.append({key: result.get(key) for key in ("resultType", "title", "browseId", "playlistId", "audioPlaylistId", "artist", "artists") if result.get(key) is not None} | {"filter": filter_name, "query": query})
                 candidate_title = str(result.get("title") or "")
-                if _normalise(title) not in _normalise(candidate_title):
+                if not any(value in _normalise(candidate_title) for value in title_variants):
                     continue
                 source = _candidate_source(result, filter_name)
                 if source is None:
@@ -795,7 +842,7 @@ def find_verified_youtube_music_playlist(
                     ):
                         rejected.append(f"{source_id}: no TKKG artist evidence")
                         continue
-                    if _normalise(title) not in _normalise(album_title):
+                    if not any(value in _normalise(album_title) for value in title_variants):
                         rejected.append(f"{source_id}: album title does not identify episode {number}")
                         continue
                     if not isinstance(album_tracks, list) or len(album_tracks) != spotify["track_count"]:
@@ -867,7 +914,7 @@ def find_verified_youtube_music_playlist(
             rejected.append(f"{source_id}: playlist or album retrieval failed: {exc}")
             continue
         playlist_title = str(info.get("title") or candidate.get("title") or "")
-        if _normalise(title) not in _normalise(playlist_title):
+        if not any(value in _normalise(playlist_title) for value in title_variants):
             rejected.append(f"{playlist_id}: title does not identify episode {number}")
             continue
         entries = info.get("entries")
