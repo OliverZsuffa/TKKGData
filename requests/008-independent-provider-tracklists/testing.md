@@ -6,7 +6,7 @@
 - Run migration against the real current catalogue and representative fixtures.
 - Assert every existing YouTube Music track is carried over exactly once, including title, video ID, URL, duration, album association, order, and available provenance.
 - Assert every existing Spotify track is carried over exactly once with its available metadata.
-- Assert all 13 entries in the Spotify structure override file are represented in episode-level `audio_discovery.spotify` and/or `alternate_titles` data.
+- Assert all 14 entries in the Spotify structure override file are represented in episode-level `audio_discovery.spotify` and/or `alternate_titles` data.
 - Cover records with both providers, only one provider, incomplete metadata, and legacy paired entries.
 - Confirm canonical episode titles remain unchanged when aliases are added, and all aliases are unique and non-empty.
 - Assert no provider data is re-scraped merely to migrate the structure.
