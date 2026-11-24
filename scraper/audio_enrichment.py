@@ -479,11 +479,6 @@ def resolve_spotify_album(episode: dict[str, Any], work_dir: Path) -> dict[str, 
         if validation["unknown"]:
             raise ValueError(f"Configured Spotify album {album_id_override} has unclassified tracks: {[t.get('name') for t in validation['unknown']]}")
         selected_records = validation["tracks"]
-        position_errors = validate_selected_track_positions(selected_records)
-        if position_errors:
-            raise ValueError(
-                f"Configured Spotify album {album_id_override} failed selected-track validation: {position_errors}"
-            )
         return {
             "album_id": album_id_override,
             "url": f"{SPOTIFY_ALBUM_BASE}{album_id_override}",
