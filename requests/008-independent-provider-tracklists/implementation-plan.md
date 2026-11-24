@@ -161,9 +161,9 @@ This is a design proposal, not a final frozen schema. Confirm actual provider me
 - Update `scraper/validate.py` to validate the migrated `audio_release` structure.
 - Compare each provider's declared count to its own list length and verified count. Do not compare Spotify count to YouTube Music count.
 - Keep a temporary legacy input reader or migration utility only as long as needed to migrate existing records and support rollback.
-- Update the audio source catalogue documentation to explain both contracts and the compatibility period.
+- Update the audio source catalogue documentation to explain the new contract, the migration process, and any temporary compatibility period.
 - Update the README's published coverage statement only after actual data publication changes the coverage.
-- Add a documented future migration policy. Do not bulk migrate existing records as part of this request.
+- Document the completed migration and rollback procedure.
 
 ## 8. Regression fixtures and rollout matrix
 
@@ -174,7 +174,7 @@ Use observed source records, not invented IDs or guessed album metadata.
 - Episode 228: compilation-shaped Spotify release and a distinct YouTube Music album representation.
 - Episode 236: larger list difference, Spotify 33 versus YouTube Music 62.
 - Episode 240: Spotify 38 versus YouTube Music 73.
-- Episode 150: existing 40-track legacy mapping, used to prove v1 compatibility.
+- Episode 150: existing 40-track mapping, used to prove migration preserves historical provider data.
 - Episode 226: retain as a separate Spotify resolution failure. Do not misclassify it as a YouTube Music segmentation issue.
 
 The fixtures should include complete real provider metadata and source provenance captured from discovery. In addition, use the actual current catalogue as a migration fixture. Include records with both providers, only one provider, legacy track pairs, extras, and incomplete metadata. If a full observed list is unavailable, keep that episode as a live dry-run case rather than inventing fixture entries.
@@ -199,4 +199,4 @@ The fixtures should include complete real provider metadata and source provenanc
 
 ## 10. Out of scope follow-up
 
-TKKGDownloader must later be updated to prefer the v2 independent provider lists and download the YouTube Music list in its own order. That work belongs in a separate approved request in the TKKGDownloader repository. Until then, v2 is data-only and existing downloader behaviour continues to use the legacy field.
+TKKGDownloader must later be updated to read the independent provider lists and download the YouTube Music list in its own order. That work belongs in a separate approved request in the TKKGDownloader repository. Until then, downloader compatibility must be handled deliberately so the data migration does not silently break existing downloads.
