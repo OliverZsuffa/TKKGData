@@ -73,14 +73,19 @@ def validate_selected_track_positions(tracks: list[dict[str, Any]]) -> list[str]
     return []
 
 def validate_episode_parts(tracks: list[dict[str, Any]], profile: str = "standard") -> dict[str, Any]:
-    positions = [
-        (int(track.get("disc_number") or 1), int(track.get("track_number") or 0))
+    has_position_data = any(
+        track.get("track_number") is not None or track.get("disc_number") is not None
         for track in tracks
-    ]
-    if any(track_number < 1 for _, track_number in positions):
-        return {"valid": False, "parts": [], "extras": [], "tracks": [], "unknown": [], "errors": ["Album contains invalid track positions"]}
-    if len(set(positions)) != len(positions):
-        return {"valid": False, "parts": [], "extras": [], "tracks": [], "unknown": [], "errors": ["Album contains duplicate track positions"]}
+    )
+    if has_position_data:
+        positions = [
+            (int(track.get("disc_number") or 1), int(track.get("track_number") or 0))
+            for track in tracks
+        ]
+        if any(track_number < 1 for _, track_number in positions):
+            return {"valid": False, "parts": [], "extras": [], "tracks": [], "unknown": [], "errors": ["Album contains invalid track positions"]}
+        if len(set(positions)) != len(positions):
+            return {"valid": False, "parts": [], "extras": [], "tracks": [], "unknown": [], "errors": ["Album contains duplicate track positions"]}
     classified = [classify_track(track) for track in tracks]
     parts = [t for t in classified if t["classification"] == "episode_part"]
     extras = [t for t in classified if t["classification"] not in ("episode_part", "unknown")]
