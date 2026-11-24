@@ -27,6 +27,47 @@ def classify_track(track: dict[str, Any]) -> dict[str, Any]:
         result["classification"] = "unknown"
     return result
 
+
+def validate_selected_track_positions(tracks: list[dict[str, Any]]) -> list[str]:
+    """Validate selected tracks without assuming episode parts occupy adjacent album slots.
+
+    Extras and shared tracks can legitimately sit between episode parts in a release.
+    When part labels are present, their logical numbering is authoritative. For
+    unlabelled multi-track selections, retain the conservative contiguous-position rule.
+    """
+    if not tracks:
+        return ["No selected tracks"]
+    positions = [
+        (int(track.get("disc_number") or 1), int(track.get("track_number") or 0))
+        for track in tracks
+    ]
+    if any(track_number < 1 for _, track_number in positions):
+        return ["Selected tracks have invalid positions"]
+    if len(set(positions)) != len(positions):
+        return ["Selected tracks have duplicate positions"]
+
+    numbered_parts: list[int] = []
+    unnumbered = 0
+    for track in tracks:
+        match = PART_RE.search(str(track.get("name") or ""))
+        if match:
+            numbered_parts.append(int(match.group(1)))
+        else:
+            unnumbered += 1
+
+    if numbered_parts and not unnumbered:
+        if sorted(numbered_parts) != list(range(1, len(numbered_parts) + 1)):
+            return ["Episode part numbering is not continuous from 1"]
+        return []
+    if len(tracks) > 1:
+        ordered_positions = sorted(positions)
+        if any(
+            current[0] != previous[0] or current[1] != previous[1] + 1
+            for previous, current in zip(ordered_positions, ordered_positions[1:])
+        ):
+            return ["Selected tracks are not contiguous and have no complete part numbering"]
+    return []
+
 def validate_episode_parts(tracks: list[dict[str, Any]], profile: str = "standard") -> dict[str, Any]:
     classified = [classify_track(track) for track in tracks]
     parts = [t for t in classified if t["classification"] == "episode_part"]
