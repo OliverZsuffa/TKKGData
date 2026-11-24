@@ -27,6 +27,15 @@ Spotify and YouTube Music track counts are checked against their own lists. They
 
 The original verification method and timestamp are retained under `verification.migration.source_verification`. Migration does not claim a fresh provider lookup. Historical Spotify and YouTube Music pairings are not copied into the new dataset because they are redundant with the two independent provider tracklists. The pre-migration catalogue remains recoverable through Git history.
 
+## Removing redundant historical pairings
+
+The one-time cleanup utility removes `legacy_pairing` from both canonical exports while leaving the independent Spotify and YouTube Music tracklists unchanged. Run it from the repository root:
+
+    python -m scraper.remove_legacy_pairing
+    python -m scraper.remove_legacy_pairing --write
+
+The first command validates and reports the number of fields to remove without changing files. The second writes the cleaned JSON and CSV exports after confirming that both contain the same number of pairings and episodes. The old paired dataset remains recoverable through Git history.
+
 ## Migration of existing records
 
 The migration converted all 213 existing audio records and carried over 7,205 Spotify tracks and 7,205 YouTube Music tracks. Every original provider track ID, URL, title, available duration, artist metadata, album association, order, and matching evidence was retained. No provider was re-scraped to perform the conversion.
