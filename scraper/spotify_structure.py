@@ -162,7 +162,16 @@ def select_episode_release_tracks(
     extra_kinds = {"summary", "intro", "opening_song", "outro", "closing_song"}
 
     for index in range(first, last + 1):
-        if classified[index].get("classification") in extra_kinds:
+        classification = classified[index].get("classification")
+        if index not in selected_indices and classification == "episode_part":
+            raise ValueError(
+                "Another episode part appears inside the selected episode sequence."
+            )
+        if classification == "unknown":
+            raise ValueError(
+                f"Unclassified track {ordered[index].get('name')!r} appears inside the selected episode sequence."
+            )
+        if classification in extra_kinds:
             included.add(index)
 
     for direction, start in ((-1, first - 1), (1, last + 1)):
