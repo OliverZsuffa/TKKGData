@@ -110,6 +110,14 @@ class SpotifyStructureTests(unittest.TestCase):
         ]
         self.assertEqual(validate_selected_track_positions(tracks), [])
 
+    def test_duplicate_album_positions_are_rejected(self):
+        result = validate_episode_parts([
+            {"name": "Teil 01", "disc_number": 1, "track_number": 1},
+            {"name": "Teil 02", "disc_number": 1, "track_number": 1},
+        ])
+        self.assertFalse(result["valid"])
+        self.assertIn("duplicate track positions", result["errors"][0])
+
     def test_two_disc_repeated_numbers(self):
         tracks = [{"name":f"Teil {i:02}","disc_number":d,"track_number":i} for d in (1,2) for i in range(1,3)]
         result = validate_episode_parts(tracks, "two_disc_duplicated_numbering")
