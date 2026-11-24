@@ -15,7 +15,6 @@ from pathlib import Path
 from typing import Any
 
 from scraper.export import write_catalogue
-from scraper.audio_availability import load_audio_unavailable
 from urllib.parse import parse_qs, urlencode, urlparse
 
 
@@ -1605,26 +1604,17 @@ def discover_episode_audio(
 
 
 def audio_release_coverage(episodes: list[dict[str, Any]]) -> dict[str, Any]:
-    unavailable = load_audio_unavailable()
     verified = [
         item for item in episodes
         if isinstance(item.get("audio_release"), dict)
         and item["audio_release"].get("verification", {}).get("status") == "verified"
     ]
-    known_unavailable = [
-        item for item in episodes if int(item.get("number", 0)) in unavailable
-    ]
     return {
         "episode_count": len(episodes),
         "verified_pairings": len(verified),
-        "known_unavailable": [
-            {"number": item.get("number"), "title": item.get("title"), **unavailable[int(item["number"])]}
-            for item in known_unavailable
-        ],
         "missing_pairings": [
             {"number": item.get("number"), "title": item.get("title")}
-            for item in episodes
-            if item not in verified and int(item.get("number", 0)) not in unavailable
+            for item in episodes if item not in verified
         ],
     }
 
@@ -1676,47 +1666,33 @@ def enrich_catalogue(
 ) -> dict[str, Any]:
     if limit < 1:
         raise ValueError("limit must be at least 1.")
-    unavailable = load_audio_unavailable()
-    selected_items = [
+    targets = [
         item for item in episodes
-        if selected_numbers is None or item.get("number") in selected_numbers
-    ]
-    if selected_numbers is None:
-        selected_items = [
-            item for item in selected_items
-            if int(item.get("number", 0)) not in unavailable
-            and not (
+        if (selected_numbers is None or item.get("number") in selected_numbers)
+        and (
+            selected_numbers is not None
+            or not (
                 isinstance(item.get("audio_release"), dict)
                 and item["audio_release"].get("verification", {}).get("status") == "verified"
             )
-        ]
+        )
+    ]
     if latest_first:
-        selected_items.sort(key=lambda item: int(item.get("number", 0)), reverse=True)
-    selected_items = selected_items[:limit]
-    known_unavailable = [
-        {
-            "number": int(item["number"]),
-            "title": item.get("title"),
-            **unavailable[int(item["number"])],
-        }
-        for item in selected_items if int(item.get("number", 0)) in unavailable
-    ]
-    targets = [
-        item for item in selected_items
-        if int(item.get("number", 0)) not in unavailable
-    ]
+        targets.sort(key=lambda item: int(item.get("number", 0)), reverse=True)
+    targets = targets[:limit]
     run_started = time.perf_counter()
     report: dict[str, Any] = {
         "started_at": datetime.now(timezone.utc).isoformat(),
         "mode": "write" if write else "dry_run",
-        "target_count": len(selected_items),
-        "selected_numbers": [int(item["number"]) for item in selected_items],
-        "known_unavailable": known_unavailable,
+        "target_count": len(targets),
+        "selected_numbers": [int(item["number"]) for item in targets],
         "verified": [],
         "failures": [],
         "coverage_before": audio_release_coverage(episodes),
         "catalogue_updated": False,
     }
+    for item in known_unavailable:
+        print(f"Known unavailable, skipping episode {item['number']}: {item.get('reason', '')}", flush=True)
     if targets and ytm is None:
         ytm = _load_ytmusic()
     for episode in targets:
@@ -1861,6 +1837,13 @@ def _write_github_step_summary(report: dict[str, Any]) -> None:
         for track in links["youtube_music_tracks"]:
             lines.append(f"| {track['track_number']} | {track['title']} | [open]({track['url']}) |")
         lines.append("")
+    for item in report.get("known_unavailable", []):
+        lines.extend([
+            f"### Episode {item['number']}: {item.get('title') or 'Known unavailable'}",
+            f"- Status: known unavailable, not a discovery failure",
+            f"- Reason: {item.get('reason', 'No official digital music rerelease expected.')}",
+            "",
+        ])
     for item in report["failures"]:
         lines.extend([
             f"### Episode {item['number']}: {item['title']} unresolved",
