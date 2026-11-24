@@ -30,6 +30,46 @@ class SpotifyStructureResolverTests(unittest.TestCase):
         self.assertGreaterEqual(_spotify_candidate_score(episode, record), 100)
 
     @patch("scraper.audio_enrichment._save_spotify_metadata")
+    def test_episode_225_keeps_shared_intro_parts_outro_and_outsong(self, fetch):
+        album_id = "A" * 22
+        names = [
+            "TKKG Titelsong",
+            "Inhaltsangabe",
+            "Intro",
+            "225 - Test Episode Teil 01",
+            "225 - Test Episode Teil 02",
+            "Outro",
+            "Outsong",
+            "226 - Another Episode Teil 01",
+        ]
+        album_tracks = [
+            {
+                "name": name,
+                "artists": ["TKKG"],
+                "album_id": album_id,
+                "album_name": "TKKG Hörspiel Sammlung",
+                "disc_number": 1,
+                "track_number": index,
+                "song_id": f"{index:022d}",
+                "search_query": "TKKG 225 Test Episode Teil 01",
+            }
+            for index, name in enumerate(names, start=1)
+        ]
+        candidate = album_tracks[3]
+
+        def fake_lookup(query):
+            return album_tracks if query == f"{SPOTIFY_ALBUM_BASE}{album_id}" else [candidate]
+
+        fetch.side_effect = fake_lookup
+        result = resolve_spotify_album({"number": 225, "title": "Test Episode"}, Path("."))
+        self.assertEqual(
+            [track["name"] for track in result["tracks"]],
+            names[:7],
+        )
+        self.assertEqual(result["track_count"], 7)
+        self.assertEqual(result["release_type"], "compilation_track_selection")
+
+    @patch("scraper.audio_enrichment._save_spotify_metadata")
     def test_two_disc_override_returns_both_disc_sequences(self, fetch):
         tracks = numbered_tracks(40, "x", 1) + numbered_tracks(40, "x", 2)
         fetch.return_value = tracks
