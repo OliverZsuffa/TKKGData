@@ -208,7 +208,7 @@ class AudioEnrichmentTests(unittest.TestCase):
         self.assertEqual(len(result["links"]["youtube_music_tracks"]), 2)
         self.assertEqual(
             result["audio_release"]["verification"]["method"],
-            "exact_ordered_album_track_titles_and_duration",
+            "independent_provider_tracklist_validation",
         )
 
 
@@ -256,8 +256,8 @@ class AudioEnrichmentTests(unittest.TestCase):
             "title": "Album - 150/Heiße Nächte im Dezember",
             "playlist_count": 2,
             "entries": [
-                {"id": "videoid0001", "title": "150 - Heiße Nächte im Dezember (Teil 01)", "duration": 128},
-                {"id": "videoid0002", "title": "150 - Heiße Nächte im Dezember (Teil 02)", "duration": 127},
+                {"id": "videoid0001", "title": "150 - Heiße Nächte im Dezember (Teil 01)", "duration": 128, "artists": [{"name": "TKKG"}]},
+                {"id": "videoid0002", "title": "150 - Heiße Nächte im Dezember (Teil 02)", "duration": 127, "artists": [{"name": "TKKG"}]},
             ],
         }
         ytm = FakeYTMusic()
@@ -265,15 +265,107 @@ class AudioEnrichmentTests(unittest.TestCase):
              patch("scraper.audio_enrichment._extract_ytdlp_playlist", return_value=info):
             result = discover_episode_audio(EPISODE, ytm, playlist_id)
         self.assertEqual(len(result["audio_release"]["youtube_music"]["tracks"]), 2)
-        self.assertEqual(result["audio_release"]["verification"]["method"], "exact_ordered_playlist_track_titles_and_duration")
+        self.assertEqual(result["audio_release"]["verification"]["method"], "independent_provider_tracklist_validation")
         self.assertEqual(result["links"]["spotify_album"], SPOTIFY["url"])
         self.assertEqual(len(result["links"]["spotify_tracks"]), 2)
         self.assertEqual(result["links"]["youtube_music_playlist"], f"https://music.youtube.com/playlist?list={playlist_id}")
         self.assertEqual(len(result["links"]["youtube_music_tracks"]), 2)
+        self.assertNotIn("spotify_url", result["links"]["youtube_music_tracks"][0])
         self.assertIn("spotify_seconds", result["timings"])
         self.assertIn("playlist_seconds", result["timings"])
         self.assertIn("total_seconds", result["timings"])
         self.assertEqual(ytm.search_calls, [])
+
+    def test_youtube_music_tracklist_keeps_218s_35_tracks_and_alternate_title(self):
+        episode = {
+            "number": 218,
+            "title": "Schutzgeld für Dämonen",
+            "alternate_titles": ["Schutzgeld fuer Daemonen"],
+        }
+        alias = "Schutzgeld fuer Daemonen"
+        titles = [
+            f"218 - {alias} (Inhaltsangabe)",
+            f"218 - {alias} (Anfangssong)",
+            *[f"218 - {alias} (Teil {index:02d})" for index in range(1, 32)],
+            f"218 - {alias} (Schlußsong)",
+            f"218 - {alias} (Outro)",
+        ]
+        entries = [
+            {"id": f"videoid{index:04d}", "title": title, "artists": [{"name": "TKKG"}]}
+            for index, title in enumerate(titles, start=1)
+        ]
+        from scraper.audio_enrichment import _youtube_music_track_records
+
+        tracks = _youtube_music_track_records(
+            episode, entries, f"218/{alias}", ["TKKG"],
+        )
+        self.assertEqual(len(tracks), 35)
+        self.assertEqual([track["track_number"] for track in tracks], list(range(1, 36)))
+        self.assertEqual(tracks[0]["title"], titles[0])
+        self.assertEqual(tracks[2]["title"], titles[2])
+        self.assertEqual(tracks[32]["title"], titles[32])
+        self.assertEqual(tracks[-1]["title"], titles[-1])
+
+    def test_youtube_music_accepts_zero_padded_episode_numbers(self):
+        from scraper.audio_enrichment import _youtube_music_track_records
+
+        episode = {"number": 1, "title": "Die Jagd nach den Millionendieben"}
+        entries = [
+            {"id": "videoid0001", "title": "001 - Die Jagd nach den Millionendieben (Teil 01)", "artists": ["TKKG Retro-Archiv"]},
+            {"id": "videoid0002", "title": "001 - Die Jagd nach den Millionendieben (Teil 02)", "artists": ["TKKG Retro-Archiv"]},
+        ]
+        tracks = _youtube_music_track_records(
+            episode, entries, "001/Die Jagd nach den Millionendieben", ["TKKG Retro-Archiv"],
+        )
+        self.assertEqual(len(tracks), 2)
+
+    def test_youtube_music_tracklist_rejects_unknown_tracks_and_duplicate_video_ids(self):
+        episode = {"number": 218, "title": "Schutzgeld für Dämonen"}
+        from scraper.audio_enrichment import _youtube_music_track_records
+
+        unknown = [
+            {"id": "videoid0001", "title": "218 - Schutzgeld für Dämonen (Teil 01)", "artists": ["TKKG"]},
+            {"id": "videoid0002", "title": "218 - Schutzgeld für Dämonen (Bonus Track)", "artists": ["TKKG"]},
+        ]
+        with self.assertRaisesRegex(ValueError, "unclassified tracks"):
+            _youtube_music_track_records(
+                episode, unknown, "218/Schutzgeld für Dämonen", ["TKKG"],
+            )
+
+        duplicate = [
+            {"id": "videoid0001", "title": "218 - Schutzgeld für Dämonen (Teil 01)", "artists": ["TKKG"]},
+            {"id": "videoid0001", "title": "218 - Schutzgeld für Dämonen (Teil 02)", "artists": ["TKKG"]},
+        ]
+        with self.assertRaisesRegex(ValueError, "repeats video ID"):
+            _youtube_music_track_records(
+                episode, duplicate, "218/Schutzgeld für Dämonen", ["TKKG"],
+            )
+
+    def test_discovery_accepts_different_provider_track_counts(self):
+        ytm_tracks = [
+            {"track_number": index, "video_id": f"videoid{index:04d}", "url": f"https://music.youtube.com/watch?v=videoid{index:04d}",
+             "title": f"150 - Heiße Nächte im Dezember (Teil {index:02d})", "artists": ["TKKG"],
+             "album": "150/Heiße Nächte im Dezember"}
+            for index in range(1, 4)
+        ]
+        ytm_release = {
+            "album": None,
+            "playlist": None,
+            "tracks": ytm_tracks,
+            "track_count": 3,
+        }
+        with patch("scraper.audio_enrichment.resolve_spotify_album", return_value=SPOTIFY), \
+             patch("scraper.audio_enrichment.find_verified_youtube_music_release", return_value=ytm_release):
+            result = discover_episode_audio(EPISODE, FakeYTMusic())
+
+        release = result["audio_release"]
+        self.assertEqual(release["spotify"]["track_count"], 2)
+        self.assertEqual(release["youtube_music"]["track_count"], 3)
+        self.assertEqual(len(release["spotify"]["tracks"]), 2)
+        self.assertEqual(len(release["youtube_music"]["tracks"]), 3)
+        self.assertEqual(result["matched_tracks"], [])
+        self.assertEqual(release["verification"]["spotify"]["verified_track_count"], 2)
+        self.assertEqual(release["verification"]["youtube_music"]["verified_track_count"], 3)
 
     def test_explicit_playlist_id_can_be_verified_without_search(self):
         ytm = FakeYTMusic(["OLAK5uy_mQRbJNANh1H4CKbmM5ez5LSW1HJFvE3QI"])
@@ -376,34 +468,51 @@ class AudioEnrichmentTests(unittest.TestCase):
             "sources": [{"name": "test", "url": "https://example.com", "retrieved_at": "2026-11-09T00:00:00Z"}],
             "last_checked": "2026-11-09T00:00:00Z", "listening_links": [],
             "audio_release": {
+                "schema_version": 2,
                 "spotify": {
-                    "album_id": "0ZqyFeMXxCyIJvYptGlnn1",
-                    "url": "https://open.spotify.com/album/0ZqyFeMXxCyIJvYptGlnn1",
-                    "title": "150/Heiße Nächte im Dezember", "track_count": 2,
-                    "source_query": "TKKG 150 Heiße Nächte im Dezember Teil 01",
+                    "album": {
+                        "album_id": "0ZqyFeMXxCyIJvYptGlnn1",
+                        "url": "https://open.spotify.com/album/0ZqyFeMXxCyIJvYptGlnn1",
+                        "title": "150/Heiße Nächte im Dezember", "track_count": 2,
+                        "source_query": "TKKG 150 Heiße Nächte im Dezember Teil 01",
+                    },
+                    "tracks": [
+                        {"track_number": 1, "track_id": SPOTIFY["tracks"][0]["song_id"], "url": SPOTIFY["tracks"][0]["url"], "title": SPOTIFY["tracks"][0]["name"]},
+                        {"track_number": 2, "track_id": SPOTIFY["tracks"][1]["song_id"], "url": SPOTIFY["tracks"][1]["url"], "title": SPOTIFY["tracks"][1]["name"]},
+                    ],
+                    "track_count": 2,
                 },
                 "youtube_music": {
+                    "album": None,
                     "playlist": {
                         "playlist_id": "OLAK5uy_mQRbJNANh1H4CKbmM5ez5LSW1HJFvE3QI",
                         "url": "https://music.youtube.com/playlist?list=OLAK5uy_mQRbJNANh1H4CKbmM5ez5LSW1HJFvE3QI",
                         "title": "150/Heiße Nächte im Dezember", "track_count": 2,
                     },
                     "tracks": [
-                        {"track_number": 1, "spotify_title": SPOTIFY["tracks"][0]["name"], "spotify_track_id": SPOTIFY["tracks"][0]["song_id"], "spotify_track_url": SPOTIFY["tracks"][0]["url"], "video_id": "videoid0001", "url": "https://music.youtube.com/watch?v=videoid0001", "title": SPOTIFY["tracks"][0]["name"], "artists": ["TKKG"], "album": "150/Heiße Nächte im Dezember", "duration_seconds": 120, "match_score": 140, "match_evidence": ["exact_normalised_title", "episode_album"]},
-                        {"track_number": 2, "spotify_title": SPOTIFY["tracks"][1]["name"], "spotify_track_id": SPOTIFY["tracks"][1]["song_id"], "spotify_track_url": SPOTIFY["tracks"][1]["url"], "video_id": "videoid0002", "url": "https://music.youtube.com/watch?v=videoid0002", "title": SPOTIFY["tracks"][1]["name"], "artists": ["TKKG"], "album": "150/Heiße Nächte im Dezember", "duration_seconds": 120, "match_score": 140, "match_evidence": ["exact_normalised_title", "episode_album"]},
+                        {"track_number": 1, "video_id": "videoid0001", "url": "https://music.youtube.com/watch?v=videoid0001", "title": SPOTIFY["tracks"][0]["name"], "artists": ["TKKG"], "album": "150/Heiße Nächte im Dezember", "duration_seconds": 120, "match_score": 140, "match_evidence": ["exact_normalised_title", "episode_album"]},
+                        {"track_number": 2, "video_id": "videoid0002", "url": "https://music.youtube.com/watch?v=videoid0002", "title": SPOTIFY["tracks"][1]["name"], "artists": ["TKKG"], "album": "150/Heiße Nächte im Dezember", "duration_seconds": 120, "match_score": 140, "match_evidence": ["exact_normalised_title", "episode_album"]},
                     ],
                     "track_count": 2,
                 },
                 "verification": {
                     "status": "verified", "verified_at": "2026-11-09T00:00:00Z",
-                    "method": "test", "matched_track_count": 2,
-                    "playlist_status": "verified", "playlist_error": None,
+                    "method": "test",
+                    "spotify": {"status": "verified", "verified_track_count": 2},
+                    "youtube_music": {"status": "verified", "verified_track_count": 2, "playlist_status": "verified", "playlist_error": None},
                 },
             },
         }
         self.assertEqual(validate_catalogue([episode]), [])
+        third = dict(episode["audio_release"]["youtube_music"]["tracks"][-1])
+        third.update({"track_number": 3, "video_id": "videoid0003", "url": "https://music.youtube.com/watch?v=videoid0003"})
+        episode["audio_release"]["youtube_music"]["tracks"].append(third)
         episode["audio_release"]["youtube_music"]["track_count"] = 3
-        self.assertTrue(any("track counts differ" in error for error in validate_catalogue([episode])))
+        episode["audio_release"]["youtube_music"]["playlist"]["track_count"] = 3
+        episode["audio_release"]["verification"]["youtube_music"]["verified_track_count"] = 3
+        self.assertEqual(validate_catalogue([episode]), [])
+        episode["audio_release"]["youtube_music"]["track_count"] = 4
+        self.assertTrue(any("track count does not match its own track list" in error for error in validate_catalogue([episode])))
 
 
     def test_individual_song_links_are_resolved_with_album_evidence(self):
@@ -594,8 +703,8 @@ class AudioEnrichmentTests(unittest.TestCase):
         error = caught.exception
         self.assertEqual(error.stage, "youtube_music")
         self.assertEqual(error.spotify["url"], SPOTIFY["url"])
-        self.assertIn("No verified YouTube Music playlist", error.playlist_error)
-        self.assertIn("Complete playlist discovery also failed", str(error))
+        self.assertIn("No independently verified YouTube Music release", error.playlist_error)
+        self.assertIn("Independent YouTube Music release resolution failed", str(error))
 
     def test_unresolved_report_keeps_verified_spotify_links(self):
         with patch(

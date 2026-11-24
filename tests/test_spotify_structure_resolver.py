@@ -70,15 +70,15 @@ class SpotifyStructureResolverTests(unittest.TestCase):
         self.assertEqual(result["release_type"], "compilation_track_selection")
 
     @patch("scraper.audio_enrichment._save_spotify_metadata")
-    def test_two_disc_override_returns_both_disc_sequences(self, fetch):
+    def test_two_disc_episode_hint_returns_both_disc_sequences(self, fetch):
         tracks = numbered_tracks(40, "x", 1) + numbered_tracks(40, "x", 2)
         fetch.return_value = tracks
-        result = resolve_spotify_album({"number": 175, "title": "Test"}, Path("."))
+        result = resolve_spotify_album({"number": 175, "title": "Test", "audio_discovery": {"spotify": {"preferred_album_id": "7z37XBrYgYo7DCs9dFeHvq", "release_profile": "two_disc_duplicated_numbering", "expected_story_parts": 80}}}, Path("."))
         fetch.assert_called_once_with(f"{SPOTIFY_ALBUM_BASE}7z37XBrYgYo7DCs9dFeHvq")
         self.assertEqual(result["track_count"], 80)
         self.assertEqual([t["disc_number"] for t in result["tracks"]].count(1), 40)
         self.assertEqual([t["disc_number"] for t in result["tracks"]].count(2), 40)
-        self.assertEqual(result["source_query"], "configured_album_override")
+        self.assertEqual(result["source_query"], "episode_audio_discovery_preferred_album")
 
     @patch("scraper.audio_enrichment._save_spotify_metadata")
     def test_configured_release_preserves_intro_and_outro_tracks(self, fetch):
@@ -89,7 +89,7 @@ class SpotifyStructureResolverTests(unittest.TestCase):
             + [{"name": "Outsong", "disc_number": 2, "track_number": 41, "album_name": "Test release"}]
         )
         fetch.return_value = tracks
-        result = resolve_spotify_album({"number": 175, "title": "Test"}, Path("."))
+        result = resolve_spotify_album({"number": 175, "title": "Test", "audio_discovery": {"spotify": {"preferred_album_id": "7z37XBrYgYo7DCs9dFeHvq", "release_profile": "two_disc_duplicated_numbering", "expected_story_parts": 80}}}, Path("."))
         self.assertEqual(result["track_count"], 82)
         self.assertEqual(result["tracks"][40]["name"], "Intro")
         self.assertEqual(result["tracks"][-1]["name"], "Outsong")
@@ -102,7 +102,7 @@ class SpotifyStructureResolverTests(unittest.TestCase):
     def test_expected_count_rejects_incomplete_album(self, fetch):
         fetch.return_value = numbered_tracks(39, "x", 1) + numbered_tracks(40, "x", 2)
         with self.assertRaisesRegex(ValueError, "expected 80"):
-            resolve_spotify_album({"number": 175, "title": "Test"}, Path("."))
+            resolve_spotify_album({"number": 175, "title": "Test", "audio_discovery": {"spotify": {"preferred_album_id": "7z37XBrYgYo7DCs9dFeHvq", "release_profile": "two_disc_duplicated_numbering", "expected_story_parts": 80}}}, Path("."))
 
     @patch("scraper.audio_enrichment._save_spotify_metadata")
     def test_unknown_tracks_fail_closed(self, fetch):
@@ -110,12 +110,12 @@ class SpotifyStructureResolverTests(unittest.TestCase):
         tracks.append({"name": "Unidentified extra", "disc_number": 2, "track_number": 41})
         fetch.return_value = tracks
         with self.assertRaisesRegex(ValueError, "unclassified tracks"):
-            resolve_spotify_album({"number": 175, "title": "Test"}, Path("."))
+            resolve_spotify_album({"number": 175, "title": "Test", "audio_discovery": {"spotify": {"preferred_album_id": "7z37XBrYgYo7DCs9dFeHvq", "release_profile": "two_disc_duplicated_numbering", "expected_story_parts": 80}}}, Path("."))
 
     @patch("scraper.audio_enrichment._save_spotify_metadata")
-    def test_standard_override_uses_configured_album(self, fetch):
+    def test_episode_hint_uses_configured_album(self, fetch):
         fetch.return_value = numbered_tracks(80, "x", 1)
-        result = resolve_spotify_album({"number": 200, "title": "Test"}, Path("."))
+        result = resolve_spotify_album({"number": 200, "title": "Test", "audio_discovery": {"spotify": {"preferred_album_id": "40AzKKVoE6d4TxqlZ2N4Fr", "release_profile": "extended_numbered", "expected_story_parts": 80}}}, Path("."))
         fetch.assert_called_once_with(f"{SPOTIFY_ALBUM_BASE}40AzKKVoE6d4TxqlZ2N4Fr")
         self.assertEqual(result["track_count"], 80)
 

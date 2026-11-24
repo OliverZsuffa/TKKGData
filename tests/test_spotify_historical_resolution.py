@@ -283,7 +283,7 @@ class SpotifyHistoricalResolutionTests(unittest.TestCase):
             result = resolve_spotify_album(episode, Path("."))
         self.assertEqual(result["tracks"][0]["song_id"], track_id)
 
-    def test_compilation_uses_individual_track_pairing_not_album_playlist(self):
+    def test_compilation_release_keeps_provider_tracklists_independent(self):
         episode = {"number": 20, "title": "Das Geheimnis der alten Villa"}
         track_id = "B" * 22
         spotify = {
@@ -300,21 +300,28 @@ class SpotifyHistoricalResolutionTests(unittest.TestCase):
                 "url": "https://open.spotify.com/track/" + track_id,
             }],
         }
-        matched = [{
-            "track_number": 1,
-            "title": "20 - Das Geheimnis der alten Villa",
-            "url": "https://music.youtube.com/watch?v=videoid0001",
-            "spotify_track_url": "https://open.spotify.com/track/" + track_id,
-            "match_evidence": ["exact_normalised_title"],
-        }]
+        ytm_release = {
+            "album": None,
+            "playlist": None,
+            "track_count": 2,
+            "tracks": [
+                {"track_number": 1, "video_id": "videoid0001", "url": "https://music.youtube.com/watch?v=videoid0001",
+                 "title": "20 - Das Geheimnis der alten Villa (Teil 01)", "artists": ["TKKG"], "album": "20/Das Geheimnis der alten Villa"},
+                {"track_number": 2, "video_id": "videoid0002", "url": "https://music.youtube.com/watch?v=videoid0002",
+                 "title": "20 - Das Geheimnis der alten Villa (Teil 02)", "artists": ["TKKG"], "album": "20/Das Geheimnis der alten Villa"},
+            ],
+        }
         with patch("scraper.audio_enrichment.resolve_spotify_album", return_value=spotify), \
-             patch("scraper.audio_enrichment.find_verified_youtube_music_playlist", side_effect=AssertionError("must not pair a compilation album with a playlist")), \
-             patch("scraper.audio_enrichment.find_verified_youtube_music_tracks", return_value=matched):
+             patch("scraper.audio_enrichment.find_verified_youtube_music_release", return_value=ytm_release):
             result = discover_episode_audio(episode, object())
 
-        self.assertIsNone(result["audio_release"]["youtube_music"]["playlist"])
-        self.assertIsNone(result["links"]["youtube_music_playlist"])
-        self.assertEqual(result["links"]["youtube_music_tracks"][0]["spotify_url"], "https://open.spotify.com/track/" + track_id)
+        release = result["audio_release"]
+        self.assertIsNone(release["youtube_music"]["playlist"])
+        self.assertEqual(release["spotify"]["track_count"], 1)
+        self.assertEqual(release["youtube_music"]["track_count"], 2)
+        self.assertEqual(result["links"]["youtube_music_tracks"][0]["url"], "https://music.youtube.com/watch?v=videoid0001")
+        self.assertNotIn("spotify_url", result["links"]["youtube_music_tracks"][0])
+        self.assertEqual(result["matched_tracks"], [])
 
     def test_ambiguous_equal_scoring_albums_are_rejected(self):
         episode = {"number": 20, "title": "Das Geheimnis der alten Villa"}
