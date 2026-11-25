@@ -8,8 +8,8 @@
 - [x] Independent provider chapter counts, including Spotify with 20 and YouTube Music with 21 chapters.
 - [x] Shared summary, intro, opening song, closing song, and outro selection regression coverage.
 - [x] Episode 226 alternate title matching and catalogue storage.
-- [x] Episode 128 unavailable registry validation and discovery exclusion.
-- [x] Full offline unit test suite: **150 tests passed**.
+- [x] Episode 128 unavailable registry validation and discovery exclusion, including a regression test that confirms no provider request is attempted.
+- [x] Full offline unit test suite: **151 tests passed** (latest CI run pending after the additional registry regression test)..
 - [x] Catalogue validation: **243 episodes passed**.
 - [x] Verified releases for episodes 226, 238, and 239 written to the catalogue and validated.
 - [x] Post-publication coverage audit: episodes 240, 241, 242, and 243 remain under investigation.
