@@ -16,6 +16,11 @@
       "status": "unavailable",
       "reason": "EUROPA did not rerelease this episode after it was flagged by the FSK. No official Spotify or YouTube Music release is expected.",
       "basis": "User-provided catalogue knowledge"
+    },
+    "128": {
+      "status": "unavailable",
+      "reason": "No usable official digital release could be verified during the 2026-11-25 review. The user supplied Spotify album ID 4TdiUT6sWWBMF4nlwGOiC6, but reports that Spotify marks the resource unavailable and its tracks greyed out. An independent YouTube Music album and playlist search found no matching release. The Spotify ID is retained as discovery evidence only and is not a playable link.",
+      "basis": "User-provided Spotify album ID and inaccessible-resource observation, plus independent YouTube Music album and playlist search on 2026-11-25"
     }
   }
 }
