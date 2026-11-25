@@ -6,19 +6,26 @@
 - [x] Variable chapter counts of 12, 20, 21, and 31.
 - [x] Rejection of duplicate, missing, and non-one-starting chapter numbers.
 - [x] Independent provider chapter counts, including Spotify with 20 and YouTube Music with 21 chapters.
-- [x] Existing shared track classification and inclusion regression tests.
-- [x] Episode 226 alternate title matching.
-- [x] Episode 128 unavailable registry entry recorded with its Spotify evidence.
+- [x] Shared summary, intro, opening song, closing song, and outro selection regression coverage.
+- [x] Episode 226 alternate title matching and catalogue storage.
+- [x] Episode 128 unavailable registry validation and discovery exclusion.
 - [x] Full offline unit test suite: **150 tests passed**.
 - [x] Catalogue validation: **243 episodes passed**.
-- [x] Explicit assertion that episode 226 contains `Der Täter ist unter uns` in `alternate_titles`.
+- [x] Verified releases for episodes 226, 238, and 239 written to the catalogue and validated.
+- [x] Post-publication coverage audit: episodes 240, 241, 242, and 243 remain under investigation.
 
 ## Live checks
 
-- [ ] Episode 128 Spotify ID and unavailable status checked without exposing it as a playable link.
-- [ ] Episode 128 YouTube Music checked independently.
-- [ ] Episode 226 Spotify and YouTube Music discovery.
-- [ ] Episode 238 and 239 chapter format discovery.
-- [ ] Full audio coverage audit.
+- [x] Episode 128 Spotify album ID recorded as unavailable evidence, not a playable link.
+- [x] Episode 128 YouTube Music independently checked. No matching album or playlist was found.
+- [x] Episode 226 Spotify and YouTube Music release discovery and verification.
+- [x] Episode 238 and 239 new chapter naming discovery and verification.
+- [x] Full audio coverage audit after publishing the verified releases.
 
-Live discovery and audit are being run in GitHub Actions. Results will be added here once the workflow finishes.
+## Provider chapter counts
+
+| Episode | Spotify | YouTube Music |
+|---|---:|---:|
+| 226 | 21 | 43 |
+| 238 | 20 | 41 |
+| 239 | 20 | 40 |
