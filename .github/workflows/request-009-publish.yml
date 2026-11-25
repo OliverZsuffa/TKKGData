@@ -61,7 +61,7 @@ jobs:
           import json
           from pathlib import Path
           from scraper.validate import validate_catalogue
-          from scraper.audio_coverage_audit import build_report
+          from scraper.audio_coverage_audit import audit
 
           episodes = json.loads(Path("data/episodes.json").read_text(encoding="utf-8"))
           errors = validate_catalogue(episodes)
@@ -71,12 +71,12 @@ jobs:
               episode = next(item for item in episodes if item["number"] == number)
               release = episode.get("audio_release", {})
               assert release.get("verification", {}).get("status") == "verified"
-          audit = build_report(episodes)
+          audit_result = audit(episodes)
           print("Post-publication audit:")
           print(json.dumps({
-              "ready_for_discovery": [x["number"] for x in audit["ready_for_discovery"]],
-              "needs_investigation": [x["number"] for x in audit["needs_investigation"]],
-              "known_unavailable": [x["number"] for x in audit["known_unavailable"]],
+              "ready_for_discovery": [x["number"] for x in audit_result["ready_for_discovery"]],
+              "needs_investigation": [x["number"] for x in audit_result["needs_investigation"]],
+              "known_unavailable": [x["number"] for x in audit_result["known_unavailable"]],
           }, ensure_ascii=False, indent=2))
           print(f"Validated {len(episodes)} catalogue episodes")
           PY
