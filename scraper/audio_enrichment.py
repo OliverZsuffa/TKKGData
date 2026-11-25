@@ -399,7 +399,7 @@ def _episode_title_matches_track(
     expected_titles = _episode_title_variants(episode)
     actual_title = _normalise(str(track.get("name") or ""))
     album_title = _normalise(str(track.get("album_name") or ""))
-    part_marker = bool(re.search(r"\bteil\s*0*\d+\b|\bpart\s*0*\d+\b", actual_title))
+    part_marker = bool(re.search(r"\b(?:teil|part|kapitel)\s*0*\d+\b", actual_title))
     title_in_track = any(title in actual_title for title in expected_titles)
     title_in_album = any(title in album_title for title in expected_titles)
     if not title_in_track and not (title_in_album and part_marker):
@@ -425,7 +425,7 @@ def _spotify_candidate_score(episode: dict[str, Any], record: dict[str, Any]) ->
         or _spotify_number_matches_text(album_name, number)
         or _spotify_number_matches_text(query, number)
     )
-    part_marker = bool(re.search(r"\bteil\s*0*\d+\b|\bpart\s*0*\d+\b", name))
+    part_marker = bool(re.search(r"\b(?:teil|part|kapitel)\s*0*\d+\b", name))
     title_in_track = any(value in name for value in titles)
     title_in_album = any(value in album_name for value in titles)
     exact_title = name in titles
