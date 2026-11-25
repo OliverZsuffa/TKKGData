@@ -2,12 +2,17 @@
 
 ## Planned automated checks
 
-- [ ] Part marker classification for Teil, Part, and Kapitel.
-- [ ] Variable chapter counts including 12, 20, 21, and 31.
-- [ ] Duplicate, gap, and invalid starting number rejection.
-- [ ] Independent Spotify and YouTube Music chapter counts.
+- [x] Part marker classification tests added for Teil, Part, and Kapitel. Execution is pending CI.
+
+- [x] Variable chapter count tests added for 12, 20, 21, and 31. Execution is pending CI.
+
+- [x] Duplicate, gap, and invalid starting number rejection tests added. Execution is pending CI.
+
+- [x] Independent Spotify and YouTube Music count test added for 20 versus 21 chapters. Execution is pending CI.
+
 - [ ] Shared track classification and inclusion regression.
-- [ ] Episode 226 alternate title matching.
+- [x] Unit test added for matching the exact alternate title when supplied on the episode object. The catalogue record update remains pending.
+
 - [ ] Episode 128 unavailable registry validation and retry exclusion.
 - [ ] Full offline unit test suite.
 - [ ] Catalogue validation.
