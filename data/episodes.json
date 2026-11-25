@@ -203435,7 +203435,747 @@
     "last_checked": "2026-11-24T13:52:04.758255+00:00",
     "alternate_titles": [
       "Der Täter ist unter uns"
-    ]
+    ],
+    "audio_release": {
+      "schema_version": 2,
+      "spotify": {
+        "album": {
+          "album_id": "4FHfFcYa1kkdJcPwVBfurR",
+          "url": "https://open.spotify.com/album/4FHfFcYa1kkdJcPwVBfurR",
+          "title": "Folge 226: Der Täter ist unter uns",
+          "track_count": 25,
+          "source_query": "track:\"Der Täter unter uns\" artist:TKKG"
+        },
+        "tracks": [
+          {
+            "track_number": 1,
+            "disc_number": 1,
+            "track_id": "0EyyqkksyPezWwGm42g0tm",
+            "url": "https://open.spotify.com/track/0EyyqkksyPezWwGm42g0tm",
+            "title": "226 - Der Täter ist unter uns - Inhaltsangabe",
+            "duration_seconds": 81.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 2,
+            "disc_number": 1,
+            "track_id": "5durP5DRhCqBULwQ3W8t42",
+            "url": "https://open.spotify.com/track/5durP5DRhCqBULwQ3W8t42",
+            "title": "TKKG Titelsong",
+            "duration_seconds": 35.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 3,
+            "disc_number": 1,
+            "track_id": "1MoFP7uzUyqfPQ3ijHWYq2",
+            "url": "https://open.spotify.com/track/1MoFP7uzUyqfPQ3ijHWYq2",
+            "title": "226 - Der Täter ist unter uns - Teil 01",
+            "duration_seconds": 180.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 4,
+            "disc_number": 1,
+            "track_id": "1ycyOKp427ktJiBpl3Nu9F",
+            "url": "https://open.spotify.com/track/1ycyOKp427ktJiBpl3Nu9F",
+            "title": "226 - Der Täter ist unter uns - Teil 02",
+            "duration_seconds": 186.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 5,
+            "disc_number": 1,
+            "track_id": "5cYvrNddtUk1PEczcCNa6T",
+            "url": "https://open.spotify.com/track/5cYvrNddtUk1PEczcCNa6T",
+            "title": "226 - Der Täter ist unter uns - Teil 03",
+            "duration_seconds": 184.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 6,
+            "disc_number": 1,
+            "track_id": "24zTl3GPo5OeRx9LPVNMXt",
+            "url": "https://open.spotify.com/track/24zTl3GPo5OeRx9LPVNMXt",
+            "title": "226 - Der Täter ist unter uns - Teil 04",
+            "duration_seconds": 180.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 7,
+            "disc_number": 1,
+            "track_id": "25QsdyNSqvWXHXq7LERadZ",
+            "url": "https://open.spotify.com/track/25QsdyNSqvWXHXq7LERadZ",
+            "title": "226 - Der Täter ist unter uns - Teil 05",
+            "duration_seconds": 181.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 8,
+            "disc_number": 1,
+            "track_id": "2LsdHO53AAzY6vi3uCy0so",
+            "url": "https://open.spotify.com/track/2LsdHO53AAzY6vi3uCy0so",
+            "title": "226 - Der Täter ist unter uns - Teil 06",
+            "duration_seconds": 181.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 9,
+            "disc_number": 1,
+            "track_id": "041St6st0yzOTnK0QVKNRo",
+            "url": "https://open.spotify.com/track/041St6st0yzOTnK0QVKNRo",
+            "title": "226 - Der Täter ist unter uns - Teil 07",
+            "duration_seconds": 180.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 10,
+            "disc_number": 1,
+            "track_id": "0W9HJqvCKzmsdq5EulKOBs",
+            "url": "https://open.spotify.com/track/0W9HJqvCKzmsdq5EulKOBs",
+            "title": "226 - Der Täter ist unter uns - Teil 08",
+            "duration_seconds": 182.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 11,
+            "disc_number": 1,
+            "track_id": "0mhfOgdySoOMi6O55K6AE1",
+            "url": "https://open.spotify.com/track/0mhfOgdySoOMi6O55K6AE1",
+            "title": "226 - Der Täter ist unter uns - Teil 09",
+            "duration_seconds": 187.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 12,
+            "disc_number": 1,
+            "track_id": "0fpKbl5Cmwm3r0c3KMeoxa",
+            "url": "https://open.spotify.com/track/0fpKbl5Cmwm3r0c3KMeoxa",
+            "title": "226 - Der Täter ist unter uns - Teil 10",
+            "duration_seconds": 180.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 13,
+            "disc_number": 1,
+            "track_id": "5GQUv0mvLEYfcW79qBjkOR",
+            "url": "https://open.spotify.com/track/5GQUv0mvLEYfcW79qBjkOR",
+            "title": "226 - Der Täter ist unter uns - Teil 11",
+            "duration_seconds": 183.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 14,
+            "disc_number": 1,
+            "track_id": "1aIKSxyJvNAWcxH51a4k5z",
+            "url": "https://open.spotify.com/track/1aIKSxyJvNAWcxH51a4k5z",
+            "title": "226 - Der Täter ist unter uns - Teil 12",
+            "duration_seconds": 187.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 15,
+            "disc_number": 1,
+            "track_id": "6ybvHmoa932l513C8FV2QD",
+            "url": "https://open.spotify.com/track/6ybvHmoa932l513C8FV2QD",
+            "title": "226 - Der Täter ist unter uns - Teil 13",
+            "duration_seconds": 188.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 16,
+            "disc_number": 1,
+            "track_id": "3dznXB0OWvlQpn4OwNM8Oe",
+            "url": "https://open.spotify.com/track/3dznXB0OWvlQpn4OwNM8Oe",
+            "title": "226 - Der Täter ist unter uns - Teil 14",
+            "duration_seconds": 181.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 17,
+            "disc_number": 1,
+            "track_id": "0R9SXDHPFVcZrpsmBk8706",
+            "url": "https://open.spotify.com/track/0R9SXDHPFVcZrpsmBk8706",
+            "title": "226 - Der Täter ist unter uns - Teil 15",
+            "duration_seconds": 183.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 18,
+            "disc_number": 1,
+            "track_id": "5Cp6b4qJVosHrlij9e0PZt",
+            "url": "https://open.spotify.com/track/5Cp6b4qJVosHrlij9e0PZt",
+            "title": "226 - Der Täter ist unter uns - Teil 16",
+            "duration_seconds": 181.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 19,
+            "disc_number": 1,
+            "track_id": "4xXAu4HsQ1gM52mR6cATSD",
+            "url": "https://open.spotify.com/track/4xXAu4HsQ1gM52mR6cATSD",
+            "title": "226 - Der Täter ist unter uns - Teil 17",
+            "duration_seconds": 180.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 20,
+            "disc_number": 1,
+            "track_id": "4wyj06mfUFxoN99e7RhNrT",
+            "url": "https://open.spotify.com/track/4wyj06mfUFxoN99e7RhNrT",
+            "title": "226 - Der Täter ist unter uns - Teil 18",
+            "duration_seconds": 181.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 21,
+            "disc_number": 1,
+            "track_id": "5svnfgktgmVbrVwp0fXhf3",
+            "url": "https://open.spotify.com/track/5svnfgktgmVbrVwp0fXhf3",
+            "title": "226 - Der Täter ist unter uns - Teil 19",
+            "duration_seconds": 188.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 22,
+            "disc_number": 1,
+            "track_id": "2Dl7r3lejvLDag5Z6j45e5",
+            "url": "https://open.spotify.com/track/2Dl7r3lejvLDag5Z6j45e5",
+            "title": "226 - Der Täter ist unter uns - Teil 20",
+            "duration_seconds": 222.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 23,
+            "disc_number": 1,
+            "track_id": "3qipRvHB1ZkryISb6ZkQR3",
+            "url": "https://open.spotify.com/track/3qipRvHB1ZkryISb6ZkQR3",
+            "title": "226 - Der Täter ist unter uns - Teil 21",
+            "duration_seconds": 262.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 24,
+            "disc_number": 1,
+            "track_id": "6Zec1FNMA4SR6MdapEyujq",
+            "url": "https://open.spotify.com/track/6Zec1FNMA4SR6MdapEyujq",
+            "title": "TKKG Schlußsong",
+            "duration_seconds": 38.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 25,
+            "disc_number": 1,
+            "track_id": "1DMjuh9wvLzuREv7VhNSCg",
+            "url": "https://open.spotify.com/track/1DMjuh9wvLzuREv7VhNSCg",
+            "title": "226 - Der Täter ist unter uns - Outro",
+            "duration_seconds": 66.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          }
+        ],
+        "track_count": 25
+      },
+      "youtube_music": {
+        "album": {
+          "browse_id": "MPREb_8PnrE6jnQRB",
+          "url": "https://music.youtube.com/browse/MPREb_8PnrE6jnQRB",
+          "title": "Folge 226: Der Täter ist unter uns",
+          "track_count": 47
+        },
+        "playlist": null,
+        "tracks": [
+          {
+            "track_number": 1,
+            "video_id": "xNvnqOo6F-I",
+            "url": "https://music.youtube.com/watch?v=xNvnqOo6F-I",
+            "title": "226 - Der Täter ist unter uns (Inhaltsangabe)",
+            "artists": [],
+            "album": "Album - Folge 226: Der Täter ist unter uns",
+            "duration_seconds": 82.0
+          },
+          {
+            "track_number": 2,
+            "video_id": "7Bu2clNG8So",
+            "url": "https://music.youtube.com/watch?v=7Bu2clNG8So",
+            "title": "TKKG Titelsong",
+            "artists": [],
+            "album": "Album - Folge 226: Der Täter ist unter uns",
+            "duration_seconds": 36.0
+          },
+          {
+            "track_number": 3,
+            "video_id": "v_C6UZTn7bM",
+            "url": "https://music.youtube.com/watch?v=v_C6UZTn7bM",
+            "title": "226 - Der Täter ist unter uns (Teil 01)",
+            "artists": [],
+            "album": "Album - Folge 226: Der Täter ist unter uns",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 4,
+            "video_id": "Nz3G6VS4sgg",
+            "url": "https://music.youtube.com/watch?v=Nz3G6VS4sgg",
+            "title": "226 - Der Täter ist unter uns (Teil 02)",
+            "artists": [],
+            "album": "Album - Folge 226: Der Täter ist unter uns",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 5,
+            "video_id": "BNHSJ7r5nB0",
+            "url": "https://music.youtube.com/watch?v=BNHSJ7r5nB0",
+            "title": "226 - Der Täter ist unter uns (Teil 03)",
+            "artists": [],
+            "album": "Album - Folge 226: Der Täter ist unter uns",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 6,
+            "video_id": "h8Eu47wDhaA",
+            "url": "https://music.youtube.com/watch?v=h8Eu47wDhaA",
+            "title": "226 - Der Täter ist unter uns (Teil 04)",
+            "artists": [],
+            "album": "Album - Folge 226: Der Täter ist unter uns",
+            "duration_seconds": 90.0
+          },
+          {
+            "track_number": 7,
+            "video_id": "NEGSkX_S8BA",
+            "url": "https://music.youtube.com/watch?v=NEGSkX_S8BA",
+            "title": "226 - Der Täter ist unter uns (Teil 05)",
+            "artists": [],
+            "album": "Album - Folge 226: Der Täter ist unter uns",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 8,
+            "video_id": "hxKGhHwcPhU",
+            "url": "https://music.youtube.com/watch?v=hxKGhHwcPhU",
+            "title": "226 - Der Täter ist unter uns (Teil 06)",
+            "artists": [],
+            "album": "Album - Folge 226: Der Täter ist unter uns",
+            "duration_seconds": 100.0
+          },
+          {
+            "track_number": 9,
+            "video_id": "GgOcnn04ugE",
+            "url": "https://music.youtube.com/watch?v=GgOcnn04ugE",
+            "title": "226 - Der Täter ist unter uns (Teil 07)",
+            "artists": [],
+            "album": "Album - Folge 226: Der Täter ist unter uns",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 10,
+            "video_id": "kX_cJc8sKvY",
+            "url": "https://music.youtube.com/watch?v=kX_cJc8sKvY",
+            "title": "226 - Der Täter ist unter uns (Teil 08)",
+            "artists": [],
+            "album": "Album - Folge 226: Der Täter ist unter uns",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 11,
+            "video_id": "bNQQ1cZjj8c",
+            "url": "https://music.youtube.com/watch?v=bNQQ1cZjj8c",
+            "title": "226 - Der Täter ist unter uns (Teil 09)",
+            "artists": [],
+            "album": "Album - Folge 226: Der Täter ist unter uns",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 12,
+            "video_id": "T776lL6XX7I",
+            "url": "https://music.youtube.com/watch?v=T776lL6XX7I",
+            "title": "226 - Der Täter ist unter uns (Teil 10)",
+            "artists": [],
+            "album": "Album - Folge 226: Der Täter ist unter uns",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 13,
+            "video_id": "InBYq-ICt6s",
+            "url": "https://music.youtube.com/watch?v=InBYq-ICt6s",
+            "title": "226 - Der Täter ist unter uns (Teil 11)",
+            "artists": [],
+            "album": "Album - Folge 226: Der Täter ist unter uns",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 14,
+            "video_id": "91lOoFMxiXU",
+            "url": "https://music.youtube.com/watch?v=91lOoFMxiXU",
+            "title": "226 - Der Täter ist unter uns (Teil 12)",
+            "artists": [],
+            "album": "Album - Folge 226: Der Täter ist unter uns",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 15,
+            "video_id": "DthP-9O-CNQ",
+            "url": "https://music.youtube.com/watch?v=DthP-9O-CNQ",
+            "title": "226 - Der Täter ist unter uns (Teil 13)",
+            "artists": [],
+            "album": "Album - Folge 226: Der Täter ist unter uns",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 16,
+            "video_id": "rrnITUdFgjw",
+            "url": "https://music.youtube.com/watch?v=rrnITUdFgjw",
+            "title": "226 - Der Täter ist unter uns (Teil 14)",
+            "artists": [],
+            "album": "Album - Folge 226: Der Täter ist unter uns",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 17,
+            "video_id": "p9YXZifUCUY",
+            "url": "https://music.youtube.com/watch?v=p9YXZifUCUY",
+            "title": "226 - Der Täter ist unter uns (Teil 15)",
+            "artists": [],
+            "album": "Album - Folge 226: Der Täter ist unter uns",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 18,
+            "video_id": "61J24Eb7OSQ",
+            "url": "https://music.youtube.com/watch?v=61J24Eb7OSQ",
+            "title": "226 - Der Täter ist unter uns (Teil 16)",
+            "artists": [],
+            "album": "Album - Folge 226: Der Täter ist unter uns",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 19,
+            "video_id": "zQOXgTD_H6g",
+            "url": "https://music.youtube.com/watch?v=zQOXgTD_H6g",
+            "title": "226 - Der Täter ist unter uns (Teil 17)",
+            "artists": [],
+            "album": "Album - Folge 226: Der Täter ist unter uns",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 20,
+            "video_id": "WGbVXsMiimc",
+            "url": "https://music.youtube.com/watch?v=WGbVXsMiimc",
+            "title": "226 - Der Täter ist unter uns (Teil 18)",
+            "artists": [],
+            "album": "Album - Folge 226: Der Täter ist unter uns",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 21,
+            "video_id": "NGRcMdq-Pm8",
+            "url": "https://music.youtube.com/watch?v=NGRcMdq-Pm8",
+            "title": "226 - Der Täter ist unter uns (Teil 19)",
+            "artists": [],
+            "album": "Album - Folge 226: Der Täter ist unter uns",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 22,
+            "video_id": "mU2MreAQFdU",
+            "url": "https://music.youtube.com/watch?v=mU2MreAQFdU",
+            "title": "226 - Der Täter ist unter uns (Teil 20)",
+            "artists": [],
+            "album": "Album - Folge 226: Der Täter ist unter uns",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 23,
+            "video_id": "4Ly-IjjsC1o",
+            "url": "https://music.youtube.com/watch?v=4Ly-IjjsC1o",
+            "title": "226 - Der Täter ist unter uns (Teil 21)",
+            "artists": [],
+            "album": "Album - Folge 226: Der Täter ist unter uns",
+            "duration_seconds": 90.0
+          },
+          {
+            "track_number": 24,
+            "video_id": "RelbYhDoeSI",
+            "url": "https://music.youtube.com/watch?v=RelbYhDoeSI",
+            "title": "226 - Der Täter ist unter uns (Teil 22)",
+            "artists": [],
+            "album": "Album - Folge 226: Der Täter ist unter uns",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 25,
+            "video_id": "piKnUzPncps",
+            "url": "https://music.youtube.com/watch?v=piKnUzPncps",
+            "title": "226 - Der Täter ist unter uns (Teil 23)",
+            "artists": [],
+            "album": "Album - Folge 226: Der Täter ist unter uns",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 26,
+            "video_id": "Y_rcc6Op3uA",
+            "url": "https://music.youtube.com/watch?v=Y_rcc6Op3uA",
+            "title": "226 - Der Täter ist unter uns (Teil 24)",
+            "artists": [],
+            "album": "Album - Folge 226: Der Täter ist unter uns",
+            "duration_seconds": 93.0
+          },
+          {
+            "track_number": 27,
+            "video_id": "Xfxm562d-UI",
+            "url": "https://music.youtube.com/watch?v=Xfxm562d-UI",
+            "title": "226 - Der Täter ist unter uns (Teil 25)",
+            "artists": [],
+            "album": "Album - Folge 226: Der Täter ist unter uns",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 28,
+            "video_id": "Eem3Kl6iwLQ",
+            "url": "https://music.youtube.com/watch?v=Eem3Kl6iwLQ",
+            "title": "226 - Der Täter ist unter uns (Teil 26)",
+            "artists": [],
+            "album": "Album - Folge 226: Der Täter ist unter uns",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 29,
+            "video_id": "DxGOhUtWYk8",
+            "url": "https://music.youtube.com/watch?v=DxGOhUtWYk8",
+            "title": "226 - Der Täter ist unter uns (Teil 27)",
+            "artists": [],
+            "album": "Album - Folge 226: Der Täter ist unter uns",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 30,
+            "video_id": "hnWeVZ9JBKs",
+            "url": "https://music.youtube.com/watch?v=hnWeVZ9JBKs",
+            "title": "226 - Der Täter ist unter uns (Teil 28)",
+            "artists": [],
+            "album": "Album - Folge 226: Der Täter ist unter uns",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 31,
+            "video_id": "4cA2KfTZ0hY",
+            "url": "https://music.youtube.com/watch?v=4cA2KfTZ0hY",
+            "title": "226 - Der Täter ist unter uns (Teil 29)",
+            "artists": [],
+            "album": "Album - Folge 226: Der Täter ist unter uns",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 32,
+            "video_id": "znEkQh_nHFg",
+            "url": "https://music.youtube.com/watch?v=znEkQh_nHFg",
+            "title": "226 - Der Täter ist unter uns (Teil 30)",
+            "artists": [],
+            "album": "Album - Folge 226: Der Täter ist unter uns",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 33,
+            "video_id": "ZqIEDIaugn8",
+            "url": "https://music.youtube.com/watch?v=ZqIEDIaugn8",
+            "title": "226 - Der Täter ist unter uns (Teil 31)",
+            "artists": [],
+            "album": "Album - Folge 226: Der Täter ist unter uns",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 34,
+            "video_id": "9u7URqZTZL4",
+            "url": "https://music.youtube.com/watch?v=9u7URqZTZL4",
+            "title": "226 - Der Täter ist unter uns (Teil 32)",
+            "artists": [],
+            "album": "Album - Folge 226: Der Täter ist unter uns",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 35,
+            "video_id": "eyYQk9pKgig",
+            "url": "https://music.youtube.com/watch?v=eyYQk9pKgig",
+            "title": "226 - Der Täter ist unter uns (Teil 33)",
+            "artists": [],
+            "album": "Album - Folge 226: Der Täter ist unter uns",
+            "duration_seconds": 90.0
+          },
+          {
+            "track_number": 36,
+            "video_id": "nxd5X6c3LEw",
+            "url": "https://music.youtube.com/watch?v=nxd5X6c3LEw",
+            "title": "226 - Der Täter ist unter uns (Teil 34)",
+            "artists": [],
+            "album": "Album - Folge 226: Der Täter ist unter uns",
+            "duration_seconds": 90.0
+          },
+          {
+            "track_number": 37,
+            "video_id": "LJu1s9L0_tg",
+            "url": "https://music.youtube.com/watch?v=LJu1s9L0_tg",
+            "title": "226 - Der Täter ist unter uns (Teil 35)",
+            "artists": [],
+            "album": "Album - Folge 226: Der Täter ist unter uns",
+            "duration_seconds": 94.0
+          },
+          {
+            "track_number": 38,
+            "video_id": "GVvXbb-AEEw",
+            "url": "https://music.youtube.com/watch?v=GVvXbb-AEEw",
+            "title": "226 - Der Täter ist unter uns (Teil 36)",
+            "artists": [],
+            "album": "Album - Folge 226: Der Täter ist unter uns",
+            "duration_seconds": 93.0
+          },
+          {
+            "track_number": 39,
+            "video_id": "ZUYgwnZeD9s",
+            "url": "https://music.youtube.com/watch?v=ZUYgwnZeD9s",
+            "title": "226 - Der Täter ist unter uns (Teil 37)",
+            "artists": [],
+            "album": "Album - Folge 226: Der Täter ist unter uns",
+            "duration_seconds": 90.0
+          },
+          {
+            "track_number": 40,
+            "video_id": "OCfsHVNKRAs",
+            "url": "https://music.youtube.com/watch?v=OCfsHVNKRAs",
+            "title": "226 - Der Täter ist unter uns (Teil 38)",
+            "artists": [],
+            "album": "Album - Folge 226: Der Täter ist unter uns",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 41,
+            "video_id": "l44v7Iz5MwY",
+            "url": "https://music.youtube.com/watch?v=l44v7Iz5MwY",
+            "title": "226 - Der Täter ist unter uns (Teil 39)",
+            "artists": [],
+            "album": "Album - Folge 226: Der Täter ist unter uns",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 42,
+            "video_id": "b1UKHYkQyuE",
+            "url": "https://music.youtube.com/watch?v=b1UKHYkQyuE",
+            "title": "226 - Der Täter ist unter uns (Teil 40)",
+            "artists": [],
+            "album": "Album - Folge 226: Der Täter ist unter uns",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 43,
+            "video_id": "QlwIMhziY2o",
+            "url": "https://music.youtube.com/watch?v=QlwIMhziY2o",
+            "title": "226 - Der Täter ist unter uns (Teil 41)",
+            "artists": [],
+            "album": "Album - Folge 226: Der Täter ist unter uns",
+            "duration_seconds": 94.0
+          },
+          {
+            "track_number": 44,
+            "video_id": "oeZIFJhFjMg",
+            "url": "https://music.youtube.com/watch?v=oeZIFJhFjMg",
+            "title": "226 - Der Täter ist unter uns (Teil 42)",
+            "artists": [],
+            "album": "Album - Folge 226: Der Täter ist unter uns",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 45,
+            "video_id": "ER5u-K2e8_g",
+            "url": "https://music.youtube.com/watch?v=ER5u-K2e8_g",
+            "title": "226 - Der Täter ist unter uns (Teil 43)",
+            "artists": [],
+            "album": "Album - Folge 226: Der Täter ist unter uns",
+            "duration_seconds": 146.0
+          },
+          {
+            "track_number": 46,
+            "video_id": "ZtsVwkfw930",
+            "url": "https://music.youtube.com/watch?v=ZtsVwkfw930",
+            "title": "TKKG Schlußsong",
+            "artists": [],
+            "album": "Album - Folge 226: Der Täter ist unter uns",
+            "duration_seconds": 39.0
+          },
+          {
+            "track_number": 47,
+            "video_id": "PrnypsyQUnw",
+            "url": "https://music.youtube.com/watch?v=PrnypsyQUnw",
+            "title": "226 - Der Täter ist unter uns (Outro)",
+            "artists": [],
+            "album": "Album - Folge 226: Der Täter ist unter uns",
+            "duration_seconds": 67.0
+          }
+        ],
+        "track_count": 47
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-11-25T10:08:51.400487+00:00",
+        "method": "independent_provider_tracklist_validation",
+        "spotify": {
+          "status": "verified",
+          "verified_track_count": 25
+        },
+        "youtube_music": {
+          "status": "verified",
+          "verified_track_count": 47,
+          "playlist_status": "unavailable",
+          "playlist_error": null
+        }
+      }
+    }
   },
   {
     "number": 227,
@@ -212807,7 +213547,718 @@
         "source_url": "https://www.tkkg.de/produkte/hoerspiele?page=1"
       }
     ],
-    "last_checked": "2026-11-24T13:52:04.758255+00:00"
+    "last_checked": "2026-11-24T13:52:04.758255+00:00",
+    "audio_release": {
+      "schema_version": 2,
+      "spotify": {
+        "album": {
+          "album_id": "1c8tRETLo5PYcz0BaLpjJx",
+          "url": "https://open.spotify.com/album/1c8tRETLo5PYcz0BaLpjJx",
+          "title": "Folge 238: Nur Tote schlafen länger",
+          "track_count": 24,
+          "source_query": "artist:TKKG track:\"Nur Tote schlafen länger\""
+        },
+        "tracks": [
+          {
+            "track_number": 1,
+            "disc_number": 1,
+            "track_id": "0qAReHZH1MJkwrEk0VW7NU",
+            "url": "https://open.spotify.com/track/0qAReHZH1MJkwrEk0VW7NU",
+            "title": "Inhaltsangabe: Nur Tote schlafen länger - Folge 238",
+            "duration_seconds": 55.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 2,
+            "disc_number": 1,
+            "track_id": "4ytYtqtOkM2aKoYHEOW8n2",
+            "url": "https://open.spotify.com/track/4ytYtqtOkM2aKoYHEOW8n2",
+            "title": "TKKG Titelsong",
+            "duration_seconds": 35.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 3,
+            "disc_number": 1,
+            "track_id": "1DAaEscqKrbSxpYbnoGyeK",
+            "url": "https://open.spotify.com/track/1DAaEscqKrbSxpYbnoGyeK",
+            "title": "Kapitel 01: Nur Tote schlafen länger - Folge 238",
+            "duration_seconds": 187.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 4,
+            "disc_number": 1,
+            "track_id": "3MJztjTVJ3xoC6Ic80IKQl",
+            "url": "https://open.spotify.com/track/3MJztjTVJ3xoC6Ic80IKQl",
+            "title": "Kapitel 02: Nur Tote schlafen länger - Folge 238",
+            "duration_seconds": 185.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 5,
+            "disc_number": 1,
+            "track_id": "7LRL0YrCGaV5yEXSWuiHBO",
+            "url": "https://open.spotify.com/track/7LRL0YrCGaV5yEXSWuiHBO",
+            "title": "Kapitel 03: Nur Tote schlafen länger - Folge 238",
+            "duration_seconds": 180.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 6,
+            "disc_number": 1,
+            "track_id": "26PO1dixcmYcoeBBoQ8uAJ",
+            "url": "https://open.spotify.com/track/26PO1dixcmYcoeBBoQ8uAJ",
+            "title": "Kapitel 04: Nur Tote schlafen länger - Folge 238",
+            "duration_seconds": 187.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 7,
+            "disc_number": 1,
+            "track_id": "6NjID0En6uMxX8IiKJFJSQ",
+            "url": "https://open.spotify.com/track/6NjID0En6uMxX8IiKJFJSQ",
+            "title": "Kapitel 05: Nur Tote schlafen länger - Folge 238",
+            "duration_seconds": 180.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 8,
+            "disc_number": 1,
+            "track_id": "5jc6dHUvBpJ9bcKfzzqUUD",
+            "url": "https://open.spotify.com/track/5jc6dHUvBpJ9bcKfzzqUUD",
+            "title": "Kapitel 06: Nur Tote schlafen länger - Folge 238",
+            "duration_seconds": 181.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 9,
+            "disc_number": 1,
+            "track_id": "5OVADcXihGy76RqmydkJHZ",
+            "url": "https://open.spotify.com/track/5OVADcXihGy76RqmydkJHZ",
+            "title": "Kapitel 07: Nur Tote schlafen länger - Folge 238",
+            "duration_seconds": 183.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 10,
+            "disc_number": 1,
+            "track_id": "3bPqhEiRkl8MFeORByfX92",
+            "url": "https://open.spotify.com/track/3bPqhEiRkl8MFeORByfX92",
+            "title": "Kapitel 08: Nur Tote schlafen länger - Folge 238",
+            "duration_seconds": 182.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 11,
+            "disc_number": 1,
+            "track_id": "4aJzuNaw5O0o9BYSn7q8uM",
+            "url": "https://open.spotify.com/track/4aJzuNaw5O0o9BYSn7q8uM",
+            "title": "Kapitel 09: Nur Tote schlafen länger - Folge 238",
+            "duration_seconds": 182.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 12,
+            "disc_number": 1,
+            "track_id": "68HmjdWa1tK9eCfCAv2oML",
+            "url": "https://open.spotify.com/track/68HmjdWa1tK9eCfCAv2oML",
+            "title": "Kapitel 10: Nur Tote schlafen länger - Folge 238",
+            "duration_seconds": 185.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 13,
+            "disc_number": 1,
+            "track_id": "5SIhw0qrOjccMnHNHMKmju",
+            "url": "https://open.spotify.com/track/5SIhw0qrOjccMnHNHMKmju",
+            "title": "Kapitel 11: Nur Tote schlafen länger - Folge 238",
+            "duration_seconds": 182.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 14,
+            "disc_number": 1,
+            "track_id": "5mZMQzXM32oW1Bg8sUCfQP",
+            "url": "https://open.spotify.com/track/5mZMQzXM32oW1Bg8sUCfQP",
+            "title": "Kapitel 12: Nur Tote schlafen länger - Folge 238",
+            "duration_seconds": 180.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 15,
+            "disc_number": 1,
+            "track_id": "2nSCthqLMOcdtErJb4aIUx",
+            "url": "https://open.spotify.com/track/2nSCthqLMOcdtErJb4aIUx",
+            "title": "Kapitel 13: Nur Tote schlafen länger - Folge 238",
+            "duration_seconds": 183.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 16,
+            "disc_number": 1,
+            "track_id": "7fV5G9h5bSZlB2CMl7bZ2W",
+            "url": "https://open.spotify.com/track/7fV5G9h5bSZlB2CMl7bZ2W",
+            "title": "Kapitel 14: Nur Tote schlafen länger - Folge 238",
+            "duration_seconds": 182.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 17,
+            "disc_number": 1,
+            "track_id": "7gPF9JDGBtD3TeHVH9Su1f",
+            "url": "https://open.spotify.com/track/7gPF9JDGBtD3TeHVH9Su1f",
+            "title": "Kapitel 15: Nur Tote schlafen länger - Folge 238",
+            "duration_seconds": 185.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 18,
+            "disc_number": 1,
+            "track_id": "38qJ1StLfSHNeYv0wPW6V6",
+            "url": "https://open.spotify.com/track/38qJ1StLfSHNeYv0wPW6V6",
+            "title": "Kapitel 16: Nur Tote schlafen länger - Folge 238",
+            "duration_seconds": 181.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 19,
+            "disc_number": 1,
+            "track_id": "1eznIWmd4U2DVUrY3OdHtL",
+            "url": "https://open.spotify.com/track/1eznIWmd4U2DVUrY3OdHtL",
+            "title": "Kapitel 17: Nur Tote schlafen länger - Folge 238",
+            "duration_seconds": 182.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 20,
+            "disc_number": 1,
+            "track_id": "0ymUS2FQBowph12d9ctfcz",
+            "url": "https://open.spotify.com/track/0ymUS2FQBowph12d9ctfcz",
+            "title": "Kapitel 18: Nur Tote schlafen länger - Folge 238",
+            "duration_seconds": 180.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 21,
+            "disc_number": 1,
+            "track_id": "4nVcyjTwfHUmdndyjfVkC6",
+            "url": "https://open.spotify.com/track/4nVcyjTwfHUmdndyjfVkC6",
+            "title": "Kapitel 19: Nur Tote schlafen länger - Folge 238",
+            "duration_seconds": 184.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 22,
+            "disc_number": 1,
+            "track_id": "4Ol6frVBixACLHknvc9zwX",
+            "url": "https://open.spotify.com/track/4Ol6frVBixACLHknvc9zwX",
+            "title": "Kapitel 20: Nur Tote schlafen länger - Folge 238",
+            "duration_seconds": 341.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 23,
+            "disc_number": 1,
+            "track_id": "5jLRtjisqNuD4jYlDnzAd2",
+            "url": "https://open.spotify.com/track/5jLRtjisqNuD4jYlDnzAd2",
+            "title": "TKKG Schlußsong",
+            "duration_seconds": 38.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 24,
+            "disc_number": 1,
+            "track_id": "4myJEBnyjWAE3zQ6dnNwOu",
+            "url": "https://open.spotify.com/track/4myJEBnyjWAE3zQ6dnNwOu",
+            "title": "Outro: Nur Tote schlafen länger - Folge 238",
+            "duration_seconds": 99.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          }
+        ],
+        "track_count": 24
+      },
+      "youtube_music": {
+        "album": {
+          "browse_id": "MPREb_T4c4u3vmUPE",
+          "url": "https://music.youtube.com/browse/MPREb_T4c4u3vmUPE",
+          "title": "Folge 238: Nur Tote schlafen länger",
+          "track_count": 45
+        },
+        "playlist": null,
+        "tracks": [
+          {
+            "track_number": 1,
+            "video_id": "awtBIRe0tkM",
+            "url": "https://music.youtube.com/watch?v=awtBIRe0tkM",
+            "title": "Inhaltsangabe: Nur Tote schlafen länger (Folge 238)",
+            "artists": [],
+            "album": "Album - Folge 238: Nur Tote schlafen länger",
+            "duration_seconds": 56.0
+          },
+          {
+            "track_number": 2,
+            "video_id": "TF5zYa80gvk",
+            "url": "https://music.youtube.com/watch?v=TF5zYa80gvk",
+            "title": "TKKG Titelsong",
+            "artists": [],
+            "album": "Album - Folge 238: Nur Tote schlafen länger",
+            "duration_seconds": 36.0
+          },
+          {
+            "track_number": 3,
+            "video_id": "NEBC_huWuzA",
+            "url": "https://music.youtube.com/watch?v=NEBC_huWuzA",
+            "title": "Kapitel 01: Nur Tote schlafen länger (Folge 238)",
+            "artists": [],
+            "album": "Album - Folge 238: Nur Tote schlafen länger",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 4,
+            "video_id": "6Jn0BxwsvnE",
+            "url": "https://music.youtube.com/watch?v=6Jn0BxwsvnE",
+            "title": "Kapitel 02: Nur Tote schlafen länger (Folge 238)",
+            "artists": [],
+            "album": "Album - Folge 238: Nur Tote schlafen länger",
+            "duration_seconds": 97.0
+          },
+          {
+            "track_number": 5,
+            "video_id": "LPOe_q80DWQ",
+            "url": "https://music.youtube.com/watch?v=LPOe_q80DWQ",
+            "title": "Kapitel 03: Nur Tote schlafen länger (Folge 238)",
+            "artists": [],
+            "album": "Album - Folge 238: Nur Tote schlafen länger",
+            "duration_seconds": 96.0
+          },
+          {
+            "track_number": 6,
+            "video_id": "6pYHVXNz5zQ",
+            "url": "https://music.youtube.com/watch?v=6pYHVXNz5zQ",
+            "title": "Kapitel 04: Nur Tote schlafen länger (Folge 238)",
+            "artists": [],
+            "album": "Album - Folge 238: Nur Tote schlafen länger",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 7,
+            "video_id": "6BOhjlYcB2I",
+            "url": "https://music.youtube.com/watch?v=6BOhjlYcB2I",
+            "title": "Kapitel 05: Nur Tote schlafen länger (Folge 238)",
+            "artists": [],
+            "album": "Album - Folge 238: Nur Tote schlafen länger",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 8,
+            "video_id": "kC7953Ko2T4",
+            "url": "https://music.youtube.com/watch?v=kC7953Ko2T4",
+            "title": "Kapitel 06: Nur Tote schlafen länger (Folge 238)",
+            "artists": [],
+            "album": "Album - Folge 238: Nur Tote schlafen länger",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 9,
+            "video_id": "jga4B0ZBzYk",
+            "url": "https://music.youtube.com/watch?v=jga4B0ZBzYk",
+            "title": "Kapitel 07: Nur Tote schlafen länger (Folge 238)",
+            "artists": [],
+            "album": "Album - Folge 238: Nur Tote schlafen länger",
+            "duration_seconds": 98.0
+          },
+          {
+            "track_number": 10,
+            "video_id": "MGV_OJ7Br4I",
+            "url": "https://music.youtube.com/watch?v=MGV_OJ7Br4I",
+            "title": "Kapitel 08: Nur Tote schlafen länger (Folge 238)",
+            "artists": [],
+            "album": "Album - Folge 238: Nur Tote schlafen länger",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 11,
+            "video_id": "1YhchMdRTAs",
+            "url": "https://music.youtube.com/watch?v=1YhchMdRTAs",
+            "title": "Kapitel 09: Nur Tote schlafen länger (Folge 238)",
+            "artists": [],
+            "album": "Album - Folge 238: Nur Tote schlafen länger",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 12,
+            "video_id": "-K8HVEByg9w",
+            "url": "https://music.youtube.com/watch?v=-K8HVEByg9w",
+            "title": "Kapitel 10: Nur Tote schlafen länger (Folge 238)",
+            "artists": [],
+            "album": "Album - Folge 238: Nur Tote schlafen länger",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 13,
+            "video_id": "Vd8Vo8YulxY",
+            "url": "https://music.youtube.com/watch?v=Vd8Vo8YulxY",
+            "title": "Kapitel 11: Nur Tote schlafen länger (Folge 238)",
+            "artists": [],
+            "album": "Album - Folge 238: Nur Tote schlafen länger",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 14,
+            "video_id": "tbKEHpUyPRs",
+            "url": "https://music.youtube.com/watch?v=tbKEHpUyPRs",
+            "title": "Kapitel 12: Nur Tote schlafen länger (Folge 238)",
+            "artists": [],
+            "album": "Album - Folge 238: Nur Tote schlafen länger",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 15,
+            "video_id": "kas0xjWFzQM",
+            "url": "https://music.youtube.com/watch?v=kas0xjWFzQM",
+            "title": "Kapitel 13: Nur Tote schlafen länger (Folge 238)",
+            "artists": [],
+            "album": "Album - Folge 238: Nur Tote schlafen länger",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 16,
+            "video_id": "aU93FUnafAI",
+            "url": "https://music.youtube.com/watch?v=aU93FUnafAI",
+            "title": "Kapitel 14: Nur Tote schlafen länger (Folge 238)",
+            "artists": [],
+            "album": "Album - Folge 238: Nur Tote schlafen länger",
+            "duration_seconds": 94.0
+          },
+          {
+            "track_number": 17,
+            "video_id": "VGxHJ8F4wiY",
+            "url": "https://music.youtube.com/watch?v=VGxHJ8F4wiY",
+            "title": "Kapitel 15: Nur Tote schlafen länger (Folge 238)",
+            "artists": [],
+            "album": "Album - Folge 238: Nur Tote schlafen länger",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 18,
+            "video_id": "s0PPTiFCLg0",
+            "url": "https://music.youtube.com/watch?v=s0PPTiFCLg0",
+            "title": "Kapitel 16: Nur Tote schlafen länger (Folge 238)",
+            "artists": [],
+            "album": "Album - Folge 238: Nur Tote schlafen länger",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 19,
+            "video_id": "v8avzh0UoSo",
+            "url": "https://music.youtube.com/watch?v=v8avzh0UoSo",
+            "title": "Kapitel 17: Nur Tote schlafen länger (Folge 238)",
+            "artists": [],
+            "album": "Album - Folge 238: Nur Tote schlafen länger",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 20,
+            "video_id": "S313YzOSKTs",
+            "url": "https://music.youtube.com/watch?v=S313YzOSKTs",
+            "title": "Kapitel 18: Nur Tote schlafen länger (Folge 238)",
+            "artists": [],
+            "album": "Album - Folge 238: Nur Tote schlafen länger",
+            "duration_seconds": 93.0
+          },
+          {
+            "track_number": 21,
+            "video_id": "DON5gxjg6-A",
+            "url": "https://music.youtube.com/watch?v=DON5gxjg6-A",
+            "title": "Kapitel 19: Nur Tote schlafen länger (Folge 238)",
+            "artists": [],
+            "album": "Album - Folge 238: Nur Tote schlafen länger",
+            "duration_seconds": 94.0
+          },
+          {
+            "track_number": 22,
+            "video_id": "pz-cxVUCSiE",
+            "url": "https://music.youtube.com/watch?v=pz-cxVUCSiE",
+            "title": "Kapitel 20: Nur Tote schlafen länger (Folge 238)",
+            "artists": [],
+            "album": "Album - Folge 238: Nur Tote schlafen länger",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 23,
+            "video_id": "VYFvqcDnTwI",
+            "url": "https://music.youtube.com/watch?v=VYFvqcDnTwI",
+            "title": "Kapitel 21: Nur Tote schlafen länger (Folge 238)",
+            "artists": [],
+            "album": "Album - Folge 238: Nur Tote schlafen länger",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 24,
+            "video_id": "f6xRDjarqHo",
+            "url": "https://music.youtube.com/watch?v=f6xRDjarqHo",
+            "title": "Kapitel 22: Nur Tote schlafen länger (Folge 238)",
+            "artists": [],
+            "album": "Album - Folge 238: Nur Tote schlafen länger",
+            "duration_seconds": 93.0
+          },
+          {
+            "track_number": 25,
+            "video_id": "lj1rREjX4Sc",
+            "url": "https://music.youtube.com/watch?v=lj1rREjX4Sc",
+            "title": "Kapitel 23: Nur Tote schlafen länger (Folge 238)",
+            "artists": [],
+            "album": "Album - Folge 238: Nur Tote schlafen länger",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 26,
+            "video_id": "kaE7A7H3ZrU",
+            "url": "https://music.youtube.com/watch?v=kaE7A7H3ZrU",
+            "title": "Kapitel 24: Nur Tote schlafen länger (Folge 238)",
+            "artists": [],
+            "album": "Album - Folge 238: Nur Tote schlafen länger",
+            "duration_seconds": 122.0
+          },
+          {
+            "track_number": 27,
+            "video_id": "trh13EGyjyM",
+            "url": "https://music.youtube.com/watch?v=trh13EGyjyM",
+            "title": "Kapitel 25: Nur Tote schlafen länger (Folge 238)",
+            "artists": [],
+            "album": "Album - Folge 238: Nur Tote schlafen länger",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 28,
+            "video_id": "9VZoBkPj7po",
+            "url": "https://music.youtube.com/watch?v=9VZoBkPj7po",
+            "title": "Kapitel 26: Nur Tote schlafen länger (Folge 238)",
+            "artists": [],
+            "album": "Album - Folge 238: Nur Tote schlafen länger",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 29,
+            "video_id": "G2X5ho-mynU",
+            "url": "https://music.youtube.com/watch?v=G2X5ho-mynU",
+            "title": "Kapitel 27: Nur Tote schlafen länger (Folge 238)",
+            "artists": [],
+            "album": "Album - Folge 238: Nur Tote schlafen länger",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 30,
+            "video_id": "ftDZZyBkePg",
+            "url": "https://music.youtube.com/watch?v=ftDZZyBkePg",
+            "title": "Kapitel 28: Nur Tote schlafen länger (Folge 238)",
+            "artists": [],
+            "album": "Album - Folge 238: Nur Tote schlafen länger",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 31,
+            "video_id": "Q1OPRXYW0vk",
+            "url": "https://music.youtube.com/watch?v=Q1OPRXYW0vk",
+            "title": "Kapitel 29: Nur Tote schlafen länger (Folge 238)",
+            "artists": [],
+            "album": "Album - Folge 238: Nur Tote schlafen länger",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 32,
+            "video_id": "DHxBDLq8n5Y",
+            "url": "https://music.youtube.com/watch?v=DHxBDLq8n5Y",
+            "title": "Kapitel 30: Nur Tote schlafen länger (Folge 238)",
+            "artists": [],
+            "album": "Album - Folge 238: Nur Tote schlafen länger",
+            "duration_seconds": 93.0
+          },
+          {
+            "track_number": 33,
+            "video_id": "tB4m14tE4cc",
+            "url": "https://music.youtube.com/watch?v=tB4m14tE4cc",
+            "title": "Kapitel 31: Nur Tote schlafen länger (Folge 238)",
+            "artists": [],
+            "album": "Album - Folge 238: Nur Tote schlafen länger",
+            "duration_seconds": 94.0
+          },
+          {
+            "track_number": 34,
+            "video_id": "w1P82YQdn9Y",
+            "url": "https://music.youtube.com/watch?v=w1P82YQdn9Y",
+            "title": "Kapitel 32: Nur Tote schlafen länger (Folge 238)",
+            "artists": [],
+            "album": "Album - Folge 238: Nur Tote schlafen länger",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 35,
+            "video_id": "Bo1hRGOmX-0",
+            "url": "https://music.youtube.com/watch?v=Bo1hRGOmX-0",
+            "title": "Kapitel 33: Nur Tote schlafen länger (Folge 238)",
+            "artists": [],
+            "album": "Album - Folge 238: Nur Tote schlafen länger",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 36,
+            "video_id": "gI_PoNUSvO4",
+            "url": "https://music.youtube.com/watch?v=gI_PoNUSvO4",
+            "title": "Kapitel 34: Nur Tote schlafen länger (Folge 238)",
+            "artists": [],
+            "album": "Album - Folge 238: Nur Tote schlafen länger",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 37,
+            "video_id": "YpDzpY9pbSA",
+            "url": "https://music.youtube.com/watch?v=YpDzpY9pbSA",
+            "title": "Kapitel 35: Nur Tote schlafen länger (Folge 238)",
+            "artists": [],
+            "album": "Album - Folge 238: Nur Tote schlafen länger",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 38,
+            "video_id": "rYKFqAFDo9w",
+            "url": "https://music.youtube.com/watch?v=rYKFqAFDo9w",
+            "title": "Kapitel 36: Nur Tote schlafen länger (Folge 238)",
+            "artists": [],
+            "album": "Album - Folge 238: Nur Tote schlafen länger",
+            "duration_seconds": 94.0
+          },
+          {
+            "track_number": 39,
+            "video_id": "g2WdM2x69-4",
+            "url": "https://music.youtube.com/watch?v=g2WdM2x69-4",
+            "title": "Kapitel 37: Nur Tote schlafen länger (Folge 238)",
+            "artists": [],
+            "album": "Album - Folge 238: Nur Tote schlafen länger",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 40,
+            "video_id": "jHRpbM5NitQ",
+            "url": "https://music.youtube.com/watch?v=jHRpbM5NitQ",
+            "title": "Kapitel 38: Nur Tote schlafen länger (Folge 238)",
+            "artists": [],
+            "album": "Album - Folge 238: Nur Tote schlafen länger",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 41,
+            "video_id": "Owqav6tgvGM",
+            "url": "https://music.youtube.com/watch?v=Owqav6tgvGM",
+            "title": "Kapitel 39: Nur Tote schlafen länger (Folge 238)",
+            "artists": [],
+            "album": "Album - Folge 238: Nur Tote schlafen länger",
+            "duration_seconds": 93.0
+          },
+          {
+            "track_number": 42,
+            "video_id": "C4lOjOeMFUw",
+            "url": "https://music.youtube.com/watch?v=C4lOjOeMFUw",
+            "title": "Kapitel 40: Nur Tote schlafen länger (Folge 238)",
+            "artists": [],
+            "album": "Album - Folge 238: Nur Tote schlafen länger",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 43,
+            "video_id": "qXFeR7803H4",
+            "url": "https://music.youtube.com/watch?v=qXFeR7803H4",
+            "title": "Kapitel 41: Nur Tote schlafen länger (Folge 238)",
+            "artists": [],
+            "album": "Album - Folge 238: Nur Tote schlafen länger",
+            "duration_seconds": 124.0
+          },
+          {
+            "track_number": 44,
+            "video_id": "bZB92IGdmeI",
+            "url": "https://music.youtube.com/watch?v=bZB92IGdmeI",
+            "title": "TKKG Schlußsong",
+            "artists": [],
+            "album": "Album - Folge 238: Nur Tote schlafen länger",
+            "duration_seconds": 39.0
+          },
+          {
+            "track_number": 45,
+            "video_id": "LUGljXr6C6Y",
+            "url": "https://music.youtube.com/watch?v=LUGljXr6C6Y",
+            "title": "Outro: Nur Tote schlafen länger (Folge 238)",
+            "artists": [],
+            "album": "Album - Folge 238: Nur Tote schlafen länger",
+            "duration_seconds": 100.0
+          }
+        ],
+        "track_count": 45
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-11-25T10:09:19.115104+00:00",
+        "method": "independent_provider_tracklist_validation",
+        "spotify": {
+          "status": "verified",
+          "verified_track_count": 24
+        },
+        "youtube_music": {
+          "status": "verified",
+          "verified_track_count": 45,
+          "playlist_status": "unavailable",
+          "playlist_error": null
+        }
+      }
+    }
   },
   {
     "number": 239,
@@ -212952,7 +214403,709 @@
         "source_url": "https://www.tkkg.de/produkte/hoerspiele?page=1"
       }
     ],
-    "last_checked": "2026-11-24T13:52:04.758255+00:00"
+    "last_checked": "2026-11-24T13:52:04.758255+00:00",
+    "audio_release": {
+      "schema_version": 2,
+      "spotify": {
+        "album": {
+          "album_id": "0G8CFanH1SrSfRgdOHy8HC",
+          "url": "https://open.spotify.com/album/0G8CFanH1SrSfRgdOHy8HC",
+          "title": "Folge 239: Vollgas ins Verderben",
+          "track_count": 24,
+          "source_query": "239 Vollgas ins Verderben"
+        },
+        "tracks": [
+          {
+            "track_number": 1,
+            "disc_number": 1,
+            "track_id": "1SGPSwDgtMIh4dlfMs8jn4",
+            "url": "https://open.spotify.com/track/1SGPSwDgtMIh4dlfMs8jn4",
+            "title": "Inhaltsangabe: Vollgas ins Verderben - Folge 239",
+            "duration_seconds": 66.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 2,
+            "disc_number": 1,
+            "track_id": "5vhZfn1RovjEsvu6PQk4K5",
+            "url": "https://open.spotify.com/track/5vhZfn1RovjEsvu6PQk4K5",
+            "title": "TKKG Titelsong",
+            "duration_seconds": 35.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 3,
+            "disc_number": 1,
+            "track_id": "3aI71lzyesJ4PMH6pAm88b",
+            "url": "https://open.spotify.com/track/3aI71lzyesJ4PMH6pAm88b",
+            "title": "Kapitel 01: Vollgas ins Verderben - Folge 239",
+            "duration_seconds": 186.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 4,
+            "disc_number": 1,
+            "track_id": "1Jd3Q2il1DK6bzzYgZYd64",
+            "url": "https://open.spotify.com/track/1Jd3Q2il1DK6bzzYgZYd64",
+            "title": "Kapitel 02: Vollgas ins Verderben - Folge 239",
+            "duration_seconds": 182.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 5,
+            "disc_number": 1,
+            "track_id": "1JjvfwxvP77O9xkUAPOFpN",
+            "url": "https://open.spotify.com/track/1JjvfwxvP77O9xkUAPOFpN",
+            "title": "Kapitel 03: Vollgas ins Verderben - Folge 239",
+            "duration_seconds": 183.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 6,
+            "disc_number": 1,
+            "track_id": "21rWv6L0dp8vP8c9fACMBr",
+            "url": "https://open.spotify.com/track/21rWv6L0dp8vP8c9fACMBr",
+            "title": "Kapitel 04: Vollgas ins Verderben - Folge 239",
+            "duration_seconds": 184.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 7,
+            "disc_number": 1,
+            "track_id": "3pOmaWOXNrn4sQ7PflWxfh",
+            "url": "https://open.spotify.com/track/3pOmaWOXNrn4sQ7PflWxfh",
+            "title": "Kapitel 05: Vollgas ins Verderben - Folge 239",
+            "duration_seconds": 186.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 8,
+            "disc_number": 1,
+            "track_id": "610YKvXGh75NenpuUxBuZ8",
+            "url": "https://open.spotify.com/track/610YKvXGh75NenpuUxBuZ8",
+            "title": "Kapitel 06: Vollgas ins Verderben - Folge 239",
+            "duration_seconds": 186.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 9,
+            "disc_number": 1,
+            "track_id": "4SjM1FOmRtmtFkB4GvQ7m1",
+            "url": "https://open.spotify.com/track/4SjM1FOmRtmtFkB4GvQ7m1",
+            "title": "Kapitel 07: Vollgas ins Verderben - Folge 239",
+            "duration_seconds": 183.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 10,
+            "disc_number": 1,
+            "track_id": "4VrNvyniGpFBp3eapCrd98",
+            "url": "https://open.spotify.com/track/4VrNvyniGpFBp3eapCrd98",
+            "title": "Kapitel 08: Vollgas ins Verderben - Folge 239",
+            "duration_seconds": 184.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 11,
+            "disc_number": 1,
+            "track_id": "7F7joIjd3ACtA5FnmYHcPr",
+            "url": "https://open.spotify.com/track/7F7joIjd3ACtA5FnmYHcPr",
+            "title": "Kapitel 09: Vollgas ins Verderben - Folge 239",
+            "duration_seconds": 180.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 12,
+            "disc_number": 1,
+            "track_id": "5AqsiJTSZ1CLzhCLrGzSU1",
+            "url": "https://open.spotify.com/track/5AqsiJTSZ1CLzhCLrGzSU1",
+            "title": "Kapitel 10: Vollgas ins Verderben - Folge 239",
+            "duration_seconds": 183.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 13,
+            "disc_number": 1,
+            "track_id": "55nBm7X7oRmsbSLCyJESnE",
+            "url": "https://open.spotify.com/track/55nBm7X7oRmsbSLCyJESnE",
+            "title": "Kapitel 11: Vollgas ins Verderben - Folge 239",
+            "duration_seconds": 181.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 14,
+            "disc_number": 1,
+            "track_id": "6c4z2mklZUTHsTalSAdNyS",
+            "url": "https://open.spotify.com/track/6c4z2mklZUTHsTalSAdNyS",
+            "title": "Kapitel 12: Vollgas ins Verderben - Folge 239",
+            "duration_seconds": 180.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 15,
+            "disc_number": 1,
+            "track_id": "6Oyclve20zj4BrxosPr8GX",
+            "url": "https://open.spotify.com/track/6Oyclve20zj4BrxosPr8GX",
+            "title": "Kapitel 13: Vollgas ins Verderben - Folge 239",
+            "duration_seconds": 182.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 16,
+            "disc_number": 1,
+            "track_id": "06N1aj6DoOtdCAIauiLfJ8",
+            "url": "https://open.spotify.com/track/06N1aj6DoOtdCAIauiLfJ8",
+            "title": "Kapitel 14: Vollgas ins Verderben - Folge 239",
+            "duration_seconds": 186.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 17,
+            "disc_number": 1,
+            "track_id": "31n5vkTpJ04nCISLYzRqa5",
+            "url": "https://open.spotify.com/track/31n5vkTpJ04nCISLYzRqa5",
+            "title": "Kapitel 15: Vollgas ins Verderben - Folge 239",
+            "duration_seconds": 182.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 18,
+            "disc_number": 1,
+            "track_id": "54qAfscduotX3B28ipMxKd",
+            "url": "https://open.spotify.com/track/54qAfscduotX3B28ipMxKd",
+            "title": "Kapitel 16: Vollgas ins Verderben - Folge 239",
+            "duration_seconds": 184.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 19,
+            "disc_number": 1,
+            "track_id": "5yrXOQAnIuDY2UVQXsjpK4",
+            "url": "https://open.spotify.com/track/5yrXOQAnIuDY2UVQXsjpK4",
+            "title": "Kapitel 17: Vollgas ins Verderben - Folge 239",
+            "duration_seconds": 181.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 20,
+            "disc_number": 1,
+            "track_id": "5UYKLdxJL3IohwkLkMmduB",
+            "url": "https://open.spotify.com/track/5UYKLdxJL3IohwkLkMmduB",
+            "title": "Kapitel 18: Vollgas ins Verderben - Folge 239",
+            "duration_seconds": 183.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 21,
+            "disc_number": 1,
+            "track_id": "44Gr31gFmWs6aWkhGfmGHa",
+            "url": "https://open.spotify.com/track/44Gr31gFmWs6aWkhGfmGHa",
+            "title": "Kapitel 19: Vollgas ins Verderben - Folge 239",
+            "duration_seconds": 183.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 22,
+            "disc_number": 1,
+            "track_id": "0eMVF25ttvjhTCYJAJ7Dk8",
+            "url": "https://open.spotify.com/track/0eMVF25ttvjhTCYJAJ7Dk8",
+            "title": "Kapitel 20: Vollgas ins Verderben - Folge 239",
+            "duration_seconds": 201.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 23,
+            "disc_number": 1,
+            "track_id": "0JeAhfqVPROzK9RBYPKLBV",
+            "url": "https://open.spotify.com/track/0JeAhfqVPROzK9RBYPKLBV",
+            "title": "TKKG Schlußsong",
+            "duration_seconds": 38.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 24,
+            "disc_number": 1,
+            "track_id": "017w4q18VkWuR1fe7y9r0k",
+            "url": "https://open.spotify.com/track/017w4q18VkWuR1fe7y9r0k",
+            "title": "Outro: Vollgas ins Verderben - Folge 239",
+            "duration_seconds": 83.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          }
+        ],
+        "track_count": 24
+      },
+      "youtube_music": {
+        "album": {
+          "browse_id": "MPREb_B6uSIQSh5pI",
+          "url": "https://music.youtube.com/browse/MPREb_B6uSIQSh5pI",
+          "title": "Folge 239: Vollgas ins Verderben",
+          "track_count": 44
+        },
+        "playlist": null,
+        "tracks": [
+          {
+            "track_number": 1,
+            "video_id": "XuzWcIXU4wQ",
+            "url": "https://music.youtube.com/watch?v=XuzWcIXU4wQ",
+            "title": "Inhaltsangabe: Vollgas ins Verderben (Folge 239)",
+            "artists": [],
+            "album": "Album - Folge 239: Vollgas ins Verderben",
+            "duration_seconds": 67.0
+          },
+          {
+            "track_number": 2,
+            "video_id": "eH8WnqQ3jHc",
+            "url": "https://music.youtube.com/watch?v=eH8WnqQ3jHc",
+            "title": "TKKG Titelsong",
+            "artists": [],
+            "album": "Album - Folge 239: Vollgas ins Verderben",
+            "duration_seconds": 36.0
+          },
+          {
+            "track_number": 3,
+            "video_id": "gPqpTv2tmoo",
+            "url": "https://music.youtube.com/watch?v=gPqpTv2tmoo",
+            "title": "Kapitel 01: Vollgas ins Verderben (Folge 239)",
+            "artists": [],
+            "album": "Album - Folge 239: Vollgas ins Verderben",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 4,
+            "video_id": "-mbU3g5DA1o",
+            "url": "https://music.youtube.com/watch?v=-mbU3g5DA1o",
+            "title": "Kapitel 02: Vollgas ins Verderben (Folge 239)",
+            "artists": [],
+            "album": "Album - Folge 239: Vollgas ins Verderben",
+            "duration_seconds": 96.0
+          },
+          {
+            "track_number": 5,
+            "video_id": "9MGrLvaVo9M",
+            "url": "https://music.youtube.com/watch?v=9MGrLvaVo9M",
+            "title": "Kapitel 03: Vollgas ins Verderben (Folge 239)",
+            "artists": [],
+            "album": "Album - Folge 239: Vollgas ins Verderben",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 6,
+            "video_id": "op7dGaRX1lg",
+            "url": "https://music.youtube.com/watch?v=op7dGaRX1lg",
+            "title": "Kapitel 04: Vollgas ins Verderben (Folge 239)",
+            "artists": [],
+            "album": "Album - Folge 239: Vollgas ins Verderben",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 7,
+            "video_id": "UHJHj9PW-JQ",
+            "url": "https://music.youtube.com/watch?v=UHJHj9PW-JQ",
+            "title": "Kapitel 05: Vollgas ins Verderben (Folge 239)",
+            "artists": [],
+            "album": "Album - Folge 239: Vollgas ins Verderben",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 8,
+            "video_id": "Kw0J_I1hmRw",
+            "url": "https://music.youtube.com/watch?v=Kw0J_I1hmRw",
+            "title": "Kapitel 06: Vollgas ins Verderben (Folge 239)",
+            "artists": [],
+            "album": "Album - Folge 239: Vollgas ins Verderben",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 9,
+            "video_id": "X5xInQ3i0co",
+            "url": "https://music.youtube.com/watch?v=X5xInQ3i0co",
+            "title": "Kapitel 07: Vollgas ins Verderben (Folge 239)",
+            "artists": [],
+            "album": "Album - Folge 239: Vollgas ins Verderben",
+            "duration_seconds": 95.0
+          },
+          {
+            "track_number": 10,
+            "video_id": "Y-yTY9uJwQ0",
+            "url": "https://music.youtube.com/watch?v=Y-yTY9uJwQ0",
+            "title": "Kapitel 08: Vollgas ins Verderben (Folge 239)",
+            "artists": [],
+            "album": "Album - Folge 239: Vollgas ins Verderben",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 11,
+            "video_id": "SGCbXb7axWY",
+            "url": "https://music.youtube.com/watch?v=SGCbXb7axWY",
+            "title": "Kapitel 09: Vollgas ins Verderben (Folge 239)",
+            "artists": [],
+            "album": "Album - Folge 239: Vollgas ins Verderben",
+            "duration_seconds": 95.0
+          },
+          {
+            "track_number": 12,
+            "video_id": "68S5gMlTDeA",
+            "url": "https://music.youtube.com/watch?v=68S5gMlTDeA",
+            "title": "Kapitel 10: Vollgas ins Verderben (Folge 239)",
+            "artists": [],
+            "album": "Album - Folge 239: Vollgas ins Verderben",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 13,
+            "video_id": "ujCyeQMWdZo",
+            "url": "https://music.youtube.com/watch?v=ujCyeQMWdZo",
+            "title": "Kapitel 11: Vollgas ins Verderben (Folge 239)",
+            "artists": [],
+            "album": "Album - Folge 239: Vollgas ins Verderben",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 14,
+            "video_id": "Q2zjcQSDq8U",
+            "url": "https://music.youtube.com/watch?v=Q2zjcQSDq8U",
+            "title": "Kapitel 12: Vollgas ins Verderben (Folge 239)",
+            "artists": [],
+            "album": "Album - Folge 239: Vollgas ins Verderben",
+            "duration_seconds": 97.0
+          },
+          {
+            "track_number": 15,
+            "video_id": "TOmjwMtsf1Q",
+            "url": "https://music.youtube.com/watch?v=TOmjwMtsf1Q",
+            "title": "Kapitel 13: Vollgas ins Verderben (Folge 239)",
+            "artists": [],
+            "album": "Album - Folge 239: Vollgas ins Verderben",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 16,
+            "video_id": "q3Yxj2_VAD0",
+            "url": "https://music.youtube.com/watch?v=q3Yxj2_VAD0",
+            "title": "Kapitel 14: Vollgas ins Verderben (Folge 239)",
+            "artists": [],
+            "album": "Album - Folge 239: Vollgas ins Verderben",
+            "duration_seconds": 93.0
+          },
+          {
+            "track_number": 17,
+            "video_id": "qH-YnnQxAbc",
+            "url": "https://music.youtube.com/watch?v=qH-YnnQxAbc",
+            "title": "Kapitel 15: Vollgas ins Verderben (Folge 239)",
+            "artists": [],
+            "album": "Album - Folge 239: Vollgas ins Verderben",
+            "duration_seconds": 94.0
+          },
+          {
+            "track_number": 18,
+            "video_id": "eYY7WmAEsK0",
+            "url": "https://music.youtube.com/watch?v=eYY7WmAEsK0",
+            "title": "Kapitel 16: Vollgas ins Verderben (Folge 239)",
+            "artists": [],
+            "album": "Album - Folge 239: Vollgas ins Verderben",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 19,
+            "video_id": "DvmKFmpA-E0",
+            "url": "https://music.youtube.com/watch?v=DvmKFmpA-E0",
+            "title": "Kapitel 17: Vollgas ins Verderben (Folge 239)",
+            "artists": [],
+            "album": "Album - Folge 239: Vollgas ins Verderben",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 20,
+            "video_id": "KfJZKc40yd0",
+            "url": "https://music.youtube.com/watch?v=KfJZKc40yd0",
+            "title": "Kapitel 18: Vollgas ins Verderben (Folge 239)",
+            "artists": [],
+            "album": "Album - Folge 239: Vollgas ins Verderben",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 21,
+            "video_id": "TAe8aeMmnY4",
+            "url": "https://music.youtube.com/watch?v=TAe8aeMmnY4",
+            "title": "Kapitel 19: Vollgas ins Verderben (Folge 239)",
+            "artists": [],
+            "album": "Album - Folge 239: Vollgas ins Verderben",
+            "duration_seconds": 93.0
+          },
+          {
+            "track_number": 22,
+            "video_id": "1TaqMT0wbv4",
+            "url": "https://music.youtube.com/watch?v=1TaqMT0wbv4",
+            "title": "Kapitel 20: Vollgas ins Verderben (Folge 239)",
+            "artists": [],
+            "album": "Album - Folge 239: Vollgas ins Verderben",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 23,
+            "video_id": "M8N7qX46Qjo",
+            "url": "https://music.youtube.com/watch?v=M8N7qX46Qjo",
+            "title": "Kapitel 21: Vollgas ins Verderben (Folge 239)",
+            "artists": [],
+            "album": "Album - Folge 239: Vollgas ins Verderben",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 24,
+            "video_id": "kyumW-YevQg",
+            "url": "https://music.youtube.com/watch?v=kyumW-YevQg",
+            "title": "Kapitel 22: Vollgas ins Verderben (Folge 239)",
+            "artists": [],
+            "album": "Album - Folge 239: Vollgas ins Verderben",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 25,
+            "video_id": "179_AUveWhU",
+            "url": "https://music.youtube.com/watch?v=179_AUveWhU",
+            "title": "Kapitel 23: Vollgas ins Verderben (Folge 239)",
+            "artists": [],
+            "album": "Album - Folge 239: Vollgas ins Verderben",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 26,
+            "video_id": "xkciqOpAngM",
+            "url": "https://music.youtube.com/watch?v=xkciqOpAngM",
+            "title": "Kapitel 24: Vollgas ins Verderben (Folge 239)",
+            "artists": [],
+            "album": "Album - Folge 239: Vollgas ins Verderben",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 27,
+            "video_id": "tNbAx7KeiQE",
+            "url": "https://music.youtube.com/watch?v=tNbAx7KeiQE",
+            "title": "Kapitel 25: Vollgas ins Verderben (Folge 239)",
+            "artists": [],
+            "album": "Album - Folge 239: Vollgas ins Verderben",
+            "duration_seconds": 93.0
+          },
+          {
+            "track_number": 28,
+            "video_id": "nI5QTuli7vo",
+            "url": "https://music.youtube.com/watch?v=nI5QTuli7vo",
+            "title": "Kapitel 26: Vollgas ins Verderben (Folge 239)",
+            "artists": [],
+            "album": "Album - Folge 239: Vollgas ins Verderben",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 29,
+            "video_id": "7FWWtCvKa2o",
+            "url": "https://music.youtube.com/watch?v=7FWWtCvKa2o",
+            "title": "Kapitel 27: Vollgas ins Verderben (Folge 239)",
+            "artists": [],
+            "album": "Album - Folge 239: Vollgas ins Verderben",
+            "duration_seconds": 94.0
+          },
+          {
+            "track_number": 30,
+            "video_id": "oO1zIi-ZkXQ",
+            "url": "https://music.youtube.com/watch?v=oO1zIi-ZkXQ",
+            "title": "Kapitel 28: Vollgas ins Verderben (Folge 239)",
+            "artists": [],
+            "album": "Album - Folge 239: Vollgas ins Verderben",
+            "duration_seconds": 94.0
+          },
+          {
+            "track_number": 31,
+            "video_id": "t7CyE2qLUI0",
+            "url": "https://music.youtube.com/watch?v=t7CyE2qLUI0",
+            "title": "Kapitel 29: Vollgas ins Verderben (Folge 239)",
+            "artists": [],
+            "album": "Album - Folge 239: Vollgas ins Verderben",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 32,
+            "video_id": "kMsUGR7UzI0",
+            "url": "https://music.youtube.com/watch?v=kMsUGR7UzI0",
+            "title": "Kapitel 30: Vollgas ins Verderben (Folge 239)",
+            "artists": [],
+            "album": "Album - Folge 239: Vollgas ins Verderben",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 33,
+            "video_id": "sFsUkYATGpM",
+            "url": "https://music.youtube.com/watch?v=sFsUkYATGpM",
+            "title": "Kapitel 31: Vollgas ins Verderben (Folge 239)",
+            "artists": [],
+            "album": "Album - Folge 239: Vollgas ins Verderben",
+            "duration_seconds": 94.0
+          },
+          {
+            "track_number": 34,
+            "video_id": "lyKzGfM9wFU",
+            "url": "https://music.youtube.com/watch?v=lyKzGfM9wFU",
+            "title": "Kapitel 32: Vollgas ins Verderben (Folge 239)",
+            "artists": [],
+            "album": "Album - Folge 239: Vollgas ins Verderben",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 35,
+            "video_id": "rFLaLudv4lQ",
+            "url": "https://music.youtube.com/watch?v=rFLaLudv4lQ",
+            "title": "Kapitel 33: Vollgas ins Verderben (Folge 239)",
+            "artists": [],
+            "album": "Album - Folge 239: Vollgas ins Verderben",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 36,
+            "video_id": "PVVlReJRotY",
+            "url": "https://music.youtube.com/watch?v=PVVlReJRotY",
+            "title": "Kapitel 34: Vollgas ins Verderben (Folge 239)",
+            "artists": [],
+            "album": "Album - Folge 239: Vollgas ins Verderben",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 37,
+            "video_id": "x8ZqAL8Dd2g",
+            "url": "https://music.youtube.com/watch?v=x8ZqAL8Dd2g",
+            "title": "Kapitel 35: Vollgas ins Verderben (Folge 239)",
+            "artists": [],
+            "album": "Album - Folge 239: Vollgas ins Verderben",
+            "duration_seconds": 93.0
+          },
+          {
+            "track_number": 38,
+            "video_id": "QEuxnVUD-XY",
+            "url": "https://music.youtube.com/watch?v=QEuxnVUD-XY",
+            "title": "Kapitel 36: Vollgas ins Verderben (Folge 239)",
+            "artists": [],
+            "album": "Album - Folge 239: Vollgas ins Verderben",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 39,
+            "video_id": "VF8DFeKUWag",
+            "url": "https://music.youtube.com/watch?v=VF8DFeKUWag",
+            "title": "Kapitel 37: Vollgas ins Verderben (Folge 239)",
+            "artists": [],
+            "album": "Album - Folge 239: Vollgas ins Verderben",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 40,
+            "video_id": "R6JFXJMbD-o",
+            "url": "https://music.youtube.com/watch?v=R6JFXJMbD-o",
+            "title": "Kapitel 38: Vollgas ins Verderben (Folge 239)",
+            "artists": [],
+            "album": "Album - Folge 239: Vollgas ins Verderben",
+            "duration_seconds": 93.0
+          },
+          {
+            "track_number": 41,
+            "video_id": "jciecHapCzg",
+            "url": "https://music.youtube.com/watch?v=jciecHapCzg",
+            "title": "Kapitel 39: Vollgas ins Verderben (Folge 239)",
+            "artists": [],
+            "album": "Album - Folge 239: Vollgas ins Verderben",
+            "duration_seconds": 97.0
+          },
+          {
+            "track_number": 42,
+            "video_id": "4imu_bXdAdw",
+            "url": "https://music.youtube.com/watch?v=4imu_bXdAdw",
+            "title": "Kapitel 40: Vollgas ins Verderben (Folge 239)",
+            "artists": [],
+            "album": "Album - Folge 239: Vollgas ins Verderben",
+            "duration_seconds": 106.0
+          },
+          {
+            "track_number": 43,
+            "video_id": "IBMf844op0c",
+            "url": "https://music.youtube.com/watch?v=IBMf844op0c",
+            "title": "TKKG Schlußsong",
+            "artists": [],
+            "album": "Album - Folge 239: Vollgas ins Verderben",
+            "duration_seconds": 39.0
+          },
+          {
+            "track_number": 44,
+            "video_id": "ej8_9CLBgMg",
+            "url": "https://music.youtube.com/watch?v=ej8_9CLBgMg",
+            "title": "Outro: Vollgas ins Verderben (Folge 239)",
+            "artists": [],
+            "album": "Album - Folge 239: Vollgas ins Verderben",
+            "duration_seconds": 84.0
+          }
+        ],
+        "track_count": 44
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-11-25T10:09:46.314419+00:00",
+        "method": "independent_provider_tracklist_validation",
+        "spotify": {
+          "status": "verified",
+          "verified_track_count": 24
+        },
+        "youtube_music": {
+          "status": "verified",
+          "verified_track_count": 44,
+          "playlist_status": "unavailable",
+          "playlist_error": null
+        }
+      }
+    }
   },
   {
     "number": 240,
