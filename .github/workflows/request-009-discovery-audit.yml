@@ -1,0 +1,73 @@
+name: Request 009 targeted discovery and coverage audit
+
+on:
+  push:
+    branches:
+      - request/009-audio-track-naming-and-availability
+
+permissions:
+  contents: write
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - name: Check out request branch
+        uses: actions/checkout@v4
+        with:
+          ref: request/009-audio-track-naming-and-availability
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install discovery dependencies
+        run: |
+          python -m pip install -r requirements.txt
+          python -m pip install -r requirements-audio.txt
+      - name: Discover the four affected episodes without publishing
+        run: |
+          python -m scraper.audio_enrichment \
+            --episode 128 --episode 226 --episode 238 --episode 239 \
+            --report request-009-discovery-report.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          report = json.loads(Path("request-009-discovery-report.json").read_text(encoding="utf-8"))
+          print(json.dumps({
+              "verified": report.get("verified", []),
+              "failures": report.get("failures", []),
+              "skipped": report.get("skipped", []),
+          }, ensure_ascii=False, indent=2))
+          PY
+      - name: Run full audio coverage audit
+        run: |
+          python -m scraper.audio_coverage_audit \
+            --json request-009-coverage-audit.json \
+            --markdown request-009-coverage-audit.md
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          report = json.loads(Path("request-009-coverage-audit.json").read_text(encoding="utf-8"))
+          print(json.dumps(report, ensure_ascii=False, indent=2)[:30000])
+          PY
+      - name: Upload discovery and audit reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: request-009-discovery-and-audit
+          path: |
+            request-009-discovery-report.json
+            request-009-coverage-audit.json
+            request-009-coverage-audit.md
+          if-no-files-found: warn
+          retention-days: 30
+      - name: Remove one-off workflow
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/request-009-discovery-audit.yml
+          git commit -m "Remove one-off Request 009 audit workflow"
+          git push origin HEAD:request/009-audio-track-naming-and-availability
