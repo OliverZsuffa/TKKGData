@@ -28,7 +28,7 @@ All six provider tracklists were independently verified and stored in the episod
 
 ## Automated verification
 
-- 150 unit tests passed.
+- 151 unit tests passed.
 - All 243 catalogue episodes passed catalogue validation.
 - The post-publication audio coverage audit reports episodes 240, 241, 242, and 243 as needing investigation.
 - Known unavailable episodes are 19, 20, 37, and 128.
