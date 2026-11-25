@@ -1,5 +1,5 @@
 {
-  "started_at": "2026-11-24T13:52:04.758255+00:00",
+  "started_at": "2026-11-25T10:22:27.166724+00:00",
   "sources": {
     "archive_index_entries": 217,
     "archive_index_max_number": 217,
@@ -164,7 +164,7 @@
   "audio_release_preservation_conflicts": [],
   "audio_release_coverage": {
     "episode_count": 243,
-    "verified_pairings": 232,
+    "verified_pairings": 235,
     "known_unavailable": [
       {
         "number": 19,
@@ -186,25 +186,16 @@
         "status": "unavailable",
         "reason": "EUROPA did not rerelease this episode after it was flagged by the FSK. No official Spotify or YouTube Music release is expected.",
         "basis": "User-provided catalogue knowledge"
+      },
+      {
+        "number": 128,
+        "title": "Die Gehilfen des Terrors",
+        "status": "unavailable",
+        "reason": "No usable official digital release could be verified during the 2026-11-25 review. The user supplied Spotify album ID 4TdiUT6sWWBMF4nlwGOiC6, but reports that Spotify marks the resource unavailable and its tracks greyed out. An independent YouTube Music album and playlist search found no matching release. The Spotify ID is retained as discovery evidence only and is not a playable link.",
+        "basis": "User-provided Spotify album ID and inaccessible-resource observation, plus independent YouTube Music album and playlist search on 2026-11-25"
       }
     ],
     "missing_pairings": [
-      {
-        "number": 128,
-        "title": "Die Gehilfen des Terrors"
-      },
-      {
-        "number": 226,
-        "title": "Der Täter unter uns"
-      },
-      {
-        "number": 238,
-        "title": "Nur Tote schlafen länger"
-      },
-      {
-        "number": 239,
-        "title": "Vollgas ins Verderben"
-      },
       {
         "number": 240,
         "title": "Das verschollene Zepter von Gizeh"
@@ -1075,11 +1066,5 @@
     "hub_or_fallback_link_count": 34,
     "invalid_links": []
   },
-  "finished_at": "2026-11-24T13:54:10.341738+00:00",
-  "audio_enrichment": {
-    "updated_at": "2026-11-24T16:59:24.806286+00:00",
-    "verified_count": 0,
-    "failure_count": 5,
-    "batch_count": 1
-  }
+  "finished_at": "2026-11-25T10:24:45.734341+00:00"
 }
