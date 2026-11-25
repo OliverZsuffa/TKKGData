@@ -3,7 +3,7 @@ from __future__ import annotations
 import re
 from typing import Any
 
-PART_RE = re.compile(r"\b(?:teil|part)\s*0*(\d+)\b", re.IGNORECASE)
+PART_RE = re.compile(r"\b(?:teil|part|kapitel)\s*0*(\d+)\b", re.IGNORECASE)
 EXTRA_PATTERNS = (
     (re.compile(r"\binhaltsangabe\b", re.I), "summary"),
     (re.compile(r"\bintro\b|\bintroduction\b|\beinleitung\b|\bvorspann\b", re.I), "intro"),
