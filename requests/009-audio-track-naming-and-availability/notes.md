@@ -1,22 +1,27 @@
 # Implementation notes
 
-Implementation has started on branch `request/009-audio-track-naming-and-availability`.
+Implemented on branch `request/009-audio-track-naming-and-availability`.
 
-The Spotify evidence for episode 128 is user supplied: album ID `4TdiUT6sWWBMF4nlwGOiC6`. The user reports that the resource is unavailable and tracks are greyed out. This does not establish the YouTube Music status.
+## Data changes
 
-The new chapter convention is not assumed globally by episode number. The parser recognises the marker used in each actual provider tracklist, and chapter counts are derived independently from that provider's numbered tracks.
+- Episode 128 is present in `data/audio-unavailable.json`. Its reason preserves the user supplied Spotify album ID `4TdiUT6sWWBMF4nlwGOiC6` and reports the unavailable Spotify resource and greyed-out tracks. It explicitly does not infer YouTube Music unavailability from that Spotify evidence.
+- Episode 226 retains canonical title `Der Täter unter uns` and now has `Der Täter ist unter uns` in its top-level `alternate_titles` array in `data/episodes.json`.
 
-Actual implementation details and test results will be recorded as work progresses.
+## Parser and validation changes
 
-## Implemented so far
+- `scraper/spotify_structure.py` recognises `Kapitel NN` alongside `Teil NN` and `Part NN`.
+- Spotify candidate matching and scoring recognise `Kapitel` part markers.
+- Existing numbering validation derives the expected sequence from the number of detected parts. It has no fixed 20 chapter limit and validates each provider tracklist independently.
+- Existing shared-track selection continues to retain summary, intro, opening song, closing song, and outro tracks.
 
-- Added `Kapitel` to the shared episode part regular expression in `scraper/spotify_structure.py`.
-- Updated Spotify title matching and candidate scoring to recognise `Kapitel` as a story part marker.
-- Added regression tests for old and new markers, variable chapter counts, independent provider counts, invalid numbering, and episode 226 alias matching.
-- Added episode 128 to `data/audio-unavailable.json`, preserving Spotify album ID `4TdiUT6sWWBMF4nlwGOiC6` in the reason and explicitly distinguishing Spotify inaccessibility from YouTube Music status.
+## Automated verification
 
-## Remaining implementation work
+A temporary GitHub Actions workflow completed successfully and removed itself after applying the large catalogue file update.
 
-- Add `Der Täter ist unter uns` to episode 226's `alternate_titles` field in `data/episodes.json`. The file is a 7.7 MB catalogue blob and the available GitHub file write operation cannot safely perform a narrow edit without replacing and reformatting the entire catalogue. I am not replacing the whole catalogue merely to change one field.
-- Re-run live discovery for episodes 128, 226, 238, and 239 and the full coverage audit.
-- Execute the test suite and catalogue validation through CI or a local checkout. The current environment does not provide a GitHub Actions workflow dispatch action or network access for cloning the repository.
+- 150 unit tests passed.
+- All 243 catalogue episodes passed catalogue validation.
+- Episode 226's alternate title was explicitly asserted in the validation step.
+
+## Live verification
+
+Targeted live discovery for episodes 128, 226, 238, and 239 and the full audio coverage audit are running in a temporary GitHub Actions workflow. Their results will be recorded after completion.
