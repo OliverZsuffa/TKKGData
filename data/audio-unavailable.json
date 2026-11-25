@@ -19,8 +19,8 @@
     },
     "128": {
       "status": "unavailable",
-      "reason": "No usable official digital release could be located for this episode during the reviewed audit. The user supplied Spotify album ID 4TdiUT6sWWBMF4nlwGOiC6, but reports that Spotify marks the resource unavailable and its tracks greyed out. This is evidence that the Spotify resource is inaccessible, not independent proof of YouTube Music availability or unavailability.",
-      "basis": "User-provided Spotify album ID and availability observation; reviewed during the 2026-11-25 audio audit"
+      "reason": "No usable official digital release could be verified during the 2026-11-25 review. The user supplied Spotify album ID 4TdiUT6sWWBMF4nlwGOiC6, but reports that Spotify marks the resource unavailable and its tracks greyed out. An independent YouTube Music album and playlist search found no matching release. The Spotify ID is retained as discovery evidence only and is not a playable link.",
+      "basis": "User-provided Spotify album ID and inaccessible-resource observation, plus independent YouTube Music album and playlist search on 2026-11-25"
     }
   }
 }
