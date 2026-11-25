@@ -215231,7 +215231,1124 @@
         "source_url": "https://www.tkkg.de/produkte/hoerspiele?page=1"
       }
     ],
-    "last_checked": "2026-11-25T10:22:27.166724+00:00"
+    "last_checked": "2026-11-25T10:22:27.166724+00:00",
+    "audio_release": {
+      "schema_version": 2,
+      "spotify": {
+        "album": {
+          "album_id": "59dffkOOO9cbMLPUTxyUSV",
+          "url": "https://open.spotify.com/album/59dffkOOO9cbMLPUTxyUSV",
+          "title": "Folge 240: Das verschollene Zepter von Gizeh",
+          "track_count": 38,
+          "source_query": "track:\"Das verschollene Zepter von Gizeh\" artist:TKKG"
+        },
+        "tracks": [
+          {
+            "track_number": 1,
+            "disc_number": 1,
+            "track_id": "55ZEMwFlBqTomIgO0Hicxj",
+            "url": "https://open.spotify.com/track/55ZEMwFlBqTomIgO0Hicxj",
+            "title": "Inhaltsangabe: Das verschollene Zepter von Gizeh - Folge 240",
+            "duration_seconds": 77.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 2,
+            "disc_number": 1,
+            "track_id": "0Brif2wsKWBCGkJVY5anRV",
+            "url": "https://open.spotify.com/track/0Brif2wsKWBCGkJVY5anRV",
+            "title": "TKKG Titelsong",
+            "duration_seconds": 35.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 3,
+            "disc_number": 1,
+            "track_id": "0VafT7E674Lpa7EFlSLRWR",
+            "url": "https://open.spotify.com/track/0VafT7E674Lpa7EFlSLRWR",
+            "title": "Kapitel 01: Das verschollene Zepter von Gizeh - Folge 240",
+            "duration_seconds": 181.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 4,
+            "disc_number": 1,
+            "track_id": "3GMnv1tzKFSX23tTQwbont",
+            "url": "https://open.spotify.com/track/3GMnv1tzKFSX23tTQwbont",
+            "title": "Kapitel 02: Das verschollene Zepter von Gizeh - Folge 240",
+            "duration_seconds": 184.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 5,
+            "disc_number": 1,
+            "track_id": "3i3l2UFcXQKtHJgBkG1oiW",
+            "url": "https://open.spotify.com/track/3i3l2UFcXQKtHJgBkG1oiW",
+            "title": "Kapitel 03: Das verschollene Zepter von Gizeh - Folge 240",
+            "duration_seconds": 183.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 6,
+            "disc_number": 1,
+            "track_id": "4YDZlb39uFRQupNXv7P6Rz",
+            "url": "https://open.spotify.com/track/4YDZlb39uFRQupNXv7P6Rz",
+            "title": "Kapitel 04: Das verschollene Zepter von Gizeh - Folge 240",
+            "duration_seconds": 182.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 7,
+            "disc_number": 1,
+            "track_id": "4sxAgarJXlijkuheI19dBY",
+            "url": "https://open.spotify.com/track/4sxAgarJXlijkuheI19dBY",
+            "title": "Kapitel 05: Das verschollene Zepter von Gizeh - Folge 240",
+            "duration_seconds": 191.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 8,
+            "disc_number": 1,
+            "track_id": "6Sn6UoGVV9OkTpez9N1kti",
+            "url": "https://open.spotify.com/track/6Sn6UoGVV9OkTpez9N1kti",
+            "title": "Kapitel 06: Das verschollene Zepter von Gizeh - Folge 240",
+            "duration_seconds": 180.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 9,
+            "disc_number": 1,
+            "track_id": "65fZXQZpfCsSrP3zkswQHv",
+            "url": "https://open.spotify.com/track/65fZXQZpfCsSrP3zkswQHv",
+            "title": "Kapitel 07: Das verschollene Zepter von Gizeh - Folge 240",
+            "duration_seconds": 182.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 10,
+            "disc_number": 1,
+            "track_id": "5ukloP9zGUqgQwyjqDVfcq",
+            "url": "https://open.spotify.com/track/5ukloP9zGUqgQwyjqDVfcq",
+            "title": "Kapitel 08: Das verschollene Zepter von Gizeh - Folge 240",
+            "duration_seconds": 185.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 11,
+            "disc_number": 1,
+            "track_id": "6yYtUznlC0akZTr8130D45",
+            "url": "https://open.spotify.com/track/6yYtUznlC0akZTr8130D45",
+            "title": "Kapitel 09: Das verschollene Zepter von Gizeh - Folge 240",
+            "duration_seconds": 189.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 12,
+            "disc_number": 1,
+            "track_id": "6bLUhMoHMPuWZRT0QlMom1",
+            "url": "https://open.spotify.com/track/6bLUhMoHMPuWZRT0QlMom1",
+            "title": "Kapitel 10: Das verschollene Zepter von Gizeh - Folge 240",
+            "duration_seconds": 187.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 13,
+            "disc_number": 1,
+            "track_id": "4ub14qw1uT7CNnb30X0DL4",
+            "url": "https://open.spotify.com/track/4ub14qw1uT7CNnb30X0DL4",
+            "title": "Kapitel 11: Das verschollene Zepter von Gizeh - Folge 240",
+            "duration_seconds": 180.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 14,
+            "disc_number": 1,
+            "track_id": "6dfm0GrLfl1zPBQx4a2y2h",
+            "url": "https://open.spotify.com/track/6dfm0GrLfl1zPBQx4a2y2h",
+            "title": "Kapitel 12: Das verschollene Zepter von Gizeh - Folge 240",
+            "duration_seconds": 181.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 15,
+            "disc_number": 1,
+            "track_id": "2dAeTty2CvX8C52b4Ts2Hq",
+            "url": "https://open.spotify.com/track/2dAeTty2CvX8C52b4Ts2Hq",
+            "title": "Kapitel 13: Das verschollene Zepter von Gizeh - Folge 240",
+            "duration_seconds": 193.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 16,
+            "disc_number": 1,
+            "track_id": "69bwYKh3lccJT1jIdFdaFo",
+            "url": "https://open.spotify.com/track/69bwYKh3lccJT1jIdFdaFo",
+            "title": "Kapitel 14: Das verschollene Zepter von Gizeh - Folge 240",
+            "duration_seconds": 186.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 17,
+            "disc_number": 1,
+            "track_id": "5lvi8vd07nXHcDSDquuQ4F",
+            "url": "https://open.spotify.com/track/5lvi8vd07nXHcDSDquuQ4F",
+            "title": "Kapitel 15: Das verschollene Zepter von Gizeh - Folge 240",
+            "duration_seconds": 180.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 18,
+            "disc_number": 1,
+            "track_id": "5U6qMkHc8J075Trl7MDfLK",
+            "url": "https://open.spotify.com/track/5U6qMkHc8J075Trl7MDfLK",
+            "title": "Kapitel 16: Das verschollene Zepter von Gizeh - Folge 240",
+            "duration_seconds": 183.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 19,
+            "disc_number": 1,
+            "track_id": "1BknoXQRCaDKmnSIoMZzJo",
+            "url": "https://open.spotify.com/track/1BknoXQRCaDKmnSIoMZzJo",
+            "title": "Kapitel 17: Das verschollene Zepter von Gizeh - Folge 240",
+            "duration_seconds": 185.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 20,
+            "disc_number": 1,
+            "track_id": "43ixnkPS2wyguhqhWAoGvB",
+            "url": "https://open.spotify.com/track/43ixnkPS2wyguhqhWAoGvB",
+            "title": "Kapitel 18: Das verschollene Zepter von Gizeh - Folge 240",
+            "duration_seconds": 181.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 21,
+            "disc_number": 1,
+            "track_id": "5fx5EyOrRyOo1K0vn1Wkfq",
+            "url": "https://open.spotify.com/track/5fx5EyOrRyOo1K0vn1Wkfq",
+            "title": "Kapitel 19: Das verschollene Zepter von Gizeh - Folge 240",
+            "duration_seconds": 181.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 22,
+            "disc_number": 1,
+            "track_id": "0tMhRGsXpwq8yjsd2e6yOx",
+            "url": "https://open.spotify.com/track/0tMhRGsXpwq8yjsd2e6yOx",
+            "title": "Kapitel 20: Das verschollene Zepter von Gizeh - Folge 240",
+            "duration_seconds": 185.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 23,
+            "disc_number": 1,
+            "track_id": "7oNfuC2tnsw9sbnCQwifJ9",
+            "url": "https://open.spotify.com/track/7oNfuC2tnsw9sbnCQwifJ9",
+            "title": "Kapitel 21: Das verschollene Zepter von Gizeh - Folge 240",
+            "duration_seconds": 186.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 24,
+            "disc_number": 1,
+            "track_id": "16Y5kG93GZSricBWSDBAu4",
+            "url": "https://open.spotify.com/track/16Y5kG93GZSricBWSDBAu4",
+            "title": "Kapitel 22: Das verschollene Zepter von Gizeh - Folge 240",
+            "duration_seconds": 184.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 25,
+            "disc_number": 1,
+            "track_id": "4jBMopCrZ7vRpzjhZTXTrR",
+            "url": "https://open.spotify.com/track/4jBMopCrZ7vRpzjhZTXTrR",
+            "title": "Kapitel 23: Das verschollene Zepter von Gizeh - Folge 240",
+            "duration_seconds": 183.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 26,
+            "disc_number": 1,
+            "track_id": "7rOz7lNWr99eac66z3pi5D",
+            "url": "https://open.spotify.com/track/7rOz7lNWr99eac66z3pi5D",
+            "title": "Kapitel 24: Das verschollene Zepter von Gizeh - Folge 240",
+            "duration_seconds": 185.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 27,
+            "disc_number": 1,
+            "track_id": "6hKpX085W1zqTWhZqjY7Wm",
+            "url": "https://open.spotify.com/track/6hKpX085W1zqTWhZqjY7Wm",
+            "title": "Kapitel 25: Das verschollene Zepter von Gizeh - Folge 240",
+            "duration_seconds": 181.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 28,
+            "disc_number": 1,
+            "track_id": "7wOP2cU8ynqIQgJZWAGmZH",
+            "url": "https://open.spotify.com/track/7wOP2cU8ynqIQgJZWAGmZH",
+            "title": "Kapitel 26: Das verschollene Zepter von Gizeh - Folge 240",
+            "duration_seconds": 182.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 29,
+            "disc_number": 1,
+            "track_id": "59DInStoOHoRKnN9yxuO4N",
+            "url": "https://open.spotify.com/track/59DInStoOHoRKnN9yxuO4N",
+            "title": "Kapitel 27: Das verschollene Zepter von Gizeh - Folge 240",
+            "duration_seconds": 184.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 30,
+            "disc_number": 1,
+            "track_id": "4lNbOSvwTkJEodleeMeAma",
+            "url": "https://open.spotify.com/track/4lNbOSvwTkJEodleeMeAma",
+            "title": "Kapitel 28: Das verschollene Zepter von Gizeh - Folge 240",
+            "duration_seconds": 182.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 31,
+            "disc_number": 1,
+            "track_id": "142LnyKdN9NFasJmf4m65E",
+            "url": "https://open.spotify.com/track/142LnyKdN9NFasJmf4m65E",
+            "title": "Kapitel 29: Das verschollene Zepter von Gizeh - Folge 240",
+            "duration_seconds": 180.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 32,
+            "disc_number": 1,
+            "track_id": "05Q5pgaBq6gXefBDvFTf6v",
+            "url": "https://open.spotify.com/track/05Q5pgaBq6gXefBDvFTf6v",
+            "title": "Kapitel 30: Das verschollene Zepter von Gizeh - Folge 240",
+            "duration_seconds": 183.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 33,
+            "disc_number": 1,
+            "track_id": "5K5kjLoHmmKk1aZIGTlpHP",
+            "url": "https://open.spotify.com/track/5K5kjLoHmmKk1aZIGTlpHP",
+            "title": "Kapitel 31: Das verschollene Zepter von Gizeh - Folge 240",
+            "duration_seconds": 186.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 34,
+            "disc_number": 1,
+            "track_id": "2kvddr7ZhScSssnxwvtan3",
+            "url": "https://open.spotify.com/track/2kvddr7ZhScSssnxwvtan3",
+            "title": "Kapitel 32: Das verschollene Zepter von Gizeh - Folge 240",
+            "duration_seconds": 183.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 35,
+            "disc_number": 1,
+            "track_id": "49GDs4GE3DIca0L8xRDlvO",
+            "url": "https://open.spotify.com/track/49GDs4GE3DIca0L8xRDlvO",
+            "title": "Kapitel 33: Das verschollene Zepter von Gizeh - Folge 240",
+            "duration_seconds": 189.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 36,
+            "disc_number": 1,
+            "track_id": "38cMVelAMzgfvCngkqmyfz",
+            "url": "https://open.spotify.com/track/38cMVelAMzgfvCngkqmyfz",
+            "title": "Kapitel 34: Das verschollene Zepter von Gizeh - Folge 240",
+            "duration_seconds": 275.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 37,
+            "disc_number": 1,
+            "track_id": "3s7GClJin9H0UvZrJDEKoM",
+            "url": "https://open.spotify.com/track/3s7GClJin9H0UvZrJDEKoM",
+            "title": "TKKG Schlußsong",
+            "duration_seconds": 47.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 38,
+            "disc_number": 1,
+            "track_id": "5mjtwhHnT51AigierZbUJE",
+            "url": "https://open.spotify.com/track/5mjtwhHnT51AigierZbUJE",
+            "title": "Outro: Das verschollene Zepter von Gizeh - Folge 240",
+            "duration_seconds": 85.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          }
+        ],
+        "track_count": 38
+      },
+      "youtube_music": {
+        "album": {
+          "browse_id": "MPREb_3igPohLpLJs",
+          "url": "https://music.youtube.com/browse/MPREb_3igPohLpLJs",
+          "title": "Folge 240: Das verschollene Zepter von Gizeh",
+          "track_count": 73
+        },
+        "playlist": null,
+        "tracks": [
+          {
+            "track_number": 1,
+            "video_id": "L2NqFeGF_Ww",
+            "url": "https://music.youtube.com/watch?v=L2NqFeGF_Ww",
+            "title": "Inhaltsangabe: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 78.0
+          },
+          {
+            "track_number": 2,
+            "video_id": "5hrQnoZdlcU",
+            "url": "https://music.youtube.com/watch?v=5hrQnoZdlcU",
+            "title": "TKKG Titelsong",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 36.0
+          },
+          {
+            "track_number": 3,
+            "video_id": "D8HPOHp3OUg",
+            "url": "https://music.youtube.com/watch?v=D8HPOHp3OUg",
+            "title": "Kapitel 01: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 4,
+            "video_id": "_CErm8XhWtg",
+            "url": "https://music.youtube.com/watch?v=_CErm8XhWtg",
+            "title": "Kapitel 02: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 90.0
+          },
+          {
+            "track_number": 5,
+            "video_id": "6SAd-fRfwxQ",
+            "url": "https://music.youtube.com/watch?v=6SAd-fRfwxQ",
+            "title": "Kapitel 03: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 94.0
+          },
+          {
+            "track_number": 6,
+            "video_id": "DVg24ew80z0",
+            "url": "https://music.youtube.com/watch?v=DVg24ew80z0",
+            "title": "Kapitel 04: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 7,
+            "video_id": "cYuvTNZdd-4",
+            "url": "https://music.youtube.com/watch?v=cYuvTNZdd-4",
+            "title": "Kapitel 05: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 8,
+            "video_id": "GgZk_hVpdDU",
+            "url": "https://music.youtube.com/watch?v=GgZk_hVpdDU",
+            "title": "Kapitel 06: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 93.0
+          },
+          {
+            "track_number": 9,
+            "video_id": "mFne120CCCM",
+            "url": "https://music.youtube.com/watch?v=mFne120CCCM",
+            "title": "Kapitel 07: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 10,
+            "video_id": "dLvbhI7aTl4",
+            "url": "https://music.youtube.com/watch?v=dLvbhI7aTl4",
+            "title": "Kapitel 08: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 11,
+            "video_id": "s5lAwP3p4MQ",
+            "url": "https://music.youtube.com/watch?v=s5lAwP3p4MQ",
+            "title": "Kapitel 09: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 102.0
+          },
+          {
+            "track_number": 12,
+            "video_id": "kToBNskQKhY",
+            "url": "https://music.youtube.com/watch?v=kToBNskQKhY",
+            "title": "Kapitel 10: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 13,
+            "video_id": "e4UBPh0tVus",
+            "url": "https://music.youtube.com/watch?v=e4UBPh0tVus",
+            "title": "Kapitel 11: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 14,
+            "video_id": "eQlgRF7HmWo",
+            "url": "https://music.youtube.com/watch?v=eQlgRF7HmWo",
+            "title": "Kapitel 12: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 90.0
+          },
+          {
+            "track_number": 15,
+            "video_id": "BlMbLaScUxw",
+            "url": "https://music.youtube.com/watch?v=BlMbLaScUxw",
+            "title": "Kapitel 13: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 16,
+            "video_id": "I1lS3SbWhFY",
+            "url": "https://music.youtube.com/watch?v=I1lS3SbWhFY",
+            "title": "Kapitel 14: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 93.0
+          },
+          {
+            "track_number": 17,
+            "video_id": "VfxoVyb3q3Q",
+            "url": "https://music.youtube.com/watch?v=VfxoVyb3q3Q",
+            "title": "Kapitel 15: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 18,
+            "video_id": "uF5SS3SW6K0",
+            "url": "https://music.youtube.com/watch?v=uF5SS3SW6K0",
+            "title": "Kapitel 16: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 94.0
+          },
+          {
+            "track_number": 19,
+            "video_id": "OTVUdhy_7xs",
+            "url": "https://music.youtube.com/watch?v=OTVUdhy_7xs",
+            "title": "Kapitel 17: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 94.0
+          },
+          {
+            "track_number": 20,
+            "video_id": "WM2JNdjrna4",
+            "url": "https://music.youtube.com/watch?v=WM2JNdjrna4",
+            "title": "Kapitel 18: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 96.0
+          },
+          {
+            "track_number": 21,
+            "video_id": "PsXC4lrFqbw",
+            "url": "https://music.youtube.com/watch?v=PsXC4lrFqbw",
+            "title": "Kapitel 19: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 95.0
+          },
+          {
+            "track_number": 22,
+            "video_id": "JDNPKyyA_r0",
+            "url": "https://music.youtube.com/watch?v=JDNPKyyA_r0",
+            "title": "Kapitel 20: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 93.0
+          },
+          {
+            "track_number": 23,
+            "video_id": "P0uuuzyDfL8",
+            "url": "https://music.youtube.com/watch?v=P0uuuzyDfL8",
+            "title": "Kapitel 21: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 24,
+            "video_id": "pSTeWHLt3EM",
+            "url": "https://music.youtube.com/watch?v=pSTeWHLt3EM",
+            "title": "Kapitel 22: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 25,
+            "video_id": "BIGok-6aXco",
+            "url": "https://music.youtube.com/watch?v=BIGok-6aXco",
+            "title": "Kapitel 23: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 26,
+            "video_id": "KtdvC2iwgmw",
+            "url": "https://music.youtube.com/watch?v=KtdvC2iwgmw",
+            "title": "Kapitel 24: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 27,
+            "video_id": "8esbyYxxZZM",
+            "url": "https://music.youtube.com/watch?v=8esbyYxxZZM",
+            "title": "Kapitel 25: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 99.0
+          },
+          {
+            "track_number": 28,
+            "video_id": "JLd3ZqdfvY8",
+            "url": "https://music.youtube.com/watch?v=JLd3ZqdfvY8",
+            "title": "Kapitel 26: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 96.0
+          },
+          {
+            "track_number": 29,
+            "video_id": "oNnJceAtG5M",
+            "url": "https://music.youtube.com/watch?v=oNnJceAtG5M",
+            "title": "Kapitel 27: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 96.0
+          },
+          {
+            "track_number": 30,
+            "video_id": "DSIsqzvmyjc",
+            "url": "https://music.youtube.com/watch?v=DSIsqzvmyjc",
+            "title": "Kapitel 28: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 31,
+            "video_id": "uNAaRpGL6Jc",
+            "url": "https://music.youtube.com/watch?v=uNAaRpGL6Jc",
+            "title": "Kapitel 29: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 90.0
+          },
+          {
+            "track_number": 32,
+            "video_id": "XF85JQGHEjM",
+            "url": "https://music.youtube.com/watch?v=XF85JQGHEjM",
+            "title": "Kapitel 30: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 90.0
+          },
+          {
+            "track_number": 33,
+            "video_id": "mf_9y5z79iY",
+            "url": "https://music.youtube.com/watch?v=mf_9y5z79iY",
+            "title": "Kapitel 31: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 93.0
+          },
+          {
+            "track_number": 34,
+            "video_id": "UOLe2a-F0n0",
+            "url": "https://music.youtube.com/watch?v=UOLe2a-F0n0",
+            "title": "Kapitel 32: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 35,
+            "video_id": "0wcMAPYM-FQ",
+            "url": "https://music.youtube.com/watch?v=0wcMAPYM-FQ",
+            "title": "Kapitel 33: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 94.0
+          },
+          {
+            "track_number": 36,
+            "video_id": "f1HH3lXLQX4",
+            "url": "https://music.youtube.com/watch?v=f1HH3lXLQX4",
+            "title": "Kapitel 34: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 37,
+            "video_id": "gp1OfhdYLGU",
+            "url": "https://music.youtube.com/watch?v=gp1OfhdYLGU",
+            "title": "Kapitel 35: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 38,
+            "video_id": "kqmnE8tPYbM",
+            "url": "https://music.youtube.com/watch?v=kqmnE8tPYbM",
+            "title": "Kapitel 36: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 39,
+            "video_id": "YNbysBm4Dow",
+            "url": "https://music.youtube.com/watch?v=YNbysBm4Dow",
+            "title": "Kapitel 37: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 90.0
+          },
+          {
+            "track_number": 40,
+            "video_id": "b4wCCB6hX2A",
+            "url": "https://music.youtube.com/watch?v=b4wCCB6hX2A",
+            "title": "Kapitel 38: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 41,
+            "video_id": "kx96YgM9BZw",
+            "url": "https://music.youtube.com/watch?v=kx96YgM9BZw",
+            "title": "Kapitel 39: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 96.0
+          },
+          {
+            "track_number": 42,
+            "video_id": "7CRpG5BgEns",
+            "url": "https://music.youtube.com/watch?v=7CRpG5BgEns",
+            "title": "Kapitel 40: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 43,
+            "video_id": "j0u6nw3BafU",
+            "url": "https://music.youtube.com/watch?v=j0u6nw3BafU",
+            "title": "Kapitel 41: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 96.0
+          },
+          {
+            "track_number": 44,
+            "video_id": "KgqhWV8DrUE",
+            "url": "https://music.youtube.com/watch?v=KgqhWV8DrUE",
+            "title": "Kapitel 42: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 45,
+            "video_id": "hTX7QDqPC6c",
+            "url": "https://music.youtube.com/watch?v=hTX7QDqPC6c",
+            "title": "Kapitel 43: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 93.0
+          },
+          {
+            "track_number": 46,
+            "video_id": "27upcTl8SS0",
+            "url": "https://music.youtube.com/watch?v=27upcTl8SS0",
+            "title": "Kapitel 44: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 93.0
+          },
+          {
+            "track_number": 47,
+            "video_id": "CjYNiBQ8hr0",
+            "url": "https://music.youtube.com/watch?v=CjYNiBQ8hr0",
+            "title": "Kapitel 45: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 48,
+            "video_id": "p13ieHCZcoI",
+            "url": "https://music.youtube.com/watch?v=p13ieHCZcoI",
+            "title": "Kapitel 46: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 93.0
+          },
+          {
+            "track_number": 49,
+            "video_id": "u5PHb9VAxNw",
+            "url": "https://music.youtube.com/watch?v=u5PHb9VAxNw",
+            "title": "Kapitel 47: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 93.0
+          },
+          {
+            "track_number": 50,
+            "video_id": "DaDM7Jn5drM",
+            "url": "https://music.youtube.com/watch?v=DaDM7Jn5drM",
+            "title": "Kapitel 48: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 93.0
+          },
+          {
+            "track_number": 51,
+            "video_id": "sQEcnnqvfZQ",
+            "url": "https://music.youtube.com/watch?v=sQEcnnqvfZQ",
+            "title": "Kapitel 49: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 90.0
+          },
+          {
+            "track_number": 52,
+            "video_id": "EVIVkd7cSUY",
+            "url": "https://music.youtube.com/watch?v=EVIVkd7cSUY",
+            "title": "Kapitel 50: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 53,
+            "video_id": "__j_3QUsCFY",
+            "url": "https://music.youtube.com/watch?v=__j_3QUsCFY",
+            "title": "Kapitel 51: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 93.0
+          },
+          {
+            "track_number": 54,
+            "video_id": "cKGoXPIzV3M",
+            "url": "https://music.youtube.com/watch?v=cKGoXPIzV3M",
+            "title": "Kapitel 52: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 55,
+            "video_id": "dTvWYkqepRI",
+            "url": "https://music.youtube.com/watch?v=dTvWYkqepRI",
+            "title": "Kapitel 53: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 95.0
+          },
+          {
+            "track_number": 56,
+            "video_id": "WR7mc1Ne6cc",
+            "url": "https://music.youtube.com/watch?v=WR7mc1Ne6cc",
+            "title": "Kapitel 54: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 90.0
+          },
+          {
+            "track_number": 57,
+            "video_id": "oDu47SgsqrI",
+            "url": "https://music.youtube.com/watch?v=oDu47SgsqrI",
+            "title": "Kapitel 55: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 58,
+            "video_id": "zYGA2t8Bmlg",
+            "url": "https://music.youtube.com/watch?v=zYGA2t8Bmlg",
+            "title": "Kapitel 56: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 59,
+            "video_id": "SlqaYESUhpI",
+            "url": "https://music.youtube.com/watch?v=SlqaYESUhpI",
+            "title": "Kapitel 57: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 60,
+            "video_id": "DiBNdFokQG0",
+            "url": "https://music.youtube.com/watch?v=DiBNdFokQG0",
+            "title": "Kapitel 58: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 61,
+            "video_id": "kGAvt9b2t2Y",
+            "url": "https://music.youtube.com/watch?v=kGAvt9b2t2Y",
+            "title": "Kapitel 59: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 90.0
+          },
+          {
+            "track_number": 62,
+            "video_id": "AOeE1GD2Few",
+            "url": "https://music.youtube.com/watch?v=AOeE1GD2Few",
+            "title": "Kapitel 60: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 94.0
+          },
+          {
+            "track_number": 63,
+            "video_id": "Gj_VNAJ0uhY",
+            "url": "https://music.youtube.com/watch?v=Gj_VNAJ0uhY",
+            "title": "Kapitel 61: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 94.0
+          },
+          {
+            "track_number": 64,
+            "video_id": "Q07pnY2x2O4",
+            "url": "https://music.youtube.com/watch?v=Q07pnY2x2O4",
+            "title": "Kapitel 62: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 94.0
+          },
+          {
+            "track_number": 65,
+            "video_id": "Qmq5Bcfb_sg",
+            "url": "https://music.youtube.com/watch?v=Qmq5Bcfb_sg",
+            "title": "Kapitel 63: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 66,
+            "video_id": "p-Xhmh56zXU",
+            "url": "https://music.youtube.com/watch?v=p-Xhmh56zXU",
+            "title": "Kapitel 64: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 93.0
+          },
+          {
+            "track_number": 67,
+            "video_id": "eKx2YVn5BmA",
+            "url": "https://music.youtube.com/watch?v=eKx2YVn5BmA",
+            "title": "Kapitel 65: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 90.0
+          },
+          {
+            "track_number": 68,
+            "video_id": "cnBTsGTl6xM",
+            "url": "https://music.youtube.com/watch?v=cnBTsGTl6xM",
+            "title": "Kapitel 66: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 100.0
+          },
+          {
+            "track_number": 69,
+            "video_id": "KEnkNAddZPQ",
+            "url": "https://music.youtube.com/watch?v=KEnkNAddZPQ",
+            "title": "Kapitel 67: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 90.0
+          },
+          {
+            "track_number": 70,
+            "video_id": "ESWoyHtuOag",
+            "url": "https://music.youtube.com/watch?v=ESWoyHtuOag",
+            "title": "Kapitel 68: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 71,
+            "video_id": "ASFcx0XYD9k",
+            "url": "https://music.youtube.com/watch?v=ASFcx0XYD9k",
+            "title": "Kapitel 69: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 95.0
+          },
+          {
+            "track_number": 72,
+            "video_id": "Pp6dBA589ns",
+            "url": "https://music.youtube.com/watch?v=Pp6dBA589ns",
+            "title": "TKKG Schlußsong",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 48.0
+          },
+          {
+            "track_number": 73,
+            "video_id": "ENznzI7nKi0",
+            "url": "https://music.youtube.com/watch?v=ENznzI7nKi0",
+            "title": "Outro: Das verschollene Zepter von Gizeh (Folge 240)",
+            "artists": [],
+            "album": "Album - Folge 240: Das verschollene Zepter von Gizeh",
+            "duration_seconds": 86.0
+          }
+        ],
+        "track_count": 73
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-11-25T10:32:29.854921+00:00",
+        "method": "independent_provider_tracklist_validation",
+        "spotify": {
+          "status": "verified",
+          "verified_track_count": 38
+        },
+        "youtube_music": {
+          "status": "verified",
+          "verified_track_count": 73,
+          "playlist_status": "unavailable",
+          "playlist_error": null
+        }
+      }
+    }
   },
   {
     "number": 241,
@@ -215344,7 +216461,709 @@
         "source_url": "https://www.tkkg.de/produkte/hoerspiele?page=1"
       }
     ],
-    "last_checked": "2026-11-25T10:22:27.166724+00:00"
+    "last_checked": "2026-11-25T10:22:27.166724+00:00",
+    "audio_release": {
+      "schema_version": 2,
+      "spotify": {
+        "album": {
+          "album_id": "2o4MkaBd9xVDtUYIk9YKcq",
+          "url": "https://open.spotify.com/album/2o4MkaBd9xVDtUYIk9YKcq",
+          "title": "Folge 241: Das Rätsel der Gruselvilla",
+          "track_count": 24,
+          "source_query": "track:\"Das Rätsel der Gruselvilla\" artist:TKKG"
+        },
+        "tracks": [
+          {
+            "track_number": 1,
+            "disc_number": 1,
+            "track_id": "7G3je8lH2bcsSZhH18o75T",
+            "url": "https://open.spotify.com/track/7G3je8lH2bcsSZhH18o75T",
+            "title": "Inhaltsangabe: Das Rätsel der Gruselvilla - Folge 241",
+            "duration_seconds": 57.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 2,
+            "disc_number": 1,
+            "track_id": "0xNTCORouIh2mni4ttaVU5",
+            "url": "https://open.spotify.com/track/0xNTCORouIh2mni4ttaVU5",
+            "title": "TKKG Titelsong",
+            "duration_seconds": 36.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 3,
+            "disc_number": 1,
+            "track_id": "3DnhxKiHiDRJO2mkRfjXOl",
+            "url": "https://open.spotify.com/track/3DnhxKiHiDRJO2mkRfjXOl",
+            "title": "Kapitel 01: Das Rätsel der Gruselvilla - Folge 241",
+            "duration_seconds": 186.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 4,
+            "disc_number": 1,
+            "track_id": "05N2Enyu6H8nIwajEeNBGe",
+            "url": "https://open.spotify.com/track/05N2Enyu6H8nIwajEeNBGe",
+            "title": "Kapitel 02: Das Rätsel der Gruselvilla - Folge 241",
+            "duration_seconds": 183.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 5,
+            "disc_number": 1,
+            "track_id": "09LOedHTcM6t2LF0lTzwPd",
+            "url": "https://open.spotify.com/track/09LOedHTcM6t2LF0lTzwPd",
+            "title": "Kapitel 03: Das Rätsel der Gruselvilla - Folge 241",
+            "duration_seconds": 185.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 6,
+            "disc_number": 1,
+            "track_id": "5Bd6jFlVTxdMm7QQncG15B",
+            "url": "https://open.spotify.com/track/5Bd6jFlVTxdMm7QQncG15B",
+            "title": "Kapitel 04: Das Rätsel der Gruselvilla - Folge 241",
+            "duration_seconds": 183.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 7,
+            "disc_number": 1,
+            "track_id": "0xdZqUXu7OkZXJsChOzpK7",
+            "url": "https://open.spotify.com/track/0xdZqUXu7OkZXJsChOzpK7",
+            "title": "Kapitel 05: Das Rätsel der Gruselvilla - Folge 241",
+            "duration_seconds": 181.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 8,
+            "disc_number": 1,
+            "track_id": "4FLi6yroYfsI5VaXNdyxur",
+            "url": "https://open.spotify.com/track/4FLi6yroYfsI5VaXNdyxur",
+            "title": "Kapitel 06: Das Rätsel der Gruselvilla - Folge 241",
+            "duration_seconds": 185.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 9,
+            "disc_number": 1,
+            "track_id": "4QW29fg8GbRi8yweKSMWth",
+            "url": "https://open.spotify.com/track/4QW29fg8GbRi8yweKSMWth",
+            "title": "Kapitel 07: Das Rätsel der Gruselvilla - Folge 241",
+            "duration_seconds": 182.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 10,
+            "disc_number": 1,
+            "track_id": "0J9xMgrTjTLGz5QuqVm8hm",
+            "url": "https://open.spotify.com/track/0J9xMgrTjTLGz5QuqVm8hm",
+            "title": "Kapitel 08: Das Rätsel der Gruselvilla - Folge 241",
+            "duration_seconds": 183.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 11,
+            "disc_number": 1,
+            "track_id": "5A002E1uF8bbM98ce39uKt",
+            "url": "https://open.spotify.com/track/5A002E1uF8bbM98ce39uKt",
+            "title": "Kapitel 09: Das Rätsel der Gruselvilla - Folge 241",
+            "duration_seconds": 186.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 12,
+            "disc_number": 1,
+            "track_id": "4wQhZEg2VYyzWhSIpRTYXh",
+            "url": "https://open.spotify.com/track/4wQhZEg2VYyzWhSIpRTYXh",
+            "title": "Kapitel 10: Das Rätsel der Gruselvilla - Folge 241",
+            "duration_seconds": 185.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 13,
+            "disc_number": 1,
+            "track_id": "4Z7EHeJA71N8T5UbMOi4bR",
+            "url": "https://open.spotify.com/track/4Z7EHeJA71N8T5UbMOi4bR",
+            "title": "Kapitel 11: Das Rätsel der Gruselvilla - Folge 241",
+            "duration_seconds": 192.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 14,
+            "disc_number": 1,
+            "track_id": "0HBOM4SRoZVA04RjrlxiLC",
+            "url": "https://open.spotify.com/track/0HBOM4SRoZVA04RjrlxiLC",
+            "title": "Kapitel 12: Das Rätsel der Gruselvilla - Folge 241",
+            "duration_seconds": 184.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 15,
+            "disc_number": 1,
+            "track_id": "0B04hRfjVYUklt18C0RNM2",
+            "url": "https://open.spotify.com/track/0B04hRfjVYUklt18C0RNM2",
+            "title": "Kapitel 13: Das Rätsel der Gruselvilla - Folge 241",
+            "duration_seconds": 183.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 16,
+            "disc_number": 1,
+            "track_id": "4pW5Ct9T6JH8mkk5A2pM6Q",
+            "url": "https://open.spotify.com/track/4pW5Ct9T6JH8mkk5A2pM6Q",
+            "title": "Kapitel 14: Das Rätsel der Gruselvilla - Folge 241",
+            "duration_seconds": 183.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 17,
+            "disc_number": 1,
+            "track_id": "2dQsy0Dd2S9YFXVdGfbPKe",
+            "url": "https://open.spotify.com/track/2dQsy0Dd2S9YFXVdGfbPKe",
+            "title": "Kapitel 15: Das Rätsel der Gruselvilla - Folge 241",
+            "duration_seconds": 183.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 18,
+            "disc_number": 1,
+            "track_id": "6h8gB5xtRMMIVdpIeFJab5",
+            "url": "https://open.spotify.com/track/6h8gB5xtRMMIVdpIeFJab5",
+            "title": "Kapitel 16: Das Rätsel der Gruselvilla - Folge 241",
+            "duration_seconds": 183.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 19,
+            "disc_number": 1,
+            "track_id": "0eXXOxDPG2NtCKmqUdKztU",
+            "url": "https://open.spotify.com/track/0eXXOxDPG2NtCKmqUdKztU",
+            "title": "Kapitel 17: Das Rätsel der Gruselvilla - Folge 241",
+            "duration_seconds": 180.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 20,
+            "disc_number": 1,
+            "track_id": "2wPK2zESgKNPVAffEOKvMW",
+            "url": "https://open.spotify.com/track/2wPK2zESgKNPVAffEOKvMW",
+            "title": "Kapitel 18: Das Rätsel der Gruselvilla - Folge 241",
+            "duration_seconds": 181.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 21,
+            "disc_number": 1,
+            "track_id": "4yNcYnZssksFRUfhPbpPAH",
+            "url": "https://open.spotify.com/track/4yNcYnZssksFRUfhPbpPAH",
+            "title": "Kapitel 19: Das Rätsel der Gruselvilla - Folge 241",
+            "duration_seconds": 183.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 22,
+            "disc_number": 1,
+            "track_id": "1gIbsdADCZSP2BkN7pslpa",
+            "url": "https://open.spotify.com/track/1gIbsdADCZSP2BkN7pslpa",
+            "title": "Kapitel 20: Das Rätsel der Gruselvilla - Folge 241",
+            "duration_seconds": 223.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 23,
+            "disc_number": 1,
+            "track_id": "7GUH5GhllI19TtGyAZLYK3",
+            "url": "https://open.spotify.com/track/7GUH5GhllI19TtGyAZLYK3",
+            "title": "TKKG Schlußsong",
+            "duration_seconds": 34.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 24,
+            "disc_number": 1,
+            "track_id": "2ZvqjBdss8Bu7oh5k2fwt7",
+            "url": "https://open.spotify.com/track/2ZvqjBdss8Bu7oh5k2fwt7",
+            "title": "Outro: Das Rätsel der Gruselvilla - Folge 241",
+            "duration_seconds": 72.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          }
+        ],
+        "track_count": 24
+      },
+      "youtube_music": {
+        "album": {
+          "browse_id": "MPREb_la82gzBUhXv",
+          "url": "https://music.youtube.com/browse/MPREb_la82gzBUhXv",
+          "title": "Folge 241: Das Rätsel der Gruselvilla",
+          "track_count": 44
+        },
+        "playlist": null,
+        "tracks": [
+          {
+            "track_number": 1,
+            "video_id": "MJTyFIkkBy8",
+            "url": "https://music.youtube.com/watch?v=MJTyFIkkBy8",
+            "title": "Inhaltsangabe:  Das Rätsel der Gruselvilla (Folge 241)",
+            "artists": [],
+            "album": "Album - Folge 241: Das Rätsel der Gruselvilla",
+            "duration_seconds": 58.0
+          },
+          {
+            "track_number": 2,
+            "video_id": "wBML9Fz78HE",
+            "url": "https://music.youtube.com/watch?v=wBML9Fz78HE",
+            "title": "TKKG Titelsong",
+            "artists": [],
+            "album": "Album - Folge 241: Das Rätsel der Gruselvilla",
+            "duration_seconds": 37.0
+          },
+          {
+            "track_number": 3,
+            "video_id": "pJWE7qJT3nQ",
+            "url": "https://music.youtube.com/watch?v=pJWE7qJT3nQ",
+            "title": "Kapitel 01:  Das Rätsel der Gruselvilla (Folge 241)",
+            "artists": [],
+            "album": "Album - Folge 241: Das Rätsel der Gruselvilla",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 4,
+            "video_id": "AyzRKtooOCo",
+            "url": "https://music.youtube.com/watch?v=AyzRKtooOCo",
+            "title": "Kapitel 02:  Das Rätsel der Gruselvilla (Folge 241)",
+            "artists": [],
+            "album": "Album - Folge 241: Das Rätsel der Gruselvilla",
+            "duration_seconds": 96.0
+          },
+          {
+            "track_number": 5,
+            "video_id": "rNBAL0FoG1M",
+            "url": "https://music.youtube.com/watch?v=rNBAL0FoG1M",
+            "title": "Kapitel 03:  Das Rätsel der Gruselvilla (Folge 241)",
+            "artists": [],
+            "album": "Album - Folge 241: Das Rätsel der Gruselvilla",
+            "duration_seconds": 93.0
+          },
+          {
+            "track_number": 6,
+            "video_id": "cGE1MDjAyTk",
+            "url": "https://music.youtube.com/watch?v=cGE1MDjAyTk",
+            "title": "Kapitel 04:  Das Rätsel der Gruselvilla (Folge 241)",
+            "artists": [],
+            "album": "Album - Folge 241: Das Rätsel der Gruselvilla",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 7,
+            "video_id": "WTU_H8HutE4",
+            "url": "https://music.youtube.com/watch?v=WTU_H8HutE4",
+            "title": "Kapitel 05:  Das Rätsel der Gruselvilla (Folge 241)",
+            "artists": [],
+            "album": "Album - Folge 241: Das Rätsel der Gruselvilla",
+            "duration_seconds": 94.0
+          },
+          {
+            "track_number": 8,
+            "video_id": "qROdaTYb1ck",
+            "url": "https://music.youtube.com/watch?v=qROdaTYb1ck",
+            "title": "Kapitel 06:  Das Rätsel der Gruselvilla (Folge 241)",
+            "artists": [],
+            "album": "Album - Folge 241: Das Rätsel der Gruselvilla",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 9,
+            "video_id": "LHoswMf9QcQ",
+            "url": "https://music.youtube.com/watch?v=LHoswMf9QcQ",
+            "title": "Kapitel 07:  Das Rätsel der Gruselvilla (Folge 241)",
+            "artists": [],
+            "album": "Album - Folge 241: Das Rätsel der Gruselvilla",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 10,
+            "video_id": "NViuEnvtWg4",
+            "url": "https://music.youtube.com/watch?v=NViuEnvtWg4",
+            "title": "Kapitel 08:  Das Rätsel der Gruselvilla (Folge 241)",
+            "artists": [],
+            "album": "Album - Folge 241: Das Rätsel der Gruselvilla",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 11,
+            "video_id": "bSIawKzJEs8",
+            "url": "https://music.youtube.com/watch?v=bSIawKzJEs8",
+            "title": "Kapitel 09:  Das Rätsel der Gruselvilla (Folge 241)",
+            "artists": [],
+            "album": "Album - Folge 241: Das Rätsel der Gruselvilla",
+            "duration_seconds": 90.0
+          },
+          {
+            "track_number": 12,
+            "video_id": "n61Bmd6KA-o",
+            "url": "https://music.youtube.com/watch?v=n61Bmd6KA-o",
+            "title": "Kapitel 10:  Das Rätsel der Gruselvilla (Folge 241)",
+            "artists": [],
+            "album": "Album - Folge 241: Das Rätsel der Gruselvilla",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 13,
+            "video_id": "yjJD216xWBY",
+            "url": "https://music.youtube.com/watch?v=yjJD216xWBY",
+            "title": "Kapitel 11:  Das Rätsel der Gruselvilla (Folge 241)",
+            "artists": [],
+            "album": "Album - Folge 241: Das Rätsel der Gruselvilla",
+            "duration_seconds": 94.0
+          },
+          {
+            "track_number": 14,
+            "video_id": "Q0-SgjkGKyU",
+            "url": "https://music.youtube.com/watch?v=Q0-SgjkGKyU",
+            "title": "Kapitel 12:  Das Rätsel der Gruselvilla (Folge 241)",
+            "artists": [],
+            "album": "Album - Folge 241: Das Rätsel der Gruselvilla",
+            "duration_seconds": 93.0
+          },
+          {
+            "track_number": 15,
+            "video_id": "ZXVdfRC3A3w",
+            "url": "https://music.youtube.com/watch?v=ZXVdfRC3A3w",
+            "title": "Kapitel 13:  Das Rätsel der Gruselvilla (Folge 241)",
+            "artists": [],
+            "album": "Album - Folge 241: Das Rätsel der Gruselvilla",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 16,
+            "video_id": "tqmzid3Nz_c",
+            "url": "https://music.youtube.com/watch?v=tqmzid3Nz_c",
+            "title": "Kapitel 14:  Das Rätsel der Gruselvilla (Folge 241)",
+            "artists": [],
+            "album": "Album - Folge 241: Das Rätsel der Gruselvilla",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 17,
+            "video_id": "MctmF9EYZT8",
+            "url": "https://music.youtube.com/watch?v=MctmF9EYZT8",
+            "title": "Kapitel 15:  Das Rätsel der Gruselvilla (Folge 241)",
+            "artists": [],
+            "album": "Album - Folge 241: Das Rätsel der Gruselvilla",
+            "duration_seconds": 94.0
+          },
+          {
+            "track_number": 18,
+            "video_id": "J9VfbZsLDu4",
+            "url": "https://music.youtube.com/watch?v=J9VfbZsLDu4",
+            "title": "Kapitel 16:  Das Rätsel der Gruselvilla (Folge 241)",
+            "artists": [],
+            "album": "Album - Folge 241: Das Rätsel der Gruselvilla",
+            "duration_seconds": 90.0
+          },
+          {
+            "track_number": 19,
+            "video_id": "FO6t6T7GvtI",
+            "url": "https://music.youtube.com/watch?v=FO6t6T7GvtI",
+            "title": "Kapitel 17:  Das Rätsel der Gruselvilla (Folge 241)",
+            "artists": [],
+            "album": "Album - Folge 241: Das Rätsel der Gruselvilla",
+            "duration_seconds": 94.0
+          },
+          {
+            "track_number": 20,
+            "video_id": "24zUfE58O5Q",
+            "url": "https://music.youtube.com/watch?v=24zUfE58O5Q",
+            "title": "Kapitel 18:  Das Rätsel der Gruselvilla (Folge 241)",
+            "artists": [],
+            "album": "Album - Folge 241: Das Rätsel der Gruselvilla",
+            "duration_seconds": 94.0
+          },
+          {
+            "track_number": 21,
+            "video_id": "aDr2IDbn5ek",
+            "url": "https://music.youtube.com/watch?v=aDr2IDbn5ek",
+            "title": "Kapitel 19:  Das Rätsel der Gruselvilla (Folge 241)",
+            "artists": [],
+            "album": "Album - Folge 241: Das Rätsel der Gruselvilla",
+            "duration_seconds": 90.0
+          },
+          {
+            "track_number": 22,
+            "video_id": "DwBrlUmoiZA",
+            "url": "https://music.youtube.com/watch?v=DwBrlUmoiZA",
+            "title": "Kapitel 20:  Das Rätsel der Gruselvilla (Folge 241)",
+            "artists": [],
+            "album": "Album - Folge 241: Das Rätsel der Gruselvilla",
+            "duration_seconds": 96.0
+          },
+          {
+            "track_number": 23,
+            "video_id": "saZafyDEYyU",
+            "url": "https://music.youtube.com/watch?v=saZafyDEYyU",
+            "title": "Kapitel 21:  Das Rätsel der Gruselvilla (Folge 241)",
+            "artists": [],
+            "album": "Album - Folge 241: Das Rätsel der Gruselvilla",
+            "duration_seconds": 96.0
+          },
+          {
+            "track_number": 24,
+            "video_id": "i1_IJzlMcD4",
+            "url": "https://music.youtube.com/watch?v=i1_IJzlMcD4",
+            "title": "Kapitel 22:  Das Rätsel der Gruselvilla (Folge 241)",
+            "artists": [],
+            "album": "Album - Folge 241: Das Rätsel der Gruselvilla",
+            "duration_seconds": 97.0
+          },
+          {
+            "track_number": 25,
+            "video_id": "fCPLTlmqNew",
+            "url": "https://music.youtube.com/watch?v=fCPLTlmqNew",
+            "title": "Kapitel 23:  Das Rätsel der Gruselvilla (Folge 241)",
+            "artists": [],
+            "album": "Album - Folge 241: Das Rätsel der Gruselvilla",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 26,
+            "video_id": "ixQlmlZQNnM",
+            "url": "https://music.youtube.com/watch?v=ixQlmlZQNnM",
+            "title": "Kapitel 24:  Das Rätsel der Gruselvilla (Folge 241)",
+            "artists": [],
+            "album": "Album - Folge 241: Das Rätsel der Gruselvilla",
+            "duration_seconds": 95.0
+          },
+          {
+            "track_number": 27,
+            "video_id": "uA1-ddabunY",
+            "url": "https://music.youtube.com/watch?v=uA1-ddabunY",
+            "title": "Kapitel 25:  Das Rätsel der Gruselvilla (Folge 241)",
+            "artists": [],
+            "album": "Album - Folge 241: Das Rätsel der Gruselvilla",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 28,
+            "video_id": "JMkKLa5i4Ww",
+            "url": "https://music.youtube.com/watch?v=JMkKLa5i4Ww",
+            "title": "Kapitel 26:  Das Rätsel der Gruselvilla (Folge 241)",
+            "artists": [],
+            "album": "Album - Folge 241: Das Rätsel der Gruselvilla",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 29,
+            "video_id": "ZhvcFesz3xU",
+            "url": "https://music.youtube.com/watch?v=ZhvcFesz3xU",
+            "title": "Kapitel 27:  Das Rätsel der Gruselvilla (Folge 241)",
+            "artists": [],
+            "album": "Album - Folge 241: Das Rätsel der Gruselvilla",
+            "duration_seconds": 93.0
+          },
+          {
+            "track_number": 30,
+            "video_id": "ioofTCFRvwY",
+            "url": "https://music.youtube.com/watch?v=ioofTCFRvwY",
+            "title": "Kapitel 28:  Das Rätsel der Gruselvilla (Folge 241)",
+            "artists": [],
+            "album": "Album - Folge 241: Das Rätsel der Gruselvilla",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 31,
+            "video_id": "g5N3As1BbII",
+            "url": "https://music.youtube.com/watch?v=g5N3As1BbII",
+            "title": "Kapitel 29:  Das Rätsel der Gruselvilla (Folge 241)",
+            "artists": [],
+            "album": "Album - Folge 241: Das Rätsel der Gruselvilla",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 32,
+            "video_id": "V_G8ahakbLo",
+            "url": "https://music.youtube.com/watch?v=V_G8ahakbLo",
+            "title": "Kapitel 30:  Das Rätsel der Gruselvilla (Folge 241)",
+            "artists": [],
+            "album": "Album - Folge 241: Das Rätsel der Gruselvilla",
+            "duration_seconds": 94.0
+          },
+          {
+            "track_number": 33,
+            "video_id": "Se-kW4yV6zE",
+            "url": "https://music.youtube.com/watch?v=Se-kW4yV6zE",
+            "title": "Kapitel 31:  Das Rätsel der Gruselvilla (Folge 241)",
+            "artists": [],
+            "album": "Album - Folge 241: Das Rätsel der Gruselvilla",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 34,
+            "video_id": "AuPyJhTYyAg",
+            "url": "https://music.youtube.com/watch?v=AuPyJhTYyAg",
+            "title": "Kapitel 32:  Das Rätsel der Gruselvilla (Folge 241)",
+            "artists": [],
+            "album": "Album - Folge 241: Das Rätsel der Gruselvilla",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 35,
+            "video_id": "02fCBQsMLgM",
+            "url": "https://music.youtube.com/watch?v=02fCBQsMLgM",
+            "title": "Kapitel 33:  Das Rätsel der Gruselvilla (Folge 241)",
+            "artists": [],
+            "album": "Album - Folge 241: Das Rätsel der Gruselvilla",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 36,
+            "video_id": "k8yKoKPKvUA",
+            "url": "https://music.youtube.com/watch?v=k8yKoKPKvUA",
+            "title": "Kapitel 34:  Das Rätsel der Gruselvilla (Folge 241)",
+            "artists": [],
+            "album": "Album - Folge 241: Das Rätsel der Gruselvilla",
+            "duration_seconds": 90.0
+          },
+          {
+            "track_number": 37,
+            "video_id": "7P7XKfLyewU",
+            "url": "https://music.youtube.com/watch?v=7P7XKfLyewU",
+            "title": "Kapitel 35:  Das Rätsel der Gruselvilla (Folge 241)",
+            "artists": [],
+            "album": "Album - Folge 241: Das Rätsel der Gruselvilla",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 38,
+            "video_id": "oXoYRF2qC8Y",
+            "url": "https://music.youtube.com/watch?v=oXoYRF2qC8Y",
+            "title": "Kapitel 36:  Das Rätsel der Gruselvilla (Folge 241)",
+            "artists": [],
+            "album": "Album - Folge 241: Das Rätsel der Gruselvilla",
+            "duration_seconds": 90.0
+          },
+          {
+            "track_number": 39,
+            "video_id": "DyNCa4H8sKE",
+            "url": "https://music.youtube.com/watch?v=DyNCa4H8sKE",
+            "title": "Kapitel 37:  Das Rätsel der Gruselvilla (Folge 241)",
+            "artists": [],
+            "album": "Album - Folge 241: Das Rätsel der Gruselvilla",
+            "duration_seconds": 93.0
+          },
+          {
+            "track_number": 40,
+            "video_id": "kCPm-3NRHZI",
+            "url": "https://music.youtube.com/watch?v=kCPm-3NRHZI",
+            "title": "Kapitel 38:  Das Rätsel der Gruselvilla (Folge 241)",
+            "artists": [],
+            "album": "Album - Folge 241: Das Rätsel der Gruselvilla",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 41,
+            "video_id": "MFyZaVkdhhs",
+            "url": "https://music.youtube.com/watch?v=MFyZaVkdhhs",
+            "title": "Kapitel 39:  Das Rätsel der Gruselvilla (Folge 241)",
+            "artists": [],
+            "album": "Album - Folge 241: Das Rätsel der Gruselvilla",
+            "duration_seconds": 95.0
+          },
+          {
+            "track_number": 42,
+            "video_id": "dmNtZBJJbQA",
+            "url": "https://music.youtube.com/watch?v=dmNtZBJJbQA",
+            "title": "Kapitel 40:  Das Rätsel der Gruselvilla (Folge 241)",
+            "artists": [],
+            "album": "Album - Folge 241: Das Rätsel der Gruselvilla",
+            "duration_seconds": 129.0
+          },
+          {
+            "track_number": 43,
+            "video_id": "gJnw4Lwb25c",
+            "url": "https://music.youtube.com/watch?v=gJnw4Lwb25c",
+            "title": "TKKG Schlußsong",
+            "artists": [],
+            "album": "Album - Folge 241: Das Rätsel der Gruselvilla",
+            "duration_seconds": 35.0
+          },
+          {
+            "track_number": 44,
+            "video_id": "DaVP6RIz4N8",
+            "url": "https://music.youtube.com/watch?v=DaVP6RIz4N8",
+            "title": "Outro:  Das Rätsel der Gruselvilla (Folge 241)",
+            "artists": [],
+            "album": "Album - Folge 241: Das Rätsel der Gruselvilla",
+            "duration_seconds": 73.0
+          }
+        ],
+        "track_count": 44
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-11-25T10:33:09.602127+00:00",
+        "method": "independent_provider_tracklist_validation",
+        "spotify": {
+          "status": "verified",
+          "verified_track_count": 24
+        },
+        "youtube_music": {
+          "status": "verified",
+          "verified_track_count": 44,
+          "playlist_status": "unavailable",
+          "playlist_error": null
+        }
+      }
+    }
   },
   {
     "number": 242,
@@ -215408,7 +217227,738 @@
         "source_url": "https://www.tkkg.de/produkte/hoerspiele?page=1"
       }
     ],
-    "last_checked": "2026-11-25T10:22:27.166724+00:00"
+    "last_checked": "2026-11-25T10:22:27.166724+00:00",
+    "audio_release": {
+      "schema_version": 2,
+      "spotify": {
+        "album": {
+          "album_id": "3tZChRTvOtgsW5HEZ32ntC",
+          "url": "https://open.spotify.com/album/3tZChRTvOtgsW5HEZ32ntC",
+          "title": "Folge 242: Verbrechen live im Radio",
+          "track_count": 25,
+          "source_query": "track:\"Verbrechen live im Radio\" artist:TKKG"
+        },
+        "tracks": [
+          {
+            "track_number": 1,
+            "disc_number": 1,
+            "track_id": "19hQj4T8E0frldoOdDIJIc",
+            "url": "https://open.spotify.com/track/19hQj4T8E0frldoOdDIJIc",
+            "title": "Inhaltsangabe: Verbrechen live im Radio - Folge 242",
+            "duration_seconds": 62.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 2,
+            "disc_number": 1,
+            "track_id": "1jm1jUZI0TbI9VfJiNMnOm",
+            "url": "https://open.spotify.com/track/1jm1jUZI0TbI9VfJiNMnOm",
+            "title": "TKKG Titelsong",
+            "duration_seconds": 35.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 3,
+            "disc_number": 1,
+            "track_id": "0f8wF7sqLiE8h7VKXgQKwT",
+            "url": "https://open.spotify.com/track/0f8wF7sqLiE8h7VKXgQKwT",
+            "title": "Kapitel 01: Verbrechen live im Radio - Folge 242",
+            "duration_seconds": 181.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 4,
+            "disc_number": 1,
+            "track_id": "3mi720CImtXBFOzaVyCPrz",
+            "url": "https://open.spotify.com/track/3mi720CImtXBFOzaVyCPrz",
+            "title": "Kapitel 02: Verbrechen live im Radio - Folge 242",
+            "duration_seconds": 185.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 5,
+            "disc_number": 1,
+            "track_id": "5zhxYvR82HmacenJPHKXxv",
+            "url": "https://open.spotify.com/track/5zhxYvR82HmacenJPHKXxv",
+            "title": "Kapitel 03: Verbrechen live im Radio - Folge 242",
+            "duration_seconds": 188.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 6,
+            "disc_number": 1,
+            "track_id": "5JHDz6ln3ozjDOp9OcDhDY",
+            "url": "https://open.spotify.com/track/5JHDz6ln3ozjDOp9OcDhDY",
+            "title": "Kapitel 04: Verbrechen live im Radio - Folge 242",
+            "duration_seconds": 180.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 7,
+            "disc_number": 1,
+            "track_id": "6qsum2b0bIHsWuSiZ4gbLh",
+            "url": "https://open.spotify.com/track/6qsum2b0bIHsWuSiZ4gbLh",
+            "title": "Kapitel 05: Verbrechen live im Radio - Folge 242",
+            "duration_seconds": 182.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 8,
+            "disc_number": 1,
+            "track_id": "2be6D4ODVXgJd12Nr3YsId",
+            "url": "https://open.spotify.com/track/2be6D4ODVXgJd12Nr3YsId",
+            "title": "Kapitel 06: Verbrechen live im Radio - Folge 242",
+            "duration_seconds": 180.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 9,
+            "disc_number": 1,
+            "track_id": "362IKmwF9GhakdM4xiEACY",
+            "url": "https://open.spotify.com/track/362IKmwF9GhakdM4xiEACY",
+            "title": "Kapitel 07: Verbrechen live im Radio - Folge 242",
+            "duration_seconds": 181.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 10,
+            "disc_number": 1,
+            "track_id": "2LFsD6SphQC6s1zWWg5oEK",
+            "url": "https://open.spotify.com/track/2LFsD6SphQC6s1zWWg5oEK",
+            "title": "Kapitel 08: Verbrechen live im Radio - Folge 242",
+            "duration_seconds": 183.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 11,
+            "disc_number": 1,
+            "track_id": "6FveNrT7cnM51Cl7tgRIP8",
+            "url": "https://open.spotify.com/track/6FveNrT7cnM51Cl7tgRIP8",
+            "title": "Kapitel 09: Verbrechen live im Radio - Folge 242",
+            "duration_seconds": 182.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 12,
+            "disc_number": 1,
+            "track_id": "7yDeIAirRDjzybaL0qlCK1",
+            "url": "https://open.spotify.com/track/7yDeIAirRDjzybaL0qlCK1",
+            "title": "Kapitel 10: Verbrechen live im Radio - Folge 242",
+            "duration_seconds": 181.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 13,
+            "disc_number": 1,
+            "track_id": "5DPVfxJzuviPl9DfYCK3jc",
+            "url": "https://open.spotify.com/track/5DPVfxJzuviPl9DfYCK3jc",
+            "title": "Kapitel 11: Verbrechen live im Radio - Folge 242",
+            "duration_seconds": 182.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 14,
+            "disc_number": 1,
+            "track_id": "5UkonlZhu94ewNyZTLTJ0J",
+            "url": "https://open.spotify.com/track/5UkonlZhu94ewNyZTLTJ0J",
+            "title": "Kapitel 12: Verbrechen live im Radio - Folge 242",
+            "duration_seconds": 183.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 15,
+            "disc_number": 1,
+            "track_id": "4oIgmT0Pt76ml7UPmSWY49",
+            "url": "https://open.spotify.com/track/4oIgmT0Pt76ml7UPmSWY49",
+            "title": "Kapitel 13: Verbrechen live im Radio - Folge 242",
+            "duration_seconds": 182.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 16,
+            "disc_number": 1,
+            "track_id": "3ciq4mQvzHx7eYdUiqYaT9",
+            "url": "https://open.spotify.com/track/3ciq4mQvzHx7eYdUiqYaT9",
+            "title": "Kapitel 14: Verbrechen live im Radio - Folge 242",
+            "duration_seconds": 184.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 17,
+            "disc_number": 1,
+            "track_id": "03VqwkUEiYdU9JuN17l78E",
+            "url": "https://open.spotify.com/track/03VqwkUEiYdU9JuN17l78E",
+            "title": "Kapitel 15: Verbrechen live im Radio - Folge 242",
+            "duration_seconds": 183.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 18,
+            "disc_number": 1,
+            "track_id": "6f4N5xcDXue10B0BdLkoLY",
+            "url": "https://open.spotify.com/track/6f4N5xcDXue10B0BdLkoLY",
+            "title": "Kapitel 16: Verbrechen live im Radio - Folge 242",
+            "duration_seconds": 183.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 19,
+            "disc_number": 1,
+            "track_id": "7HCda5afkIuSDKqbEr2Vu7",
+            "url": "https://open.spotify.com/track/7HCda5afkIuSDKqbEr2Vu7",
+            "title": "Kapitel 17: Verbrechen live im Radio - Folge 242",
+            "duration_seconds": 186.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 20,
+            "disc_number": 1,
+            "track_id": "07AvA76vUkcqPRS2bGEAWJ",
+            "url": "https://open.spotify.com/track/07AvA76vUkcqPRS2bGEAWJ",
+            "title": "Kapitel 18: Verbrechen live im Radio - Folge 242",
+            "duration_seconds": 182.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 21,
+            "disc_number": 1,
+            "track_id": "6p4GECzKrCFSNA4YBOqWa6",
+            "url": "https://open.spotify.com/track/6p4GECzKrCFSNA4YBOqWa6",
+            "title": "Kapitel 19: Verbrechen live im Radio - Folge 242",
+            "duration_seconds": 180.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 22,
+            "disc_number": 1,
+            "track_id": "78lMPYiateVUEcAooaIEcx",
+            "url": "https://open.spotify.com/track/78lMPYiateVUEcAooaIEcx",
+            "title": "Kapitel 20: Verbrechen live im Radio - Folge 242",
+            "duration_seconds": 187.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 23,
+            "disc_number": 1,
+            "track_id": "1A74Lh67wGTswIZVpvlVHZ",
+            "url": "https://open.spotify.com/track/1A74Lh67wGTswIZVpvlVHZ",
+            "title": "Kapitel 21: Verbrechen live im Radio - Folge 242",
+            "duration_seconds": 213.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 24,
+            "disc_number": 1,
+            "track_id": "4Qq5AsMsk9YGSHkmDaDlyN",
+            "url": "https://open.spotify.com/track/4Qq5AsMsk9YGSHkmDaDlyN",
+            "title": "TKKG Schlußsong",
+            "duration_seconds": 39.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 25,
+            "disc_number": 1,
+            "track_id": "0Jw0mSdxCMDhx1A8gXrlAB",
+            "url": "https://open.spotify.com/track/0Jw0mSdxCMDhx1A8gXrlAB",
+            "title": "Outro: Verbrechen live im Radio - Folge 242",
+            "duration_seconds": 65.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          }
+        ],
+        "track_count": 25
+      },
+      "youtube_music": {
+        "album": {
+          "browse_id": "MPREb_U37LGYhG6C3",
+          "url": "https://music.youtube.com/browse/MPREb_U37LGYhG6C3",
+          "title": "Folge 242: Verbrechen live im Radio",
+          "track_count": 46
+        },
+        "playlist": null,
+        "tracks": [
+          {
+            "track_number": 1,
+            "video_id": "lPAKj4_olD8",
+            "url": "https://music.youtube.com/watch?v=lPAKj4_olD8",
+            "title": "Inhaltsangabe: Verbrechen live im Radio (Folge 242)",
+            "artists": [],
+            "album": "Album - Folge 242: Verbrechen live im Radio",
+            "duration_seconds": 63.0
+          },
+          {
+            "track_number": 2,
+            "video_id": "tMZCFbcUYNk",
+            "url": "https://music.youtube.com/watch?v=tMZCFbcUYNk",
+            "title": "TKKG Titelsong",
+            "artists": [],
+            "album": "Album - Folge 242: Verbrechen live im Radio",
+            "duration_seconds": 36.0
+          },
+          {
+            "track_number": 3,
+            "video_id": "8V1YnERH-i8",
+            "url": "https://music.youtube.com/watch?v=8V1YnERH-i8",
+            "title": "Kapitel 01: Verbrechen live im Radio (Folge 242)",
+            "artists": [],
+            "album": "Album - Folge 242: Verbrechen live im Radio",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 4,
+            "video_id": "FTd181kOmRs",
+            "url": "https://music.youtube.com/watch?v=FTd181kOmRs",
+            "title": "Kapitel 02: Verbrechen live im Radio (Folge 242)",
+            "artists": [],
+            "album": "Album - Folge 242: Verbrechen live im Radio",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 5,
+            "video_id": "uYnjhQu73ec",
+            "url": "https://music.youtube.com/watch?v=uYnjhQu73ec",
+            "title": "Kapitel 03: Verbrechen live im Radio (Folge 242)",
+            "artists": [],
+            "album": "Album - Folge 242: Verbrechen live im Radio",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 6,
+            "video_id": "P-qcm_wBYTo",
+            "url": "https://music.youtube.com/watch?v=P-qcm_wBYTo",
+            "title": "Kapitel 04: Verbrechen live im Radio (Folge 242)",
+            "artists": [],
+            "album": "Album - Folge 242: Verbrechen live im Radio",
+            "duration_seconds": 95.0
+          },
+          {
+            "track_number": 7,
+            "video_id": "hyj32IxLr3M",
+            "url": "https://music.youtube.com/watch?v=hyj32IxLr3M",
+            "title": "Kapitel 05: Verbrechen live im Radio (Folge 242)",
+            "artists": [],
+            "album": "Album - Folge 242: Verbrechen live im Radio",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 8,
+            "video_id": "qFJwkIATeF4",
+            "url": "https://music.youtube.com/watch?v=qFJwkIATeF4",
+            "title": "Kapitel 06: Verbrechen live im Radio (Folge 242)",
+            "artists": [],
+            "album": "Album - Folge 242: Verbrechen live im Radio",
+            "duration_seconds": 98.0
+          },
+          {
+            "track_number": 9,
+            "video_id": "yARNKi659kg",
+            "url": "https://music.youtube.com/watch?v=yARNKi659kg",
+            "title": "Kapitel 07: Verbrechen live im Radio (Folge 242)",
+            "artists": [],
+            "album": "Album - Folge 242: Verbrechen live im Radio",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 10,
+            "video_id": "Td9mcRmXFKM",
+            "url": "https://music.youtube.com/watch?v=Td9mcRmXFKM",
+            "title": "Kapitel 08: Verbrechen live im Radio (Folge 242)",
+            "artists": [],
+            "album": "Album - Folge 242: Verbrechen live im Radio",
+            "duration_seconds": 90.0
+          },
+          {
+            "track_number": 11,
+            "video_id": "LL-7Nhn5krw",
+            "url": "https://music.youtube.com/watch?v=LL-7Nhn5krw",
+            "title": "Kapitel 09: Verbrechen live im Radio (Folge 242)",
+            "artists": [],
+            "album": "Album - Folge 242: Verbrechen live im Radio",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 12,
+            "video_id": "SZZrarpbpdI",
+            "url": "https://music.youtube.com/watch?v=SZZrarpbpdI",
+            "title": "Kapitel 10: Verbrechen live im Radio (Folge 242)",
+            "artists": [],
+            "album": "Album - Folge 242: Verbrechen live im Radio",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 13,
+            "video_id": "_-zjZafghio",
+            "url": "https://music.youtube.com/watch?v=_-zjZafghio",
+            "title": "Kapitel 11: Verbrechen live im Radio (Folge 242)",
+            "artists": [],
+            "album": "Album - Folge 242: Verbrechen live im Radio",
+            "duration_seconds": 90.0
+          },
+          {
+            "track_number": 14,
+            "video_id": "BIDitq8bohk",
+            "url": "https://music.youtube.com/watch?v=BIDitq8bohk",
+            "title": "Kapitel 12: Verbrechen live im Radio (Folge 242)",
+            "artists": [],
+            "album": "Album - Folge 242: Verbrechen live im Radio",
+            "duration_seconds": 90.0
+          },
+          {
+            "track_number": 15,
+            "video_id": "W2oCPdi0XrI",
+            "url": "https://music.youtube.com/watch?v=W2oCPdi0XrI",
+            "title": "Kapitel 13: Verbrechen live im Radio (Folge 242)",
+            "artists": [],
+            "album": "Album - Folge 242: Verbrechen live im Radio",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 16,
+            "video_id": "G-aaT3Xhah4",
+            "url": "https://music.youtube.com/watch?v=G-aaT3Xhah4",
+            "title": "Kapitel 14: Verbrechen live im Radio (Folge 242)",
+            "artists": [],
+            "album": "Album - Folge 242: Verbrechen live im Radio",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 17,
+            "video_id": "8DCpyu-eXEo",
+            "url": "https://music.youtube.com/watch?v=8DCpyu-eXEo",
+            "title": "Kapitel 15: Verbrechen live im Radio (Folge 242)",
+            "artists": [],
+            "album": "Album - Folge 242: Verbrechen live im Radio",
+            "duration_seconds": 93.0
+          },
+          {
+            "track_number": 18,
+            "video_id": "8o8RfyQaTIQ",
+            "url": "https://music.youtube.com/watch?v=8o8RfyQaTIQ",
+            "title": "Kapitel 16: Verbrechen live im Radio (Folge 242)",
+            "artists": [],
+            "album": "Album - Folge 242: Verbrechen live im Radio",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 19,
+            "video_id": "3kctDx3Zjs8",
+            "url": "https://music.youtube.com/watch?v=3kctDx3Zjs8",
+            "title": "Kapitel 17: Verbrechen live im Radio (Folge 242)",
+            "artists": [],
+            "album": "Album - Folge 242: Verbrechen live im Radio",
+            "duration_seconds": 90.0
+          },
+          {
+            "track_number": 20,
+            "video_id": "hbNKLV7OSOk",
+            "url": "https://music.youtube.com/watch?v=hbNKLV7OSOk",
+            "title": "Kapitel 18: Verbrechen live im Radio (Folge 242)",
+            "artists": [],
+            "album": "Album - Folge 242: Verbrechen live im Radio",
+            "duration_seconds": 93.0
+          },
+          {
+            "track_number": 21,
+            "video_id": "-vQKsFm0J14",
+            "url": "https://music.youtube.com/watch?v=-vQKsFm0J14",
+            "title": "Kapitel 19: Verbrechen live im Radio (Folge 242)",
+            "artists": [],
+            "album": "Album - Folge 242: Verbrechen live im Radio",
+            "duration_seconds": 90.0
+          },
+          {
+            "track_number": 22,
+            "video_id": "zfV3HZ3grw4",
+            "url": "https://music.youtube.com/watch?v=zfV3HZ3grw4",
+            "title": "Kapitel 20: Verbrechen live im Radio (Folge 242)",
+            "artists": [],
+            "album": "Album - Folge 242: Verbrechen live im Radio",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 23,
+            "video_id": "tWliEbOkEsk",
+            "url": "https://music.youtube.com/watch?v=tWliEbOkEsk",
+            "title": "Kapitel 21: Verbrechen live im Radio (Folge 242)",
+            "artists": [],
+            "album": "Album - Folge 242: Verbrechen live im Radio",
+            "duration_seconds": 93.0
+          },
+          {
+            "track_number": 24,
+            "video_id": "ScIykghFSso",
+            "url": "https://music.youtube.com/watch?v=ScIykghFSso",
+            "title": "Kapitel 22: Verbrechen live im Radio (Folge 242)",
+            "artists": [],
+            "album": "Album - Folge 242: Verbrechen live im Radio",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 25,
+            "video_id": "LOGsnxBXO4k",
+            "url": "https://music.youtube.com/watch?v=LOGsnxBXO4k",
+            "title": "Kapitel 23: Verbrechen live im Radio (Folge 242)",
+            "artists": [],
+            "album": "Album - Folge 242: Verbrechen live im Radio",
+            "duration_seconds": 93.0
+          },
+          {
+            "track_number": 26,
+            "video_id": "a3s5Q4AjqsI",
+            "url": "https://music.youtube.com/watch?v=a3s5Q4AjqsI",
+            "title": "Kapitel 24: Verbrechen live im Radio (Folge 242)",
+            "artists": [],
+            "album": "Album - Folge 242: Verbrechen live im Radio",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 27,
+            "video_id": "4XOxFCSdewQ",
+            "url": "https://music.youtube.com/watch?v=4XOxFCSdewQ",
+            "title": "Kapitel 25: Verbrechen live im Radio (Folge 242)",
+            "artists": [],
+            "album": "Album - Folge 242: Verbrechen live im Radio",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 28,
+            "video_id": "Q59pFoh45dQ",
+            "url": "https://music.youtube.com/watch?v=Q59pFoh45dQ",
+            "title": "Kapitel 26: Verbrechen live im Radio (Folge 242)",
+            "artists": [],
+            "album": "Album - Folge 242: Verbrechen live im Radio",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 29,
+            "video_id": "x8Wfpcw1Z10",
+            "url": "https://music.youtube.com/watch?v=x8Wfpcw1Z10",
+            "title": "Kapitel 27: Verbrechen live im Radio (Folge 242)",
+            "artists": [],
+            "album": "Album - Folge 242: Verbrechen live im Radio",
+            "duration_seconds": 93.0
+          },
+          {
+            "track_number": 30,
+            "video_id": "T7vpWxUm9tY",
+            "url": "https://music.youtube.com/watch?v=T7vpWxUm9tY",
+            "title": "Kapitel 28: Verbrechen live im Radio (Folge 242)",
+            "artists": [],
+            "album": "Album - Folge 242: Verbrechen live im Radio",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 31,
+            "video_id": "XHF5xL45Tkk",
+            "url": "https://music.youtube.com/watch?v=XHF5xL45Tkk",
+            "title": "Kapitel 29: Verbrechen live im Radio (Folge 242)",
+            "artists": [],
+            "album": "Album - Folge 242: Verbrechen live im Radio",
+            "duration_seconds": 90.0
+          },
+          {
+            "track_number": 32,
+            "video_id": "hI7vuXIbrpo",
+            "url": "https://music.youtube.com/watch?v=hI7vuXIbrpo",
+            "title": "Kapitel 30: Verbrechen live im Radio (Folge 242)",
+            "artists": [],
+            "album": "Album - Folge 242: Verbrechen live im Radio",
+            "duration_seconds": 93.0
+          },
+          {
+            "track_number": 33,
+            "video_id": "79bugRlAuEM",
+            "url": "https://music.youtube.com/watch?v=79bugRlAuEM",
+            "title": "Kapitel 31: Verbrechen live im Radio (Folge 242)",
+            "artists": [],
+            "album": "Album - Folge 242: Verbrechen live im Radio",
+            "duration_seconds": 94.0
+          },
+          {
+            "track_number": 34,
+            "video_id": "SENWhdpNofM",
+            "url": "https://music.youtube.com/watch?v=SENWhdpNofM",
+            "title": "Kapitel 32: Verbrechen live im Radio (Folge 242)",
+            "artists": [],
+            "album": "Album - Folge 242: Verbrechen live im Radio",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 35,
+            "video_id": "WhOz0HHlRMM",
+            "url": "https://music.youtube.com/watch?v=WhOz0HHlRMM",
+            "title": "Kapitel 33: Verbrechen live im Radio (Folge 242)",
+            "artists": [],
+            "album": "Album - Folge 242: Verbrechen live im Radio",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 36,
+            "video_id": "kU9krJp2P4M",
+            "url": "https://music.youtube.com/watch?v=kU9krJp2P4M",
+            "title": "Kapitel 34: Verbrechen live im Radio (Folge 242)",
+            "artists": [],
+            "album": "Album - Folge 242: Verbrechen live im Radio",
+            "duration_seconds": 96.0
+          },
+          {
+            "track_number": 37,
+            "video_id": "3CzOwIEy2XM",
+            "url": "https://music.youtube.com/watch?v=3CzOwIEy2XM",
+            "title": "Kapitel 35: Verbrechen live im Radio (Folge 242)",
+            "artists": [],
+            "album": "Album - Folge 242: Verbrechen live im Radio",
+            "duration_seconds": 90.0
+          },
+          {
+            "track_number": 38,
+            "video_id": "ein6lrZiJPg",
+            "url": "https://music.youtube.com/watch?v=ein6lrZiJPg",
+            "title": "Kapitel 36: Verbrechen live im Radio (Folge 242)",
+            "artists": [],
+            "album": "Album - Folge 242: Verbrechen live im Radio",
+            "duration_seconds": 93.0
+          },
+          {
+            "track_number": 39,
+            "video_id": "2uwJ6BqIlVE",
+            "url": "https://music.youtube.com/watch?v=2uwJ6BqIlVE",
+            "title": "Kapitel 37: Verbrechen live im Radio (Folge 242)",
+            "artists": [],
+            "album": "Album - Folge 242: Verbrechen live im Radio",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 40,
+            "video_id": "tRLYqnzkWnk",
+            "url": "https://music.youtube.com/watch?v=tRLYqnzkWnk",
+            "title": "Kapitel 38: Verbrechen live im Radio (Folge 242)",
+            "artists": [],
+            "album": "Album - Folge 242: Verbrechen live im Radio",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 41,
+            "video_id": "4pKcZkBAUig",
+            "url": "https://music.youtube.com/watch?v=4pKcZkBAUig",
+            "title": "Kapitel 39: Verbrechen live im Radio (Folge 242)",
+            "artists": [],
+            "album": "Album - Folge 242: Verbrechen live im Radio",
+            "duration_seconds": 93.0
+          },
+          {
+            "track_number": 42,
+            "video_id": "iwjNzF78a4s",
+            "url": "https://music.youtube.com/watch?v=iwjNzF78a4s",
+            "title": "Kapitel 40: Verbrechen live im Radio (Folge 242)",
+            "artists": [],
+            "album": "Album - Folge 242: Verbrechen live im Radio",
+            "duration_seconds": 96.0
+          },
+          {
+            "track_number": 43,
+            "video_id": "lC1cvGDfQ_0",
+            "url": "https://music.youtube.com/watch?v=lC1cvGDfQ_0",
+            "title": "Kapitel 41: Verbrechen live im Radio (Folge 242)",
+            "artists": [],
+            "album": "Album - Folge 242: Verbrechen live im Radio",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 44,
+            "video_id": "iBhzGs4nrMI",
+            "url": "https://music.youtube.com/watch?v=iBhzGs4nrMI",
+            "title": "Kapitel 42: Verbrechen live im Radio (Folge 242)",
+            "artists": [],
+            "album": "Album - Folge 242: Verbrechen live im Radio",
+            "duration_seconds": 123.0
+          },
+          {
+            "track_number": 45,
+            "video_id": "7sSRSa5Enms",
+            "url": "https://music.youtube.com/watch?v=7sSRSa5Enms",
+            "title": "TKKG Schlußsong",
+            "artists": [],
+            "album": "Album - Folge 242: Verbrechen live im Radio",
+            "duration_seconds": 40.0
+          },
+          {
+            "track_number": 46,
+            "video_id": "DdPLLxZNgaA",
+            "url": "https://music.youtube.com/watch?v=DdPLLxZNgaA",
+            "title": "Outro: Verbrechen live im Radio (Folge 242)",
+            "artists": [],
+            "album": "Album - Folge 242: Verbrechen live im Radio",
+            "duration_seconds": 66.0
+          }
+        ],
+        "track_count": 46
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-11-25T10:33:48.290624+00:00",
+        "method": "independent_provider_tracklist_validation",
+        "spotify": {
+          "status": "verified",
+          "verified_track_count": 25
+        },
+        "youtube_music": {
+          "status": "verified",
+          "verified_track_count": 46,
+          "playlist_status": "unavailable",
+          "playlist_error": null
+        }
+      }
+    }
   },
   {
     "number": 243,
@@ -215537,6 +218087,717 @@
         "source_url": "https://www.tkkg.de/produkte/hoerspiele?page=1"
       }
     ],
-    "last_checked": "2026-11-25T10:22:27.166724+00:00"
+    "last_checked": "2026-11-25T10:22:27.166724+00:00",
+    "audio_release": {
+      "schema_version": 2,
+      "spotify": {
+        "album": {
+          "album_id": "3ki08nAwhvep3eAjfcIQcU",
+          "url": "https://open.spotify.com/album/3ki08nAwhvep3eAjfcIQcU",
+          "title": "Folge 243: Die Fährte des Hehlers",
+          "track_count": 24,
+          "source_query": "TKKG (243) - Die Fährte des Hehlers"
+        },
+        "tracks": [
+          {
+            "track_number": 1,
+            "disc_number": 1,
+            "track_id": "36afWM4ftkzkEDw6Qob3cu",
+            "url": "https://open.spotify.com/track/36afWM4ftkzkEDw6Qob3cu",
+            "title": "Inhaltsangabe: Die Fährte des Hehlers - Folge 243",
+            "duration_seconds": 51.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 2,
+            "disc_number": 1,
+            "track_id": "47565duYfhP0hZESWCIZ09",
+            "url": "https://open.spotify.com/track/47565duYfhP0hZESWCIZ09",
+            "title": "TKKG Titelsong",
+            "duration_seconds": 35.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 3,
+            "disc_number": 1,
+            "track_id": "4SkSuZhH5LbcnhotzQfxVa",
+            "url": "https://open.spotify.com/track/4SkSuZhH5LbcnhotzQfxVa",
+            "title": "Kapitel 01: Die Fährte des Hehlers - Folge 243",
+            "duration_seconds": 183.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 4,
+            "disc_number": 1,
+            "track_id": "3Rrw0CEOzamf1fAsNQi0bf",
+            "url": "https://open.spotify.com/track/3Rrw0CEOzamf1fAsNQi0bf",
+            "title": "Kapitel 02: Die Fährte des Hehlers - Folge 243",
+            "duration_seconds": 182.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 5,
+            "disc_number": 1,
+            "track_id": "16xt9LHcNQz9TCzliDQ39e",
+            "url": "https://open.spotify.com/track/16xt9LHcNQz9TCzliDQ39e",
+            "title": "Kapitel 03: Die Fährte des Hehlers - Folge 243",
+            "duration_seconds": 186.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 6,
+            "disc_number": 1,
+            "track_id": "1AxRDwIxDoPC02OCvsu81F",
+            "url": "https://open.spotify.com/track/1AxRDwIxDoPC02OCvsu81F",
+            "title": "Kapitel 04: Die Fährte des Hehlers - Folge 243",
+            "duration_seconds": 190.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 7,
+            "disc_number": 1,
+            "track_id": "7qgM4WKYMh99LqoORvlODX",
+            "url": "https://open.spotify.com/track/7qgM4WKYMh99LqoORvlODX",
+            "title": "Kapitel 05: Die Fährte des Hehlers - Folge 243",
+            "duration_seconds": 184.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 8,
+            "disc_number": 1,
+            "track_id": "71xnxzYrn0rTnhx9uR0cAo",
+            "url": "https://open.spotify.com/track/71xnxzYrn0rTnhx9uR0cAo",
+            "title": "Kapitel 06: Die Fährte des Hehlers - Folge 243",
+            "duration_seconds": 182.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 9,
+            "disc_number": 1,
+            "track_id": "2zu1XsaGS06QhRLeYpGuBm",
+            "url": "https://open.spotify.com/track/2zu1XsaGS06QhRLeYpGuBm",
+            "title": "Kapitel 07: Die Fährte des Hehlers - Folge 243",
+            "duration_seconds": 182.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 10,
+            "disc_number": 1,
+            "track_id": "2XEwj2X12zvLeU5zERTu7D",
+            "url": "https://open.spotify.com/track/2XEwj2X12zvLeU5zERTu7D",
+            "title": "Kapitel 08: Die Fährte des Hehlers - Folge 243",
+            "duration_seconds": 183.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 11,
+            "disc_number": 1,
+            "track_id": "5G43mvNf1ZQIUZK3ESOzFi",
+            "url": "https://open.spotify.com/track/5G43mvNf1ZQIUZK3ESOzFi",
+            "title": "Kapitel 09: Die Fährte des Hehlers - Folge 243",
+            "duration_seconds": 185.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 12,
+            "disc_number": 1,
+            "track_id": "6N164XdbWPL98VLJHYaIU9",
+            "url": "https://open.spotify.com/track/6N164XdbWPL98VLJHYaIU9",
+            "title": "Kapitel 10: Die Fährte des Hehlers - Folge 243",
+            "duration_seconds": 183.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 13,
+            "disc_number": 1,
+            "track_id": "4lS3a0rsv6MZHo45ZrVVgn",
+            "url": "https://open.spotify.com/track/4lS3a0rsv6MZHo45ZrVVgn",
+            "title": "Kapitel 11: Die Fährte des Hehlers - Folge 243",
+            "duration_seconds": 181.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 14,
+            "disc_number": 1,
+            "track_id": "6w6H1DjjO7XoZstk834x1T",
+            "url": "https://open.spotify.com/track/6w6H1DjjO7XoZstk834x1T",
+            "title": "Kapitel 12: Die Fährte des Hehlers - Folge 243",
+            "duration_seconds": 181.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 15,
+            "disc_number": 1,
+            "track_id": "04dCdFFwdhp7eXrKr4jVhy",
+            "url": "https://open.spotify.com/track/04dCdFFwdhp7eXrKr4jVhy",
+            "title": "Kapitel 13: Die Fährte des Hehlers - Folge 243",
+            "duration_seconds": 182.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 16,
+            "disc_number": 1,
+            "track_id": "6HY8DPiGZigky6JpVW7xx6",
+            "url": "https://open.spotify.com/track/6HY8DPiGZigky6JpVW7xx6",
+            "title": "Kapitel 14: Die Fährte des Hehlers - Folge 243",
+            "duration_seconds": 182.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 17,
+            "disc_number": 1,
+            "track_id": "48Sc6iFisjaoAblRIU3PXc",
+            "url": "https://open.spotify.com/track/48Sc6iFisjaoAblRIU3PXc",
+            "title": "Kapitel 15: Die Fährte des Hehlers - Folge 243",
+            "duration_seconds": 184.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 18,
+            "disc_number": 1,
+            "track_id": "53eQqQDyxKki0kYBcac5YO",
+            "url": "https://open.spotify.com/track/53eQqQDyxKki0kYBcac5YO",
+            "title": "Kapitel 16: Die Fährte des Hehlers - Folge 243",
+            "duration_seconds": 180.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 19,
+            "disc_number": 1,
+            "track_id": "1n4CfRIgtXq8afQmcrefSo",
+            "url": "https://open.spotify.com/track/1n4CfRIgtXq8afQmcrefSo",
+            "title": "Kapitel 17: Die Fährte des Hehlers - Folge 243",
+            "duration_seconds": 182.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 20,
+            "disc_number": 1,
+            "track_id": "6KhVQfl08i6o6rTpqpGkHH",
+            "url": "https://open.spotify.com/track/6KhVQfl08i6o6rTpqpGkHH",
+            "title": "Kapitel 18: Die Fährte des Hehlers - Folge 243",
+            "duration_seconds": 183.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 21,
+            "disc_number": 1,
+            "track_id": "3GVBqp5mp89WUglCw8osO4",
+            "url": "https://open.spotify.com/track/3GVBqp5mp89WUglCw8osO4",
+            "title": "Kapitel 19: Die Fährte des Hehlers - Folge 243",
+            "duration_seconds": 182.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 22,
+            "disc_number": 1,
+            "track_id": "5pbyVnwWm7gDwFWXzKoEKO",
+            "url": "https://open.spotify.com/track/5pbyVnwWm7gDwFWXzKoEKO",
+            "title": "Kapitel 20: Die Fährte des Hehlers - Folge 243",
+            "duration_seconds": 293.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 23,
+            "disc_number": 1,
+            "track_id": "7E3yLzcf4kA9CYs7JgUaHM",
+            "url": "https://open.spotify.com/track/7E3yLzcf4kA9CYs7JgUaHM",
+            "title": "TKKG Schlußsong",
+            "duration_seconds": 38.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          },
+          {
+            "track_number": 24,
+            "disc_number": 1,
+            "track_id": "5jJ0ZDN3Fypd738opCOsnw",
+            "url": "https://open.spotify.com/track/5jJ0ZDN3Fypd738opCOsnw",
+            "title": "Outro: Die Fährte des Hehlers - Folge 243",
+            "duration_seconds": 74.0,
+            "artist_names": [
+              "TKKG"
+            ]
+          }
+        ],
+        "track_count": 24
+      },
+      "youtube_music": {
+        "album": {
+          "browse_id": "MPREb_fxuLSytkzMq",
+          "url": "https://music.youtube.com/browse/MPREb_fxuLSytkzMq",
+          "title": "Folge 243: Die Fährte des Hehlers",
+          "track_count": 45
+        },
+        "playlist": null,
+        "tracks": [
+          {
+            "track_number": 1,
+            "video_id": "ykF1Cd2ORbo",
+            "url": "https://music.youtube.com/watch?v=ykF1Cd2ORbo",
+            "title": "Inhaltsangabe: Die Fährte des Hehlers (Folge 243)",
+            "artists": [],
+            "album": "Album - Folge 243: Die Fährte des Hehlers",
+            "duration_seconds": 52.0
+          },
+          {
+            "track_number": 2,
+            "video_id": "rOjReA4WfPw",
+            "url": "https://music.youtube.com/watch?v=rOjReA4WfPw",
+            "title": "TKKG Titelsong",
+            "artists": [],
+            "album": "Album - Folge 243: Die Fährte des Hehlers",
+            "duration_seconds": 36.0
+          },
+          {
+            "track_number": 3,
+            "video_id": "z81LW78CjGM",
+            "url": "https://music.youtube.com/watch?v=z81LW78CjGM",
+            "title": "Kapitel 01: Die Fährte des Hehlers (Folge 243)",
+            "artists": [],
+            "album": "Album - Folge 243: Die Fährte des Hehlers",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 4,
+            "video_id": "ID_kPBEg_FE",
+            "url": "https://music.youtube.com/watch?v=ID_kPBEg_FE",
+            "title": "Kapitel 02: Die Fährte des Hehlers (Folge 243)",
+            "artists": [],
+            "album": "Album - Folge 243: Die Fährte des Hehlers",
+            "duration_seconds": 93.0
+          },
+          {
+            "track_number": 5,
+            "video_id": "VvR68Qtn4pQ",
+            "url": "https://music.youtube.com/watch?v=VvR68Qtn4pQ",
+            "title": "Kapitel 03: Die Fährte des Hehlers (Folge 243)",
+            "artists": [],
+            "album": "Album - Folge 243: Die Fährte des Hehlers",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 6,
+            "video_id": "e5izrQnUEBs",
+            "url": "https://music.youtube.com/watch?v=e5izrQnUEBs",
+            "title": "Kapitel 04: Die Fährte des Hehlers (Folge 243)",
+            "artists": [],
+            "album": "Album - Folge 243: Die Fährte des Hehlers",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 7,
+            "video_id": "rdprbHuLsdE",
+            "url": "https://music.youtube.com/watch?v=rdprbHuLsdE",
+            "title": "Kapitel 05: Die Fährte des Hehlers (Folge 243)",
+            "artists": [],
+            "album": "Album - Folge 243: Die Fährte des Hehlers",
+            "duration_seconds": 96.0
+          },
+          {
+            "track_number": 8,
+            "video_id": "zyvL50flNFY",
+            "url": "https://music.youtube.com/watch?v=zyvL50flNFY",
+            "title": "Kapitel 06: Die Fährte des Hehlers (Folge 243)",
+            "artists": [],
+            "album": "Album - Folge 243: Die Fährte des Hehlers",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 9,
+            "video_id": "_0dG4I38h1o",
+            "url": "https://music.youtube.com/watch?v=_0dG4I38h1o",
+            "title": "Kapitel 07: Die Fährte des Hehlers (Folge 243)",
+            "artists": [],
+            "album": "Album - Folge 243: Die Fährte des Hehlers",
+            "duration_seconds": 97.0
+          },
+          {
+            "track_number": 10,
+            "video_id": "YwAAWL6U0gk",
+            "url": "https://music.youtube.com/watch?v=YwAAWL6U0gk",
+            "title": "Kapitel 08: Die Fährte des Hehlers (Folge 243)",
+            "artists": [],
+            "album": "Album - Folge 243: Die Fährte des Hehlers",
+            "duration_seconds": 95.0
+          },
+          {
+            "track_number": 11,
+            "video_id": "YczEdLYoidc",
+            "url": "https://music.youtube.com/watch?v=YczEdLYoidc",
+            "title": "Kapitel 09: Die Fährte des Hehlers (Folge 243)",
+            "artists": [],
+            "album": "Album - Folge 243: Die Fährte des Hehlers",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 12,
+            "video_id": "8t-e5p2x91s",
+            "url": "https://music.youtube.com/watch?v=8t-e5p2x91s",
+            "title": "Kapitel 10: Die Fährte des Hehlers (Folge 243)",
+            "artists": [],
+            "album": "Album - Folge 243: Die Fährte des Hehlers",
+            "duration_seconds": 95.0
+          },
+          {
+            "track_number": 13,
+            "video_id": "eUmbysQCHpg",
+            "url": "https://music.youtube.com/watch?v=eUmbysQCHpg",
+            "title": "Kapitel 11: Die Fährte des Hehlers (Folge 243)",
+            "artists": [],
+            "album": "Album - Folge 243: Die Fährte des Hehlers",
+            "duration_seconds": 93.0
+          },
+          {
+            "track_number": 14,
+            "video_id": "DMJYL8z3WHg",
+            "url": "https://music.youtube.com/watch?v=DMJYL8z3WHg",
+            "title": "Kapitel 12: Die Fährte des Hehlers (Folge 243)",
+            "artists": [],
+            "album": "Album - Folge 243: Die Fährte des Hehlers",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 15,
+            "video_id": "yFw9EArqGOc",
+            "url": "https://music.youtube.com/watch?v=yFw9EArqGOc",
+            "title": "Kapitel 13: Die Fährte des Hehlers (Folge 243)",
+            "artists": [],
+            "album": "Album - Folge 243: Die Fährte des Hehlers",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 16,
+            "video_id": "CL_beh_5_GE",
+            "url": "https://music.youtube.com/watch?v=CL_beh_5_GE",
+            "title": "Kapitel 14: Die Fährte des Hehlers (Folge 243)",
+            "artists": [],
+            "album": "Album - Folge 243: Die Fährte des Hehlers",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 17,
+            "video_id": "HC_w92an5OA",
+            "url": "https://music.youtube.com/watch?v=HC_w92an5OA",
+            "title": "Kapitel 15: Die Fährte des Hehlers (Folge 243)",
+            "artists": [],
+            "album": "Album - Folge 243: Die Fährte des Hehlers",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 18,
+            "video_id": "0Y0E3oOXZqY",
+            "url": "https://music.youtube.com/watch?v=0Y0E3oOXZqY",
+            "title": "Kapitel 16: Die Fährte des Hehlers (Folge 243)",
+            "artists": [],
+            "album": "Album - Folge 243: Die Fährte des Hehlers",
+            "duration_seconds": 93.0
+          },
+          {
+            "track_number": 19,
+            "video_id": "lDaJIxgkM3w",
+            "url": "https://music.youtube.com/watch?v=lDaJIxgkM3w",
+            "title": "Kapitel 17: Die Fährte des Hehlers (Folge 243)",
+            "artists": [],
+            "album": "Album - Folge 243: Die Fährte des Hehlers",
+            "duration_seconds": 95.0
+          },
+          {
+            "track_number": 20,
+            "video_id": "pUYOhDNqFuM",
+            "url": "https://music.youtube.com/watch?v=pUYOhDNqFuM",
+            "title": "Kapitel 18: Die Fährte des Hehlers (Folge 243)",
+            "artists": [],
+            "album": "Album - Folge 243: Die Fährte des Hehlers",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 21,
+            "video_id": "wI6PCfkjf04",
+            "url": "https://music.youtube.com/watch?v=wI6PCfkjf04",
+            "title": "Kapitel 19: Die Fährte des Hehlers (Folge 243)",
+            "artists": [],
+            "album": "Album - Folge 243: Die Fährte des Hehlers",
+            "duration_seconds": 94.0
+          },
+          {
+            "track_number": 22,
+            "video_id": "RFSY3lSyI_E",
+            "url": "https://music.youtube.com/watch?v=RFSY3lSyI_E",
+            "title": "Kapitel 20: Die Fährte des Hehlers (Folge 243)",
+            "artists": [],
+            "album": "Album - Folge 243: Die Fährte des Hehlers",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 23,
+            "video_id": "J9Our6zm7IM",
+            "url": "https://music.youtube.com/watch?v=J9Our6zm7IM",
+            "title": "Kapitel 21: Die Fährte des Hehlers (Folge 243)",
+            "artists": [],
+            "album": "Album - Folge 243: Die Fährte des Hehlers",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 24,
+            "video_id": "z7Zsz4ZEvjI",
+            "url": "https://music.youtube.com/watch?v=z7Zsz4ZEvjI",
+            "title": "Kapitel 22: Die Fährte des Hehlers (Folge 243)",
+            "artists": [],
+            "album": "Album - Folge 243: Die Fährte des Hehlers",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 25,
+            "video_id": "ZEmNE9GUNIg",
+            "url": "https://music.youtube.com/watch?v=ZEmNE9GUNIg",
+            "title": "Kapitel 23: Die Fährte des Hehlers (Folge 243)",
+            "artists": [],
+            "album": "Album - Folge 243: Die Fährte des Hehlers",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 26,
+            "video_id": "6pSonnCDPvo",
+            "url": "https://music.youtube.com/watch?v=6pSonnCDPvo",
+            "title": "Kapitel 24: Die Fährte des Hehlers (Folge 243)",
+            "artists": [],
+            "album": "Album - Folge 243: Die Fährte des Hehlers",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 27,
+            "video_id": "r-944ol_26Q",
+            "url": "https://music.youtube.com/watch?v=r-944ol_26Q",
+            "title": "Kapitel 25: Die Fährte des Hehlers (Folge 243)",
+            "artists": [],
+            "album": "Album - Folge 243: Die Fährte des Hehlers",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 28,
+            "video_id": "5tvXWGBwJsU",
+            "url": "https://music.youtube.com/watch?v=5tvXWGBwJsU",
+            "title": "Kapitel 26: Die Fährte des Hehlers (Folge 243)",
+            "artists": [],
+            "album": "Album - Folge 243: Die Fährte des Hehlers",
+            "duration_seconds": 93.0
+          },
+          {
+            "track_number": 29,
+            "video_id": "PJa5aQeQOx8",
+            "url": "https://music.youtube.com/watch?v=PJa5aQeQOx8",
+            "title": "Kapitel 27: Die Fährte des Hehlers (Folge 243)",
+            "artists": [],
+            "album": "Album - Folge 243: Die Fährte des Hehlers",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 30,
+            "video_id": "mdtg3VS8ggU",
+            "url": "https://music.youtube.com/watch?v=mdtg3VS8ggU",
+            "title": "Kapitel 28: Die Fährte des Hehlers (Folge 243)",
+            "artists": [],
+            "album": "Album - Folge 243: Die Fährte des Hehlers",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 31,
+            "video_id": "n5OELqwHfms",
+            "url": "https://music.youtube.com/watch?v=n5OELqwHfms",
+            "title": "Kapitel 29: Die Fährte des Hehlers (Folge 243)",
+            "artists": [],
+            "album": "Album - Folge 243: Die Fährte des Hehlers",
+            "duration_seconds": 94.0
+          },
+          {
+            "track_number": 32,
+            "video_id": "cknUlYfqokk",
+            "url": "https://music.youtube.com/watch?v=cknUlYfqokk",
+            "title": "Kapitel 30: Die Fährte des Hehlers (Folge 243)",
+            "artists": [],
+            "album": "Album - Folge 243: Die Fährte des Hehlers",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 33,
+            "video_id": "c1tCRk_UGf4",
+            "url": "https://music.youtube.com/watch?v=c1tCRk_UGf4",
+            "title": "Kapitel 31: Die Fährte des Hehlers (Folge 243)",
+            "artists": [],
+            "album": "Album - Folge 243: Die Fährte des Hehlers",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 34,
+            "video_id": "cxvPZqVOS_U",
+            "url": "https://music.youtube.com/watch?v=cxvPZqVOS_U",
+            "title": "Kapitel 32: Die Fährte des Hehlers (Folge 243)",
+            "artists": [],
+            "album": "Album - Folge 243: Die Fährte des Hehlers",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 35,
+            "video_id": "BYnQR98JSNo",
+            "url": "https://music.youtube.com/watch?v=BYnQR98JSNo",
+            "title": "Kapitel 33: Die Fährte des Hehlers (Folge 243)",
+            "artists": [],
+            "album": "Album - Folge 243: Die Fährte des Hehlers",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 36,
+            "video_id": "-41jXKbfRFU",
+            "url": "https://music.youtube.com/watch?v=-41jXKbfRFU",
+            "title": "Kapitel 34: Die Fährte des Hehlers (Folge 243)",
+            "artists": [],
+            "album": "Album - Folge 243: Die Fährte des Hehlers",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 37,
+            "video_id": "8lkMD2NWomg",
+            "url": "https://music.youtube.com/watch?v=8lkMD2NWomg",
+            "title": "Kapitel 35: Die Fährte des Hehlers (Folge 243)",
+            "artists": [],
+            "album": "Album - Folge 243: Die Fährte des Hehlers",
+            "duration_seconds": 93.0
+          },
+          {
+            "track_number": 38,
+            "video_id": "FPt6LozeSz4",
+            "url": "https://music.youtube.com/watch?v=FPt6LozeSz4",
+            "title": "Kapitel 36: Die Fährte des Hehlers (Folge 243)",
+            "artists": [],
+            "album": "Album - Folge 243: Die Fährte des Hehlers",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 39,
+            "video_id": "bG6i9-O5TcE",
+            "url": "https://music.youtube.com/watch?v=bG6i9-O5TcE",
+            "title": "Kapitel 37: Die Fährte des Hehlers (Folge 243)",
+            "artists": [],
+            "album": "Album - Folge 243: Die Fährte des Hehlers",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 40,
+            "video_id": "fxdFHPVCy6k",
+            "url": "https://music.youtube.com/watch?v=fxdFHPVCy6k",
+            "title": "Kapitel 38: Die Fährte des Hehlers (Folge 243)",
+            "artists": [],
+            "album": "Album - Folge 243: Die Fährte des Hehlers",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 41,
+            "video_id": "2r_fsVwKmKE",
+            "url": "https://music.youtube.com/watch?v=2r_fsVwKmKE",
+            "title": "Kapitel 39: Die Fährte des Hehlers (Folge 243)",
+            "artists": [],
+            "album": "Album - Folge 243: Die Fährte des Hehlers",
+            "duration_seconds": 92.0
+          },
+          {
+            "track_number": 42,
+            "video_id": "Wh0gjCuQmUU",
+            "url": "https://music.youtube.com/watch?v=Wh0gjCuQmUU",
+            "title": "Kapitel 40: Die Fährte des Hehlers (Folge 243)",
+            "artists": [],
+            "album": "Album - Folge 243: Die Fährte des Hehlers",
+            "duration_seconds": 91.0
+          },
+          {
+            "track_number": 43,
+            "video_id": "4wbqbEvnZUU",
+            "url": "https://music.youtube.com/watch?v=4wbqbEvnZUU",
+            "title": "Kapitel 41: Die Fährte des Hehlers (Folge 243)",
+            "artists": [],
+            "album": "Album - Folge 243: Die Fährte des Hehlers",
+            "duration_seconds": 112.0
+          },
+          {
+            "track_number": 44,
+            "video_id": "nrhNTwemChM",
+            "url": "https://music.youtube.com/watch?v=nrhNTwemChM",
+            "title": "TKKG Schlußsong",
+            "artists": [],
+            "album": "Album - Folge 243: Die Fährte des Hehlers",
+            "duration_seconds": 39.0
+          },
+          {
+            "track_number": 45,
+            "video_id": "6ITW1s6mR7o",
+            "url": "https://music.youtube.com/watch?v=6ITW1s6mR7o",
+            "title": "Outro: Die Fährte des Hehlers (Folge 243)",
+            "artists": [],
+            "album": "Album - Folge 243: Die Fährte des Hehlers",
+            "duration_seconds": 75.0
+          }
+        ],
+        "track_count": 45
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-11-25T10:34:27.454083+00:00",
+        "method": "independent_provider_tracklist_validation",
+        "spotify": {
+          "status": "verified",
+          "verified_track_count": 24
+        },
+        "youtube_music": {
+          "status": "verified",
+          "verified_track_count": 45,
+          "playlist_status": "unavailable",
+          "playlist_error": null
+        }
+      }
+    }
   }
 ]
