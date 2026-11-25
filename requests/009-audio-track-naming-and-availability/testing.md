@@ -1,31 +1,24 @@
 # Testing plan and results
 
-## Planned automated checks
+## Automated checks
 
-- [x] Part marker classification tests added for Teil, Part, and Kapitel. Execution is pending CI.
+- [x] Part marker classification for Teil, Part, and Kapitel.
+- [x] Variable chapter counts of 12, 20, 21, and 31.
+- [x] Rejection of duplicate, missing, and non-one-starting chapter numbers.
+- [x] Independent provider chapter counts, including Spotify with 20 and YouTube Music with 21 chapters.
+- [x] Existing shared track classification and inclusion regression tests.
+- [x] Episode 226 alternate title matching.
+- [x] Episode 128 unavailable registry entry recorded with its Spotify evidence.
+- [x] Full offline unit test suite: **150 tests passed**.
+- [x] Catalogue validation: **243 episodes passed**.
+- [x] Explicit assertion that episode 226 contains `Der Täter ist unter uns` in `alternate_titles`.
 
-- [x] Variable chapter count tests added for 12, 20, 21, and 31. Execution is pending CI.
+## Live checks
 
-- [x] Duplicate, gap, and invalid starting number rejection tests added. Execution is pending CI.
-
-- [x] Independent Spotify and YouTube Music count test added for 20 versus 21 chapters. Execution is pending CI.
-
-- [ ] Shared track classification and inclusion regression.
-- [x] Unit test added for matching the exact alternate title when supplied on the episode object. The catalogue record update remains pending.
-
-- [ ] Episode 128 unavailable registry validation and retry exclusion.
-- [ ] Full offline unit test suite.
-- [ ] Catalogue validation.
-- [ ] Audio coverage audit.
-
-## Planned live checks
-
-- [ ] Episode 128 Spotify ID checked without treating the unavailable resource as playable.
-- [ ] Episode 128 YouTube Music independently checked.
+- [ ] Episode 128 Spotify ID and unavailable status checked without exposing it as a playable link.
+- [ ] Episode 128 YouTube Music checked independently.
 - [ ] Episode 226 Spotify and YouTube Music discovery.
 - [ ] Episode 238 and 239 chapter format discovery.
-- [ ] Remaining affected audit targets checked.
+- [ ] Full audio coverage audit.
 
-## Results
-
-Implementation and execution results will be added here after the checks have actually run.
+Live discovery and audit are being run in GitHub Actions. Results will be added here once the workflow finishes.
