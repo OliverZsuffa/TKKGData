@@ -13,6 +13,7 @@ Every substantial change is tracked in its own numbered request folder.
 8. Request explicit approval before merging or deploying.
 
 ## Request index
+- [009: Provider track naming and reviewed audio availability](009-audio-track-naming-and-availability/request.md) — recognise Kapitel chapter labels, support variable provider-specific chapter counts, and record reviewed unavailable release evidence.
 - [008: Independent Spotify and YouTube Music track lists](008-independent-provider-tracklists/request.md) — add a separate, backwards-compatible data structure for independently verified provider track lists, preserving all existing audio mappings.
 - [007: Audio coverage audit and copy-ready discovery selection](007-audio-coverage-audit/request.md) — audit all episodes missing verified audio listening mappings and provide copy-ready discovery selections and failure diagnostics.
 - [006: Robust historical Spotify matching and parallel audio enrichment](006-robust-spotify-and-parallel-enrichment/request.md) — resolve historical Spotify search and compilation formats, then process full catalogue ranges through bounded parallel batches with one safe publication step.
