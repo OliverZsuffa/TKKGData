@@ -495,6 +495,7 @@ def resolve_spotify_album(episode: dict[str, Any], work_dir: Path) -> dict[str, 
         f'track:"TKKG ({number}) - {title}" artist:TKKG',
         f"TKKG ({number}) - {title}",
         f"TKKG {number:03d} {title} Teil 01",
+        f"TKKG {number:03d} {title} Kapitel 01",
         f"TKKG {number} {title}",
         f"TKKG Folge {number} {title}",
         f"{number} {title}",
@@ -1332,10 +1333,11 @@ def find_verified_youtube_music_tracks(
     resolved: list[dict[str, Any]] = []
     for index, spotify_track in enumerate(spotify["tracks"], start=1):
         title = str(spotify_track["name"])
+        chapter_label = "Kapitel" if re.search(r"\bkapitel\b", title, re.IGNORECASE) else "Teil"
         query_variants = (
             title,
             f"TKKG {title}",
-            f"TKKG Folge {int(episode['number'])} {episode['title']} Teil {index:02d}",
+            f"TKKG Folge {int(episode['number'])} {episode['title']} {chapter_label} {index:02d}",
         )
         ranked: dict[str, tuple[int, dict[str, Any], list[str]]] = {}
         candidate_diagnostics: list[dict[str, Any]] = []
